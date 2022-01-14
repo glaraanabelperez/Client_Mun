@@ -1,0 +1,399 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@800&family=Oswald:wght@500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500&display=swap");
+* {
+  font-size: 15px;
+  font-family: "Quicksand", sans-serif;
+  letter-spacing: 1px;
+}
+
+.row {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+.tituloPrincipal {
+  font-size: 3rem;
+}
+
+h1 {
+  font-size: 1.6rem;
+  color: #4e4e4e;
+  padding: 10px 0px 0px 0px;
+  display: block;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+h2 {
+  font-size: 1.4rem;
+  color: #505e47;
+  font-weight: bold;
+  letter-spacing: 0.1pc;
+}
+
+h3 {
+  font-size: 1.2em;
+}
+
+h4 {
+  font-size: 1em;
+}
+
+p {
+  margin: 0% !important;
+  width: 100%;
+  overflow-wrap: break-word;
+}
+
+.p-fondo {
+  font-size: 1.8rem;
+  color: #F5F5F5;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+span {
+  font-size: 1rem;
+  color: #075cbd;
+}
+
+.titulo-secciones {
+  color: #4e4e4e;
+  font-weight: 600;
+  margin-bottom: 0px;
+  margin-left: 50px;
+}
+
+form label {
+  font-size: 0.8rem;
+}
+
+.tituloTarjeta {
+  margin-top: 5%;
+  color: #a0c2c3;
+  display: block;
+  font-size: 1rem;
+  text-transform: uppercase;
+}
+
+.subTituloTarjeta {
+  margin: 0%;
+  color: #4e4e4e;
+  display: block;
+  font-size: 1.2rem;
+  text-transform: lowercase;
+}
+
+.pTarjeta {
+  margin: 0%;
+  width: auto;
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-overflow: clip;
+}
+
+.estiloBotonSimple {
+  font-size: 1rem;
+}
+
+.buttons {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+.buttons button {
+  font-size: 0.8rem;
+  padding: 3%;
+  display: inline-block;
+  outline: 0;
+  border: 0;
+  border-radius: 5px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #3f8cff;
+  cursor: pointer;
+  margin: 0px 2px 0px 1px !important;
+}
+
+.buttons button:hover {
+  background-color: #f8efef;
+}
+
+.banner {
+  width: 90%;
+  margin: auto;
+  background-color: white;
+  margin-bottom: 5%;
+}
+
+.banner img {
+  width: 100%;
+}
+
+.banner-100 {
+  width: 100%;
+  margin-bottom: 5%;
+}
+
+.banner-100 img {
+  width: 100%;
+  height: 250px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.banner-50 {
+  width: 47%;
+  margin-bottom: 5%;
+}
+
+.banner-50 img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+@media only screen and (max-width: 1024px) and (min-width: 764px) {
+  .tituloTarjeta {
+    margin-top: 15%;
+    color: #a0c2c3;
+    display: block;
+    font-size: 1rem;
+    text-transform: uppercase;
+  }
+  .subTituloTarjeta {
+    margin: 0%;
+    color: #4e4e4e;
+    display: block;
+    font-size: 1.8rem;
+    text-transform: lowercase;
+  }
+  .pTarjeta {
+    margin: 0%;
+    width: auto;
+    display: block;
+    font-size: 1.2rem;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-overflow: clip;
+  }
+}
+
+@media only screen and (max-width: 764px) and (min-width: 300px) {
+  .tituloTarjeta {
+    margin-top: 15%;
+    color: #a0c2c3;
+    display: block;
+    font-size: 1.4rem;
+    text-transform: uppercase;
+  }
+  .subTituloTarjeta {
+    margin: 0%;
+    color: #4e4e4e;
+    display: block;
+    font-size: 1.8rem;
+    text-transform: lowercase;
+  }
+  .pTarjeta {
+    margin: 0%;
+    width: auto;
+    display: block;
+    font-size: 1.2rem;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-overflow: clip;
+  }
+}
+
+main {
+  width: 100%;
+}
+
+main .jumbotron {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  padding: 2rem, 2rem;
+}
+
+.container2 {
+  width: 80%;
+  background-color: #f8efef;
+  border-radius: 20px;
+  padding: 1%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin: auto;
+  border-radius: 20px;
+}
+
+.bloque1 {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+.contenedorFila {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+.card-text {
+  margin-right: 20px;
+}
+
+@media only screen and (max-width: 800px) and (min-width: 320px) {
+  .conteiner1 {
+    width: 10%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    background: none;
+  }
+  .conteiner1 .buttonsLaterales {
+    position: fixed;
+    top: 90px;
+    left: 0px;
+    background-color: white;
+    border-radius: 2%;
+    padding: 5% 1% 5% 1%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-shadow: 11px 11px 1px rgba(0, 0, 0, 0.3);
+            box-shadow: 11px 11px 1px rgba(0, 0, 0, 0.3);
+    z-index: 999;
+  }
+  .conteiner1 .buttonsLaterales .fa {
+    font-size: 20px;
+  }
+  .conteiner1 .buttonsLaterales button {
+    background: none;
+    outline: 0;
+    border: 0;
+    color: #d8f1af;
+    cursor: pointer;
+  }
+  .conteiner1 .buttonsLaterales button:hover {
+    background-color: #f8efef;
+  }
+  .conteiner2 {
+    margin: auto;
+  }
+  .conteiner2 .card {
+    margin: 0px !important;
+  }
+  .conteiner2 .card .bloque1 {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+}
+
+@media only screen and (max-width: 800px) and (min-width: 1024px) {
+  div form {
+    width: 100%;
+  }
+  .conteiner1 {
+    width: 10%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    background: none;
+  }
+  .conteiner1 .buttonsLaterales {
+    position: fixed;
+    top: 90px;
+    left: 0px;
+    background-color: white;
+    border-radius: 2%;
+    padding: 5% 1% 5% 1%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-shadow: 11px 11px 1px rgba(0, 0, 0, 0.3);
+            box-shadow: 11px 11px 1px rgba(0, 0, 0, 0.3);
+    z-index: 999;
+  }
+  .conteiner1 .buttonsLaterales .fa {
+    font-size: 20px;
+  }
+  .conteiner1 .buttonsLaterales button {
+    background: none;
+    outline: 0;
+    border: 0;
+    color: #d8f1af;
+    cursor: pointer;
+  }
+  .conteiner1 .buttonsLaterales button:hover {
+    background-color: #f8efef;
+  }
+  .conteiner2 {
+    margin: auto;
+  }
+  .conteiner2 .card {
+    margin: 0px !important;
+  }
+  .conteiner2 .card .bloque1 {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+}
+/*# sourceMappingURL=protected.component.css.map */

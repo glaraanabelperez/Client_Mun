@@ -1,0 +1,28 @@
+<div class="fixed">
+    <div class="cabecera">
+        <cabecera-component *ngIf="_service_metodos.negocio"
+        [negocio]="_service_metodos.negocio"
+        ></cabecera-component>
+    </div>
+    <nav class="nav-component">
+        <nav-component
+        *ngIf="_service_metodos.negocio"
+        [negocio]="_service_metodos.negocio"
+        ></nav-component>   
+    </nav>
+</div>
+<div class="espacio"></div>
+<div>
+    <br>
+    <router-outlet></router-outlet>
+    <br>
+    <app-galeria *ngIf="_service_metodos.negocio"
+    ></app-galeria>
+    <footer class="footer">
+        <app-footer
+        *ngIf="_service_metodos.negocio"
+        [negocio]="_service_metodos.negocio"
+        ></app-footer>
+    </footer>
+</div>
+

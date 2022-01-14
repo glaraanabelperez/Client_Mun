@@ -1,0 +1,112 @@
+@import '../shared/styles/tipografias.scss';
+@import '../publicComponent/galeria/galeria.component.scss';
+.contenedor-cabecera{
+    background-color: white;
+    margin-top: 0%;
+    display: flex;
+    flex-direction: row;
+    height: 20%;
+    width: 100%;
+    font-size: $font-tamanio-botones;
+    .logo{
+        width: 15%;
+        margin: auto;
+        img {
+            width: 100%;
+           
+        }
+    }
+    .titulo{
+        width: 60%;
+        background-color: rgb(5, 221, 41);
+        border-bottom-left-radius: 20px;
+        text-align: center;
+        font-size: 1.8rem;
+        padding: 1%;
+        color: white;
+        border-right: 1px solid gainsboro;
+        opacity: 0.5;
+    }
+      
+    .botonCabecera{
+        .fa-user-circle{
+            font-size: 40px;
+        }
+        background-color: rgb(5, 221, 120);
+        opacity: 0.5;
+        padding: 5px;
+        text-align: center;
+        width: 15%;
+        cursor: pointer;
+        border: none;
+    }
+}
+
+.frente{
+    display: flex; flex-direction: row;  height: 100%;
+    .frente-titulo{
+        margin: auto; font-size: 50px;
+    }
+    .frente-imagen{
+        margin: auto;
+        img{
+            width: 100%; margin: 10%;
+        }
+    }
+}
+
+/* Smartphones (portrait and landscape) ----------- */  
+@media (max-width : 768px) {  
+    .contenedor-cabecera{
+        display: block;
+        width: 100vw;
+        margin: 0%;
+        .logo{
+            width: 55%;
+            img {
+                width: 100%;
+                background-size: cover;
+            }
+        }
+        .titulo{
+            width: 100%;
+            font-size: 1.4rem;
+            text-align: center;
+        }
+        .botonCabecera{
+            .fa-user-circle{
+                font-size: 60px;
+            }
+            background-color: rgb(249, 250, 249);
+        }
+    } 
+    .frente{
+        display: block;margin:5%;
+        margin-top: 4%;
+        .frente-titulo{
+            margin: auto; font-size: 40px;
+        }
+        .p-frente{
+            font-size: 22px;
+        }
+        .frente-imagen{
+            margin: auto;
+            img{
+                width: 63%; margin: 10%; margin-bottom: 7%;
+            }
+        }
+    }
+}  
+
+@media only screen  
+and (min-width : 768px)  
+and (max-width : 1024px) {  
+    .contenedor-cabecera{
+        .logo{
+            width: 30%;
+        }
+  
+    }
+} 
+    
+ 

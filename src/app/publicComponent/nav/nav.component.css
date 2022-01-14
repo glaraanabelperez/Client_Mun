@@ -1,0 +1,410 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@800&family=Oswald:wght@500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500&display=swap");
+* {
+  font-size: 15px;
+  font-family: "Quicksand", sans-serif;
+  letter-spacing: 1px;
+}
+
+.row {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+.tituloPrincipal {
+  font-size: 3rem;
+}
+
+h1 {
+  font-size: 1.6rem;
+  color: #4e4e4e;
+  padding: 10px 0px 0px 0px;
+  display: block;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+h2 {
+  font-size: 1.4rem;
+  color: #505e47;
+  font-weight: bold;
+  letter-spacing: 0.1pc;
+}
+
+h3 {
+  font-size: 1.2em;
+}
+
+h4 {
+  font-size: 1em;
+}
+
+p {
+  margin: 0% !important;
+  width: 100%;
+  overflow-wrap: break-word;
+}
+
+.p-fondo {
+  font-size: 1.8rem;
+  color: #F5F5F5;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+span {
+  font-size: 1rem;
+  color: #075cbd;
+}
+
+.titulo-secciones {
+  color: #4e4e4e;
+  font-weight: 600;
+  margin-bottom: 0px;
+  margin-left: 50px;
+}
+
+form label {
+  font-size: 0.8rem;
+}
+
+.tituloTarjeta {
+  margin-top: 5%;
+  color: #a0c2c3;
+  display: block;
+  font-size: 1rem;
+  text-transform: uppercase;
+}
+
+.subTituloTarjeta {
+  margin: 0%;
+  color: #4e4e4e;
+  display: block;
+  font-size: 1.2rem;
+  text-transform: lowercase;
+}
+
+.pTarjeta {
+  margin: 0%;
+  width: auto;
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-overflow: clip;
+}
+
+.estiloBotonSimple {
+  font-size: 1rem;
+}
+
+.buttons {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+.buttons button {
+  font-size: 0.8rem;
+  padding: 3%;
+  display: inline-block;
+  outline: 0;
+  border: 0;
+  border-radius: 5px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #3f8cff;
+  cursor: pointer;
+  margin: 0px 2px 0px 1px !important;
+}
+
+.buttons button:hover {
+  background-color: #f8efef;
+}
+
+.banner {
+  width: 90%;
+  margin: auto;
+  background-color: white;
+  margin-bottom: 5%;
+}
+
+.banner img {
+  width: 100%;
+}
+
+.banner-100 {
+  width: 100%;
+  margin-bottom: 5%;
+}
+
+.banner-100 img {
+  width: 100%;
+  height: 250px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.banner-50 {
+  width: 47%;
+  margin-bottom: 5%;
+}
+
+.banner-50 img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+@media only screen and (max-width: 1024px) and (min-width: 764px) {
+  .tituloTarjeta {
+    margin-top: 15%;
+    color: #a0c2c3;
+    display: block;
+    font-size: 1rem;
+    text-transform: uppercase;
+  }
+  .subTituloTarjeta {
+    margin: 0%;
+    color: #4e4e4e;
+    display: block;
+    font-size: 1.8rem;
+    text-transform: lowercase;
+  }
+  .pTarjeta {
+    margin: 0%;
+    width: auto;
+    display: block;
+    font-size: 1.2rem;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-overflow: clip;
+  }
+}
+
+@media only screen and (max-width: 764px) and (min-width: 300px) {
+  .tituloTarjeta {
+    margin-top: 15%;
+    color: #a0c2c3;
+    display: block;
+    font-size: 1.4rem;
+    text-transform: uppercase;
+  }
+  .subTituloTarjeta {
+    margin: 0%;
+    color: #4e4e4e;
+    display: block;
+    font-size: 1.8rem;
+    text-transform: lowercase;
+  }
+  .pTarjeta {
+    margin: 0%;
+    width: auto;
+    display: block;
+    font-size: 1.2rem;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-overflow: clip;
+  }
+}
+
+.navNav {
+  height: 15%;
+  position: static;
+  width: 100%;
+  background-color: white;
+  padding: 1%;
+}
+
+.navNav hr {
+  width: 100%;
+}
+
+.navNav div.scrollmenu {
+  overflow: auto;
+  white-space: nowrap;
+  width: 90%;
+}
+
+.navNav div.scrollmenu a {
+  display: inline-block;
+  text-align: center;
+  color: #075cbd;
+  font-weight: 550;
+  margin-left: 7%;
+  font-size: 1.2rem;
+}
+
+.navNav div.scrollmenu a i {
+  margin-left: 5px;
+}
+
+.navNav div.scrollmenu a:hover {
+  color: #0a73eb;
+  list-style: none;
+}
+
+.navNav .menuPaginaI {
+  margin-top: 1%;
+  margin-bottom: 1%;
+  margin-left: 4%;
+  width: 90%;
+  background-color: white;
+}
+
+.navNav .menuPaginaI a {
+  font-size: 1rem;
+  color: black;
+  display: inline-block;
+  text-align: center;
+  text-decoration: none;
+  margin-left: 7%;
+  margin-top: 2%;
+}
+
+.navNav .nav-Secundario {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  overflow: auto;
+  white-space: nowrap;
+  width: 90%;
+}
+
+.navNav .conteiner1 {
+  width: 0%;
+  background: none;
+}
+
+.navNav .conteiner1 .buttonsLaterales {
+  position: fixed;
+  top: 250px;
+  right: 30px;
+  background-color: white;
+  border: 1px solid gainsboro;
+  border-radius: 15px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  font-size: 20px;
+  z-index: 99;
+  padding: 10px 10px 10px 10px;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+.navNav .conteiner1 .buttonsLaterales .fa-instagram {
+  font-size: 17px;
+}
+
+.navNav .conteiner1 .buttonsLaterales .fa-home {
+  font-size: 17px;
+}
+
+.navNav .conteiner1 .buttonsLaterales .fa-facebook-square {
+  font-size: 17px;
+}
+
+.navNav .conteiner1 .buttonsLaterales .fa-envelope {
+  color: #313115;
+  font-size: 17px;
+}
+
+.navNav .conteiner1 .buttonsLaterales .fa-arrow-circle-up {
+  position: absolute;
+  bottom: -50%;
+  color: #313115;
+  font-size: 17px;
+}
+
+.navNav .conteiner1 .buttonsLaterales .fa-shopping-cart {
+  right: 10px;
+  bottom: -110%;
+  color: gainsboro;
+  font-size: 30px;
+  width: 45px;
+  height: 45px;
+  padding: 10px 10px 10px 10px;
+  border: 1px solid gainsboro;
+  background-color: white;
+  cursor: pointer;
+  border-radius: 10px;
+}
+
+.navNav .conteiner1 .buttonsLaterales .whatsapp {
+  width: 45px;
+  height: 45px;
+  right: 10px;
+  bottom: -130%;
+  padding: 1px 1px 1px 1px;
+  background-color: white;
+  cursor: pointer;
+  border-radius: 10px;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.navNav .conteiner1 .buttonsLaterales .whatsapp img {
+  padding-top: 4px;
+  width: 80%;
+}
+
+.navNav .btn-cierreCard {
+  position: absolute;
+  top: 10%;
+  right: 10%;
+  background: none;
+  border: 1px solid gainsboro;
+  height: 40px;
+  width: 40px;
+  border-radius: 100%;
+}
+
+.navNav .nav-cardComponente {
+  background-color: white;
+  width: 100%;
+  position: fixed;
+  z-index: 999;
+  left: 0px;
+  top: 12%;
+  padding: 2%;
+}
+
+@media only screen and (min-width: 320px) and (max-width: 768px) {
+  .menuPaginaI {
+    margin-top: 3%;
+    margin-left: 5%;
+    margin-bottom: 3%;
+    overflow: auto;
+    white-space: nowrap;
+    background-color: whitesmoke;
+  }
+  .menuPaginaI button {
+    background: none;
+    border: none;
+    font: uppercase;
+  }
+  .conteiner1 .buttonsLaterales .fa-shopping-cart {
+    right: 0px !important;
+  }
+}
+/*# sourceMappingURL=nav.component.css.map */

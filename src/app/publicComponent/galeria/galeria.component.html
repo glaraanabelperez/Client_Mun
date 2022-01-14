@@ -1,0 +1,28 @@
+<div class="contenedor-galeria" *ngIf="_service_metodos.negocio">
+    <h3 class="titulo-secciones">Los destacados de este mes <span> Consultanos!</span></h3>
+    <div id="carousel">      
+        <div *ngFor="let p of destacada" >
+            <div class="contenedor-card">
+                <button class="add" (click)="agregarPedido(p)">
+                    <i style="margin-right: auto; color: #0a66c2; font-size: 25px;padding: 6%;" class="fa fa-plus-square" aria-hidden="true"></i>
+                </button>
+                <div class="foto-destacada" *ngIf="p.nombreImagen; else celeste">
+                    <img  [src]="'assets/'+ _service_metodos.negocio.nombre_negocio + '/' +  p.nombreImagen" >
+                </div>
+                <ng-template #celeste>
+                    <div class="foto-destacada" >
+                        <img  [src]="'assets/camara.png'" >
+                    </div>
+                </ng-template>
+                <div class="info">
+                    <h4 class="titulo-tarjeta">{{p.titulo}}</h4>
+                    <p class="subtitulo" >{{p.subtitulo}}</p>
+                    <p *ngIf="p.promocion!=null" class="promocion">{{p.promocion}}</p>
+                    <p *ngIf="p.precio!=0">$ {{p.precio}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <hr>
+</div>

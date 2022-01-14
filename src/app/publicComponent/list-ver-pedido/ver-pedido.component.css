@@ -1,0 +1,320 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@800&family=Oswald:wght@500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500&display=swap");
+* {
+  font-size: 15px;
+  font-family: "Quicksand", sans-serif;
+  letter-spacing: 1px;
+}
+
+.row {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+.tituloPrincipal {
+  font-size: 3rem;
+}
+
+h1 {
+  font-size: 1.6rem;
+  color: #4e4e4e;
+  padding: 10px 0px 0px 0px;
+  display: block;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+h2 {
+  font-size: 1.4rem;
+  color: #505e47;
+  font-weight: bold;
+  letter-spacing: 0.1pc;
+}
+
+h3 {
+  font-size: 1.2em;
+}
+
+h4 {
+  font-size: 1em;
+}
+
+p {
+  margin: 0% !important;
+  width: 100%;
+  overflow-wrap: break-word;
+}
+
+.p-fondo {
+  font-size: 1.8rem;
+  color: #F5F5F5;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+span {
+  font-size: 1rem;
+  color: #075cbd;
+}
+
+.titulo-secciones {
+  color: #4e4e4e;
+  font-weight: 600;
+  margin-bottom: 0px;
+  margin-left: 50px;
+}
+
+form label {
+  font-size: 0.8rem;
+}
+
+.tituloTarjeta {
+  margin-top: 5%;
+  color: #a0c2c3;
+  display: block;
+  font-size: 1rem;
+  text-transform: uppercase;
+}
+
+.subTituloTarjeta {
+  margin: 0%;
+  color: #4e4e4e;
+  display: block;
+  font-size: 1.2rem;
+  text-transform: lowercase;
+}
+
+.pTarjeta {
+  margin: 0%;
+  width: auto;
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-overflow: clip;
+}
+
+.estiloBotonSimple {
+  font-size: 1rem;
+}
+
+.buttons {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+.buttons button {
+  font-size: 0.8rem;
+  padding: 3%;
+  display: inline-block;
+  outline: 0;
+  border: 0;
+  border-radius: 5px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #3f8cff;
+  cursor: pointer;
+  margin: 0px 2px 0px 1px !important;
+}
+
+.buttons button:hover {
+  background-color: #f8efef;
+}
+
+.banner {
+  width: 90%;
+  margin: auto;
+  background-color: white;
+  margin-bottom: 5%;
+}
+
+.banner img {
+  width: 100%;
+}
+
+.banner-100 {
+  width: 100%;
+  margin-bottom: 5%;
+}
+
+.banner-100 img {
+  width: 100%;
+  height: 250px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.banner-50 {
+  width: 47%;
+  margin-bottom: 5%;
+}
+
+.banner-50 img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+@media only screen and (max-width: 1024px) and (min-width: 764px) {
+  .tituloTarjeta {
+    margin-top: 15%;
+    color: #a0c2c3;
+    display: block;
+    font-size: 1rem;
+    text-transform: uppercase;
+  }
+  .subTituloTarjeta {
+    margin: 0%;
+    color: #4e4e4e;
+    display: block;
+    font-size: 1.8rem;
+    text-transform: lowercase;
+  }
+  .pTarjeta {
+    margin: 0%;
+    width: auto;
+    display: block;
+    font-size: 1.2rem;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-overflow: clip;
+  }
+}
+
+@media only screen and (max-width: 764px) and (min-width: 300px) {
+  .tituloTarjeta {
+    margin-top: 15%;
+    color: #a0c2c3;
+    display: block;
+    font-size: 1.4rem;
+    text-transform: uppercase;
+  }
+  .subTituloTarjeta {
+    margin: 0%;
+    color: #4e4e4e;
+    display: block;
+    font-size: 1.8rem;
+    text-transform: lowercase;
+  }
+  .pTarjeta {
+    margin: 0%;
+    width: auto;
+    display: block;
+    font-size: 1.2rem;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-overflow: clip;
+  }
+}
+
+.conteiner-pedido {
+  background-color: #f1eeee;
+  border-radius: 20px;
+  margin: auto;
+  position: fixed;
+  top: 0%;
+  z-index: 999;
+  width: 80%;
+  height: 70%;
+  padding: 2%;
+  margin: 10% 10% 10% 10%;
+}
+
+.conteiner-pedido .btn-cierreCard {
+  position: absolute;
+  top: 10%;
+  right: 8%;
+  background: none;
+  border: 1px solid gainsboro;
+  height: 40px;
+  width: 40px;
+  border-radius: 100%;
+}
+
+.conteiner-pedido .scrollCard {
+  overflow: auto;
+  height: 400px;
+  padding: 1%;
+}
+
+.conteiner-pedido .mensaje {
+  display: block;
+  text-align: center;
+  margin-bottom: 2%;
+}
+
+.conteiner-pedido .list-card {
+  margin: 7% 1% 10% 1%;
+  border-radius: 20px;
+  background-color: white;
+  padding: 1%;
+}
+
+.conteiner-pedido .list-card .info-derecha {
+  width: 100%;
+  margin-left: 7%;
+}
+
+.conteiner-pedido .list-card .info-derecha .boton-eliminar {
+  background: none;
+  border: 1px solid gainsboro;
+  height: 40px;
+  width: 40px;
+  border-radius: 100%;
+}
+
+.conteiner-pedido .fa-whatsapp {
+  bottom: 0px;
+  font-size: 40px;
+  color: #70dd03;
+}
+
+.conteiner-pedido .finalizarPedido {
+  position: fixed;
+  bottom: 17%;
+}
+
+@media only screen and (min-width: 320px) and (max-width: 480px) {
+  /* Styles */
+  .conteiner-pedido .scrollCard {
+    overflow: auto;
+    height: 100%;
+    padding: 1%;
+  }
+  .conteiner-pedido .scrollCard .list-card {
+    margin: 30% 1% 20% 1%;
+  }
+  .conteiner-pedido .finalizarPedido {
+    position: fixed;
+    bottom: 26%;
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+  /* Styles */
+  .conteiner-pedido .scrollCard {
+    overflow: auto;
+    height: 100%;
+    padding: 1%;
+  }
+  .conteiner-pedido .scrollCard .list-card {
+    margin: 30% 1% 20% 1%;
+  }
+  .conteiner-pedido .finalizarPedido {
+    position: fixed;
+    bottom: 26%;
+  }
+}
+/*# sourceMappingURL=ver-pedido.component.css.map */

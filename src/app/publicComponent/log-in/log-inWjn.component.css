@@ -1,0 +1,350 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@800&family=Oswald:wght@500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500&display=swap");
+* {
+  font-size: 15px;
+  font-family: "Quicksand", sans-serif;
+  letter-spacing: 1px;
+}
+
+.row {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+.tituloPrincipal {
+  font-size: 3rem;
+}
+
+h1 {
+  font-size: 1.6rem;
+  color: #4e4e4e;
+  padding: 10px 0px 0px 0px;
+  display: block;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+h2 {
+  font-size: 1.4rem;
+  color: #505e47;
+  font-weight: bold;
+  letter-spacing: 0.1pc;
+}
+
+h3 {
+  font-size: 1.2em;
+}
+
+h4 {
+  font-size: 1em;
+}
+
+p {
+  margin: 0% !important;
+  width: 100%;
+  overflow-wrap: break-word;
+}
+
+.p-fondo {
+  font-size: 1.8rem;
+  color: #F5F5F5;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+span {
+  font-size: 1rem;
+  color: #075cbd;
+}
+
+.titulo-secciones {
+  color: #4e4e4e;
+  font-weight: 600;
+  margin-bottom: 0px;
+  margin-left: 50px;
+}
+
+form label {
+  font-size: 0.8rem;
+}
+
+.tituloTarjeta {
+  margin-top: 5%;
+  color: #a0c2c3;
+  display: block;
+  font-size: 1rem;
+  text-transform: uppercase;
+}
+
+.subTituloTarjeta {
+  margin: 0%;
+  color: #4e4e4e;
+  display: block;
+  font-size: 1.2rem;
+  text-transform: lowercase;
+}
+
+.pTarjeta {
+  margin: 0%;
+  width: auto;
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-overflow: clip;
+}
+
+.estiloBotonSimple {
+  font-size: 1rem;
+}
+
+.buttons {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+.buttons button {
+  font-size: 0.8rem;
+  padding: 3%;
+  display: inline-block;
+  outline: 0;
+  border: 0;
+  border-radius: 5px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #3f8cff;
+  cursor: pointer;
+  margin: 0px 2px 0px 1px !important;
+}
+
+.buttons button:hover {
+  background-color: #f8efef;
+}
+
+.banner {
+  width: 90%;
+  margin: auto;
+  background-color: white;
+  margin-bottom: 5%;
+}
+
+.banner img {
+  width: 100%;
+}
+
+.banner-100 {
+  width: 100%;
+  margin-bottom: 5%;
+}
+
+.banner-100 img {
+  width: 100%;
+  height: 250px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.banner-50 {
+  width: 47%;
+  margin-bottom: 5%;
+}
+
+.banner-50 img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+@media only screen and (max-width: 1024px) and (min-width: 764px) {
+  .tituloTarjeta {
+    margin-top: 15%;
+    color: #a0c2c3;
+    display: block;
+    font-size: 1rem;
+    text-transform: uppercase;
+  }
+  .subTituloTarjeta {
+    margin: 0%;
+    color: #4e4e4e;
+    display: block;
+    font-size: 1.8rem;
+    text-transform: lowercase;
+  }
+  .pTarjeta {
+    margin: 0%;
+    width: auto;
+    display: block;
+    font-size: 1.2rem;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-overflow: clip;
+  }
+}
+
+@media only screen and (max-width: 764px) and (min-width: 300px) {
+  .tituloTarjeta {
+    margin-top: 15%;
+    color: #a0c2c3;
+    display: block;
+    font-size: 1.4rem;
+    text-transform: uppercase;
+  }
+  .subTituloTarjeta {
+    margin: 0%;
+    color: #4e4e4e;
+    display: block;
+    font-size: 1.8rem;
+    text-transform: lowercase;
+  }
+  .pTarjeta {
+    margin: 0%;
+    width: auto;
+    display: block;
+    font-size: 1.2rem;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-overflow: clip;
+  }
+}
+
+.fa-window-close {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  border: none;
+}
+
+.fa-user-circle {
+  position: absolute;
+  right: 5px;
+  font-size: 50px;
+}
+
+.fa-share-square {
+  font-size: 26px;
+}
+
+.fa-archive {
+  font-size: 30px;
+}
+
+div .card {
+  background: #fff;
+  border-radius: 4px;
+  -webkit-box-shadow: 0px 14px 80px rgba(34, 35, 58, 0.5);
+          box-shadow: 0px 14px 80px rgba(34, 35, 58, 0.5);
+  width: 35%;
+  border-radius: 25px;
+  margin: auto;
+  margin-top: 10%;
+  margin-bottom: 10%;
+}
+
+.card h2 {
+  width: 100%;
+  padding: 0 1rem;
+}
+
+.card .title {
+  padding: 1rem;
+  text-align: right;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  color: black;
+  font-weight: bold;
+  font-size: 12px;
+}
+
+.card .desc {
+  padding: 0.5rem 1rem;
+  font-size: 12px;
+}
+
+.card .actions {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 0.5rem 1rem;
+}
+
+.title-total {
+  padding: 2.5em 1.5em 1.5em 1.5em;
+  text-align: center;
+}
+
+.botonesAdmin {
+  text-align: center;
+}
+
+button {
+  border: none;
+  background: none;
+  font-size: 24px;
+  color: #f1288d;
+  cursor: pointer;
+  -webkit-transition: .5s;
+  transition: .5s;
+}
+
+button:hover {
+  color: #a00872;
+  -webkit-transform: rotate(22deg);
+          transform: rotate(22deg);
+}
+
+.btonesAdmin {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+@media only screen and (min-width: 320px) and (max-width: 765px) {
+  div .card {
+    background: #fff;
+    margin: auto;
+    border-radius: 25px;
+    -webkit-box-shadow: 0px 14px 80px rgba(34, 35, 58, 0.5);
+            box-shadow: 0px 14px 80px rgba(34, 35, 58, 0.5);
+    width: 65%;
+    margin-top: 15%;
+  }
+  .fa-user-circle {
+    position: absolute;
+    right: 5px;
+    font-size: 50px;
+  }
+  .fa-share-square {
+    font-size: 26px;
+  }
+  .fa-archive {
+    font-size: 30px;
+  }
+  form input {
+    width: 100%;
+  }
+  .title-total h2 {
+    font-size: 1.4rem !important;
+    text-align: center;
+  }
+  .botonesAdmin {
+    text-align: center;
+  }
+}
+/*# sourceMappingURL=log-inWjn.component.css.map */

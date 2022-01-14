@@ -1,0 +1,30 @@
+@import './shared/styles/tipografias.scss';
+.contenedor-app{
+    .fixed{
+        position: fixed;
+        z-index: 999;
+        top: 0%;
+    }    
+    .espacio{
+        height: 170px;
+    }
+    .footer{
+        height: 90vh;
+    }
+
+}
+@media (max-width : 667px) {
+    .espacio{
+        height: 170px !important;
+    }
+}
+@media only screen  
+and (min-width : 768px)  
+and (max-width : 1024px) {  
+    .espacio{
+        height: 170px !important;
+    }
+}
+
+
+

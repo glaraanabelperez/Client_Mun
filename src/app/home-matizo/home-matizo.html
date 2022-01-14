@@ -1,0 +1,53 @@
+<app-cabecera-matizo></app-cabecera-matizo>
+<div  class="frente" >
+    <div class="frente-titulo">
+        Digitalizá tu carta.
+        <br> Vendé online.
+        <br> Sin comisiones. 
+        <p class="p-frente">X solo 2300/mes</p>
+        <p class="p-frente">consultanos por whatsapp</p> 
+ 
+    </div>
+    <div class="frente-imagen">
+        <img src="assets/imagenes-web/celu-carta.jpg">
+    </div>
+</div>
+<br>
+<div style="width: 90%; margin: auto; ">
+    <div style="width: 10px; background-color:#26d0ab; height: 10px; "></div>
+    <p style="font-size: 12px;"> Bs As Argentina -</p>
+    <a href="http://matizo.com.ar" target="_blank" rel="noopener noreferrer">Matizo Diseño y Programacion</a>
+</div>
+<br>
+<div class="contenedor-galeria" *ngIf="negocios_todos" >
+    <h3 class="titulo-secciones">TIENDAS</h3>
+    <div id="carousel">      
+        <div *ngFor="let n of negocios_todos" >
+            <div style="background-color: white; width: 300px; padding: 10%; border-radius: 20px;" >
+                <h4 style="text-transform: uppercase; text-align: center;">{{n.nombre_negocio}}</h4>
+                <button style="width:50%; margin-left: 25%;border: 0px;border-radius: 20px;padding: 5%;">
+                    <a  routerLink="/home/{{n.nombre_negocio}}" target="_blank">MENU</a>
+                </button>
+            </div>
+        </div>
+    </div>
+    <br>
+    <hr>
+</div>
+<div class="footer-div">
+    <div style="margin-left: 5%; margin: auto; text-align: center; margin-bottom: 3%;">
+        <br>
+        <h1>Diseño y Programacion</h1>
+        <p class="pfooter">Matizo, Bs As Argentina</p>
+        <br><i class="fa fa-envelope" aria-hidden="true"></i>
+        <p>Email: 	info@matizo.com.ar</p>
+        <p> whatsapp: 1144163757</p>
+        <p class="pieFooter">2021/MATIZO! DISEÑO Y PROGRAMACION</p>
+        <div style=" position: fixed; bottom: 5%; right: 3%;background-color: chartreuse; width: 50px;height: 50px; text-align: center; border-radius: 100%;">
+            <a href=" https://api.whatsapp.com/send?phone=541144163757">
+                <i style="color: white; font-size: 40px; padding: 5px;" class="fa fa-whatsapp whatsapp-icon" aria-hidden="true"></i>
+            </a>
+        </div>
+    </div>
+</div>
+

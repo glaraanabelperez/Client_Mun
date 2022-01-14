@@ -1,0 +1,46 @@
+<div class="conteiner-pedido">
+  <div style="display: flex; flex-direction: row; margin-left: 2%;">
+    <div (click)="back()">
+      <button class="back fa fa-chevron-left"></button>
+    </div>
+    <div  (click)="finalizarPedido()">
+      <button  class="back fa fa-paper-plane" *ngIf="_service_metodos.negocio.whatsap_pedidos; else aguarde"></button>
+    </div>
+    <ng-template #aguarde>Aguarde a ser atendido</ng-template>
+  </div>
+  <br>
+  <p style="text-align: center;margin: auto;">Su carrito tiene {{_service.total}} productos!</p>
+  <br>
+  <div style="display: block;text-align: center;" *ngIf="_service.total==0">
+        <img class="imagen-pedido"  src="assets/imagenes-web/fondo.png">
+  </div>
+  <div class="scroll">
+        <div class="list-card" class="list-card" *ngFor="let p of pedidosTodos" >
+          <div class="info-derecha">
+              <div class="info">
+                  <h4 style="text-transform: uppercase;">Producto:</h4>
+                  <p >{{p.categoria}}</p>
+                  <p >{{p.subtitulo}}</p>
+                  <h3>{{p.titulo}}</h3>
+                  <p>codigo: {{p.codigo_producto}}</p>
+                  <p>Cantidad:{{p.cantidad}}</p>
+                  <p>$ {{p.precio*p.cantidad}}</p>
+                  <br>
+                  <div class="list-card-botones" >
+                    <button class="boton-eliminar" (click)="eliminar(p.codigo_producto)">
+                      <i class="fa fa-trash" aria-hidden="true"></i>
+                    </button>
+                    <button class="boton-eliminar" (click)="sumar(p.codigo_producto)">
+                      <i class="fa fa-long-arrow-up" aria-hidden="true"></i>
+                    </button>
+                    <button class="boton-eliminar" (click)="restar(p.codigo_producto)">
+                      <i class="fa fa-long-arrow-down" aria-hidden="true"></i>
+                    </button>
+                  </div>   
+              </div>
+          </div>
+          <br>
+        </div> 
+  </div>        
+</div>
+

@@ -1,0 +1,39 @@
+<app-cabecera-matizo></app-cabecera-matizo>
+<div contenedor-log-in>
+      <div class="card">
+        <a [routerLink]="['/home-matizo']"><i class="fa fa-window-close" aria-hidden="true" ></i></a>
+        <div class="card-text">
+          <div class="title-total"> 
+            <h2 style="margin-top: 20px; margin-bottom: 15px;">Bienvenido</h2>
+            <h3>{{titulo}}</h3>
+
+            <br>
+            <form *ngIf="!authService.getUser()">
+                
+                <div class="form-group mb-8">
+                    <label for="username">User:</label><br>
+                    <input  name="username" #username >
+                </div>
+                <div class="form-group mb-8">
+                    <label for="password">Pasword:</label>
+                    <input  type="password" name="password" #password >
+                </div>
+                <div class="actions">
+                  <button (click)="login(username.value, password.value)" ><i class="fas fa-share-square"></i></button>
+                  <p>{{mensajerror}}</p>
+                </div>
+            </form>
+            <div class="botonesAdmin" *ngIf="authService.getUser()">
+              <button (click)="logOut()" style="margin-right: 28px;" >
+                <i class="fas fa-share-square" style="color: black;"></i>
+                <p style="color: gray; font-weight: bold;">Salir</p>
+              </button>
+              <button [routerLink]="['/protected']" >
+                <i class="fa fa-archive " style="color: gainsboro;" aria-hidden="true"></i>
+                <p style="color: gray; font-weight: bold;">Panel</p>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+</div>

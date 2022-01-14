@@ -1,0 +1,38 @@
+<div *ngIf="_servicio_metodos.publicaciones; ">
+	<div *ngIf="categoriaElegida!=null"  style="width: 90%; margin: auto;">
+		<div  *ngFor="let p of _servicio_metodos.publicaciones" >
+			<div class="list-card" 	*ngIf="p.categorias===categoriaElegida.codigo_categoria; ">
+				<div class="list-card-botones" >
+					<button class="add" (click)="agregarPedido(p)">
+						<i style="margin-right: auto; color: #0a66c2; font-size: 25px;padding: 6%;" class="fa fa-plus-square" aria-hidden="true"></i>
+					</button>
+				</div>
+				<div class="foto" *ngIf="p.nombreImagen; else photo">
+					<img alt="imagen"  class="imgCard" [src]="'assets/'+_servicio_metodos.negocio.nombre_negocio + '/' + p.nombreImagen">
+				</div>
+				<ng-template #photo>
+					<div class="foto">
+						<img style="object-fit:contain" [src]="'assets/camara.png'">
+					</div>
+				</ng-template>
+				<div class="info-derecha">
+					<div class="info">
+						<h3>{{p.titulo}}</h3>
+						<p>{{p.subtitulo}}</p>
+						<p>{{p.descripcion}}</p>
+						<p style="font-size: 12px;">codigo: {{p.codigo_producto}}</p>
+						<p *ngIf="p.precio!=0" style="color: #0a66c2; font-weight: 600; ">$ {{p.precio}}</p>
+					</div>			
+				</div><br>
+			</div>
+		</div>
+	</div>
+	<div style="width: 90%; margin: auto;">
+		<p style="margin: 2%;" *ngIf="categoriaElegida==null" >Seleccione una categoria</p>
+	</div>
+
+</div>
+
+
+
+

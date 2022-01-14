@@ -1,0 +1,130 @@
+@import '../../shared/styles/tipografias.scss';
+main{
+    width: 100%;
+    .jumbotron{
+        display: flex;
+        flex-direction: row;
+        padding: 0rem, 2rem;
+        .container2{
+            width: 80%;
+            background-color:rgb(248, 239, 239);
+            border-radius: 20px;
+            padding: 1%;
+            display: flex;
+            flex-direction: column;
+            margin: auto;
+            border-radius: 20px;
+            .bloque1{
+                display: flex;
+                flex-direction: row;
+            }
+            .contenedorFila{
+                display: flex;
+                flex-direction: row;
+            }
+            .card-text{
+                margin-right: 20px;
+            }
+        }
+    }
+}
+
+
+
+
+@media only screen and (max-width: 800px) and (min-width: 320px) {
+
+    .conteiner1{
+        width: 10%;
+        display: flex;
+        flex-direction: column;
+        background: none;
+        .buttonsLaterales{
+            position: fixed;
+            top: 90px;
+            left: 0px;
+            background-color: white;
+            border-radius: 2% ;
+            padding: 5% 1% 5% 1%;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 11px 11px 1px rgba(0, 0, 0, 0.3);
+            z-index: 999;
+            .fa{
+                font-size: 20px;
+            }
+            button {
+            background: none;
+            outline: 0;
+            border: 0;
+            color: rgb(216, 241, 175);
+            cursor: pointer;
+          }
+          button:hover{
+            background-color: rgb(248, 239, 239);
+          }
+        }
+    }
+    .conteiner2{
+        margin: auto;
+        .card{
+            margin:0px !important;
+
+            .bloque1{
+                display: flex;
+                flex-direction: column;
+            }
+        }   
+    } 
+}
+
+
+@media only screen and (max-width: 800px) and (min-width: 1024px) {
+
+    div form{
+        width: 100%;
+    }
+    .conteiner1{
+        width: 10%;
+        display: flex;
+        flex-direction: column;
+        background: none;
+        .buttonsLaterales{
+            position: fixed;
+            top: 90px;
+            left: 0px;
+            background-color: white;
+            border-radius: 2% ;
+            padding: 5% 1% 5% 1%;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 11px 11px 1px rgba(0, 0, 0, 0.3);
+            z-index: 999;
+            .fa{
+                font-size: 20px;
+            }
+            button {
+            background: none;
+            outline: 0;
+            border: 0;
+            color: rgb(216, 241, 175);
+            cursor: pointer;
+          }
+          button:hover{
+            background-color: rgb(248, 239, 239);
+          }
+        }
+    }
+    .conteiner2{
+        margin: auto;
+        .card{
+            margin:0px !important;
+
+            .bloque1{
+                display: flex;
+                flex-direction: column;
+            }
+        }   
+    }     
+}
+

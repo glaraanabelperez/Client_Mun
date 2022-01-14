@@ -1,0 +1,21 @@
+<div class="navNav">
+    <a *ngIf="negocio.nombre_negocio" routerLink="/home/{{negocio.nombre_negocio}}"><h1 *ngIf="negocio.nombre_negocio">{{negocio.nombre_negocio}}</h1></a>
+    <div class="conteiner1">
+        <div class="buttonsLaterales">
+            <div routerLink="pedidos">
+                <p *ngIf="total!=0" class="number">{{total}}</p>
+                <button class="fa fa-shopping-cart" style="color: #0a66c2;"> </button>
+            </div>
+        </div>
+    </div> 
+    <div  class="menuPaginaI" style="display: flex;flex-direction: row;">
+        <div class="nav-Secundario">
+            <nav-secundario *ngFor="let c of _service_metodos.categorias" 
+            [categoria]="c"
+            (onClicked)="elegido($event)"
+            ></nav-secundario>
+        </div>
+    </div>  
+</div>
+
+

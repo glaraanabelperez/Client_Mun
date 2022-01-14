@@ -1,0 +1,267 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@800&family=Oswald:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500&display=swap');
+$font:  'Quicksand', sans-serif;
+$font-tamanio-botones:12px;
+$color-gris:gainsboro;
+$color-gris-claro:rgb(239, 240, 238);
+$color-amarillo:#b8f864;
+$color-verde:#26d0ab;
+$white: #F5F5F5;
+$light: #e0dec9;
+$tan: #a0c2c3;
+$azul: #004182;
+$azul-claro: #0a66c2;
+$azul-turquesa: #378fe9;
+
+$dark: #4e4e4e;
+$border:1px solid gainsboro;
+
+$font-tamanio-botones:12px;
+$color-primary: #505e47;
+$color-secondary: #a6a6a6;
+$color-highlight: #3f8cff;
+$color-fondo:rgb(226, 224, 197);
+$off_white:#fafafa;
+$light_grey:#A39D9E;
+
+* {
+  font-size: 15px;
+  font-family: $font;
+  letter-spacing: 1px;
+}
+
+.row{
+  display: flex;
+  flex-direction: row;
+}
+//-----------------------------TIPOGRAFIAS
+.tituloPrincipal{
+  font-size: 3rem;
+}
+
+h1{
+    font-size: 1.6rem;
+    color: $dark;
+    padding: 10px 0px 0px 0px;
+    display: block;
+    font-weight: 500;
+    text-transform: uppercase;
+ }
+
+ h2{
+  font-size: 1.4rem;
+  color: $color-primary;
+  font-weight: bold;
+  letter-spacing: 0.1pc;
+}
+
+h3 {
+	font-size: 1.2em;
+  overflow-wrap: break-word;
+}
+
+h4 {
+	font-size: 1em;
+  overflow-wrap: break-word;
+}
+
+p{
+	margin: 0% !important;
+  width: 100%;
+  overflow-wrap: break-word;
+}
+.p-fondo{
+  font-size: 1.8rem;
+  color: $white;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+span{
+  font-size: 1rem;
+  color: $azul;
+}
+
+.titulo-secciones{
+  color: $dark;
+  font-weight: 600;
+  margin-bottom: 0px;
+  margin-left: 50px;
+}
+
+form {
+      label{
+        font-size: 0.8rem;
+  }
+}
+
+.tituloTarjeta {
+  margin-top: 5%;
+   color: $tan;
+   display: block;
+   font-size: 1rem;
+   text-transform: uppercase;
+ }
+
+ .subTituloTarjeta {
+   margin:0%;
+   color: $dark;
+   display: block;
+   font-size: 1.2rem;
+   text-transform: lowercase;
+ }
+
+ .pTarjeta {
+   margin:0%;
+   width: auto;
+   display: block;
+   font-size: 0.9rem;
+   font-weight: 500;
+   letter-spacing: 1px;
+   text-overflow: clip;
+ }
+ .estiloBotonSimple{
+   font-size: 1rem;
+  //  text-transform: uppercase;
+ }
+
+ //----------------------------- FIN TIPOGRAFIAS
+
+ //-----------------------------BOTONES 
+
+ .buttons{
+    display: flex;
+    flex-direction: row;
+    button {
+    font-size: 0.8rem;
+    padding: 3%;
+    display: inline-block;
+    outline: 0;
+    border: 0;
+    border-radius: 5px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color:$color-highlight;
+    cursor: pointer;
+    margin: 0px 2px 0px 1px !important;
+  }
+}
+.button-style{
+  font-size: 0.8rem;
+  background-color: #05dd78;
+  width: auto;
+  padding: 2px;
+  outline: 0;
+  border: 0;
+  border-radius: 5px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color:white;
+  cursor: pointer;
+  margin: 0px 2px 0px 1px !important;
+}
+
+.buttons-subir{
+  font-size: 0.8rem;
+  width: 20px;
+  height: 20px;
+  padding: 2px;
+  outline: 0;
+  border: 0;
+  cursor: pointer;
+  margin: 0px 2px 0px 1px !important;
+  buttons-subir:hover{
+    background-color: rgb(248, 239, 239);
+    }
+}
+
+ //-----------------------------FIN BANNERS
+ //-----------------------------MEDIA @QUERY
+@media only screen and (max-width: 1024px) and (min-width: 764px) {
+  .tituloTarjeta {
+    margin-top: 15%;
+     color: $tan;
+     display: block;
+     font-size: 1rem;
+     text-transform: uppercase;
+   }
+  
+   .subTituloTarjeta {
+     margin:0%;
+     color: $dark;
+     display: block;
+     font-size: 1.8rem;
+     text-transform: lowercase;
+   }
+  
+   .pTarjeta {
+     margin:0%;
+     width: auto;
+     display: block;
+     font-size: 1.2rem;
+     font-weight: 500;
+     letter-spacing: 1px;
+     text-overflow: clip;
+   }
+}
+ //-----------------------------MEDIA @QUERY
+@media only screen and (max-width: 760px) and (min-width: 300px) {
+  h1{
+    font-size: 17px;
+  }
+  .buttons2{
+    position: absolute;  top: 46%; z-index:999; width: 60%;margin-bottom: 10%; 
+    button:hover{
+      background-color: rgb(248, 239, 239);
+      }
+  }
+  .buttons3{
+    z-index: 999; background-color: white;border: 1px solid rgb(55, 190, 14);
+    position: absolute;  top: 46%;left: 7%; margin-bottom: 10%; width: 22%;
+    button:hover{
+      background-color: rgb(248, 239, 239);
+      }
+  }
+  .tituloTarjeta {
+    margin-top: 15%;
+     color: $tan;
+     display: block;
+     font-size: 1.4rem;
+     text-transform: uppercase;
+   }
+  
+   .subTituloTarjeta {
+     margin:0%;
+     color: $dark;
+     display: block;
+     font-size: 1.8rem;
+     text-transform: lowercase;
+   }
+  
+   .pTarjeta {
+     margin:0%;
+     width: auto;
+     display: block;
+     font-size: 1.2rem;
+     font-weight: 500;
+     letter-spacing: 1px;
+     text-overflow: clip;
+   }
+}
+@media only screen and (max-width: 1024px) and (min-width: 760px) {
+  .buttons2{
+    position: absolute;  top: 32%; z-index:999; width: 60%;margin-bottom: 10%; 
+    button:hover{
+      background-color: rgb(248, 239, 239);
+      }
+  }
+  .buttons3{
+    z-index: 999; background-color: white;border: 1px solid rgb(55, 190, 14);
+    position: absolute;  top: 32%;left: 7%; margin-bottom: 10%; width: 22%;
+    button:hover{
+      background-color: rgb(248, 239, 239);
+      }
+  }
+
+}

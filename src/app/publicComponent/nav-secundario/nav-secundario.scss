@@ -1,0 +1,28 @@
+@import '../../shared/styles/tipografias.scss';
+
+$white: #f5f5f5;
+$blue: #03acac;
+$amarillo:rgba(169, 214, 43, 0.822);
+$dark: #6d6d6b;
+$dark2: #1d1d0d;
+$gris:rgba(26, 26, 25, 0.3);
+
+.display-row{
+
+    a {
+        font-size: 1rem;
+        color: black;
+        text-align: center;
+        text-decoration: none;
+        border-right: 1px solid $gris;
+        padding-right: 3%;
+    }
+    a:hover {
+        font-weight: 600;
+    }
+    a:focus{
+        font-weight: 600;
+      }
+}
+
+

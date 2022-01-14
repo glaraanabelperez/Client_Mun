@@ -1,0 +1,118 @@
+  
+  @import '../../shared/styles/tipografias.scss';
+ 
+  .fa-window-close{
+    position: absolute;
+    top: 10px;
+    left: 10px;      
+    border: none;
+  }
+  .fa-user-circle{
+    position: absolute;
+    right: 5px;
+    font-size: 50px;
+  }
+
+  .fa-share-square{
+    font-size: 26px;
+  }
+  .fa-archive{
+    font-size: 30px;
+  }
+  div .card {
+    background: #fff;
+    border-radius: 4px;
+    box-shadow: 0px 14px 80px rgba(34, 35, 58, 0.5);
+    width: 35%;
+    border-radius: 25px;
+    margin: auto;
+    margin-top: 10%;
+    margin-bottom: 10%;
+  }
+  .card h2 {
+    width: 100%;
+    padding: 0 1rem;
+  }
+  .card .title {
+    padding: 1rem;
+    text-align: right;
+    justify-content: center;
+    color: black;
+    font-weight: bold;
+    font-size: 12px;
+  }
+
+  .card .desc {
+    padding: 0.5rem 1rem;
+    font-size: 12px;
+  }
+  .card .actions {
+
+    align-items: center;
+    padding: 0.5rem 1rem;
+  } 
+  .title-total {
+    padding: 2.5em 1.5em 1.5em 1.5em;
+    text-align: center;
+  }
+  .botonesAdmin{
+    text-align: center;
+
+  }
+  
+  button {
+    border: none;
+    background: none;
+    font-size: 24px;
+    color: #f1288d;
+    cursor: pointer;
+    transition:.5s;
+    &:hover{
+      color: #a00872  ;
+      transform: rotate(22deg)
+    }
+  }
+  .btonesAdmin{
+    display: flex;
+    flex-direction: row;
+  }
+  
+  @media only screen  and (min-width : 320px)  and (max-width : 765px) {
+
+  div .card {
+    background: #fff;
+    margin: auto;
+    border-radius: 25px;
+    box-shadow: 0px 14px 80px rgba(34, 35, 58, 0.5);
+    width: 65%;
+    margin-top: 15%;
+  }
+    .fa-user-circle{
+      position: absolute;
+      right: 5px;
+      font-size: 50px;
+    }
+
+    .fa-share-square{
+      font-size: 26px;
+    }
+    .fa-archive{
+      font-size: 30px;
+    }
+  form input{
+    width: 100%;
+  }
+  .title-total{
+    h2 {
+      font-size: 1.4rem !important;
+      text-align: center;
+
+    }
+  }
+
+  .botonesAdmin{
+    text-align: center;
+
+  }
+
+}

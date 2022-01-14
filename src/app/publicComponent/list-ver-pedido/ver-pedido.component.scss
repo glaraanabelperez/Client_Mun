@@ -1,0 +1,77 @@
+@import '../../shared/styles/tipografias.scss';
+
+ .conteiner-pedido{
+  background-color: rgb(241, 238, 238);
+	width: 100%;
+	padding: 0% 2% 2% 2%;
+  height: auto;
+	z-index: 999;
+	box-shadow: 2px 2px 5px rgb(252, 253, 253);
+	box-shadow: 2px 2px 5px rgb(252, 253, 253);
+  .back{
+    right: 10px;
+    bottom: -110%;
+    font-size: 30px;
+    width: 45px;
+    height: 45px;
+    padding: 10px 10px 10px 10px;
+    border: 1px solid $color-gris;
+    color: #0a66c2;
+    background-color: white;
+    cursor: pointer;
+    border-radius: 10px ;
+  }
+  .imagen-pedido{
+    height: 30%; width: 30%;border-radius: 40px
+  }
+    .list-card{
+      width: 50%;
+			margin: auto;
+			border-radius: 20px;
+			background-color: white;
+			padding: 1%;
+      margin-bottom: 3%;
+      .info-derecha{
+        width: 80%;
+        margin-left: 7%;
+        .boton-eliminar{
+          background: none;
+          border: 1px solid $color-gris;
+          height: 40px;
+          width: 40px;
+          border-radius: 100%;
+        }
+      }
+    }
+    .fa-whatsapp{
+      margin-top: 2%;
+      font-size: 40px;
+      color: rgb(112, 221, 3);
+    }
+  
+ }
+ @media only screen  
+  and (min-width : 600px)  
+  and (max-width : 1200px) { 
+    .conteiner-pedido{
+      margin-top:60px;
+    }
+  }
+	/* Smartphones (portrait and landscape) ----------- */  
+  @media only screen  
+  and (min-width : 320px)  
+  and (max-width : 480px) {  
+  /* Styles */  
+    .conteiner-pedido{
+      .imagen-pedido{
+        height: 80%; width: 80%;border-radius: 40px
+      }
+        padding: 8%;
+        .list-card{
+          width: 99%;          
+          margin: auto;
+          margin-top: 7%;
+          margin-bottom: 10%;
+        }
+    }		
+  }  
