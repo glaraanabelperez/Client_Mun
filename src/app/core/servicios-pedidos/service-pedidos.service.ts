@@ -1,82 +1,72 @@
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import { BehaviorSubject, Subject } from 'rxjs';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class ServicePedidos {
-  pe;
+
   total=0;
   contadorSubject:Subject <any> = new  Subject <any>();
+  order:any[]=[];
 
   constructor() { 
-    console.log("Servicios.P Funcionando");
-    this.pe=new Map();
   }
 
     agregarPedido(p){
       if(this.corroborarProductoEnPedido(p)){
         alert("PARA SUMAR UNIDADES ACCEDA AL CARRITO")
       }else{
-        this.pe.set(p.codigo_producto, p);
-        this.total=this.contadorPedidos();
+        this.order.push(p);
+        this.calcularTotal(+1);
         this.contador_suscribeOnChange();
       }
     }
 
-    sumarCantidad(c){
-      let obj=this.pe.get(c);
-      obj.cantidad+=1;
-      this.pe.set(c, obj);
-      obj=this.pe.get(c);
-      this.total=this.contadorPedidos();
-      this.contador_suscribeOnChange();
-    }
-
-    restarCantidad(c){
-      let obj=this.pe.get(c);
-      obj.cantidad-=1;
-      if(obj.cantidad===0){
-        this.eliminarPedido(c);
-      }
-      obj=this.pe.get(c);
-      this.total=this.contadorPedidos();
-      this.contador_suscribeOnChange();
-    }
-
-    eliminarPedido(c){
-      this.pe.delete(c);
-      console.log("eliminado:");
-      this.total=this.contadorPedidos();
-      this.contador_suscribeOnChange();
-    }
-    obtenerPedido(){
-      const it = this.pe.values();
-      return it;
-    }
     corroborarProductoEnPedido(p):boolean{
       let rsta=false;
-      for (var clave of this.pe.keys()) {
-        if(p.codigo_producto==clave){
+      for (var o of this.order) {
+        if(p.codigo_producto==o.codigo_producto){
           rsta=true;
           return rsta;
         }
       }
     }
-    contadorPedidos(){
-      this.total=0;
-      for (var c of this.pe.values()) {
-        this.total+=c.cantidad;
-        }
-        return this.total;
-      }
+
+    calcularTotal(n:number){
+      this.total+=n;
+    }
+
     contador_suscribeOnChange(){
       this.contadorSubject.next(this.total);
     }
+
+    eliminarPedido(i){
+      this.calcularTotal(-this.order[i].cantidad)
+      this.order.splice(i, 1);
+      this.contador_suscribeOnChange();
+    }
+
     mostrarTotal(){
       return this.total;
     }
+
+    restarCantidad(i){
+      this.order[i].cantidad-=1;
+      this.calcularTotal(-1);
+      if(this.order[i].cantidad===0){
+        this.eliminarPedido(i);
+      }
+      this.contador_suscribeOnChange();
+    }
+
+    sumarCantidad(i){
+      this.order[i].cantidad+=1;
+      this.calcularTotal(+1);
+      this.contador_suscribeOnChange();
+    }
+   
 
   }
   

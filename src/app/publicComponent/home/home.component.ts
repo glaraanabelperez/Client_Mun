@@ -1,6 +1,5 @@
-import { Component, EventEmitter } from '@angular/core';
+import { Component, EventEmitter, ViewChild } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
-import { Subject } from 'rxjs';
 import { Negocio } from 'src/app/core/models/Negocio';
 import { ServiceMetodos } from 'src/app/core/servicios-generales/service-general.metodos';
 import { ServiceGeneral } from 'src/app/core/servicios-generales/service-general.service';
@@ -12,6 +11,7 @@ import { ServiceGeneral } from 'src/app/core/servicios-generales/service-general
 
 })
 export class HomeComponent {
+  VerPedido
 
   store:Negocio;
   chosenStore: string;
@@ -23,7 +23,7 @@ export class HomeComponent {
   }
   
   ngOnInit() {}
-
+       
 
   getStores(){
     this._service_g.traer_usuarios()

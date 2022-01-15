@@ -3,27 +3,25 @@
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500&display=swap');
 $font:  'Quicksand', sans-serif;
 $font-tamanio-botones:12px;
-$color-gris:gainsboro;
+$color-gris:#eff0ee;
 $color-gris-claro:rgb(239, 240, 238);
 $color-amarillo:#b8f864;
 $color-verde:#26d0ab;
 $white: #F5F5F5;
 $light: #e0dec9;
-$tan: #a0c2c3;
+$verde: #2ae999;
 $azul: #004182;
 $azul-claro: #0a66c2;
 $azul-turquesa: #378fe9;
 
-$dark: #4e4e4e;
+$dark: #282928;
 $border:1px solid gainsboro;
 
 $font-tamanio-botones:12px;
 $color-primary: #505e47;
-$color-secondary: #a6a6a6;
 $color-highlight: #3f8cff;
 $color-fondo:rgb(226, 224, 197);
-$off_white:#fafafa;
-$light_grey:#A39D9E;
+
 
 * {
   font-size: 15px;
@@ -63,13 +61,13 @@ h3 {
 
 h4 {
 	font-size: 1em;
-  overflow-wrap: break-word;
+  overflow-wrap: break-word !important;
 }
 
 p{
 	margin: 0% !important;
   width: 100%;
-  overflow-wrap: break-word;
+  overflow-wrap: break-word !important;
 }
 .p-fondo{
   font-size: 1.8rem;
@@ -98,7 +96,7 @@ form {
 
 .tituloTarjeta {
   margin-top: 5%;
-   color: $tan;
+   color: $verde;
    display: block;
    font-size: 1rem;
    text-transform: uppercase;
@@ -121,67 +119,12 @@ form {
    letter-spacing: 1px;
    text-overflow: clip;
  }
- .estiloBotonSimple{
-   font-size: 1rem;
-  //  text-transform: uppercase;
- }
-
- //----------------------------- FIN TIPOGRAFIAS
-
- //-----------------------------BOTONES 
-
- .buttons{
-    display: flex;
-    flex-direction: row;
-    button {
-    font-size: 0.8rem;
-    padding: 3%;
-    display: inline-block;
-    outline: 0;
-    border: 0;
-    border-radius: 5px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    color:$color-highlight;
-    cursor: pointer;
-    margin: 0px 2px 0px 1px !important;
-  }
-}
-.button-style{
-  font-size: 0.8rem;
-  background-color: #05dd78;
-  width: auto;
-  padding: 2px;
-  outline: 0;
-  border: 0;
-  border-radius: 5px;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  color:white;
-  cursor: pointer;
-  margin: 0px 2px 0px 1px !important;
-}
-
-.buttons-subir{
-  font-size: 0.8rem;
-  width: 20px;
-  height: 20px;
-  padding: 2px;
-  outline: 0;
-  border: 0;
-  cursor: pointer;
-  margin: 0px 2px 0px 1px !important;
-  buttons-subir:hover{
-    background-color: rgb(248, 239, 239);
-    }
-}
-
  //-----------------------------FIN BANNERS
  //-----------------------------MEDIA @QUERY
 @media only screen and (max-width: 1024px) and (min-width: 764px) {
   .tituloTarjeta {
     margin-top: 15%;
-     color: $tan;
+     color: $verde;
      display: block;
      font-size: 1rem;
      text-transform: uppercase;
@@ -210,22 +153,10 @@ form {
   h1{
     font-size: 17px;
   }
-  .buttons2{
-    position: absolute;  top: 46%; z-index:999; width: 60%;margin-bottom: 10%; 
-    button:hover{
-      background-color: rgb(248, 239, 239);
-      }
-  }
-  .buttons3{
-    z-index: 999; background-color: white;border: 1px solid rgb(55, 190, 14);
-    position: absolute;  top: 46%;left: 7%; margin-bottom: 10%; width: 22%;
-    button:hover{
-      background-color: rgb(248, 239, 239);
-      }
-  }
+
   .tituloTarjeta {
     margin-top: 15%;
-     color: $tan;
+     color: $verde;
      display: block;
      font-size: 1.4rem;
      text-transform: uppercase;
@@ -250,18 +181,6 @@ form {
    }
 }
 @media only screen and (max-width: 1024px) and (min-width: 760px) {
-  .buttons2{
-    position: absolute;  top: 32%; z-index:999; width: 60%;margin-bottom: 10%; 
-    button:hover{
-      background-color: rgb(248, 239, 239);
-      }
-  }
-  .buttons3{
-    z-index: 999; background-color: white;border: 1px solid rgb(55, 190, 14);
-    position: absolute;  top: 32%;left: 7%; margin-bottom: 10%; width: 22%;
-    button:hover{
-      background-color: rgb(248, 239, 239);
-      }
-  }
+
 
 }

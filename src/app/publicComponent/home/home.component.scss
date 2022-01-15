@@ -8,12 +8,50 @@
   .espacio{
     height: 140px;
   }
-
-  @media only screen  
-  and (min-width : 320px)  
-  and (max-width : 480px) { 
-    .espacio{
-      height: 130px;
+  .base_home{
+    display: flex;
+    flex-direction: row;
+    .lateral_izq{
+      width: 45%;
+    }
+    .lateral_der{
+      width: 65%;
     }
   }
 
+  @media only screen  
+  and (min-width : 320px)  
+  and (max-width : 680px) { 
+    .espacio{
+      height: 130px;
+    }
+    .base_home{
+      display: flex;
+      flex-direction: row;
+      .lateral_izq{
+        display: none;
+      }
+      .lateral_der{
+        width: 100%;
+      }
+    }
+  }
+
+  @media only screen  
+  and (min-width : 680px)  
+  and (max-width : 1200px) { 
+    .espacio{
+      height: 140px;
+    }
+    .base_home{
+      display: flex;
+      flex-direction: row;
+      .lateral_izq{
+        display: none;
+      }
+      .lateral_der{
+        width: 100%;
+      }
+    }
+  }
+  

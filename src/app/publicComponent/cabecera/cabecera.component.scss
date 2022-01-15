@@ -20,7 +20,7 @@
     }
     .fondo-titulo{
         width: 100%;
-        background-color: #378fe9;
+        background-color: $verde;
         .titulo{
         text-align: right;
         padding-right: 20px;
@@ -59,7 +59,7 @@ and (max-width : 670px) {
         }
         .fondo-titulo{
             width: 100%;
-            background-color: #037abe;
+            background-color: $verde;
             opacity: 0.5;
             height:25px;
             .titulo{

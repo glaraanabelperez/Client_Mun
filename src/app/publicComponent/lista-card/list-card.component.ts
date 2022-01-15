@@ -36,6 +36,7 @@ import { ServiceMetodos } from 'src/app/core/servicios-generales/service-general
 
     agregarPedido(p){
         let pedido={
+        nombreImagen:p.nombreImagen,
         codigo_producto: p.codigo_producto,
         cantidad:1,
         titulo:p.titulo,
@@ -45,7 +46,6 @@ import { ServiceMetodos } from 'src/app/core/servicios-generales/service-general
     }
     verCard(p :Publicaciones){
       this._servicio.setObjetoParaCardProd(p);
-      console.log(this._servicio.getObjetoParaCardProd());
     } 
 
 }

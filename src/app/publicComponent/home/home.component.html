@@ -12,17 +12,18 @@
     </nav>
 </div>
 <div class="espacio"></div>
-<div>
-    <br>
-    <router-outlet></router-outlet>
-    <br>
-    <app-galeria *ngIf="_service_metodos.negocio"
-    ></app-galeria>
-    <footer class="footer">
-        <app-footer
-        *ngIf="_service_metodos.negocio"
-        [negocio]="_service_metodos.negocio"
-        ></app-footer>
-    </footer>
+<div class="base_home" >
+    <div class="lateral_izq">
+        <ver-pedido></ver-pedido>
+    </div>
+    <div class="lateral_der">
+        <router-outlet></router-outlet>
+        <app-galeria *ngIf="_service_metodos.negocio"></app-galeria>
+    </div>
 </div>
-
+<footer class="footer">
+    <app-footer
+    *ngIf="_service_metodos.negocio"
+    [negocio]="_service_metodos.negocio"
+    ></app-footer>
+</footer>

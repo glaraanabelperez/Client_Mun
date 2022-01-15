@@ -1,14 +1,19 @@
 @import '../../shared/styles/tipografias.scss';
 
  .conteiner-pedido{
-  background-color: rgb(241, 238, 238);
-	width: 100%;
-	padding: 0% 2% 2% 2%;
-  height: auto;
+  position: fixed;
+  top: 0%;
+  overflow-y: auto;
+  height: 65%;
+  width: 30%;
+  background-color: white;
+	padding: 2%;
+  margin: 15% 5% 5% 5%;
 	z-index: 999;
-	box-shadow: 2px 2px 5px rgb(252, 253, 253);
-	box-shadow: 2px 2px 5px rgb(252, 253, 253);
+  border-radius: 10px;
+
   .back{
+    display: none !important;
     right: 10px;
     bottom: -110%;
     font-size: 30px;
@@ -16,16 +21,42 @@
     height: 45px;
     padding: 10px 10px 10px 10px;
     border: 1px solid $color-gris;
-    color: #0a66c2;
+    color: $dark;
     background-color: white;
     cursor: pointer;
     border-radius: 10px ;
+    display: none;
   }
-  .imagen-pedido{
-    height: 30%; width: 30%;border-radius: 40px
+  .mensaje{
+    text-align: center;
+    margin-top: 10% !important;
   }
+  .buttonsLaterales{
+    margin-top: 10%; 
+    text-align: center;    
+    .fa-shopping-cart{
+      color: $verde;
+      font-size: 30px;
+      width: 65px;
+      height: 65px;
+      padding: 10px 10px 10px 10px;
+      border: 1px solid $color-gris;
+      background-color: white;
+      cursor: pointer;
+      border-radius: 10px ;
+    }   
+  }
+  .btn-success{
+    width: 90%;
+    border-radius: 30px;
+    background-color: $dark;
+    margin-left: 5%;
+    border: none;
+  }
+  .scroll{
+
     .list-card{
-      width: 50%;
+      width: 100%;
 			margin: auto;
 			border-radius: 20px;
 			background-color: white;
@@ -42,27 +73,42 @@
           border-radius: 100%;
         }
       }
-    }
-    .fa-whatsapp{
-      margin-top: 2%;
-      font-size: 40px;
-      color: rgb(112, 221, 3);
-    }
-  
- }
+  }
+  }
+
+}
+
  @media only screen  
   and (min-width : 600px)  
-  and (max-width : 1200px) { 
+  and (max-width : 1180px) { 
     .conteiner-pedido{
+      top: 10%;
       margin-top:60px;
+      position: none;
+      overflow-y: auto;
+      height: 65%;
+      width: 90%;
+
+      .back{
+        display: block !important;
+      }
     }
   }
 	/* Smartphones (portrait and landscape) ----------- */  
   @media only screen  
   and (min-width : 320px)  
-  and (max-width : 480px) {  
+  and (max-width : 600px) {  
   /* Styles */  
     .conteiner-pedido{
+      top: 10%;
+      margin-top:60px;
+      position: none;
+      overflow-y: auto;
+      height: auto;
+      width: 90%;
+      .back{
+        display: block !important;
+      }
       .imagen-pedido{
         height: 80%; width: 80%;border-radius: 40px
       }
