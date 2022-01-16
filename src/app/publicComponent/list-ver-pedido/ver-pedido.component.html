@@ -6,7 +6,8 @@
   </div>
   <p class="mensaje">Su carrito tiene {{_service.total}} productos!</p><hr>
   <div *ngIf="_service.total==0" class="buttonsLaterales">
-    <button class="fa fa-shopping-cart" ></button>
+    <!-- <button class="fa fa-shopping-cart" ></button> -->
+    <img style="height: 120px;" src="assets/comida.jpg" alt="">
   </div>
   <div class="scroll">
     <div class="list-card" class="list-card" *ngFor="let p of _service.order; let i=index" >

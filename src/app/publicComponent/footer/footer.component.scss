@@ -9,28 +9,15 @@ $gris:rgba(26, 26, 25, 0.3);
  /*----------------------------------FOOTER*/
  
 .footer-div{
-   display: flex;
-   flex-direction: row;
-   padding: 0% 2% 2% 2%;
-   text-align: left;
-   width: 90%;
+   padding: 7px;
    margin: auto;
    .info{
-      padding: 2%;
-      width: 47%;
-      h1 span {
-         color: $gris;
-         font-size: 3.5rem;
-      }
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      width: 100%;
+      text-align: center;
    }
 }
 
-.links a{
-   font-size: 1em;
-}
 
-
-.pieFooter{
-   display: block;
-   text-align: center;
-}

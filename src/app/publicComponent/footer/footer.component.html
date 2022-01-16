@@ -1,15 +1,8 @@
-<div style="background-color: white; width: 100%;"> 
-    <div style="margin: auto; text-align: center; padding-top: 2%;">
-        <i style="font-size: 40px;" class="fa fa-map-marker" aria-hidden="true"></i>
-    </div>
-    <hr>
+<div style="background-color: white;"> 
     <div class="footer-div" *ngIf="negocio">
         <div class="info">
-            <br>
-            <h2>Te esperamos</h2>
-            <p>{{negocio.direccion}}</p>
-            <p class="pfooter">Bs As, <br>Argentina</p>
-            <div style=" background-color: white;border-radius: 4px;" *ngIf="negocio.facebook || negocio.instagram">
+            <p>{{negocio.direccion}}, Argentina</p>
+            <div style=" background-color: white;border-radius: 4px; display: flex;flex-direction: row;" *ngIf="negocio.facebook || negocio.instagram">
                 <a href="https://www.facebook.com/{{negocio.facebook}}" target="_blank">
                   <button class="fa fa-facebook-square" style="font-size: 20px;margin-right: 10px;color: rgb(85, 172, 238); " ></button>
                 </a>
@@ -17,13 +10,9 @@
                   <button class="fa fa-instagram" style="font-size: 20px;margin-right: 10px; color: crimson;" ></button>
                 </a>
                 <a href="https://api.whatsapp.com/send?phone={{negocio.telefono}}" target="_blank" >
-                    <button class="fa fa-whatsapp " style="margin-top: 10px; font-size:20px;color: #0ba124;"></button>
+                    <button class="fa fa-whatsapp " style=" font-size:20px;color: #0ba124;"></button>
                 </a>	
             </div>
         </div>
     </div>
 </div>
-<br>
-<a style="display: block; text-align: center; margin: 0.5%;" href="http://matizo.com.ar" target="_blank">Matizo Diseño y Programacion</a>
-<a style="display: block; text-align: center; margin: 0.5%;" routerLink="/home-matizo" >Quiero mi carta-online!</a>
-<br>

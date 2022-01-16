@@ -16,10 +16,10 @@ export class ServiceGeneral {
   verPedido:boolean;
   verPedidoSubject:Subject <boolean> = new Subject <boolean>();
 
-  url='http://localhost/angular/mi-tienda/menu/php-app/';
-  url2='http://localhost/angular/mi-tienda/menu/src/';
-  // url='/php-app/';
-  // url2='/';
+  // url='http://localhost/angular/mi-tienda/menu/php-app/';
+  // url2='http://localhost/angular/mi-tienda/menu/src/';
+  url='/php-app/';
+  url2='/';
   
   constructor(private http: HttpClient) { 
       this.verPedidoSubject.subscribe((value) =>{
