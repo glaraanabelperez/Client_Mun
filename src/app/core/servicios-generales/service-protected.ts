@@ -13,6 +13,7 @@ export class ServiceProtected {
   borrarArchivoServidor(img) {
     let datos=new FormData();
       datos.append('img', img); 
+      console.log(localStorage.getItem('username'))
       datos.append('carpeta', localStorage.getItem('username'))
       this._servicioGeneral.borrarArchivoServidor(datos) 
       .subscribe(
@@ -37,17 +38,17 @@ export class ServiceProtected {
         response => {
           this.rsta = response; 
           if(this.rsta <= 1){
-            alert("ERROR EN EL SERVIDOR") 
+            alert("ERROR AL GUARDAR LA IMAGEN") 
           }else{
             if(this.rsta.code == 200 && this.rsta.status == "success"){
               alert("LA IMEGEN SE SUBIO") 
             }else{
-              alert("ERROR EN EL SERVIDOR") 
+              alert("ERROR AL GUARDAR LA IMAGEN") 
             }
           }
         },
         error => {
-          alert("ERROR EN EL SERVIDOR") 
+          alert("ERROR AL GUARDAR LA IMAGEN") 
         }
         );
     }

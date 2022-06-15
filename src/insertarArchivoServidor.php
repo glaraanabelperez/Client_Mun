@@ -6,7 +6,7 @@
 	$c = $_POST["carpeta"];
 
 	if(isset($_FILES['file'])){
-
+// debugger;
 		$imagen_nombre = $_FILES['file']['name'];
 		$directorio_final = "./assets/$c/".$imagen_nombre; 
 			if(move_uploaded_file($_FILES['file']['tmp_name'], $directorio_final)){

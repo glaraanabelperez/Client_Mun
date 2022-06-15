@@ -60,8 +60,7 @@ $tamanio-icon:17px;
         }      
         .fa-shopping-cart{
           display: none;
-          right: 10px;
-          bottom: -110%;
+          bottom: 10%;
           color: $verde;
           font-size: 30px;
           width: 45px;
@@ -79,8 +78,46 @@ $tamanio-icon:17px;
 }
 
 @media only screen  
-and (min-width : 375px)  
-and (max-width : 670px) {  
+and (min-width : 670px)  
+and (max-width : 1180px) { 
+  .navNav{
+    height: 15%;
+    position: static;
+    width: 100%;
+    background-color: white;
+    padding: 1%;
+    hr{
+        width: 100%;
+    }
+    div.scrollmenu {
+        overflow: auto;
+        white-space: nowrap;
+        width: 90%;
+      }
+      .nav-Secundario{
+        display: flex;
+        flex-direction: row;
+        overflow: auto;
+        white-space: nowrap;
+        width: 90%;
+      }
+      .conteiner1{
+        background: block;
+        .buttonsLaterales{
+            display: block;
+            .number{
+              display: block;
+            }      
+            .fa-shopping-cart{
+              display: block;
+              right: 10px;
+              bottom: 5%;
+            }   
+        }
+     }
+  }
+}
+@media (max-width : 780px) {  
 
   .navNav{
     
@@ -115,49 +152,12 @@ and (max-width : 670px) {
             }      
             .fa-shopping-cart{
               display: block;
+              right: 10px;
+              bottom: 200px;
             }   
         }
      }
 
   }
 }
-@media only screen  
-and (min-width : 670px)  
-and (max-width : 1180px) { 
-  .navNav{
-    height: 25%;
-    position: static;
-    width: 100%;
-    background-color: white;
-    padding: 1%;
-    hr{
-        width: 100%;
-    }
-    div.scrollmenu {
-        overflow: auto;
-        white-space: nowrap;
-        width: 90%;
-      }
-      .nav-Secundario{
-        display: flex;
-        flex-direction: row;
-        overflow: auto;
-        white-space: nowrap;
-        width: 90%;
-      }
-      .conteiner1{
-        background: block;
-        .buttonsLaterales{
-            display: block;
-            .number{
-              display: block;
-            }      
-            .fa-shopping-cart{
-              display: block;
-            }   
-        }
-     }
-  }
-}
-
 
