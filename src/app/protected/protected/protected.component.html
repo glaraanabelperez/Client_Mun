@@ -9,7 +9,20 @@
 <button class="buttons-subir" style="position: fixed; right: 10%; bottom: 7%; z-index: 999;" (click)="subir()">
   <i style="color: #05dd29; font-size: 25px;" class="fa fa-arrow-circle-up" aria-hidden="true"></i>
 </button>
-
+<div class="bloque1">         
+  <div class="form-group col-md-3">
+    <label for="titulo">Porcentaje</label>
+    <input maxlength="20" class="form-control" placeholder="Campo Obligatorio" 
+    [(ngModel)]='pricePercent' 
+    type="number" requerid >
+  </div>     
+</div>               
+  <div class="product-detail2">
+    <div class="buttons">
+      <button class="add"><p style="padding-top: 10px;" (click)="changePrice()" type="submit" >GUARDAR</p></button>
+      <!-- <button class="add"><p style="padding-top: 10px;" (click)="clean()">CANCELAR</p></button> -->
+    </div>
+  </div>
 <main class="jumbotron" >
     <div class="conteiner2" *ngIf="mostrar_form==true">
         <div class="card">
@@ -129,5 +142,6 @@
         </div>
         <lista-prod-admin (PasameId)="editarPubliId($event)"
         ></lista-prod-admin>
+
 </main>
   

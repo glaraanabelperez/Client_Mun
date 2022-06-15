@@ -15,8 +15,8 @@ export class ServiceGeneral {
   verPedido:boolean;
   verPedidoSubject:Subject <boolean> = new Subject <boolean>();
 
-  url='http://localhost/angular/mi-tienda/menu-ifts/php-app/';
-  url2='http://localhost/angular/mi-tienda/menu-ifts/src/';
+  url='http://localhost/angular/mi-tienda/menu/php-app/';
+  url2='http://localhost/angular/mi-tienda/menu/src/';
   // url='/php-app/';
   // url2='/';
   
@@ -59,6 +59,15 @@ export class ServiceGeneral {
   }
   editarDatos(p){
     return  this.http.post(`${this.url}editar.php`, JSON.stringify(p));
+  }
+
+  changePrice(pricePercent:number, codigo_user:any){
+    console.log( pricePercent, codigo_user)
+    var data={
+      percent:pricePercent,
+      user_id:codigo_user
+    }
+    return  this.http.post(`${this.url}changePrice.php`, JSON.stringify(data));
   }
   //CONSULTAS SERVIDOR
   guardarArchivoServidor(datos){

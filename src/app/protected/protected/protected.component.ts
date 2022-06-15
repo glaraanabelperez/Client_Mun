@@ -19,8 +19,7 @@ declare var $:any;
 
 export class ProtectedComponent implements OnInit {
 
-  estado: String[]=[];
-  fechaHoy:any;
+  
   publicacionEditar: Publicaciones[] = [];
   uploadForm: FormGroup;
   mostrar_form: boolean;
@@ -31,6 +30,9 @@ export class ProtectedComponent implements OnInit {
   message: string;
   codigo_usuario: string;
   user: string;
+  pricePercent:number;
+  estado: String[]=[];
+  fechaHoy:any;
 
   constructor( private _servicioGeneral:ServiceGeneral, public _serviceMetodos : ServiceMetodos, private formBuilder:FormBuilder,
      @Inject(DOCUMENT) private document: Document, public _service_protected:ServiceProtected,private router: Router) {
@@ -62,6 +64,10 @@ export class ProtectedComponent implements OnInit {
     this.traerCategorias();
     this.traerPublicaciones();
     alert("Aguarde, 'Cargando productos'")
+  }
+
+  changePrice(){
+    this._servicioGeneral.changePrice(this.pricePercent, this.codigo_usuario);
   }
 // VARIOS
   subir(){
