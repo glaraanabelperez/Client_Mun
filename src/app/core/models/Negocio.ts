@@ -1,8 +1,8 @@
 export interface Negocio{
-    codigo_usuario:number;
+    id:number;
     nombre_negocio:string;
     slogan:string;
-    usuario_admin:string;
+    usuario:string;
     password:string;
     telefono:number;
     direccion:string;

@@ -9,7 +9,7 @@
     $bd=Db::getInstance();
 
     $id=$params->codigo_producto;
-    $sql="DELETE FROM `productos` WHERE `codigo_producto`='$id'";
+    $sql="DELETE FROM `productos` WHERE `id`='$id'";
     $respuesta=$bd->ejecutar($sql);
 
     class Result{}

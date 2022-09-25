@@ -8,7 +8,7 @@
     
     $r=$_GET['usuario'];
 
-    $sql="SELECT * FROM `productos` WHERE `destacada`='Si' && `codigo_usuario`=$r;";
+    $sql="SELECT * FROM `productos` WHERE `destacada`=1 && `id_usuario`=$r;";
     $respuesta=$bd->ejecutar($sql);
     if($respuesta==true){
       $records = mysqli_fetch_all($respuesta, MYSQLI_ASSOC);

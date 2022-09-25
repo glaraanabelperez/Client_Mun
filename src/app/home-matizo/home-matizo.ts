@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
-import { ServiceMetodos } from 'src/app/core/servicios-generales/service-general.metodos';
 import { ServiceGeneral } from 'src/app/core/servicios-generales/service-general.service';
 import { Negocio } from '../core/models/Negocio';
 
@@ -14,7 +13,7 @@ export class HomeMatizo {
   fechaHoy:any;
   negocios_todos:Negocio []=[];
 
-  constructor(private  _service_g : ServiceGeneral, public _service_metodos:ServiceMetodos){
+  constructor(private  _service_g : ServiceGeneral){
     this.traer_usuarios_base();
   }
   

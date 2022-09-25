@@ -1,10 +1,10 @@
-<div class="display-block">
+<div class="display-block" *ngFor="let c of categories">
         <a
         style="margin-right: 9px; cursor: pointer;"
         class="estiloBotonSimple"
-        (click)="ir()"
-        >{{categorias.descripcion}}       
+        (click)="emit(c)"
+        >{{c.Description}}       
         </a>
 </div>
 
-    
+    HOLAAAAAAAAAAAAAAAAAAAA

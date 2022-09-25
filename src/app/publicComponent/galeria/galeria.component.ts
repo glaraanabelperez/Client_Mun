@@ -1,7 +1,6 @@
 import { Component,  OnInit} from '@angular/core';
 import { ServiceGeneral } from 'src/app/core/servicios-generales/service-general.service';
-import { Publicaciones } from 'src/app/core/models/publicaciones';
-import { ServiceMetodos } from 'src/app/core/servicios-generales/service-general.metodos';
+import { Productos } from 'src/app/core/models/productos';
 import { ServicePedidos } from 'src/app/core/servicios-pedidos/service-pedidos.service';
 
 
@@ -11,9 +10,9 @@ import { ServicePedidos } from 'src/app/core/servicios-pedidos/service-pedidos.s
   styleUrls: ['./galeria.component.scss'],
 })
 export class GaleriaComponent implements OnInit {
-  destacada :Publicaciones[] = [];
+  destacada :Productos[] = [];
 
-  constructor(private _servicioG:ServiceGeneral, public _service_metodos:ServiceMetodos, public _servicioPedidos:ServicePedidos) {
+  constructor(private _servicioG:ServiceGeneral, public _servicioPedidos:ServicePedidos) {
     this.traerDestacadas();
    }
    
@@ -21,9 +20,7 @@ export class GaleriaComponent implements OnInit {
   }
 
   traerDestacadas(){
-      this._servicioG.traerDestacadas(this._service_metodos.negocio.codigo_usuario).subscribe(res => { 
-        this.mostrarDestacadas(res);
-     })
+      
   }
 
   mostrarDestacadas(res:[]){

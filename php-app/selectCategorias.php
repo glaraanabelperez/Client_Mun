@@ -8,7 +8,7 @@
     $bd=Db::getInstance();
     $r=$_GET['usuario'];
 
-    $sql="SELECT * FROM categorias WHERE `codigo_usuario_categoria`= $r;";
+    $sql="SELECT * FROM categorias WHERE `id_usuario`= $r;";
     $respuesta=$bd->ejecutar($sql);
 
       if($respuesta==true){

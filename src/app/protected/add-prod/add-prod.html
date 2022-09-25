@@ -1,0 +1,109 @@
+  <!--  Formulario cargar product -->
+  <div class="conteiner2" *ngIf="mostrar_form==true">
+    <div class="card">
+        <div class="card-body" >
+          <form [formGroup]="uploadForm" #form>
+            <div class="bloque1">         
+              <div class="form-group col-md-3">
+                <label for="categorias">Categoria</label>
+                <select formControlName="categorias" class="form-control" [ngClass]="{'is-invalid': submitted && f.categorias.errors}">
+                  <option value="">Seleccionar</option>
+                  <!-- <option *ngFor="let c of categories" [value]="c.codigo_categoria">{{c.descripcion}}</option> -->
+                  <div *ngIf="submitted && f.categorias" class="invalid-feedback">
+                    <div *ngIf="f.categorias.errors?.required"> Por favor ingrese datos</div>
+                  </div>
+                </select>
+              </div> 
+              <div class="form-group col-md-3">
+                <label for="estado">Estado</label>
+                <select formControlName="estado" class="form-control" [ngClass]="{'is-invalid': submitted && f.estado.errors}">
+                  <option value="">Seleccionar</option>
+                  <option  [value]="item" *ngFor="let item of estado" >{{item}}</option>
+                  <div *ngIf="submitted && f.estado.errors" class="invalid-feedback">
+                    <div *ngIf="f.estado.errors.required"> Por favor Selecciones una opcion</div>
+                  </div>
+                </select>
+              </div>
+              <div class="form-group col-md-3">
+                <label for="titulo">Titulo</label>
+                <input maxlength="20" type="text" class="form-control" placeholder="Campo Obligatorio" [value]=""
+                formControlName="titulo" [ngClass]="{'is-invalid': submitted && f.titulo.errors}" >
+                <span style="font-size: 13px;">Maximo 20 caracteres</span>
+              </div>
+              <div *ngIf="submitted && f.titulo.errors" class="invalid-feedback">
+                <div *ngIf="f.titulo.errors.required"> Por favor ingrese datos</div>
+              </div>        
+              <div class="form-group col-md-3">
+                <label for="subtitulo">Subtitulo </label>
+                <input maxlength="20" type="text" class="form-control" placeholder="Campo Obligatorio" [value]=""
+                formControlName="subtitulo" [ngClass]="{'is-invalid': submitted && f.subtitulo.errors}" >
+                <span style="font-size: 13px;">Maximo 20 caracteres</span>
+              </div>
+              <div *ngIf="submitted && f.subtitulo.errors" class="invalid-feedback">
+                <div *ngIf="f.subtitulo.errors.required"> Por favor ingrese datos</div>
+              </div>
+            </div>               
+            <div class="form-group col-md-12">
+              <label for="descripcion">Descripcion</label>
+              <input type="text" class="form-control" placeholder="Campo Obligatorio" [value]=""
+              formControlName="descripcion" [ngClass]="{'is-invalid': submitted && f.descripcion.errors}" >
+            </div>
+            <div *ngIf="submitted && f.descripcion.errors" class="invalid-feedback">
+              <div *ngIf="f.descripcion.errors.required"> Por favor ingrese datos</div>
+            </div>
+            <div class="form-colum">
+              <div class="form-group col-md-12">
+                <label for="nombreImagen"></label>
+                <br>
+                <span style="color:red;" *ngIf="message">{{message}}</span>
+                <input  #file type="file" accept='image/*' (change)="previsualizarImg(file.files)" />
+                <img *ngIf="imgNueva_mostrar" [src]="imgNueva_mostrar" height="200" >
+                <div *ngIf=" img_editar && imgNueva_mostrar==null">
+                  <br>
+                  <img height="180" [src]="'assets/'+ user +'/' +  img_editar" >
+                  {{user}}
+                </div>
+              </div>
+            </div>
+            <div class="form-group col-md-3">
+              <label for="precio">Precio</label>
+              <input type="text" class="form-control" [value]=""
+              formControlName="precio"  >
+            </div>
+            <div class="form-group col-md-6">
+              <label for="promocion">Promocion</label>
+              <div>
+                <input maxlength="20" type="text" class="form-control" [value]=""
+                formControlName="promocion" >
+                <span style="font-size: 13px;">Maximo 20 caracteres</span>
+                <p style="font-size: 10px;">*Ejemplo: 2 x 1 Valido, hasta el 12 de Marzo - 12 cuotas s/interes ...</p>
+              </div>
+            </div>
+            <!-- <div class="form-group col-md-3">
+              <label for="codigo_producto">Codigo Producto</label>
+              <input type="text" class="form-control" placeholder="Campo Obligatorio" [value]="" 
+              formControlName="codigo_producto" [ngClass]="{'is-invalid': submitted && f.codigo_producto.errors}" >
+            </div> -->
+            <div *ngIf="submitted && f.codigo_producto.errors" class="invalid-feedback">
+              <div *ngIf="f.codigo_producto.errors.required"> Por favor ingrese datos</div>
+            </div>
+            <div class="form-group col-md-3">
+              <label for="destacada">Destacada</label>
+              <select formControlName="destacada" class="form-control" >
+                <option value="">Seleccionar</option>
+                <option  value="Si" >Si</option>
+                <option  value="No" >No</option>
+              </select>
+            </div>
+              <br>
+              <div class="product-detail2">
+                <div class="buttons">
+                  <button class="add"><p style="padding-top: 10px;" (click)="onSubmit()" type="submit" >GUARDAR</p></button>
+                  <button class="add"><p style="padding-top: 10px;" (click)="limpiar()">CANCELAR</p></button>
+                </div>
+              </div>
+          </form>
+
+        </div>
+    </div>
+</div>

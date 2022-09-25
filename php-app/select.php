@@ -8,7 +8,7 @@
     $bd=Db::getInstance();
     $r=$_GET['usuario'];
 
-    $sql="SELECT * FROM productos WHERE `codigo_usuario`= $r;";
+    $sql="SELECT * FROM productos WHERE `id_usuario`= $r;";
 
     $respuesta=$bd->ejecutar($sql);
     if($respuesta==true){

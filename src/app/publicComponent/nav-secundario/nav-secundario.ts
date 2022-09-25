@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
-import { Categorias } from '../../core/models/categorias';
+import { CategoryModel } from 'src/app/protected/models/categoryModel';
 
 
 @Component({
@@ -9,8 +9,8 @@ import { Categorias } from '../../core/models/categorias';
   })
 
   export class NavSecundario implements OnInit {
-    @Input()categoria:Categorias;
-    @Output() onClicked:EventEmitter<Categorias>;
+    @Input()category:CategoryModel;
+    @Output() onClicked:EventEmitter<CategoryModel>;
 
     constructor(){
         this.onClicked=new EventEmitter();
@@ -20,7 +20,7 @@ import { Categorias } from '../../core/models/categorias';
     }
 
     ir(){
-        this.onClicked.emit(this.categoria);
+        this.onClicked.emit(this.category);
         window.scroll(0,0)
         return false;
       }

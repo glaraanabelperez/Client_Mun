@@ -23,7 +23,7 @@
 
 h1 {
   font-size: 1.6rem;
-  color: #4e4e4e;
+  color: #282928;
   padding: 10px 0px 0px 0px;
   display: block;
   font-weight: 500;
@@ -39,16 +39,18 @@ h2 {
 
 h3 {
   font-size: 1.2em;
+  overflow-wrap: break-word;
 }
 
 h4 {
   font-size: 1em;
+  overflow-wrap: break-word !important;
 }
 
 p {
   margin: 0% !important;
   width: 100%;
-  overflow-wrap: break-word;
+  overflow-wrap: break-word !important;
 }
 
 .p-fondo {
@@ -60,11 +62,11 @@ p {
 
 span {
   font-size: 1rem;
-  color: #075cbd;
+  color: #004182;
 }
 
 .titulo-secciones {
-  color: #4e4e4e;
+  color: #282928;
   font-weight: 600;
   margin-bottom: 0px;
   margin-left: 50px;
@@ -76,7 +78,7 @@ form label {
 
 .tituloTarjeta {
   margin-top: 5%;
-  color: #a0c2c3;
+  color: #2ae999;
   display: block;
   font-size: 1rem;
   text-transform: uppercase;
@@ -84,7 +86,7 @@ form label {
 
 .subTituloTarjeta {
   margin: 0%;
-  color: #4e4e4e;
+  color: #282928;
   display: block;
   font-size: 1.2rem;
   text-transform: lowercase;
@@ -94,90 +96,23 @@ form label {
   margin: 0%;
   width: auto;
   display: block;
-  font-size: 0.7rem;
+  font-size: 0.9rem;
   font-weight: 500;
   letter-spacing: 1px;
   text-overflow: clip;
 }
 
-.estiloBotonSimple {
-  font-size: 1rem;
-}
-
-.buttons {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-}
-
-.buttons button {
-  font-size: 0.8rem;
-  padding: 3%;
-  display: inline-block;
-  outline: 0;
-  border: 0;
-  border-radius: 5px;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  color: #3f8cff;
-  cursor: pointer;
-  margin: 0px 2px 0px 1px !important;
-}
-
-.buttons button:hover {
-  background-color: #f8efef;
-}
-
-.banner {
-  width: 90%;
-  margin: auto;
-  background-color: white;
-  margin-bottom: 5%;
-}
-
-.banner img {
-  width: 100%;
-}
-
-.banner-100 {
-  width: 100%;
-  margin-bottom: 5%;
-}
-
-.banner-100 img {
-  width: 100%;
-  height: 250px;
-  -o-object-fit: cover;
-     object-fit: cover;
-}
-
-.banner-50 {
-  width: 47%;
-  margin-bottom: 5%;
-}
-
-.banner-50 img {
-  width: 100%;
-  height: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
-}
-
 @media only screen and (max-width: 1024px) and (min-width: 764px) {
   .tituloTarjeta {
     margin-top: 15%;
-    color: #a0c2c3;
+    color: #2ae999;
     display: block;
     font-size: 1rem;
     text-transform: uppercase;
   }
   .subTituloTarjeta {
     margin: 0%;
-    color: #4e4e4e;
+    color: #282928;
     display: block;
     font-size: 1.8rem;
     text-transform: lowercase;
@@ -193,17 +128,20 @@ form label {
   }
 }
 
-@media only screen and (max-width: 764px) and (min-width: 300px) {
+@media only screen and (max-width: 760px) and (min-width: 300px) {
+  h1 {
+    font-size: 17px;
+  }
   .tituloTarjeta {
     margin-top: 15%;
-    color: #a0c2c3;
+    color: #2ae999;
     display: block;
     font-size: 1.4rem;
     text-transform: uppercase;
   }
   .subTituloTarjeta {
     margin: 0%;
-    color: #4e4e4e;
+    color: #282928;
     display: block;
     font-size: 1.8rem;
     text-transform: lowercase;
@@ -220,101 +158,126 @@ form label {
 }
 
 .conteiner-pedido {
-  background-color: #f1eeee;
-  border-radius: 20px;
-  margin: auto;
-  position: fixed;
-  top: 0%;
-  z-index: 999;
-  width: 80%;
-  height: 70%;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 30%;
+  overflow-y: scroll;
+  height: 380px;
+  width: 460px;
+  background-color: white;
   padding: 2%;
-  margin: 10% 10% 10% 10%;
+  margin: 10% 5% 5% 5%;
+  border-radius: 10px;
+  -webkit-box-shadow: 0px 10px 10px -6px gainsboro;
+          box-shadow: 0px 10px 10px -6px gainsboro;
 }
 
-.conteiner-pedido .btn-cierreCard {
-  position: absolute;
-  top: 10%;
-  right: 8%;
-  background: none;
-  border: 1px solid gainsboro;
-  height: 40px;
-  width: 40px;
-  border-radius: 100%;
-}
-
-.conteiner-pedido .scrollCard {
-  overflow: auto;
-  height: 400px;
-  padding: 1%;
+.conteiner-pedido .back {
+  display: none !important;
+  right: 10px;
+  bottom: -110%;
+  font-size: 30px;
+  width: 45px;
+  height: 45px;
+  padding: 10px 10px 10px 10px;
+  border: 1px solid #eff0ee;
+  color: #282928;
+  background-color: white;
+  cursor: pointer;
+  border-radius: 10px;
+  display: none;
 }
 
 .conteiner-pedido .mensaje {
-  display: block;
   text-align: center;
-  margin-bottom: 2%;
+  margin-top: 10% !important;
 }
 
-.conteiner-pedido .list-card {
-  margin: 7% 1% 10% 1%;
+.conteiner-pedido .buttonsLaterales {
+  margin-top: 20%;
+  text-align: center;
+}
+
+.conteiner-pedido .buttonsLaterales .fa-shopping-cart {
+  color: #2ae999;
+  font-size: 30px;
+  width: 65px;
+  height: 65px;
+  padding: 10px 10px 10px 10px;
+  border: 1px solid #eff0ee;
+  background-color: white;
+  border-radius: 10px;
+}
+
+.conteiner-pedido .btn-success {
+  width: 90%;
+  border-radius: 30px;
+  background-color: #282928;
+  margin-left: 5%;
+  border: none;
+}
+
+.conteiner-pedido .scroll .list-card {
+  width: 100%;
+  margin: auto;
   border-radius: 20px;
   background-color: white;
   padding: 1%;
+  margin-bottom: 3%;
 }
 
-.conteiner-pedido .list-card .info-derecha {
-  width: 100%;
+.conteiner-pedido .scroll .list-card .info-derecha {
+  width: 80%;
   margin-left: 7%;
 }
 
-.conteiner-pedido .list-card .info-derecha .boton-eliminar {
+.conteiner-pedido .scroll .list-card .info-derecha .boton-eliminar {
   background: none;
-  border: 1px solid gainsboro;
+  border: 1px solid #eff0ee;
   height: 40px;
   width: 40px;
   border-radius: 100%;
 }
 
-.conteiner-pedido .fa-whatsapp {
-  bottom: 0px;
-  font-size: 40px;
-  color: #70dd03;
+@media only screen and (min-width: 600px) and (max-width: 1180px) {
+  .conteiner-pedido {
+    top: 10%;
+    margin-top: 60px;
+    position: none;
+    overflow-y: auto;
+    height: 65%;
+    width: 90%;
+  }
+  .conteiner-pedido .back {
+    display: block !important;
+  }
 }
 
-.conteiner-pedido .finalizarPedido {
-  position: fixed;
-  bottom: 17%;
-}
-
-@media only screen and (min-width: 320px) and (max-width: 480px) {
+/* Smartphones (portrait and landscape) ----------- */
+@media only screen and (min-width: 320px) and (max-width: 680px) {
   /* Styles */
-  .conteiner-pedido .scrollCard {
-    overflow: auto;
-    height: 100%;
-    padding: 1%;
+  .conteiner-pedido {
+    top: 10%;
+    margin-top: 60px;
+    position: none;
+    overflow-y: auto;
+    height: auto;
+    width: 90%;
+    padding: 8%;
   }
-  .conteiner-pedido .scrollCard .list-card {
-    margin: 30% 1% 20% 1%;
+  .conteiner-pedido .back {
+    display: block !important;
   }
-  .conteiner-pedido .finalizarPedido {
-    position: fixed;
-    bottom: 26%;
+  .conteiner-pedido .imagen-pedido {
+    height: 80%;
+    width: 80%;
+    border-radius: 40px;
   }
-}
-
-@media only screen and (min-width: 768px) and (max-width: 1024px) {
-  /* Styles */
-  .conteiner-pedido .scrollCard {
-    overflow: auto;
-    height: 100%;
-    padding: 1%;
-  }
-  .conteiner-pedido .scrollCard .list-card {
-    margin: 30% 1% 20% 1%;
-  }
-  .conteiner-pedido .finalizarPedido {
-    position: fixed;
-    bottom: 26%;
+  .conteiner-pedido .list-card {
+    width: 99%;
+    margin: auto;
+    margin-top: 7%;
+    margin-bottom: 10%;
   }
 }
 /*# sourceMappingURL=ver-pedido.component.css.map */

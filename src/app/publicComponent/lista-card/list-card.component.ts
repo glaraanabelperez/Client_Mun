@@ -1,9 +1,7 @@
 import { Component, OnInit , EventEmitter, Output, Input} from '@angular/core';
-import { Publicaciones } from '../../core/models/publicaciones';
+import { Productos } from '../../core/models/productos';
 import { ServiceGeneral } from '../../core/servicios-generales/service-general.service';
 import { ServicePedidos } from '../../core/servicios-pedidos/service-pedidos.service';
-import { Categorias } from '../../core/models/categorias';
-import { ServiceMetodos } from 'src/app/core/servicios-generales/service-general.metodos';
 
 
 
@@ -13,38 +11,38 @@ import { ServiceMetodos } from 'src/app/core/servicios-generales/service-general
     styleUrls: ['./list-card.component.scss']
   })
   export class ListCardComponent implements OnInit {
-    @Output() onClicked:EventEmitter<Publicaciones>;
+    @Output() onClicked:EventEmitter<Productos>;
 
-    categoriaElegida:Categorias;
+    // categoriaElegida:Categorias;
     
-    constructor(private _servicio:ServiceGeneral, private _servicioPedidos:ServicePedidos, public _servicio_metodos:ServiceMetodos) {
+    constructor(private _servicio:ServiceGeneral, private _servicioPedidos:ServicePedidos) {
         window.scroll(0,0);
       }
      
      ngOnInit(): void {
-      this.categoriaElegida=this._servicio_metodos.getCategroiaElegida();
-      this.categoriaElegidass();
-      this.onClicked=new EventEmitter();
+      // this.categoriaElegida=this._servicio_metodos.getCategroiaElegida();
+      // this.categoriaElegidass();
+      // this.onClicked=new EventEmitter();
     }
 
     categoriaElegidass(){
-      this._servicio_metodos.categoriaSubject.subscribe((value)=>{
-        this.categoriaElegida=value;
-        console.log("suscripcion", this.categoriaElegida)
-      })
+      // this._servicio_metodos.categoriaSubject.subscribe((value)=>{
+      //   this.categoriaElegida=value;
+      //   console.log("suscripcion", this.categoriaElegida)
+      // })
     }
 
     agregarPedido(p){
         let pedido={
         nombreImagen:p.nombreImagen,
-        codigo_producto: p.codigo_producto,
+        codigo_producto: p.id,
         cantidad:1,
         titulo:p.titulo,
         precio:p.precio,
       }
         this._servicioPedidos.agregarPedido(pedido);
     }
-    verCard(p :Publicaciones){
+    verCard(p :Productos){
       this._servicio.setObjetoParaCardProd(p);
     } 
 

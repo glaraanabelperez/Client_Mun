@@ -1,6 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@800&family=Oswald:wght@500&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=DM+Sans&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@800&family=Oswald:wght@500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500&display=swap");
 * {
   font-size: 15px;
   font-family: "Quicksand", sans-serif;
@@ -23,7 +26,7 @@
 
 h1 {
   font-size: 1.6rem;
-  color: #4e4e4e;
+  color: #282928;
   padding: 10px 0px 0px 0px;
   display: block;
   font-weight: 500;
@@ -39,16 +42,18 @@ h2 {
 
 h3 {
   font-size: 1.2em;
+  overflow-wrap: break-word;
 }
 
 h4 {
   font-size: 1em;
+  overflow-wrap: break-word !important;
 }
 
 p {
   margin: 0% !important;
   width: 100%;
-  overflow-wrap: break-word;
+  overflow-wrap: break-word !important;
 }
 
 .p-fondo {
@@ -60,11 +65,11 @@ p {
 
 span {
   font-size: 1rem;
-  color: #075cbd;
+  color: #004182;
 }
 
 .titulo-secciones {
-  color: #4e4e4e;
+  color: #282928;
   font-weight: 600;
   margin-bottom: 0px;
   margin-left: 50px;
@@ -76,7 +81,7 @@ form label {
 
 .tituloTarjeta {
   margin-top: 5%;
-  color: #a0c2c3;
+  color: #2ae999;
   display: block;
   font-size: 1rem;
   text-transform: uppercase;
@@ -84,7 +89,7 @@ form label {
 
 .subTituloTarjeta {
   margin: 0%;
-  color: #4e4e4e;
+  color: #282928;
   display: block;
   font-size: 1.2rem;
   text-transform: lowercase;
@@ -94,17 +99,74 @@ form label {
   margin: 0%;
   width: auto;
   display: block;
-  font-size: 0.7rem;
+  font-size: 0.9rem;
   font-weight: 500;
   letter-spacing: 1px;
   text-overflow: clip;
 }
 
-.estiloBotonSimple {
-  font-size: 1rem;
+@media only screen and (max-width: 1024px) and (min-width: 764px) {
+  .tituloTarjeta {
+    margin-top: 15%;
+    color: #2ae999;
+    display: block;
+    font-size: 1rem;
+    text-transform: uppercase;
+  }
+  .subTituloTarjeta {
+    margin: 0%;
+    color: #282928;
+    display: block;
+    font-size: 1.8rem;
+    text-transform: lowercase;
+  }
+  .pTarjeta {
+    margin: 0%;
+    width: auto;
+    display: block;
+    font-size: 1.2rem;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-overflow: clip;
+  }
 }
 
-.buttons {
+@media only screen and (max-width: 760px) and (min-width: 300px) {
+  h1 {
+    font-size: 17px;
+  }
+  .tituloTarjeta {
+    margin-top: 15%;
+    color: #2ae999;
+    display: block;
+    font-size: 1.4rem;
+    text-transform: uppercase;
+  }
+  .subTituloTarjeta {
+    margin: 0%;
+    color: #282928;
+    display: block;
+    font-size: 1.8rem;
+    text-transform: lowercase;
+  }
+  .pTarjeta {
+    margin: 0%;
+    width: auto;
+    display: block;
+    font-size: 1.2rem;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-overflow: clip;
+  }
+}
+
+* {
+  font-size: 15px;
+  font-family: "Quicksand", sans-serif;
+  letter-spacing: 1px;
+}
+
+.row {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -114,70 +176,102 @@ form label {
           flex-direction: row;
 }
 
-.buttons button {
-  font-size: 0.8rem;
-  padding: 3%;
-  display: inline-block;
-  outline: 0;
-  border: 0;
-  border-radius: 5px;
+.tituloPrincipal {
+  font-size: 3rem;
+}
+
+h1 {
+  font-size: 1.6rem;
+  color: #282928;
+  padding: 10px 0px 0px 0px;
+  display: block;
+  font-weight: 500;
   text-transform: uppercase;
+}
+
+h2 {
+  font-size: 1.4rem;
+  color: #505e47;
+  font-weight: bold;
+  letter-spacing: 0.1pc;
+}
+
+h3 {
+  font-size: 1.2em;
+  overflow-wrap: break-word;
+}
+
+h4 {
+  font-size: 1em;
+  overflow-wrap: break-word !important;
+}
+
+p {
+  margin: 0% !important;
+  width: 100%;
+  overflow-wrap: break-word !important;
+}
+
+.p-fondo {
+  font-size: 1.8rem;
+  color: #F5F5F5;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+span {
+  font-size: 1rem;
+  color: #004182;
+}
+
+.titulo-secciones {
+  color: #282928;
+  font-weight: 600;
+  margin-bottom: 0px;
+  margin-left: 50px;
+}
+
+form label {
+  font-size: 0.8rem;
+}
+
+.tituloTarjeta {
+  margin-top: 5%;
+  color: #2ae999;
+  display: block;
+  font-size: 1rem;
+  text-transform: uppercase;
+}
+
+.subTituloTarjeta {
+  margin: 0%;
+  color: #282928;
+  display: block;
+  font-size: 1.2rem;
+  text-transform: lowercase;
+}
+
+.pTarjeta {
+  margin: 0%;
+  width: auto;
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 500;
   letter-spacing: 1px;
-  color: #3f8cff;
-  cursor: pointer;
-  margin: 0px 2px 0px 1px !important;
-}
-
-.buttons button:hover {
-  background-color: #f8efef;
-}
-
-.banner {
-  width: 90%;
-  margin: auto;
-  background-color: white;
-  margin-bottom: 5%;
-}
-
-.banner img {
-  width: 100%;
-}
-
-.banner-100 {
-  width: 100%;
-  margin-bottom: 5%;
-}
-
-.banner-100 img {
-  width: 100%;
-  height: 250px;
-  -o-object-fit: cover;
-     object-fit: cover;
-}
-
-.banner-50 {
-  width: 47%;
-  margin-bottom: 5%;
-}
-
-.banner-50 img {
-  width: 100%;
-  height: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
+  text-overflow: clip;
 }
 
 @media only screen and (max-width: 1024px) and (min-width: 764px) {
   .tituloTarjeta {
     margin-top: 15%;
-    color: #a0c2c3;
+    color: #2ae999;
     display: block;
     font-size: 1rem;
     text-transform: uppercase;
   }
   .subTituloTarjeta {
     margin: 0%;
-    color: #4e4e4e;
+    color: #282928;
     display: block;
     font-size: 1.8rem;
     text-transform: lowercase;
@@ -193,17 +287,20 @@ form label {
   }
 }
 
-@media only screen and (max-width: 764px) and (min-width: 300px) {
+@media only screen and (max-width: 760px) and (min-width: 300px) {
+  h1 {
+    font-size: 17px;
+  }
   .tituloTarjeta {
     margin-top: 15%;
-    color: #a0c2c3;
+    color: #2ae999;
     display: block;
     font-size: 1.4rem;
     text-transform: uppercase;
   }
   .subTituloTarjeta {
     margin: 0%;
-    color: #4e4e4e;
+    color: #282928;
     display: block;
     font-size: 1.8rem;
     text-transform: lowercase;
@@ -218,4 +315,253 @@ form label {
     text-overflow: clip;
   }
 }
-/*# sourceMappingURL=home.component.css.map */
+
+.contenedor-galeria {
+  margin: 5%;
+}
+
+.contenedor-galeria .contenedor_titulo {
+  background-color: white;
+  margin-top: 5%;
+  padding: 2%;
+  border-radius: 10px;
+}
+
+.contenedor-galeria #carousel {
+  padding: 3% 0% 3% 0%;
+  width: 100%;
+  height: auto;
+  background-color: #eff0ee;
+  white-space: nowrap;
+  overflow-x: auto;
+  margin: auto;
+}
+
+.contenedor-galeria #carousel div {
+  display: inline-block;
+  width: 30%;
+  margin-right: 1%;
+}
+
+.contenedor-galeria #carousel div .contenedor-card {
+  width: 100%;
+  height: 330px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  background-color: white;
+  text-align: center;
+  border-radius: 10px;
+}
+
+.contenedor-galeria #carousel div .contenedor-card .foto-destacada {
+  width: 100% !important;
+  height: 55% !important;
+  background-color: white;
+}
+
+.contenedor-galeria #carousel div .contenedor-card .foto-destacada img {
+  border-radius: 10px;
+  background-size: cover;
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.contenedor-galeria #carousel div .contenedor-card .info {
+  height: 50%;
+  width: 100%;
+  padding: 5%;
+  text-align: center;
+  margin: 0%;
+}
+
+.contenedor-galeria #carousel div .contenedor-card .info .titulo-tarjeta {
+  text-transform: uppercase;
+}
+
+.contenedor-galeria #carousel div .contenedor-card .info .titulo-tarjeta h4 {
+  font-size: 1.3rem;
+}
+
+.contenedor-galeria #carousel div .contenedor-card .info .subtitulo {
+  width: 100%;
+  word-wrap: break-word;
+}
+
+.contenedor-galeria #carousel div .contenedor-card .info .promocion {
+  font-weight: 600;
+  width: 100%;
+  word-wrap: break-word;
+}
+
+.contenedor-galeria #carousel div .contenedor-card .info .btn-outline-success {
+  margin-top: 5%;
+  width: 80%;
+  background-color: none;
+  border-radius: 30px;
+}
+
+@media screen and (min-width: 280px) and (max-width: 768px) {
+  .contenedor-galeria h3 {
+    margin-top: 1%;
+    margin-left: 5%;
+  }
+  .contenedor-galeria #carousel div {
+    display: inline-block;
+    width: 99%;
+    margin-right: 1%;
+  }
+  .contenedor-galeria #carousel div .contenedor-card .info .titulo-tarjeta {
+    text-transform: uppercase;
+    color: #004182;
+    font-size: 1.2rem;
+  }
+}
+
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) {
+  /* applied to lg also */
+  .contenedor-galeria {
+    margin-top: 1%;
+    margin-bottom: 1%;
+  }
+  .contenedor-galeria #carousel div {
+    display: inline-block;
+    width: 40%;
+    margin-right: 1%;
+  }
+}
+
+.contenedor-cabecera {
+  background-color: white;
+  margin-top: 0%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  height: 20%;
+  width: 100%;
+  font-size: 12px;
+}
+
+.contenedor-cabecera .logo {
+  width: 15%;
+  margin: auto;
+}
+
+.contenedor-cabecera .logo img {
+  width: 100%;
+}
+
+.contenedor-cabecera .titulo {
+  width: 60%;
+  background-color: #05dd29;
+  border-bottom-left-radius: 20px;
+  text-align: center;
+  font-size: 1.8rem;
+  padding: 1%;
+  color: white;
+  border-right: 1px solid gainsboro;
+  opacity: 0.5;
+}
+
+.contenedor-cabecera .botonCabecera {
+  background-color: #05dd78;
+  opacity: 0.5;
+  padding: 5px;
+  text-align: center;
+  width: 15%;
+  cursor: pointer;
+  border: none;
+}
+
+.contenedor-cabecera .botonCabecera .fa-user-circle {
+  font-size: 40px;
+}
+
+.frente {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  height: 70%;
+}
+
+.frente .frente-titulo {
+  margin: auto;
+  font-size: 50px;
+}
+
+.frente .frente-imagen {
+  margin: auto;
+}
+
+.frente .frente-imagen img {
+  width: 100%;
+  margin: 10%;
+}
+
+/* Smartphones (portrait and landscape) ----------- */
+@media (max-width: 768px) {
+  .contenedor-cabecera {
+    display: block;
+    width: 100vw;
+    margin: 0%;
+  }
+  .contenedor-cabecera .logo {
+    width: 55%;
+  }
+  .contenedor-cabecera .logo img {
+    width: 100%;
+    background-size: cover;
+  }
+  .contenedor-cabecera .titulo {
+    width: 100%;
+    font-size: 1.4rem;
+    text-align: center;
+  }
+  .contenedor-cabecera .botonCabecera {
+    background-color: #f9faf9;
+  }
+  .contenedor-cabecera .botonCabecera .fa-user-circle {
+    font-size: 60px;
+  }
+  .frente {
+    display: block;
+    margin: 5%;
+    margin-top: 4%;
+  }
+  .frente .frente-titulo {
+    margin: auto;
+    font-size: 40px;
+  }
+  .frente .p-frente {
+    font-size: 22px;
+  }
+  .frente .frente-imagen {
+    margin: auto;
+  }
+  .frente .frente-imagen img {
+    width: 63%;
+    margin: 10%;
+    margin-bottom: 7%;
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+  .contenedor-cabecera .logo {
+    width: 30%;
+  }
+}
+/*# sourceMappingURL=home-matizo.css.map */

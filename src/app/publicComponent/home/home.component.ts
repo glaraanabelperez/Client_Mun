@@ -1,7 +1,6 @@
 import { Component, EventEmitter, ViewChild } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Negocio } from 'src/app/core/models/Negocio';
-import { ServiceMetodos } from 'src/app/core/servicios-generales/service-general.metodos';
 import { ServiceGeneral } from 'src/app/core/servicios-generales/service-general.service';
 
 @Component({
@@ -17,7 +16,7 @@ export class HomeComponent {
   chosenStore: string;
   stores:Negocio []=[];
 
-  constructor(private  _service_g : ServiceGeneral, private rutaActiva: ActivatedRoute, public _service_metodos:ServiceMetodos){
+  constructor(private  _service_g : ServiceGeneral, private rutaActiva: ActivatedRoute){
     this.chosenStore=this.rutaActiva.snapshot.params.nombre;
     this.getStores();  
   }
@@ -28,6 +27,7 @@ export class HomeComponent {
   getStores(){
     this._service_g.traer_usuarios()
     .then(data=>{
+      console.log("aca", data)
       this.completeArrayStores(data);
     })
     .catch(err=>{
@@ -44,19 +44,19 @@ export class HomeComponent {
   }
 
     verificarNegocio(){
-        let i;
-        for(i=0; i<this.stores.length; i++){
-          if(this.stores[i].nombre_negocio==this.chosenStore){ 
-            this.store=this.stores[i];
-            this._service_metodos.setNegocio(this.store);
-          }
-        }
-          this._service_metodos.obtenerCategoria( this.store.codigo_usuario);
-          this.traerPublicaciones();
+        // let i;
+        // for(i=0; i<this.stores.length; i++){
+        //   if(this.stores[i].nombre_negocio==this.chosenStore){ 
+        //     this.store=this.stores[i];
+        //     this._service_metodos.setNegocio(this.store);
+        //   }
+        // }
+        //   // this._service_metodos.obtenerCategoria( this.store.id);
+        //   this.traerPublicaciones();
     }
     //PUBLICACIONES
     traerPublicaciones(){
-        this._service_metodos.traerDatosPublicaciones_servicio(this.store.codigo_usuario)
+        // this._service_metodos.traerDatosPublicaciones_servicio(this.store.id)
     }
 
 }

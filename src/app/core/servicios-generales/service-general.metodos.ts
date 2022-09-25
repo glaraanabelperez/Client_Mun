@@ -1,21 +1,21 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
-import { Categorias } from '../models/categorias';
+import { CategoryModel } from '../../protected/models/categoryModel';
 import { Negocio } from '../models/Negocio';
-import { Publicaciones } from '../models/publicaciones';
+import { Productos } from '../models/productos';
 import { ServiceGeneral } from './service-general.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ServiceMetodos {
+export class CategoryService {
 
   negocio:Negocio;
   negocios_todos:Negocio []=[];
-  publicaciones :Publicaciones[]=[];
-  categorias: Categorias[]=[];
-  categoriaElegida2:Categorias;
-  categoriaSubject:Subject <Categorias> = new  Subject <Categorias>();
+  Productos :Productos[]=[];
+  categorias: CategoryModel[]=[];
+  categoriaElegida2:CategoryModel;
+  categoriaSubject:Subject <CategoryModel> = new  Subject <CategoryModel>();
 
   constructor(public service_g: ServiceGeneral) {
 
@@ -26,7 +26,6 @@ export class ServiceMetodos {
 
   setNegocio(negocio: Negocio) {
     this.negocio=negocio;
-    console.log("aca", this.negocio)
 
   }
   obtenerCategoria(codigo_usuario){
@@ -40,16 +39,16 @@ export class ServiceMetodos {
       this.categorias.values.toString;    
     }
   }
-  traerDatosPublicaciones_servicio(codigo){
+  traerDatosProductos_servicio(codigo){
     this.service_g.traerDatos(codigo).subscribe(res => {
-      this.mostrarDatosPublicaciones(res);
+      this.mostrarDatosProductos(res);
    })
   }
-  mostrarDatosPublicaciones(res:[]){
+  mostrarDatosProductos(res:[]){
     if(res.length!=0){
       for(let i=0;i<res.length;i++){
-        this.publicaciones.push(res[i]);
-        this.publicaciones.values.toString;
+        this.Productos.push(res[i]);
+        this.Productos.values.toString;
       }
     }
   }

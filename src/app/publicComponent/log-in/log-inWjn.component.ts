@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../auth-services/auth.service';
 import {Router} from '@angular/router';
+import { LoginRequest, LoginResponse } from 'src/app/auth-services/login';
 
 @Component({
   selector: 'app-log-in',
@@ -16,17 +17,22 @@ export class LogInComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  login( username: String, password: String) :boolean {
-    this.mensajerror="";
-    if(!this.authService.login(username, password)){
-      this.mensajerror="Login Incorrecto";
-      setTimeout(function(){
-        this.mensajerror="";
-      }.bind(this), 2500);
-    }else{
-      this.titulo=this.authService.getUser();
+  login( username: string, password: string) :boolean {
+    let data:LoginRequest={
+      Email:username,
+      Password:password
     }
-    
+    this.mensajerror="";
+    this.authService.login(data).subscribe(
+      res=>{
+        this.authService.register(res);
+        alert('BIENVENIDO');
+      },
+      error=>{
+        alert('EL USUARIO NO SE ENCUENTRA REGISTRADO');
+      }
+    );
+
     return false;
   }
 

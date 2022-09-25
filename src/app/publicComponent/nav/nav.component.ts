@@ -1,8 +1,7 @@
 import { Component, Input, OnInit} from '@angular/core';
 import { Negocio } from 'src/app/core/models/Negocio';
-import { ServiceMetodos } from 'src/app/core/servicios-generales/service-general.metodos';
 import { ServicePedidos } from 'src/app/core/servicios-pedidos/service-pedidos.service';
-import { Categorias } from '../../core/models/categorias';
+import { CategoryModel } from 'src/app/protected/models/categoryModel';
 import { ServiceGeneral } from '../../core/servicios-generales/service-general.service';
 
 
@@ -17,7 +16,9 @@ import { ServiceGeneral } from '../../core/servicios-generales/service-general.s
     mostrarWhatsapp=false;
     total;
 
-    constructor( public _servicioGeneral:ServiceGeneral, public _service_metodos: ServiceMetodos, public service_pedidos: ServicePedidos){
+    categories:CategoryModel[];
+    
+    constructor( public _servicioGeneral:ServiceGeneral, public service_pedidos: ServicePedidos){
     }
 
     ngOnInit():void {
@@ -28,9 +29,9 @@ import { ServiceGeneral } from '../../core/servicios-generales/service-general.s
     }
    
       
-    elegido(d :Categorias){
-      this._service_metodos.setCatgeoriasElegida(d);
-      this._service_metodos.suscribeOnChange(d);
+    elegido(d :CategoryModel){
+      // this._service_metodos.setCatgeoriasElegida(d);
+      // this._service_metodos.suscribeOnChange(d);
       console.log("categoria Elegida", d)
     }
 

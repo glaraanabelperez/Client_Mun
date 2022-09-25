@@ -27,7 +27,7 @@ export class ServicePedidos {
     corroborarProductoEnPedido(p):boolean{
       let rsta=false;
       for (var o of this.order) {
-        if(p.codigo_producto==o.codigo_producto){
+        if(p.id==o.id){
           rsta=true;
           return rsta;
         }

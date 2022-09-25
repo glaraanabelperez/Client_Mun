@@ -1,5 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
-import { Categorias } from '../../core/models/categorias';
+import { Router } from '@angular/router';
+import { Console } from 'console';
+import { CategoryModel } from '../models/categoryModel';
+import { ProtectedService } from '../protected.service';
 
 
 @Component({
@@ -10,20 +13,38 @@ import { Categorias } from '../../core/models/categorias';
 
   export class NavAdmin implements OnInit {
 
-    @Input()categorias:Categorias;
-    @Output() onClicked:EventEmitter<Categorias>;
-//emite al metodo elegido en lista-prod-admin.ts
+    categories:CategoryModel[];
+    @Output() onClicked:EventEmitter<CategoryModel>;
 
-    constructor(){
+    constructor(private router: Router, public _serviceProtected : ProtectedService,){
         this.onClicked=new EventEmitter();
     }
 
-    ngOnInit():void {}
+    ngOnInit():void {
+      this.traerCategorias();
+    }
 
-    ir(){
-        this.onClicked.emit(this.categorias);
+    emit(c:CategoryModel){
+        this.onClicked.emit(c);
         return false;
       }
+     //CATEGORIAS NAV PROTECTED
+    traerCategorias(){
+      if(localStorage.getItem('codigo_usar')==undefined || localStorage.getItem('codigo_usar')==null){
+        alert('VUELVA A INGRESAR USUARIO Y PASSWORD')
+        this.router.navigateByUrl('login')
+      }
+        this._serviceProtected.obtenerCategoria(parseInt(localStorage.getItem('codigo_usar'),10)).subscribe(
+          res=>{
+            this.categories=res;
+            alert('BIENVENIDO');
+          },
+          error=>{
+            alert('EL USUARIO NO SE ENCUENTRA REGISTRADO');
+          }
+        );
+
+    }
 
 }
   

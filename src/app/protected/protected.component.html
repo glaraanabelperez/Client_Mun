@@ -1,0 +1,29 @@
+<!-- <app-cabecera-matizo></app-cabecera-matizo>
+
+<a  style="display: block;text-align: right; margin: 1%;" routerLink="/home/{{user}}" target="_blank">ver menu: {{user}}</a>
+<button style="color: rgb(248, 247, 247);" routerLink="/home-matizo" class=" button-style" > <p >Volver</p><i style="color: #05dd78;" class="fa fa-arrow-circle-left" aria-hidden="true"></i></button>
+<button class=" button-style" (click)="mostrar()"><p>Cargar Producto</p><i class="fa fa-arrow-circle-down" aria-hidden="true"></i></button>
+
+<!--  procentaje -->
+<div class="bloque1">         
+  <div class="form-group col-md-3">
+    <label for="titulo">Porcentaje</label>
+    <input maxlength="20" class="form-control" placeholder="Campo Obligatorio" 
+    [(ngModel)]='pricePercent' 
+    type="number" requerid >
+  </div>  
+  <button class="add"><p style="padding-top: 10px;" (click)="changePrice()" type="submit" >GUARDAR</p></button>
+  <!-- <button class="add"><p style="padding-top: 10px;" (click)="clean()">CANCELAR</p></button> -->
+</div>               
+
+<main class="jumbotron" >
+  <h2>Filtrar por Categoria</h2>
+  <div style="display: flex;flex-direction: row;overflow: auto;white-space: nowrap;width: 90%;">
+        <nav-admin (onClicked)="categorySelected($event)"></nav-admin>   
+  </div>
+  <lista-prod-admin [categoryInput]="categorySelected" (emitPubl)="editarPubliId($event)"></lista-prod-admin>
+  <!-- <add-prod [editProduct]="editProduct"></add-prod> -->
+</main>
+<button class="buttons-subir" style="position: fixed; right: 10%; bottom: 7%; z-index: 999;" (click)="subir()">
+  <i style="color: #05dd29; font-size: 25px;" class="fa fa-arrow-circle-up" aria-hidden="true"></i>
+</button> 

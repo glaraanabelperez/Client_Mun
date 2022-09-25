@@ -2,7 +2,6 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ServicePedidos } from '../../core/servicios-pedidos/service-pedidos.service';
 import { Pedidos } from '../../core/models/Pedidos';
 import {Location} from '@angular/common';
-import { ServiceMetodos } from 'src/app/core/servicios-generales/service-general.metodos';
 
 @Component({
   selector: 'ver-pedido',
@@ -12,7 +11,7 @@ import { ServiceMetodos } from 'src/app/core/servicios-generales/service-general
 export class VerPedido implements OnInit {
 
 
-  constructor( public _service:ServicePedidos, private _location: Location, public _service_metodos:ServiceMetodos) { 
+  constructor( public _service:ServicePedidos, private _location: Location) { 
   }
 
   ngOnInit():void {
@@ -37,7 +36,7 @@ export class VerPedido implements OnInit {
     let p :any []=[];
     let pedido=(JSON.stringify(this._service.order)).replace(/["{}]+/g, " ");
     this._service.order=[];
-    window.location.href="https://api.whatsapp.com/send?phone=" + this._service_metodos.negocio.telefono + "&text=" + pedido;
+    // window.location.href="https://api.whatsapp.com/send?phone=" + this._service_metodos.negocio.telefono + "&text=" + pedido;
   }
 
 }

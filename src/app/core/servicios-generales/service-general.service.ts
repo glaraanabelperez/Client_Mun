@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
-import { Publicaciones } from '../models/publicaciones';
+import { Productos } from '../models/productos';
 
 @Injectable({
   providedIn: 'root'
@@ -9,14 +9,14 @@ import { Publicaciones } from '../models/publicaciones';
 export class ServiceGeneral {
 
   estadoForm: String[]=['Activada', 'Desactivada'];
-  publicacionParaScreenShot:Publicaciones;
-  objetoParaElCardProd:Publicaciones;
+  publicacionParaScreenShot:Productos;
+  objetoParaElCardProd:Productos;
 
   verPedido:boolean;
   verPedidoSubject:Subject <boolean> = new Subject <boolean>();
 
-  url='http://localhost/angular/mi-tienda/menu/php-app/';
-  url2='http://localhost/angular/mi-tienda/menu/src/';
+  url='http://localhost/back-php/php-app/';
+  url2='http://localhost/Users/Lara/source/repos/menu-practica/src/';
   // url='/php-app/';
   // url2='/';
   

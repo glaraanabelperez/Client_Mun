@@ -14,7 +14,7 @@
     $percent=$params->pricePercent;
 
     $sql= "UPDATE `productos` SET `precio` = ROUND( `precio` * 1.20, 2 )  
-    WHERE `codigo_usuario`='$id'";
+    WHERE `id_usuario`='$id'";
     
     $respuesta=$bd->ejecutar($sql);
 

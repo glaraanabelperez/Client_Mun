@@ -10,7 +10,7 @@
     </div> 
     <div  class="menuPaginaI" style="display: flex;flex-direction: row;">
         <div class="nav-Secundario">
-            <nav-secundario *ngFor="let c of _service_metodos.categorias" 
+            <nav-secundario *ngFor="let c of categories" 
             [categoria]="c"
             (onClicked)="elegido($event)"
             ></nav-secundario>

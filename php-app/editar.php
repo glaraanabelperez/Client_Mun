@@ -12,7 +12,7 @@
 
     $id=$params->codigo_producto;
     $sql= "UPDATE `productos` SET 
-    `categorias`='$params->categorias',
+    `id_categoria`='$params->categorias',
     `estado`='$params->estado',
     `titulo`='$params->titulo',
     `subtitulo`='$params->subtitulo',
@@ -22,7 +22,7 @@
     `precio`='$params->precio',
     `destacada`='$params->destacada',
     `promocion`='$params->promocion'
-    WHERE `codigo_producto`='$id'";
+    WHERE `id`='$id'";
     
     $respuesta=$bd->ejecutar($sql);
 

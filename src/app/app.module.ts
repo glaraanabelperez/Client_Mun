@@ -8,7 +8,6 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { ServiceGeneral } from './core/servicios-generales/service-general.service';
 import { ServicePedidos } from './core/servicios-pedidos/service-pedidos.service';
-import { ServiceMetodos } from './core/servicios-generales/service-general.metodos';
 import { ServiceProtected } from './core/servicios-generales/service-protected';
 
 import { AuthService } from './auth-services/auth.service';
@@ -29,8 +28,8 @@ import { CabeceraMatizo} from '../app/home-matizo/cabecera-matizo/cabecera-matiz
 
 
 import { LogInComponent } from './publicComponent/log-in/log-inWjn.component';
-import { ProtectedComponent } from './protected/protected/protected.component';
-import { ListaProdAdmin } from './protected/protected/productos-panel/lista-prod-admin';
+import { ProtectedComponent } from './protected/protected.component';
+import { ListaProdAdmin } from './protected/lista-prod/lista-prod-admin';
 
 export const childrenRoute:Routes=[// {path: '', redirectTo: 'home/:nombre', pathMatch:'full'},
     {path: 'list', 
@@ -97,7 +96,6 @@ const routes: Routes = [
     AuthService, 
     GuardsGuard, 
     ServicePedidos,
-    ServiceMetodos,
     ServiceProtected
   ],
   bootstrap: [

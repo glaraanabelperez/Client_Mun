@@ -1,0 +1,42 @@
+  <h1 style="margin: 30px 5px 30px 0px;">Mis productos</h1>
+    <div class="row" >
+     <div class="tarjetas" *ngFor="let p of products " >
+        <div class="cardPubli">
+            <div class="card-head" *ngIf="p.NameImage" >
+              <img  [src]="'assets/'+ user +'/' +  p.NameImage">
+            </div>
+            <div class="product-detail-0">
+              <p *ngIf="p.nombre_imagen">{{p.NameImage}}</p>
+              <br>
+              <p class="tituloTarjeta">{{p.Title}}</p>
+              <p class="subTituloTarjeta">{{p.Subtitle}}</p>
+              <p class="pTarjeta">{{p.Description}}</p>
+              <br>
+            </div>
+            <div class="card-head2">
+                <div class="product-detail">
+                  <p class="pTarjeta">Categoria:{{p.CategoryId}}</p>
+                  <p class="pTarjeta">Destacada:{{p.Featured}}</p>
+                  <p class="pTarjeta">Promocion:{{p.Promotion}}</p>
+                  <p #id >Codigo: {{p.ProductId}}</p>
+                </div>
+                <div class="product-detail2">
+                  <div class="buttons">
+                    <!-- <button class="add" (click)="publicar(p)" [routerLink]="['/descargar']">
+                      <i class="fa fa-instagram" style="margin: rigth 10px;"></i> / <i class="fa fa-facebook-official"  ></i><p>Descargar</p>
+                    </button> -->
+                    <!-- <button class="add"  (click)="sendPubl(p)">
+                      <i class="fa fa-pencil-square" ></i><p>Editar</p>
+                    </button> -->
+                    <!-- <button class="add" (click)="eliminar(p)">
+                      <i class="fa fa-trash" ></i><p>Eliminar</p>
+                    </button> -->
+                  </div>
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  
+
+

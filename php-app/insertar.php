@@ -10,8 +10,8 @@
     /*Instancia del objeto, conexion*/
     $bd=Db::getInstance();
     
-    $sql="INSERT INTO productos( codigo_producto, categorias, estado, titulo, subtitulo, 
-    descripcion,  nombreImagen, fechaAlta, precio, destacada, promocion, codigo_usuario) VALUES( '$params->codigo_producto', '$params->categorias', '$params->estado', 
+    $sql="INSERT INTO productos( id, id_categoria, estado, titulo, subtitulo, 
+    descripcion,  nombreImagen, fechaAlta, precio, destacada, promocion, id_usuario) VALUES( '$params->codigo_producto', '$params->categorias', '$params->estado', 
     '$params->titulo','$params->subtitulo', '$params->descripcion', 
     '$params->nombreImagen','$params->fechaAlta', '$params->precio', '$params->destacada', '$params->promocion', '$params->codigo_usuario')";
     $respuesta=$bd->ejecutar($sql);
