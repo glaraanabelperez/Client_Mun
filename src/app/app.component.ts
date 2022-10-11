@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ServiceGeneral } from './core/services/service-general.service';
 
 
 @Component({
@@ -10,7 +11,7 @@ export class AppComponent  {
 
   title = 'mi-tienda';
   
-  constructor(){ }
+  constructor(public _service_general:ServiceGeneral){ }
 
   ngOnInit(): void {
 

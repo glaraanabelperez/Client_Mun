@@ -1,6 +1,6 @@
 import { Component, OnInit , EventEmitter, Output, Input} from '@angular/core';
 import { Productos } from '../../core/models/productos';
-import { ServiceGeneral } from '../../core/servicios-generales/service-general.service';
+import { ServiceGeneral } from '../../core/services/service-general.service';
 import { ServicePedidos } from '../../core/servicios-pedidos/service-pedidos.service';
 
 

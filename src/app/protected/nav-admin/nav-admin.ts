@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angul
 import { Router } from '@angular/router';
 import { Console } from 'console';
 import { CategoryModel } from '../models/categoryModel';
-import { ProtectedService } from '../protected.service';
+import { ProtectedService } from '../../core/services/protected.service';
 
 
 @Component({
@@ -14,6 +14,7 @@ import { ProtectedService } from '../protected.service';
   export class NavAdmin implements OnInit {
 
     categories:CategoryModel[];
+    
     @Output() onClicked:EventEmitter<CategoryModel>;
 
     constructor(private router: Router, public _serviceProtected : ProtectedService,){

@@ -1,3 +1,4 @@
+
 <!-- <app-cabecera-matizo></app-cabecera-matizo>
 
 <a  style="display: block;text-align: right; margin: 1%;" routerLink="/home/{{user}}" target="_blank">ver menu: {{user}}</a>
@@ -7,10 +8,10 @@
 <!--  procentaje -->
 <div class="bloque1">         
   <div class="form-group col-md-3">
-    <label for="titulo">Porcentaje</label>
+    <!-- <label for="titulo">Porcentaje</label>
     <input maxlength="20" class="form-control" placeholder="Campo Obligatorio" 
     [(ngModel)]='pricePercent' 
-    type="number" requerid >
+    type="number" requerid > -->
   </div>  
   <button class="add"><p style="padding-top: 10px;" (click)="changePrice()" type="submit" >GUARDAR</p></button>
   <!-- <button class="add"><p style="padding-top: 10px;" (click)="clean()">CANCELAR</p></button> -->
@@ -21,8 +22,7 @@
   <div style="display: flex;flex-direction: row;overflow: auto;white-space: nowrap;width: 90%;">
         <nav-admin (onClicked)="categorySelected($event)"></nav-admin>   
   </div>
-  <lista-prod-admin [categoryInput]="categorySelected" (emitPubl)="editarPubliId($event)"></lista-prod-admin>
-  <!-- <add-prod [editProduct]="editProduct"></add-prod> -->
+  <lista-prod-admin [categoryInput]="categorySelected" (emitProduct)="editarProduct($event)"></lista-prod-admin>
 </main>
 <button class="buttons-subir" style="position: fixed; right: 10%; bottom: 7%; z-index: 999;" (click)="subir()">
   <i style="color: #05dd29; font-size: 25px;" class="fa fa-arrow-circle-up" aria-hidden="true"></i>

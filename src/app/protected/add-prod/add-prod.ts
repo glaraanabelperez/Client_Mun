@@ -3,8 +3,8 @@ import { Productos } from 'src/app/core/models/productos';
 import { DOCUMENT } from '@angular/common';
 // import { ServiceMetodos } from 'src/app/core/servicios-generales/service-general.metodos';
 import { CategoryModel } from 'src/app/protected/models/categoryModel';
-import { ProtectedService } from '../protected.service';
-import { ServiceGeneral } from 'src/app/core/servicios-generales/service-general.service';
+import { ProtectedService } from '../../core/services/protected.service';
+import { ServiceGeneral } from 'src/app/core/services/service-general.service';
 import { FormBuilder, Validators } from '@angular/forms';
 
 
@@ -16,52 +16,72 @@ import { FormBuilder, Validators } from '@angular/forms';
 
   export class AddProduct implements OnInit {
 
-  @Input() editProduct :Productos;
+  // @Input() editProduct :Productos;
 
-  userName;
-  estado: any;
-  codigo_usuario: string;
-  today: string;
-  uploadForm: any;
-  accionBtnFormulario: string;
-  mostrar_form: boolean;
-  imagenNueva_guardar: any;
-  imgNueva_mostrar: string | ArrayBuffer;
-  message: string;
-  img_editar: string;
+  public state: String[]=['Activada', 'Desactivada'];
+  public uploadForm: any;
+
+  private product:Productos=null;
+  public buisness;
+ 
+  private userId: string;
+  private today: string;
+  
+  private accionBtnFormulario: string;
+
+  public newImage: any;
+  public showNewImage: string | ArrayBuffer;
+  public message: string;
+  public editImage: string;
+
+  categories: CategoryModel[];
 
     constructor( private _serviceProtected:ProtectedService, @Inject(DOCUMENT) private document: Document,
     private _servicioGeneral:ServiceGeneral, private formBuilder:FormBuilder,) {
-        this.userName=localStorage.getItem('username')
+
+      this.buisness=localStorage.getItem('username')
+      console.log(this.buisness)
+      this.accionBtnFormulario= this.product!=null ? "nuevo" : "editar";
+   
      }
      
     ngOnInit(): void {
    
-    this.estado= this._servicioGeneral.obtener_estado();
-    this.codigo_usuario=localStorage.getItem('codigo_usar'); 
+    this.userId=localStorage.getItem('codigo_usar'); 
     this.getFecha();
-    this.accionBtnFormulario="nuevo";
-    this.mostrar_form=false;
 
     this.uploadForm=this.formBuilder.group({
-        codigo_producto:[null],
-        categorias:['',[Validators.required]],
-        estado:['',[Validators.required]],
-        titulo:['',[Validators.required]],
-        subtitulo:[''],
-        descripcion:[''],
-        nombreImagen: [null],
-        fechaAlta:[this.today],
-        precio:[null],
-        destacada:[''],
-        promocion:[''],
-        codigo_usuario:[this.codigo_usuario],
+        productId:[null],
+        categoryId:[null,[Validators.required]],
+        title:['',[Validators.required]],
+        subtitle:[''],
+        description:[''],
+        nameImage: [null],
+        date:[this.today],
+        price:[null],
+        featured:[''],
+        promotion:[''],
+        userId:[this.userId],
       });
-
+      this.traerCategorias();
+      this.editarPubliId(this._serviceProtected.product);
     }
 
     get f(){ return this.uploadForm.controls;}
 
+    //CATEGORIAS NAV PROTECTED
+    traerCategorias(){
+      this._serviceProtected.obtenerCategoria(parseInt(localStorage.getItem('codigo_usar'),10)).subscribe(
+        res=>{
+          this.categories=res as [];
+          console.log(this.categories)
+        },
+        error=>{
+          alert('HUBO UN PROBLEMA CON EL SERVIDOR');
+        }
+      );
+    
+    }
 
     getFecha(){
       var d = new Date();
@@ -69,7 +89,7 @@ import { FormBuilder, Validators } from '@angular/forms';
     }
 
     guardarImagenEnFormGroup(files){
-      this.imagenNueva_guardar=files;
+      this.newImage=files;
       let imagen = files[0];
       this.uploadForm.controls['nombreImagen'].setValue(imagen ? imagen.name : ''); // <-- Set Value for Validation
     }
@@ -90,7 +110,7 @@ import { FormBuilder, Validators } from '@angular/forms';
                     this.guardarImagenEnFormGroup(files);
                     var reader = new FileReader();
                     reader.readAsDataURL(files[0]); 
-                    reader.onload = (_event) => { this.imgNueva_mostrar = reader.result;
+                    reader.onload = (_event) => { this.showNewImage = reader.result;
                     }
               }else if(this.respuesta.status == "error"){
                 alert("Ya existe la imagen")
@@ -124,16 +144,16 @@ import { FormBuilder, Validators } from '@angular/forms';
         return;
       }else{
         if(this.accionBtnFormulario=="editar"){
-          if(this.imgNueva_mostrar!=null){
+          if(this.showNewImage!=null){
             // this._service_protected.procesar(this.img_editar,this.imagenNueva_guardar, this.uploadForm.value );
           }
-          if(this.imgNueva_mostrar==null){
+          if(this.showNewImage==null){
             // this._service_protected.editarDatos(this.uploadForm.value);
             alert('Publicacion Editada');
           }  
         }
         if(this.accionBtnFormulario=="nuevo"){
-          if(this.imgNueva_mostrar!=null){
+          if(this.showNewImage!=null){
             // this._service_protected.guardarArchivoServidor(this.imagenNueva_guardar);
           }
           // this._service_protected.insertarDatos(this.uploadForm.value);
@@ -150,25 +170,22 @@ import { FormBuilder, Validators } from '@angular/forms';
     }
   
     editarPubliId(e: Productos){
-    //   this.uploadForm.controls['codigo_producto'].setValue(e.id ? e.id: ''); // <-- Set Value for Validation
-    //   this.uploadForm.controls['categorias'].setValue(e.id_categoria ? e.id_categoria: ''); // <-- Set Value for Validation
-    //   this.uploadForm.controls['estado'].setValue(e.estado ? e.estado : ''); // <-- Set Value for Validation
-    //   this.uploadForm.controls['titulo'].setValue(e.titulo ? e.titulo : ''); // <-- Set Value for Validation
-    //   this.uploadForm.controls['subtitulo'].setValue(e.subtitulo ? e.subtitulo : ''); // <-- Set Value for Validation
-    //   this.uploadForm.controls['descripcion'].setValue(e.descripcion ? e.descripcion : ''); // <-- Set Value for Validation
-    //   this.uploadForm.controls['nombreImagen'].setValue(e.nombreImagen ? e.nombreImagen : ''); // <-- Set Value for Validation
-    //   this.uploadForm.controls['fechaAlta'].setValue(e.fechaAlta ? e.fechaAlta : ''); // <-- Set Value for Validation
-    //   this.uploadForm.controls['precio'].setValue(e.precio ? e.precio : ''); // <-- Set Value for Validation
-    //   this.uploadForm.controls['destacada'].setValue(e.destacada ? e.destacada : ''); // <-- Set Value for Validation
-    //   this.uploadForm.controls['promocion'].setValue(e.promocion ? e.promocion : ''); // <-- Set Value for Validation
-    //   this.uploadForm.controls['codigo_usuario'].setValue(e.id_usuario ? e.id_usuario : ''); // <-- Set Value for Validation
-  
-    //   window.scrollTo(0,0);
-    //   this.mostrar_form=true;
-    //   if(e.nombreImagen!=null){
-    //     this.img_editar=e['nombreImagen']
-    //   }
-    //   this.accionBtnFormulario="editar";
+      this.uploadForm.controls.productId.setValue(e.ProductId );
+      this.uploadForm.controls.categoryId.setValue(e.CategoryId );
+      this.uploadForm.controls.title.setValue(e.Title );
+      this.uploadForm.controls.subtitle.setValue(e.Subtitle );
+      this.uploadForm.controls.description.setValue(e.Description );
+      this.uploadForm.controls.nameImage.setValue(e.NameImage );
+      this.uploadForm.controls.price.setValue(e.Price );
+      this.uploadForm.controls.featured.setValue(e.Featured );
+      this.uploadForm.controls.promotion.setValue(e.Promotion );
+      this.uploadForm.controls.userId.setValue(e.UserId );
+      // this.uploadForm.controls['productId'].setValue(e.ProductId ? e.ProductId: ''); // <-- Set Value for Validation
+
+      window.scrollTo(0,0);
+      if(e.NameImage!=null){
+        this.editImage=e['nombreImagen']
+      }
    }
 
     

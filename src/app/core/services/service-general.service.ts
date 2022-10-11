@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { CategoryModel } from 'src/app/protected/models/categoryModel';
 import { Productos } from '../models/productos';
 
 @Injectable({
@@ -8,15 +9,22 @@ import { Productos } from '../models/productos';
 })
 export class ServiceGeneral {
 
-  estadoForm: String[]=['Activada', 'Desactivada'];
-  publicacionParaScreenShot:Productos;
+  private _loading = new BehaviorSubject<boolean>(false);
+  public loading;
+  
+  // estadoForm: String[]=['Activada', 'Desactivada'];
+  // publicacionParaScreenShot:Productos;
   objetoParaElCardProd:Productos;
-
   verPedido:boolean;
   verPedidoSubject:Subject <boolean> = new Subject <boolean>();
 
+  categoriaElegida:CategoryModel;
+  categoriaSubject:Subject <CategoryModel> = new  Subject <CategoryModel>();
+
   url='http://localhost/back-php/php-app/';
   url2='http://localhost/Users/Lara/source/repos/menu-practica/src/';
+
+  
   // url='/php-app/';
   // url2='/';
   
@@ -24,6 +32,14 @@ export class ServiceGeneral {
       this.verPedidoSubject.subscribe((value) =>{
         this.verPedido=value;
       })
+      this.loading=false;
+      this._loading.subscribe(x => this.loading=x);
+      
+  }
+
+  setLoading(show: boolean) {
+    console.log(this.loading)
+    this._loading.next(show);
   }
 
   //BBDD
@@ -48,9 +64,7 @@ export class ServiceGeneral {
     return this.http.get<[]>(`${this.url}selectCategorias.php?usuario=${codigo}`)
   }
 
-  obtener_estado(){
-    return this.estadoForm;
-  }
+ 
   eliminar(p){
     return  this.http.post(`${this.url}eliminar.php`, JSON.stringify(p) );
   }
@@ -94,13 +108,7 @@ export class ServiceGeneral {
   getVerPedido(){
     return this.verPedido;
   }
-  //MODEL PUBLICACIONES
-  guardarPublicacionParaScreenShot(p){
-    this.publicacionParaScreenShot=p;
-  }
-  obtenerDatosPubliScreenShot(){
-    return this.publicacionParaScreenShot;
-  }
+
   //VISUALIZAR CARD
   setObjetoParaCardProd(p){
     this.objetoParaElCardProd=p;

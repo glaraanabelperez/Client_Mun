@@ -3,10 +3,11 @@ import { Productos } from 'src/app/core/models/productos';
 import { DOCUMENT } from '@angular/common';
 // import { ServiceMetodos } from 'src/app/core/servicios-generales/service-general.metodos';
 import { CategoryModel } from 'src/app/protected/models/categoryModel';
-import { ProtectedService } from '../protected.service';
+import { ProtectedService } from '../../core/services/protected.service';
 import { QueryDataModel } from 'src/app/core/models/queryDatamodel';
 import { Filter } from 'src/app/core/models/Filter';
 import { OrderField } from 'src/app/core/models/OrderField';
+import { ServiceGeneral } from 'src/app/core/services/service-general.service';
 
 
 @Component({
@@ -17,7 +18,7 @@ import { OrderField } from 'src/app/core/models/OrderField';
 
   export class ListaProdAdmin implements OnInit {
 
-    @Output() emitPubl = new EventEmitter();
+    @Output() emitProduct;
     @Input() categoryInput:CategoryModel;
 
     imgDefecto:string;
@@ -25,9 +26,9 @@ import { OrderField } from 'src/app/core/models/OrderField';
     temp;
     user;
 
-    constructor( private _serviceProtected:ProtectedService, @Inject(DOCUMENT) private document: Document) {
+    constructor( private _serviceProtected:ProtectedService, public _service_general:ServiceGeneral) {
         this.user=localStorage.getItem('username')
-        this.emitPubl=new EventEmitter();
+        this.emitProduct=new EventEmitter();
      }
      
     ngOnInit(): void {
@@ -41,27 +42,26 @@ import { OrderField } from 'src/app/core/models/OrderField';
       this.listAllProducts(data);
     }
 
+    
 
     listAllProducts(data:QueryDataModel){
+      this._service_general.setLoading(true);
         this._serviceProtected.listAllProducts(parseInt(localStorage.getItem('codigo_usar'),10), data).subscribe(
           res=>{
             this.products=res['Data'];
+            console.log(this.products)
           },
           error=>{
             alert('NO SE ECNUENTRAN RESULTADOS');
           }
         );
+        this._service_general.setLoading(false);
 
     }
   
-    sendPubl(p){
-      this.emitPubl.emit(p);
+    edit(p){   
+      this.emitProduct.emit(p);
       return false;
-    }
-
-    publicar(p){
-      // this._servicioGeneral.guardarPublicacionParaScreenShot(p);
-      // this.p=p; 
     }
 
     eliminar(p){

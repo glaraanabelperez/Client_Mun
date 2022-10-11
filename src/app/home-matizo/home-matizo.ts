@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
-import { ServiceGeneral } from 'src/app/core/servicios-generales/service-general.service';
+import { ServiceGeneral } from 'src/app/core/services/service-general.service';
 import { Negocio } from '../core/models/Negocio';
 
 @Component({

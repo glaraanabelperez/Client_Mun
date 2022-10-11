@@ -1,5 +1,5 @@
 import { Component,  OnInit} from '@angular/core';
-import { ServiceGeneral } from 'src/app/core/servicios-generales/service-general.service';
+import { ServiceGeneral } from 'src/app/core/services/service-general.service';
 import { Productos } from 'src/app/core/models/productos';
 import { ServicePedidos } from 'src/app/core/servicios-pedidos/service-pedidos.service';
 

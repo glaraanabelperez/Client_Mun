@@ -1,7 +1,7 @@
 import { Component, EventEmitter, ViewChild } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Negocio } from 'src/app/core/models/Negocio';
-import { ServiceGeneral } from 'src/app/core/servicios-generales/service-general.service';
+import { ServiceGeneral } from 'src/app/core/services/service-general.service';
 
 @Component({
   selector: 'app-home',

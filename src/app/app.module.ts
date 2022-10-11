@@ -6,9 +6,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { RouterModule, Routes } from '@angular/router';
 
 
-import { ServiceGeneral } from './core/servicios-generales/service-general.service';
+import { ServiceGeneral } from './core/services/service-general.service';
 import { ServicePedidos } from './core/servicios-pedidos/service-pedidos.service';
-import { ServiceProtected } from './core/servicios-generales/service-protected';
+import { ServiceProtected } from './core/services/service-protected';
 
 import { AuthService } from './auth-services/auth.service';
 import { GuardsGuard } from './guards/guards.guard';
@@ -30,31 +30,26 @@ import { CabeceraMatizo} from '../app/home-matizo/cabecera-matizo/cabecera-matiz
 import { LogInComponent } from './publicComponent/log-in/log-inWjn.component';
 import { ProtectedComponent } from './protected/protected.component';
 import { ListaProdAdmin } from './protected/lista-prod/lista-prod-admin';
+import { AddProduct } from './protected/add-prod/add-prod';
 
 export const childrenRoute:Routes=[// {path: '', redirectTo: 'home/:nombre', pathMatch:'full'},
-    {path: 'list', 
-    component: ListCardComponent,
-    },
+    {path: 'list', component: ListCardComponent},
+    
     {path: 'pedidos', component:VerPedido},
     ]
 
 const routes: Routes = [
   {path: '', redirectTo: 'home-matizo', pathMatch:'full'},
-  {path: 'home-matizo', 
-  component: HomeMatizo,
-  },
-  {path: 'home/:nombre', 
-  component: HomeComponent,
-  children:childrenRoute
-  },
+
+  {path: 'home-matizo', component: HomeMatizo,},
+
+  {path: 'home/:nombre', component: HomeComponent, children:childrenRoute},
+
   {path: 'login', component:LogInComponent},
-  {
-    path: 'protected',
-    component: ProtectedComponent,
-    canActivate: [GuardsGuard],
-  },
 
+  {path: 'protected',component: ProtectedComponent,canActivate: [GuardsGuard]},
 
+  {path: 'formulario',component: AddProduct,canActivate: [GuardsGuard]},
 ];
 
 @NgModule({
@@ -75,6 +70,7 @@ const routes: Routes = [
     VerPedido,
     HomeMatizo,
     CabeceraMatizo,
+    AddProduct
   ],
 
   imports: [

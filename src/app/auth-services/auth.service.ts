@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { typeWithParameters } from '@angular/compiler/src/render3/util';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ServiceGeneral } from '../core/servicios-generales/service-general.service';
+import { ServiceGeneral } from '../core/services/service-general.service';
 import { LoginRequest, LoginResponse } from './login';
 
 @Injectable({

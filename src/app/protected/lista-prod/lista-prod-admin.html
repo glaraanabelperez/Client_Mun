@@ -1,3 +1,7 @@
+
+  <div *ngIf="_service_general.loading" class="spinner-border" role="status">
+    <span class="sr-only">Loading...</span>
+  </div>
   <h1 style="margin: 30px 5px 30px 0px;">Mis productos</h1>
     <div class="row" >
      <div class="tarjetas" *ngFor="let p of products " >
@@ -22,15 +26,12 @@
                 </div>
                 <div class="product-detail2">
                   <div class="buttons">
-                    <!-- <button class="add" (click)="publicar(p)" [routerLink]="['/descargar']">
-                      <i class="fa fa-instagram" style="margin: rigth 10px;"></i> / <i class="fa fa-facebook-official"  ></i><p>Descargar</p>
-                    </button> -->
-                    <!-- <button class="add"  (click)="sendPubl(p)">
+                    <button class="add"  (click)="edit(p)">
                       <i class="fa fa-pencil-square" ></i><p>Editar</p>
-                    </button> -->
-                    <!-- <button class="add" (click)="eliminar(p)">
+                    </button>
+                    <button class="add" (click)="eliminar(p)">
                       <i class="fa fa-trash" ></i><p>Eliminar</p>
-                    </button> -->
+                    </button>
                   </div>
                 </div>
             </div>
