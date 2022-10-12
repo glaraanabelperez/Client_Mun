@@ -1,5 +1,5 @@
 
-  <div *ngIf="_service_general.loading" class="spinner-border" role="status">
+  <div *ngIf="loadingService.loading" class="spinner-border" role="status">
     <span class="sr-only">Loading...</span>
   </div>
   <h1 style="margin: 30px 5px 30px 0px;">Mis productos</h1>
@@ -26,12 +26,8 @@
                 </div>
                 <div class="product-detail2">
                   <div class="buttons">
-                    <button class="add"  (click)="edit(p)">
-                      <i class="fa fa-pencil-square" ></i><p>Editar</p>
-                    </button>
-                    <button class="add" (click)="eliminar(p)">
-                      <i class="fa fa-trash" ></i><p>Eliminar</p>
-                    </button>
+                    <button class="add"  (click)="edit(p)"><i class="fa fa-pencil-square" ></i><p>Editar</p></button>
+                    <button class="add" (click)="eliminar(p)"><i class="fa fa-trash" ></i><p>Eliminar</p></button>
                   </div>
                 </div>
             </div>

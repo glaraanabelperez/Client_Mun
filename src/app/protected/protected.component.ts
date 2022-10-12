@@ -20,17 +20,16 @@ declare var $:any;
 
 export class ProtectedComponent implements OnInit {
 
-  public product :Productos;
   private codigo_usuario: string;
+  public product :Productos;
   private pricePercent:number;
-
-  private categorySelect: CategoryModel;
+  public user: string;
 
   @ViewChild(AddProduct) pup!: AddProduct;
   loading: boolean;
 
   constructor(public _serviceProtected : ProtectedService, public rout :Router) {
-
+    this.user=localStorage.getItem('username')
   }
 
   ngOnInit(): void {
@@ -44,9 +43,6 @@ export class ProtectedComponent implements OnInit {
     window.scroll(0,0)
   }
 
-  categorySelected(d :CategoryModel){
-    this.categorySelect=d;
-  }
 
   editarProduct(product:Productos){
     this._serviceProtected.product=product;

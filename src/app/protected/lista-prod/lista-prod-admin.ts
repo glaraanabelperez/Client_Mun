@@ -1,13 +1,17 @@
 import { Component, OnInit , Output, EventEmitter, ViewChild, ElementRef, Inject, Input, Query} from '@angular/core';
 import { Productos } from 'src/app/core/models/productos';
 import { DOCUMENT } from '@angular/common';
-// import { ServiceMetodos } from 'src/app/core/servicios-generales/service-general.metodos';
 import { CategoryModel } from 'src/app/protected/models/categoryModel';
 import { ProtectedService } from '../../core/services/protected.service';
 import { QueryDataModel } from 'src/app/core/models/queryDatamodel';
 import { Filter } from 'src/app/core/models/Filter';
 import { OrderField } from 'src/app/core/models/OrderField';
 import { ServiceGeneral } from 'src/app/core/services/service-general.service';
+import { Subscription } from 'rxjs';
+import { CategoryService } from 'src/app/core/services/service-general.metodos';
+import { CategoryyService } from 'src/app/core/services/category.service';
+import { LoadingService } from 'src/app/core/services/loading.service';
+import { ProductService } from 'src/app/core/services/product.service';
 
 
 @Component({
@@ -19,34 +23,37 @@ import { ServiceGeneral } from 'src/app/core/services/service-general.service';
   export class ListaProdAdmin implements OnInit {
 
     @Output() emitProduct;
-    @Input() categoryInput:CategoryModel;
+
+    data:QueryDataModel = new QueryDataModel();
+    filter:Filter = new Filter();
+    subs: Subscription;
 
     imgDefecto:string;
     products:any[]=[];
     temp;
     user;
 
-    constructor( private _serviceProtected:ProtectedService, public _service_general:ServiceGeneral) {
+    constructor( private productService:ProductService, public loadingService:LoadingService, 
+      private categoryService:CategoryyService ) {
+
         this.user=localStorage.getItem('username')
         this.emitProduct=new EventEmitter();
      }
      
     ngOnInit(): void {
-      var data= new QueryDataModel();
-      var filter= new Filter();
-      // filter.CategoryId=4;
-      data.Filter=filter;
-      data.OrderField=OrderField.price;
-      data.From=0;
-      data.Length=10;
-      this.listAllProducts(data);
+      
+      this.listAllProducts();
+      this.subs = this.categoryService.changeCategory$.subscribe(() => this.listAllProducts())
+
     }
 
-    
 
-    listAllProducts(data:QueryDataModel){
-      this._service_general.setLoading(true);
-        this._serviceProtected.listAllProducts(parseInt(localStorage.getItem('codigo_usar'),10), data).subscribe(
+ 
+    listAllProducts(){
+      this.setFilters();    
+      console.log(this.data)
+      this.loadingService.setLoading(true);
+        this.productService.listAllProducts(parseInt(localStorage.getItem('codigo_usar'),10), this.data).subscribe(
           res=>{
             this.products=res['Data'];
             console.log(this.products)
@@ -55,7 +62,7 @@ import { ServiceGeneral } from 'src/app/core/services/service-general.service';
             alert('NO SE ECNUENTRAN RESULTADOS');
           }
         );
-        this._service_general.setLoading(false);
+        this.loadingService.setLoading(false);
 
     }
   
@@ -75,7 +82,17 @@ import { ServiceGeneral } from 'src/app/core/services/service-general.service';
       //   }
       // );   
       // this.document.location.reload(); 
-  }
+    }
+
+    setFilters(){
+      this.filter.CategoryId=this.categoryService.getCategorySelected();
+      console.log(this.filter.CategoryId)
+
+      this.data.Filter=this.filter;
+      this.data.OrderField=OrderField.price;
+      this.data.From=0;
+      this.data.Length=10;
+    }
 
 }
   

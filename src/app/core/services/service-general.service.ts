@@ -9,8 +9,7 @@ import { Productos } from '../models/productos';
 })
 export class ServiceGeneral {
 
-  private _loading = new BehaviorSubject<boolean>(false);
-  public loading;
+
   
   // estadoForm: String[]=['Activada', 'Desactivada'];
   // publicacionParaScreenShot:Productos;
@@ -32,15 +31,11 @@ export class ServiceGeneral {
       this.verPedidoSubject.subscribe((value) =>{
         this.verPedido=value;
       })
-      this.loading=false;
-      this._loading.subscribe(x => this.loading=x);
+
       
   }
 
-  setLoading(show: boolean) {
-    console.log(this.loading)
-    this._loading.next(show);
-  }
+ 
 
   //BBDD
   traer_usuarios(){

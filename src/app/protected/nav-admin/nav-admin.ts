@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Console } from 'console';
 import { CategoryModel } from '../models/categoryModel';
 import { ProtectedService } from '../../core/services/protected.service';
+import { CategoryyService } from 'src/app/core/services/category.service';
 
 
 @Component({
@@ -15,27 +16,25 @@ import { ProtectedService } from '../../core/services/protected.service';
 
     categories:CategoryModel[];
     
-    @Output() onClicked:EventEmitter<CategoryModel>;
 
-    constructor(private router: Router, public _serviceProtected : ProtectedService,){
-        this.onClicked=new EventEmitter();
+    constructor(private router: Router, public categoryService:CategoryyService){
     }
 
     ngOnInit():void {
       this.traerCategorias();
     }
 
-    emit(c:CategoryModel){
-        this.onClicked.emit(c);
-        return false;
-      }
+    sendCatgeory(c:CategoryModel){
+        this.categoryService.setCategory(c.CategoryId);
+        this.categoryService.changeCatgeory();
+    }
      //CATEGORIAS NAV PROTECTED
     traerCategorias(){
       if(localStorage.getItem('codigo_usar')==undefined || localStorage.getItem('codigo_usar')==null){
         alert('VUELVA A INGRESAR USUARIO Y PASSWORD')
         this.router.navigateByUrl('login')
       }
-        this._serviceProtected.obtenerCategoria(parseInt(localStorage.getItem('codigo_usar'),10)).subscribe(
+        this.categoryService.listCategories(parseInt(localStorage.getItem('codigo_usar'),10)).subscribe(
           res=>{
             this.categories=res;
             alert('BIENVENIDO');
