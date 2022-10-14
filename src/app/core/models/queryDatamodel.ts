@@ -1,11 +1,10 @@
-import { Filter } from "./Filter";
-import { OrderField } from "./OrderField";
 
-export class QueryDataModel{
 
-    OrderField:OrderField;
-    OrderAsc:boolean;
-    Filter :Filter ;
-    From: number;
-    Length :number
+export class QueryDataModel<F, O>{
+
+    order?:O;
+    orderAsc?:boolean;
+    filter? :F ;
+    from: number;
+    length :number
 }

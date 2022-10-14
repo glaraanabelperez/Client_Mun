@@ -1,5 +1,29 @@
 @import '../../shared/styles/tipografias.scss';
 
+.filterBase{
+  width: 20%;
+}
+.inputMenu {
+  display: none;
+}
+.showFilters{
+  display: none;
+}
+
+.inputMenu:checked  ~.showFilters{
+  display:block;
+}
+
+.input-group{
+  margin-top: 20px;
+  width: 99%;
+}
+form {
+  label{
+    font-size: 1.2rem;
+  }
+}
+
 .row {
     display: flex;
     flex-direction: row !important;

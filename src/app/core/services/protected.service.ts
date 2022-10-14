@@ -4,6 +4,8 @@ import { Observable, Subject } from 'rxjs';
 import { Productos } from '../models/productos';
 import { QueryDataModel } from '../models/queryDatamodel';
 import { CategoryModel } from '../../protected/models/categoryModel';
+import { Filter } from '../models/Filter';
+import { OrderField } from '../models/OrderField';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +14,6 @@ export class ProtectedService{
 
  
 
-  public product:Productos;
   
   estadoForm: String[]=['Activada', 'Desactivada'];
 
@@ -25,13 +26,22 @@ export class ProtectedService{
   
   }
 
-  public listAllProducts(userId:number, data:QueryDataModel): Observable<any[]> {
-    return this.http.post<any []>(`${this.url}product`, data);
-  }
+  // public listAllProducts( f:Filter, o:OrderField, from:number, length:number, orderAsc:boolean): Observable<any[]> {
+  //   const data = new QueryDataModel<Filter, OrderField>();
 
-  public obtenerCategoria(userId:number): Observable<CategoryModel[]> {
-    return this.http.get<CategoryModel []>(`${this.url}category/list/${userId}`);
-  }
+  //   data.filter = f;
+  //   data.from = from;
+  //   data.length = length;
+  //   data.order = o;
+  //   data.orderAsc = orderAsc;
+  //   return this.http.post<any []>(`${this.url}product`, data);
+  // }
+
+
+
+  // public obtenerCategoria(userId:number): Observable<CategoryModel[]> {
+  //   return this.http.get<CategoryModel []>(`${this.url}category/list/${userId}`);
+  // }
 
   eliminar(p){
     return  this.http.post(`${this.url}eliminar.php`, JSON.stringify(p) );

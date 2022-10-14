@@ -7,14 +7,27 @@ $dark: #6d6d6b;
 $dark2: #1d1d0d;
 $gris:rgba(26, 26, 25, 0.3);
 
-.display-block{
-    a {
-        font-size: 1rem;
-        color: black;
-        text-align: center;
-        text-decoration: none;
-        border-right: 1px solid $gris;
-        padding-right: 3%;
+.filterBase{
+    width: 20%;
+}
+.inputMenu {
+    display: none;
+}
+.showFilters{
+    display: none;
+}
+  
+.inputMenu:checked  ~.showFilters{
+    display:block;
+}
+
+.input-group{
+    margin-top: 20px;
+    width: 99%;
+}
+form {
+    label{
+      font-size: 1.2rem;
     }
 }
 

@@ -6,6 +6,7 @@ import { CategoryModel } from 'src/app/protected/models/categoryModel';
 import { ProtectedService } from '../../core/services/protected.service';
 import { ServiceGeneral } from 'src/app/core/services/service-general.service';
 import { FormBuilder, Validators } from '@angular/forms';
+import { ProductService } from 'src/app/core/services/product.service';
 
 
 @Component({
@@ -36,7 +37,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 
   categories: CategoryModel[];
 
-    constructor( private _serviceProtected:ProtectedService, @Inject(DOCUMENT) private document: Document,
+    constructor( private productService:ProductService, @Inject(DOCUMENT) private document: Document,
     private _servicioGeneral:ServiceGeneral, private formBuilder:FormBuilder,) {
 
       this.buisness=localStorage.getItem('username')
@@ -64,14 +65,14 @@ import { FormBuilder, Validators } from '@angular/forms';
         userId:[this.userId],
       });
       this.traerCategorias();
-      this.editarPubliId(this._serviceProtected.product);
+      // this.editarPubliId(this.productService.product);
     }
 
     get f(){ return this.uploadForm.controls;}
 
     //CATEGORIAS NAV PROTECTED
     traerCategorias(){
-      this._serviceProtected.obtenerCategoria(parseInt(localStorage.getItem('codigo_usar'),10)).subscribe(
+      this.productService.obtenerCategoria(parseInt(localStorage.getItem('codigo_usar'),10)).subscribe(
         res=>{
           this.categories=res as [];
           console.log(this.categories)

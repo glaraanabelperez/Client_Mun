@@ -1,3 +1,4 @@
 export enum OrderField{
-    price
+    price="Precio",
+    title="Nombre"
 }

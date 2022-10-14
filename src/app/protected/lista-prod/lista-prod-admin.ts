@@ -9,9 +9,11 @@ import { OrderField } from 'src/app/core/models/OrderField';
 import { ServiceGeneral } from 'src/app/core/services/service-general.service';
 import { Subscription } from 'rxjs';
 import { CategoryService } from 'src/app/core/services/service-general.metodos';
-import { CategoryyService } from 'src/app/core/services/category.service';
+// import { CategoryyService } from 'src/app/core/services/category.service';
 import { LoadingService } from 'src/app/core/services/loading.service';
 import { ProductService } from 'src/app/core/services/product.service';
+import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -23,40 +25,70 @@ import { ProductService } from 'src/app/core/services/product.service';
   export class ListaProdAdmin implements OnInit {
 
     @Output() emitProduct;
+    
+    public user;
 
-    data:QueryDataModel = new QueryDataModel();
-    filter:Filter = new Filter();
-    subs: Subscription;
+    public products:any[]=[];
+    public categories:CategoryModel[];
+    // public imgDefecto:string;
 
-    imgDefecto:string;
-    products:any[]=[];
-    temp;
-    user;
+    //Filtros
+    public subsChangeFilters: Subscription;
+    public filter:Filter = new Filter();
+    public order:OrderField;
+    public orderKeys=[];
 
-    constructor( private productService:ProductService, public loadingService:LoadingService, 
-      private categoryService:CategoryyService ) {
+    public orderAsc:boolean; 
+    public from:number=0;
+    public lenght:number=10;
+    public recordCount: any;
+    public currentPage = 1;
+    public countPages=1
 
-        this.user=localStorage.getItem('username')
+    @ViewChild(NgForm) myForm: NgForm; 
+  
+
+        
+
+    constructor( private productService:ProductService, public loadingService:LoadingService, private router: Router) {
+
+        this.user=localStorage.getItem('username')       
         this.emitProduct=new EventEmitter();
+        this.orderKeys=Object.keys(OrderField);
+      console.log(this.order)
      }
      
     ngOnInit(): void {
+      this.filter.UserId=parseInt(localStorage.getItem('codigo_usar'),10)  
+      this.traerCategorias();  
       
-      this.listAllProducts();
-      this.subs = this.categoryService.changeCategory$.subscribe(() => this.listAllProducts())
+      console.log(this.filter)
+    }
+
+    ngAfterViewInit() {
+
+      this.subsChangeFilters = this.productService.changeFilters$.subscribe(() => this.listAllProducts())
+      this.onChangesFilters();
 
     }
 
-
+    // Filtros
+    onChangesFilters(): void {
+          this.myForm.valueChanges.subscribe(() => {
+            console.log(this.filter)
+            console.log(this.order)
+              this.productService.setFilters(this.filter, this.order, this.from, this.lenght, this.orderAsc);
+              this.productService.ChengeFilters();
+          });
+    }
  
     listAllProducts(){
-      this.setFilters();    
-      console.log(this.data)
+   
       this.loadingService.setLoading(true);
-        this.productService.listAllProducts(parseInt(localStorage.getItem('codigo_usar'),10), this.data).subscribe(
+        this.productService.listAllProducts().subscribe(
           res=>{
             this.products=res['Data'];
-            console.log(this.products)
+            this.recordCount=res['RecordsCount'];
           },
           error=>{
             alert('NO SE ECNUENTRAN RESULTADOS');
@@ -84,14 +116,37 @@ import { ProductService } from 'src/app/core/services/product.service';
       // this.document.location.reload(); 
     }
 
-    setFilters(){
-      this.filter.CategoryId=this.categoryService.getCategorySelected();
-      console.log(this.filter.CategoryId)
+     //lista categorias
+    traerCategorias(){
+      if(localStorage.getItem('codigo_usar')==undefined || localStorage.getItem('codigo_usar')==null){
+        alert('VUELVA A INGRESAR USUARIO Y PASSWORD')
+        this.router.navigateByUrl('login')
+      }
+        this.productService.listCategories(parseInt(localStorage.getItem('codigo_usar'),10)).subscribe(
+          res=>{
+            this.categories=res;
+            alert('BIENVENIDO');
+          },
+          error=>{
+            alert('EL USUARIO NO SE ENCUENTRA REGISTRADO');
+          }
+        );
 
-      this.data.Filter=this.filter;
-      this.data.OrderField=OrderField.price;
-      this.data.From=0;
-      this.data.Length=10;
+    }
+
+    public changePagesize(): void {
+    this.countPages=this.recordCount / this.lenght;
+    this.productService.ChengeFilters();
+    }
+
+  public onPageChange(pageNum: number): void {
+    this.lenght = (this.lenght ) * (pageNum);
+    this.from = (this.lenght ) - this.from;
+    this.productService.ChengeFilters();
+  }
+
+    ngOnDestroy(): void {
+      this.subsChangeFilters.unsubscribe();
     }
 
 }

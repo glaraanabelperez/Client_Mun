@@ -45,7 +45,7 @@ export class ProtectedComponent implements OnInit {
 
 
   editarProduct(product:Productos){
-    this._serviceProtected.product=product;
+    // this._serviceProtected.product=product;
     this.rout.navigateByUrl('/formulario');
   }
  
