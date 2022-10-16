@@ -14,14 +14,8 @@ export class ProductService{
 
 url='https://localhost:44372/api/';
 
-public changeFilters$ = new BehaviorSubject(null)
-public f:Filter;
-public o:OrderField;
-public from:number;
-public length:number;
-public orderAsc:boolean
-
-public product:Productos;
+// public changeFilters$ = new BehaviorSubject(null)
+// public product:Productos;
 
 
 constructor(private http: HttpClient) {
@@ -29,37 +23,26 @@ constructor(private http: HttpClient) {
 }
 
 
-public listAllProducts(): Observable<any[]> {
+public listAllProducts(f:Filter, o:OrderField, from:number, length:number, orderAsce:boolean): Observable<any[]> {
   const data = new QueryDataModel<Filter, OrderField>();
 
-  data.filter = this.f;
-  data.from = this.from;
-  data.length = this.length;
-  data.order = this.o;
-  data.orderAsc = this.orderAsc;
+  data.filter = f;
+  data.from = from;
+  data.length = length;
+  data.order = o;
+  data.orderAsc = orderAsce;
 
   return this.http.post<any []>(`${this.url}product`, data);
 }
-
 
 
 public obtenerCategoria(userId:number): Observable<CategoryModel[]> {
   return this.http.get<CategoryModel []>(`${this.url}category/list/${userId}`);
 }
 
-
-public ChengeFilters(){
-  this.changeFilters$.next(true);
-}
-
-public setFilters(f:Filter, o:OrderField, from:number, length:number, orderAsce:boolean){
- 
-  this.f=f;
-  this.o=o;
-  this.from=0;
-  this.length=10;
-  this.orderAsc=orderAsce;
-}
+// public ChengeFilters(){
+//   this.changeFilters$.next(true);
+// }
 
 
 public listCategories(userId:number): Observable<CategoryModel[]> {

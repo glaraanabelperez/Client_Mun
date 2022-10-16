@@ -34,68 +34,69 @@ import { Router } from '@angular/router';
 
     //Filtros
     public subsChangeFilters: Subscription;
-    public filter:Filter = new Filter();
-    public order:OrderField;
+    public filter:Filter = new Filter();//myform
+    public order:OrderField;//myform
     public orderKeys=[];
+    public orderAsc:boolean; //myform
 
-    public orderAsc:boolean; 
-    public from:number=0;
-    public lenght:number=10;
-    public recordCount: any;
-    public currentPage = 1;
-    public countPages=1
+    public from:number;
+    public itemsPerPage:number;
+    // public pages: number[] = [1,2,3,4];
+    public lengthMaxPages=4;
+    public pages:Array<number>=[1,2,3,4];
+    public recordCount: any=0;
+    public currentPage;
+    public totalPage: number;
 
     @ViewChild(NgForm) myForm: NgForm; 
   
-
-        
+    
 
     constructor( private productService:ProductService, public loadingService:LoadingService, private router: Router) {
 
         this.user=localStorage.getItem('username')       
         this.emitProduct=new EventEmitter();
         this.orderKeys=Object.keys(OrderField);
-      console.log(this.order)
      }
      
     ngOnInit(): void {
+
       this.filter.UserId=parseInt(localStorage.getItem('codigo_usar'),10)  
+      this.itemsPerPage=1;
+      this.currentPage=1;
       this.traerCategorias();  
-      
-      console.log(this.filter)
     }
 
     ngAfterViewInit() {
-
-      this.subsChangeFilters = this.productService.changeFilters$.subscribe(() => this.listAllProducts())
+      // this.subsChangeFilters = this.productService.changeFilters$.subscribe(() => this.listAllProducts())
       this.onChangesFilters();
-
     }
 
     // Filtros
     onChangesFilters(): void {
-          this.myForm.valueChanges.subscribe(() => {
-            console.log(this.filter)
-            console.log(this.order)
-              this.productService.setFilters(this.filter, this.order, this.from, this.lenght, this.orderAsc);
-              this.productService.ChengeFilters();
+          this.myForm.valueChanges.subscribe(() => {            
+            this.pagination(1);
+
           });
     }
+
  
-    listAllProducts(){
-   
+    listAllProducts(){      
       this.loadingService.setLoading(true);
-        this.productService.listAllProducts().subscribe(
+      this.itemsPerPage=1;
+        this.productService.listAllProducts(this.filter, this.order, this.from, this.itemsPerPage, this.orderAsc).subscribe(
           res=>{
+            this.products=[];
             this.products=res['Data'];
+            console.log(this.products);
             this.recordCount=res['RecordsCount'];
+            this.setTotalPages();
           },
           error=>{
             alert('NO SE ECNUENTRAN RESULTADOS');
           }
         );
         this.loadingService.setLoading(false);
-
     }
   
     edit(p){   
@@ -134,16 +135,47 @@ import { Router } from '@angular/router';
 
     }
 
-    public changePagesize(): void {
-    this.countPages=this.recordCount / this.lenght;
-    this.productService.ChengeFilters();
+  //Paginacion y logica de controles
+    public pagination(page:number): void {//trae los registros segun pagina
+      if(this.currentPage>0 || this.currentPage<=this.recordCount){
+    this.currentPage=page;
+    this.from=(page*this.itemsPerPage)-this.itemsPerPage; 
+    this.listAllProducts();  
+    this.changePagination();
+      }
     }
 
-  public onPageChange(pageNum: number): void {
-    this.lenght = (this.lenght ) * (pageNum);
-    this.from = (this.lenght ) - this.from;
-    this.productService.ChengeFilters();
-  }
+    public changePagination(): void{ 
+      var x;
+     
+        switch (this.currentPage) {
+          case (this.currentPage>this.pages[this.pages.length-1] && this.currentPage!=this.recordCount) || this.currentPage==1 :
+            x=this.currentPage;
+            this.pages=[];
+                while(this.pages.length<=this.lengthMaxPages && this.currentPage<this.recordCount){
+                this.pages.push(x)  
+                x+=1;
+                }
+            break;
+  
+          case this.currentPage<this.pages[0] && this.currentPage>=1 && this.currentPage<this.recordCount
+                || this.currentPage==this.recordCount && this.currentPage<this.recordCount:
+            x=this.currentPage;
+          this.pages=[];
+              while(this.pages.length<=this.lengthMaxPages){
+               this.pages.unshift(x)  
+               x-=1;
+              }
+            break;
+        
+        }
+          
+    }
+
+
+    public setTotalPages(){
+      this.totalPage=this.recordCount/this.itemsPerPage; 
+    }
 
     ngOnDestroy(): void {
       this.subsChangeFilters.unsubscribe();

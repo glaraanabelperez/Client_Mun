@@ -79,12 +79,13 @@ const routes: Routes = [
     AppRoutingModule,
     RouterModule.forRoot(routes),
     FormsModule,
-    ReactiveFormsModule,
+    ReactiveFormsModule
+  
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
   
   exports: [
-    AppComponent,
+    AppComponent 
     ],
     
   providers: [
