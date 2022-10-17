@@ -15,7 +15,6 @@ export class ProductService{
 url='https://localhost:44372/api/';
 
 // public changeFilters$ = new BehaviorSubject(null)
-// public product:Productos;
 
 
 constructor(private http: HttpClient) {

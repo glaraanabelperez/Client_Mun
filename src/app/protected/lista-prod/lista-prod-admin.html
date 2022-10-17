@@ -3,16 +3,14 @@
     <span class="sr-only">Loading...</span>
   </div>
 <!--Filtros -->
-<div>
-    <input class="inputMenu" type="checkbox" id="menu">
-    <label for="menu" style="cursor:pointer"> ☰ </label>
-
-    <form clas="form" #myForm="ngForm"   >
-        <div class="showFilters">
+<button class="menuFilter" for="menu" style="cursor:pointer" (click)="showFilters()"> ☰ </button>
+<div class="product_base">
+        <div class="filterLeft" *ngIf="show">
+            <form clas="form" #myForm="ngForm" >
                 <h2>Filtrar por Categoria</h2>
                 <div class="input-group">
                         <select class="custom-select"  name="categories" (ngModel)= "filter.CategoryId">
-                                <option selected></option>
+                                <option [selected]="" [value]="">Todos*</option>
                                 <option *ngFor="let c of categories" [value]="c.CategoryId">{{c.Description}}</option>
                         </select>
                 </div>
@@ -36,130 +34,83 @@
                 </div>
                 <br><h2>Ordenar por</h2><hr>
                 <div class="input-group">
-                        <select class="custom-select"  name="order" (ngModel)= "order">
-                                <option selected>Todas</option>
-                                <option *ngFor="let o of orderKeys" [value]="o">{{o}}</option>
+                        <select class="custom-select" #order (change)="setOrder(order.value)" >
+                                <option selected>Oredanr por</option>
+                                <option value="1">Precio: Menor a mayor</option>
+                                <option value="2">Precio: Mayor a menor</option>
+                                <option value="3">A-Z</option>
+                                <option value="4">Z-A</option>
                         </select>
                 </div>
-                <div class="input-group">
-                        <div class="form-check">
-                                <input class="form-check-input" type="checkbox" name="asc" 
-                                id="featured" (ngModel)= "orderAsc">
-                                <label class="form-check-label" for="asc">
-                                        Ascendente
-                                </label>
-                        </div>
-                </div>
-        </div>
-            
-            <!--Paginacion -->
-            <h1 style="margin: 30px 5px 30px 0px;">Mis productos</h1>
-    
-            <div class="input-group">
-                    <select class="custom-select"  name="order" [(ngModel)]= "itemsPerPage" >
-                            <option [value]="1" >20</option>
-                            <option [value]="2">30</option>
-                            <option [value]="3">50</option>
-                    </select>
-            </div>                       
-            <!--Productos -->
-           <div class="row" >
-                <div class="tarjetas" *ngFor="let p of products " >
-                       
-                        <div class="cardPubli">
-                                <div class="card-head" *ngIf="p.NameImage" >
-                                        <img  [src]="'assets/'+ user +'/' +  p.NameImage">
-                                </div>
-                                <div class="product-detail-0">
-                                        <p *ngIf="p.nombre_imagen">{{p.NameImage}}</p>
-                                        <br>
-                                        <p class="tituloTarjeta">{{p.Title}}</p>
-                                        <p class="subTituloTarjeta">{{p.Subtitle}}</p>
-                                        <p class="pTarjeta">{{p.Description}}</p>
-                                        <br>
-                                </div>
-                                <div class="card-head2">
-                                        <div class="product-detail">
-                                                <p class="pTarjeta">Categoria:{{p.CategoryId}}</p>
-                                                <p class="pTarjeta">Destacada:{{p.Featured}}</p>
-                                                <p class="pTarjeta">Promocion:{{p.Promotion}}</p>
-                                                <p #id >Codigo: {{p.ProductId}}</p>
-                                        </div>
-                                        <div class="product-detail2">
-                                                <div class="buttons">
-                                                        <button class="add"  (click)="edit(p)"><i class="fa fa-pencil-square" ></i><p>Editar</p></button>
-                                                        <button class="add" (click)="eliminar(p)"><i class="fa fa-trash" ></i><p>Eliminar</p></button>
-                                                </div>
-                                        </div>
-                                </div>
-                        </div>
-                </div>
-            </div> 
-            
-            <main class="main">
+            </form>
+        </div>     
+         <div class="products_rigth">                      
+                <!--Productos -->
                 <div class="productCard_block" *ngFor="let p of products " >
                         <div class="productCard_rightSide">
                                         <div class="block_specification__informationShow hide">
                                                 <i class="fa fa-info-circle block_specification__button block_specification__button__jump"
-                                                       aria-hidden="true"></i>
+                                                        aria-hidden="true"></i>
                                                 <span class="block_specification__text">inform</span>
                                         </div>
                                         <div class="sliderBlock_items__itemPhoto ">
-                                                <img src="https://github.com/BlackStar1991/CardProduct/blob/master/app/img/goods/item1/phones1.png?raw=true" alt="headphones">
+                                                <!-- <img  [src]="'assets/'+ user +'/' +  p.NameImage"> -->
+                                                <img src="https://github.com/BlackStar1991/CardProduct/blob/master/app/img/goods/item1/phones5.png?raw=true"  alt="headphones">
                                         </div>                                                        
-                                        
-        
+
                                         <div class="block_product">
                                                 <p class="block_model">
                                                         <span class="block_model__text">Model: </span>
-                                                        <span class="block_model__number">505795</span>
+                                                        <span class="block_model__number">{{p.ProductId}}</span>
                                                 </p>
-                                            <h2 class="block_name block_name__mainName">MOMENTUM<sup>&reg; </sup></h2>
-                                            <h2 class="block_name block_name__addName">Wireless Black</h2>      
+                                                <p class="block_model">
+                                                        <span class="block_model__text">Categoria: </span>
+                                                        <span class="block_model__number">{{p.CategoryName}}</span>
+                                                </p>
+                                                <h2 class="block_name block_name__mainName">{{p.Title}}<sup>&reg; </sup></h2>
+                                                <h2 class="block_name block_name__addName">{{p.Subtitle}}</h2>      
         
-                                            <div class="block_price">
-                                                <p class="block_price__currency">$499.95</p>
-                                                <p class="block_price__shipping">Shipping and taxes extra</p>
-                                            </div>
-                                            <button class="btn btn-info">
+                                                <div class="block_price" >
+                                                <!-- <p class="block_price__currency_old" *ngIf="descuento">{{p.Price}}</p> -->
+                                                <p class="block_price__currency">{{p.Price}}</p>
+                                                <p class="block_price__shipping">{{p.Promotion}}</p>
+                                                </div>
+                                                <button class="btn btn-info" *ngIf="!isLogin()">
                                                         Add to Cart
-                                            </button>                                          
+                                                </button>   
+                                                <div *ngIf="isLogin()">
+                                                <button class="btn btn-info" (click)="edit(p)" style="margin-right: 2%">
+                                                        Editar
+                                                </button> 
+                                                <button class="btn btn-danger" (click)="eliminar(p)">
+                                                        Eliminar
+                                                </button> 
+                                                </div>                                       
                                         </div>
                         </div>
                 </div>
-            
-            </main>
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            <br><br>
-            <div class="pagination">
-                <div class="page-item"><p class="page-link"  (click)="pagination(currentPage - 1)">Previous</p></div>      
-                <ul *ngFor="let page of pages">
-                        <li class="page-item"><p class="page-link" (click)="pagination(page)">{{page}}</p></li>
-                </ul>
-                <p class="page-link"  *ngIf="totalPage>pages.length" (click)="pagination(pages[pages.length-1]+1)">...</p>
-                <div class="page-item"><p class="page-link"  (click)="pagination(currentPage + 1)">Next</p></div>
-            </div>
-  
-    </form>
+                                <br><br>
+                <div class="pagination">
+                <!--Paginacion -->
+                        <select class="custom-select"  name="order" [(ngModel)]= "itemsPerPage" >
+                                <option [value]="1">20</option>
+                                <option [value]="2">30</option>
+                                <option [value]="3">50</option>
+                        </select>
+                        <div class="pagination_buttons">
+                                <div class="page-item"><p class="page-link"  (click)="pagination(currentPage - 1)">Previous</p></div>      
+                                <div class="page-item" *ngFor="let page of pages">
+                                       <p class="page-link" (click)="pagination(page)">{{page}}</p>
+                                </div>
+                                <div class="page-item" *ngIf="totalPage>pages.length" (click)="pagination(pages[pages.length-1]+1)">
+                                        <p p class="page-link" >...</p>
+                                </div>
+                                <div class="page-item"><p class="page-link"  (click)="pagination(currentPage + 1)">Next</p></div>
+                        </div>
+                        
+                </div> 
+                
+        </div>    
 </div>
 
 

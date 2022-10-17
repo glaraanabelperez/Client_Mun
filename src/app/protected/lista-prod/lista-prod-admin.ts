@@ -14,6 +14,7 @@ import { LoadingService } from 'src/app/core/services/loading.service';
 import { ProductService } from 'src/app/core/services/product.service';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/auth-services/auth.service';
 
 
 @Component({
@@ -36,8 +37,9 @@ import { Router } from '@angular/router';
     public subsChangeFilters: Subscription;
     public filter:Filter = new Filter();//myform
     public order:OrderField;//myform
-    public orderKeys=[];
     public orderAsc:boolean; //myform
+    public orderSelect;
+
 
     public from:number;
     public itemsPerPage:number;
@@ -50,13 +52,17 @@ import { Router } from '@angular/router';
 
     @ViewChild(NgForm) myForm: NgForm; 
   
+    public show: any =true;
+  
     
 
-    constructor( private productService:ProductService, public loadingService:LoadingService, private router: Router) {
+    constructor( private productService:ProductService, public loadingService:LoadingService, 
+      private router: Router, private auth:AuthService) {
 
-        this.user=localStorage.getItem('username')       
+        this.user=localStorage.getItem('username')   
+        console.log(this.user)    
         this.emitProduct=new EventEmitter();
-        this.orderKeys=Object.keys(OrderField);
+        // this.orderKeys=Object.keys(OrderField);
      }
      
     ngOnInit(): void {
@@ -73,7 +79,7 @@ import { Router } from '@angular/router';
     }
 
     // Filtros
-    onChangesFilters(): void {
+    public onChangesFilters(): void {
           this.myForm.valueChanges.subscribe(() => {            
             this.pagination(1);
 
@@ -81,7 +87,7 @@ import { Router } from '@angular/router';
     }
 
  
-    listAllProducts(){      
+    public listAllProducts(){      
       this.loadingService.setLoading(true);
       this.itemsPerPage=1;
         this.productService.listAllProducts(this.filter, this.order, this.from, this.itemsPerPage, this.orderAsc).subscribe(
@@ -99,12 +105,12 @@ import { Router } from '@angular/router';
         this.loadingService.setLoading(false);
     }
   
-    edit(p){   
+    public edit(p){   
       this.emitProduct.emit(p);
       return false;
     }
 
-    eliminar(p){
+    public eliminar(p){
       // this._servicioGeneral.eliminar(p).subscribe(
       //   datos=>{
       //     if(datos['resultado']=='OK'){
@@ -118,7 +124,7 @@ import { Router } from '@angular/router';
     }
 
      //lista categorias
-    traerCategorias(){
+     public traerCategorias(){
       if(localStorage.getItem('codigo_usar')==undefined || localStorage.getItem('codigo_usar')==null){
         alert('VUELVA A INGRESAR USUARIO Y PASSWORD')
         this.router.navigateByUrl('login')
@@ -138,10 +144,10 @@ import { Router } from '@angular/router';
   //Paginacion y logica de controles
     public pagination(page:number): void {//trae los registros segun pagina
       if(this.currentPage>0 || this.currentPage<=this.recordCount){
-    this.currentPage=page;
-    this.from=(page*this.itemsPerPage)-this.itemsPerPage; 
-    this.listAllProducts();  
-    this.changePagination();
+          this.currentPage=page;
+          this.from=(page*this.itemsPerPage)-this.itemsPerPage; 
+          this.listAllProducts();  
+          this.changePagination();
       }
     }
 
@@ -176,6 +182,36 @@ import { Router } from '@angular/router';
     public setTotalPages(){
       this.totalPage=this.recordCount/this.itemsPerPage; 
     }
+
+    public  isLogin():boolean{
+      return this.auth.isLoggedIn()
+    }
+
+    public showFilters(){
+      this.show=!this.show ? true : false;
+    }
+
+    public setOrder(e){
+      if(e==1 || e==3){
+        this.orderAsc=true
+        if(e==1){
+          this.order=OrderField.price
+        }else{
+          this.order=OrderField.title 
+        }
+        
+      }
+      if(e==2 || e==4){
+        this.orderAsc=false
+        if(e==2){
+          this.order=OrderField.price 
+        }else{
+          this.order=OrderField.title 
+        }
+      }
+      this.pagination(1)
+    }
+    
 
     ngOnDestroy(): void {
       this.subsChangeFilters.unsubscribe();
