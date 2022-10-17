@@ -3,7 +3,7 @@
     <span class="sr-only">Loading...</span>
   </div>
 <!--Filtros -->
-  <div class="filterBase">
+<div>
     <input class="inputMenu" type="checkbox" id="menu">
     <label for="menu" style="cursor:pointer"> ☰ </label>
 
@@ -63,38 +63,93 @@
                     </select>
             </div>                       
             <!--Productos -->
-            <div class="row" >
+           <div class="row" >
                 <div class="tarjetas" *ngFor="let p of products " >
-                        {{p.CategoryId}}
+                       
                         <div class="cardPubli">
                                 <div class="card-head" *ngIf="p.NameImage" >
-                                <img  [src]="'assets/'+ user +'/' +  p.NameImage">
-                        </div>
-                        <div class="product-detail-0">
-                                <p *ngIf="p.nombre_imagen">{{p.NameImage}}</p>
-                                <br>
-                                <p class="tituloTarjeta">{{p.Title}}</p>
-                                <p class="subTituloTarjeta">{{p.Subtitle}}</p>
-                                <p class="pTarjeta">{{p.Description}}</p>
-                                <br>
-                        </div>
-                        <div class="card-head2">
-                                <div class="product-detail">
-                                        <p class="pTarjeta">Categoria:{{p.CategoryId}}</p>
-                                        <p class="pTarjeta">Destacada:{{p.Featured}}</p>
-                                        <p class="pTarjeta">Promocion:{{p.Promotion}}</p>
-                                        <p #id >Codigo: {{p.ProductId}}</p>
+                                        <img  [src]="'assets/'+ user +'/' +  p.NameImage">
                                 </div>
-                        <div class="product-detail2">
-                                <div class="buttons">
-                                        <button class="add"  (click)="edit(p)"><i class="fa fa-pencil-square" ></i><p>Editar</p></button>
-                                        <button class="add" (click)="eliminar(p)"><i class="fa fa-trash" ></i><p>Eliminar</p></button>
+                                <div class="product-detail-0">
+                                        <p *ngIf="p.nombre_imagen">{{p.NameImage}}</p>
+                                        <br>
+                                        <p class="tituloTarjeta">{{p.Title}}</p>
+                                        <p class="subTituloTarjeta">{{p.Subtitle}}</p>
+                                        <p class="pTarjeta">{{p.Description}}</p>
+                                        <br>
+                                </div>
+                                <div class="card-head2">
+                                        <div class="product-detail">
+                                                <p class="pTarjeta">Categoria:{{p.CategoryId}}</p>
+                                                <p class="pTarjeta">Destacada:{{p.Featured}}</p>
+                                                <p class="pTarjeta">Promocion:{{p.Promotion}}</p>
+                                                <p #id >Codigo: {{p.ProductId}}</p>
+                                        </div>
+                                        <div class="product-detail2">
+                                                <div class="buttons">
+                                                        <button class="add"  (click)="edit(p)"><i class="fa fa-pencil-square" ></i><p>Editar</p></button>
+                                                        <button class="add" (click)="eliminar(p)"><i class="fa fa-trash" ></i><p>Eliminar</p></button>
+                                                </div>
+                                        </div>
                                 </div>
                         </div>
                 </div>
+            </div> 
+            
+            <main class="main">
+                <div class="productCard_block" *ngFor="let p of products " >
+                        <div class="productCard_rightSide">
+                                        <div class="block_specification__informationShow hide">
+                                                <i class="fa fa-info-circle block_specification__button block_specification__button__jump"
+                                                       aria-hidden="true"></i>
+                                                <span class="block_specification__text">inform</span>
+                                        </div>
+                                        <div class="sliderBlock_items__itemPhoto ">
+                                                <img src="https://github.com/BlackStar1991/CardProduct/blob/master/app/img/goods/item1/phones1.png?raw=true" alt="headphones">
+                                        </div>                                                        
+                                        
+        
+                                        <div class="block_product">
+                                                <p class="block_model">
+                                                        <span class="block_model__text">Model: </span>
+                                                        <span class="block_model__number">505795</span>
+                                                </p>
+                                            <h2 class="block_name block_name__mainName">MOMENTUM<sup>&reg; </sup></h2>
+                                            <h2 class="block_name block_name__addName">Wireless Black</h2>      
+        
+                                            <div class="block_price">
+                                                <p class="block_price__currency">$499.95</p>
+                                                <p class="block_price__shipping">Shipping and taxes extra</p>
+                                            </div>
+                                            <button class="btn btn-info">
+                                                        Add to Cart
+                                            </button>                                          
+                                        </div>
                         </div>
                 </div>
-            </div>
+            
+            </main>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <br><br>
             <div class="pagination">
                 <div class="page-item"><p class="page-link"  (click)="pagination(currentPage - 1)">Previous</p></div>      
                 <ul *ngFor="let page of pages">
@@ -104,7 +159,7 @@
                 <div class="page-item"><p class="page-link"  (click)="pagination(currentPage + 1)">Next</p></div>
             </div>
   
-        </form>
+    </form>
 </div>
 
 

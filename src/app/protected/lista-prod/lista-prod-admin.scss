@@ -1,13 +1,12 @@
 @import '../../shared/styles/tipografias.scss';
 
-.filterBase{
-  width: 20%;
-}
+
 .inputMenu {
   display: none;
 }
 .showFilters{
   display: none;
+  width: 20%;
 }
 
 .inputMenu:checked  ~.showFilters{
@@ -29,82 +28,118 @@ form {
   }
 }
 
-.row {
-    display: flex;
-    flex-direction: row !important;
-    flex-wrap: wrap;
-    .tarjetas{
-      .cardPubli {
-        background-color: white;
-        border-radius: 20px !important;
-        width: 100%;
-        margin-left: 10px;
-        margin-bottom: 20px;
-        // box-shadow: -11px 11px 1px rgba(0, 0, 0, 0.3);
-        .card-head{
-          padding: 5%;
-          width: 50% !important;
-          height: 20% !important;
-          margin: auto;
-          img{
-            object-fit: contain;
-            height: 100%;
-            width: 100%;
-            z-index: 100;
-            background-size: 100% 100%;
-            margin: auto;
-          }
-        }
-        .product-detail-0{
-          p{
-            padding-left: 10%;
-          }
-        }
-        .card-head2{
-          padding: 5% 5% 5% 5% ;
-          background-color: whitesmoke;
-          border-bottom-left-radius: 20px;
-          border-bottom-right-radius: 20px;
-          .product-detail {
-            padding: 0 10px;
-          }
-          .product-detail2 {
-            margin: 8%;
-            .buttons{
-              display: flex;
-              flex-direction: column;
-              width: 90% !important;
-              button {
-              font-size: 0.8rem;
-              padding: 3%;
-              display: inline-block;
-              outline: 0;
-              border: 0;
-              border-radius: 5px !important;
-              text-transform: uppercase;
-              letter-spacing: 1px;
-              cursor: pointer;
-              margin: 0px 2px 10px 1px !important;
-              }
-            }
-            button:hover{
-              background-color: rgb(248, 239, 239);
-            }
-          }
-        }
-      }
+
+
+
+/*********************************************/
+  /*COLORS*/
+/*********************************************/
+$colorBlue: #536dfe;
+$colorBlueLight: #536dfe;
+$colorBlueLighter: #6891fe;
+$colorBlueDark: #0d2660;
+$colorRaspberry: #f1425d;
+$colorBackground: #fff;
+
+
+body {
+  font-weight: 400;
+  font-size: 1rem;
+  min-width: 320px;
+  position: relative;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+
+
+.productCard_block {
+  position: relative;
+  margin: 190px auto 0;
+  //margin-top: 190px;
+  max-width: 30%;
+  min-height: 300px;
+  box-shadow: 0 5px 21px rgba(0, 0, 0, 0.08);
+  background-color: #fff;
+}
+
+
+  /*   RIGHT SIDE */
+  .productCard_rightSide {
+    position: relative;
+    width: 30%;
+
+    padding:5%;
+
+    width: 100%;
+    min-height: 600px;
+  }
+
+  .sliderBlock_items__itemPhoto{
+    margin-bottom: 3%;
+  }
+
+
+  .block_model {
+    display: inline-block;
+    color: #263238;
+    font-size: 12px;
+    //line-height: 35px;
+    opacity: 0.9;
+  }
+
+  .block_name {
+    width: 100%;
+    color: #263238;
+    font-weight: 400;
+    line-height: 35px;
+
+    &__mainName {
+      margin: 0;
+      padding: 0;
+      font-size: 29px;
+    }
+    &__addName {
+      margin: 0;
+      padding: 0;
+      font-size: 24px;
     }
   }
 
+  //////// PRICE
+
+  .block_price {
+    margin-top: 29px;
+    width: 100%;
+    &__currency {
+      padding: 0;
+      margin: 0;
+      vertical-align: top;
+      color: $colorRaspberry;
+      font-size: 26px;
+      font-weight: 600;
+    }
+    &__shipping {
+
+      padding: 0;
+      margin: 0;
+      color: #A2A9AD;
+      font-size: 12px;
+    }
+  }
+
+
+
+
   
 @media only screen and (max-width: 800px) and (min-width: 320px) {
-  .row {
-    display: block !important;
     .tarjetas{
       width: 97%;
       display: flex;
       flex-direction: row;
     }
-  }
 }
 
