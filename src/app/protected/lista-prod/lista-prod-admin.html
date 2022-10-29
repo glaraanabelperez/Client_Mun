@@ -3,37 +3,41 @@
     <span class="sr-only">Loading...</span>
   </div>
 <!--Filtros -->
-<button class="menuFilter" for="menu" style="cursor:pointer" (click)="showFilters()"> ☰ </button>
-<div class="product_base">
-        <div class="filterLeft" *ngIf="show">
-            <form clas="form" #myForm="ngForm" >
-                <h2>Filtrar por Categoria</h2>
-                <div class="input-group">
-                        <select class="custom-select"  name="categories" (ngModel)= "filter.CategoryId">
-                                <option [selected]="" [value]="">Todos*</option>
-                                <option *ngFor="let c of categories" [value]="c.CategoryId">{{c.Description}}</option>
-                        </select>
+<div class="product_base">      
+        <form clas="form" #myForm="ngForm" >
+                <div  class="filter-title">
+                        <i for="menu" style="cursor:pointer" (click)="showFilters()" class="menuFilter fa-sharp fa-solid fa-filter"></i>
+                        <h2>Filtros</h2>
                 </div>
-                <div class="input-group">
-                        <div class="form-check">
-                                <input class="form-check-input" type="checkbox" name="featured" 
-                                id="featured" [(ngModel)]= "filter.Featured">
-                                <label class="form-check-label" for="featured">
-                                        Destacados
-                                </label>
+                <div class="filterLeft" *ngIf="show">
+                        <div class="input-group">
+                                <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" name="featured" 
+                                        id="featured" [(ngModel)]= "filter.Featured">
+                                        <label class="form-check-label" for="featured">
+                                                Destacados
+                                        </label>
+                                </div>
                         </div>
-                </div>
-                <div class="input-group">
-                        <div class="form-check">
-                                <input class="form-check-input" type="checkbox" name="state" 
-                                id="featured" (ngModel)= "filter.State">
-                                <label class="form-check-label" for="state">
-                                        Activos
-                                </label>
+                        <div class="input-group">
+                                <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" name="state" 
+                                        id="featured" (ngModel)= "filter.State">
+                                        <label class="form-check-label" for="state">
+                                                Activos
+                                        </label>
+                                </div>
                         </div>
+                        <hr>
+                        <div class="input-group">
+                                <select class="custom-select"  name="categories" >
+                                        <option value=""  disabled selected="selected">Todos*</option>
+                                        <option  *ngFor="let c of categories" [value]="c.CategoryId">{{c.Name}}</option>
+                                </select>
+                        </div>
+                        
                 </div>
-                <br><h2>Ordenar por</h2><hr>
-                <div class="input-group">
+                <div class="input-group-order">
                         <select class="custom-select" #order (change)="setOrder(order.value)" >
                                 <option selected>Oredanr por</option>
                                 <option value="1">Precio: Menor a mayor</option>
@@ -42,54 +46,60 @@
                                 <option value="4">Z-A</option>
                         </select>
                 </div>
-            </form>
-        </div>     
+        
+        </form>
+            
          <div class="products_rigth">                      
                 <!--Productos -->
-                <div class="productCard_block" *ngFor="let p of products " >
-                        <div class="productCard_rightSide">
-                                        <div class="block_specification__informationShow hide">
-                                                <i class="fa fa-info-circle block_specification__button block_specification__button__jump"
-                                                        aria-hidden="true"></i>
-                                                <span class="block_specification__text">inform</span>
-                                        </div>
-                                        <div class="sliderBlock_items__itemPhoto ">
-                                                <!-- <img  [src]="'assets/'+ user +'/' +  p.NameImage"> -->
-                                                <img src="https://github.com/BlackStar1991/CardProduct/blob/master/app/img/goods/item1/phones5.png?raw=true"  alt="headphones">
-                                        </div>                                                        
-
-                                        <div class="block_product">
-                                                <p class="block_model">
-                                                        <span class="block_model__text">Model: </span>
-                                                        <span class="block_model__number">{{p.ProductId}}</span>
-                                                </p>
-                                                <p class="block_model">
-                                                        <span class="block_model__text">Categoria: </span>
-                                                        <span class="block_model__number">{{p.CategoryName}}</span>
-                                                </p>
-                                                <h2 class="block_name block_name__mainName">{{p.Title}}<sup>&reg; </sup></h2>
-                                                <h2 class="block_name block_name__addName">{{p.Subtitle}}</h2>      
-        
-                                                <div class="block_price" >
-                                                <!-- <p class="block_price__currency_old" *ngIf="descuento">{{p.Price}}</p> -->
-                                                <p class="block_price__currency">{{p.Price}}</p>
-                                                <p class="block_price__shipping">{{p.Promotion}}</p>
+                <div *ngFor="let p of products " >
+                        <div class="productCard_block" >
+                                <div class="productCard_rightSide">
+                                                <div class="block_specification__informationShow hide" *ngIf="p.Featured">
+                                                        <i class="fa-sharp fa-solid fa-star block_specification__button block_specification__button__jump"
+                                                                aria-hidden="true" style="color: rgb(204, 255, 0); margin-right:5px;"></i>
+                                                        <span class="block_specification__text" >Destacado!</span>
                                                 </div>
-                                                <button class="btn btn-info" *ngIf="!isLogin()">
-                                                        Add to Cart
-                                                </button>   
-                                                <div *ngIf="isLogin()">
-                                                <button class="btn btn-info" (click)="edit(p)" style="margin-right: 2%">
-                                                        Editar
-                                                </button> 
-                                                <button class="btn btn-danger" (click)="eliminar(p)">
-                                                        Eliminar
-                                                </button> 
-                                                </div>                                       
-                                        </div>
+                                                <div class="block_specification__informationShow hide" *ngIf="p.DiscountAmount!=null">
+                                                        <i class="fa-duotone fa-badge-percent" style="color: rgb(255, 60, 0); margin-right:5px;"></i>
+                                                        <span class="block_specification__text">p.Discount</span>
+                                                </div>
+                                                <div class="sliderBlock_items__itemPhoto ">
+                                                        <!-- <img  [src]="'assets/'+ user +'/' +  p.NameImage"> -->
+                                                        <img src="https://github.com/BlackStar1991/CardProduct/blob/master/app/img/goods/item1/phones5.png?raw=true"  alt="headphones">
+                                                </div>                                                        
+        
+                                                <div class="block_product">
+                                                        <p class="block_model">
+                                                                <span class="block_model__number">{{p.MarcaName}}</span>
+                                                        </p>
+                                                        <p class="block_model">
+                                                                <span class="block_model__number">{{p.CategoryName}}</span>
+                                                        </p>
+                                                        <h2 class="block_name block_name__mainName">{{p.Name}}<sup>&reg; </sup></h2>
+                                                        <h2 class="block_name block_name__addName">{{p.Description}}</h2>      
+                
+                                                        <div class="block_price" >
+                                                        <!-- <p class="block_price__currency_old" *ngIf="descuento">{{p.Price}}</p> -->
+                                                        <p *ngIf="p.Discount==null"  class="block_price__currency">$ {{p.Price}}</p>
+                                                        <p *ngIf="p.Discount!=null"  class="block_price__currency" style="text-decoration:line-through;">$ {{p.Price}}</p>
+                                                        <p *ngIf="p.Discount!=null" class="block_price__shipping"> $ {{p.PriceWithDiscount}}</p>
+                                                        </div>
+                                                        <button class="btn btn-info" *ngIf="!isLogin()">
+                                                                Add to Cart
+                                                        </button>   
+                                                        <div *ngIf="isLogin()" style="margin-bottom: 15%">
+                                                                <button class="btn btn-info" (click)="edit(p)" style="margin-right: 2%">
+                                                                        Editar
+                                                                </button> 
+                                                                <button class="btn btn-danger" (click)="eliminar(p)">
+                                                                        Eliminar
+                                                                </button> 
+                                                        </div>                                       
+                                                </div>
+                                </div>
                         </div>
                 </div>
-                                <br><br>
+                <br><br>
                 <div class="pagination">
                 <!--Paginacion -->
                         <select class="custom-select"  name="order" [(ngModel)]= "itemsPerPage" >

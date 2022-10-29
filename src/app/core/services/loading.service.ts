@@ -10,16 +10,14 @@ import { CategoryModel } from '../../protected/models/categoryModel';
 })
 export class LoadingService{
 
-  private _loading = new BehaviorSubject<boolean>(false);
+  private _loading = new BehaviorSubject<boolean>(true);
   public loading;
 
   constructor() {
-      this.loading=false;
       this._loading.subscribe(x => this.loading=x);
   }
 
   setLoading(show: boolean) {
-    console.log(this.loading)
     this._loading.next(show);
   }
  

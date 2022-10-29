@@ -7,6 +7,7 @@ import { ProtectedService } from '../../core/services/protected.service';
 import { ServiceGeneral } from 'src/app/core/services/service-general.service';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ProductService } from 'src/app/core/services/product.service';
+import { CatgeorieService } from 'src/app/core/services/categorie.service.ts';
 
 
 @Component({
@@ -37,14 +38,17 @@ import { ProductService } from 'src/app/core/services/product.service';
 
   categories: CategoryModel[];
 
-    constructor( private productService:ProductService, @Inject(DOCUMENT) private document: Document,
-    private _servicioGeneral:ServiceGeneral, private formBuilder:FormBuilder,) {
-
-      this.buisness=localStorage.getItem('username')
-      console.log(this.buisness)
-      this.accionBtnFormulario= this.product!=null ? "nuevo" : "editar";
-   
-     }
+    constructor( 
+    private productService:ProductService, 
+    private categoireService:CatgeorieService,
+    @Inject(DOCUMENT) private document: Document,
+    private _servicioGeneral:ServiceGeneral, 
+    private formBuilder:FormBuilder
+    ){
+    this.buisness=localStorage.getItem('username')
+    console.log(this.buisness)
+    this.accionBtnFormulario= this.product!=null ? "nuevo" : "editar";
+    }
      
     ngOnInit(): void {
    
@@ -72,7 +76,7 @@ import { ProductService } from 'src/app/core/services/product.service';
 
     //CATEGORIAS NAV PROTECTED
     traerCategorias(){
-      this.productService.obtenerCategoria(parseInt(localStorage.getItem('codigo_usar'),10)).subscribe(
+      this.categoireService.listCategories().subscribe(
         res=>{
           this.categories=res as [];
           console.log(this.categories)

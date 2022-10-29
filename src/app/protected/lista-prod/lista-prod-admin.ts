@@ -8,13 +8,12 @@ import { Filter } from 'src/app/core/models/Filter';
 import { OrderField } from 'src/app/core/models/OrderField';
 import { ServiceGeneral } from 'src/app/core/services/service-general.service';
 import { Subscription } from 'rxjs';
-import { CategoryService } from 'src/app/core/services/service-general.metodos';
-// import { CategoryyService } from 'src/app/core/services/category.service';
 import { LoadingService } from 'src/app/core/services/loading.service';
 import { ProductService } from 'src/app/core/services/product.service';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/auth-services/auth.service';
+import { CatgeorieService } from 'src/app/core/services/categorie.service.ts';
 
 
 @Component({
@@ -43,7 +42,7 @@ import { AuthService } from 'src/app/auth-services/auth.service';
 
     public from:number;
     public itemsPerPage:number;
-    // public pages: number[] = [1,2,3,4];
+
     public lengthMaxPages=4;
     public pages:Array<number>=[1,2,3,4];
     public recordCount: any=0;
@@ -56,14 +55,16 @@ import { AuthService } from 'src/app/auth-services/auth.service';
   
     
 
-    constructor( private productService:ProductService, public loadingService:LoadingService, 
-      private router: Router, private auth:AuthService) {
-
-        this.user=localStorage.getItem('username')   
-        console.log(this.user)    
-        this.emitProduct=new EventEmitter();
-        // this.orderKeys=Object.keys(OrderField);
-     }
+    constructor( 
+      private productService:ProductService, 
+      private categorieService:CatgeorieService, 
+      public loadingService:LoadingService, 
+      private router: Router, private auth:AuthService
+    ) {
+    this.user=localStorage.getItem('username')   
+    this.emitProduct=new EventEmitter();
+    // this.orderKeys=Object.keys(OrderField);
+    }
      
     ngOnInit(): void {
 
@@ -94,15 +95,17 @@ import { AuthService } from 'src/app/auth-services/auth.service';
           res=>{
             this.products=[];
             this.products=res['Data'];
-            console.log(this.products);
+ 
             this.recordCount=res['RecordsCount'];
             this.setTotalPages();
+            this.loadingService.setLoading(false);
           },
           error=>{
             alert('NO SE ECNUENTRAN RESULTADOS');
+            this.loadingService.setLoading(false);
           }
         );
-        this.loadingService.setLoading(false);
+        
     }
   
     public edit(p){   
@@ -129,9 +132,10 @@ import { AuthService } from 'src/app/auth-services/auth.service';
         alert('VUELVA A INGRESAR USUARIO Y PASSWORD')
         this.router.navigateByUrl('login')
       }
-        this.productService.listCategories(parseInt(localStorage.getItem('codigo_usar'),10)).subscribe(
+        this.categorieService.listCategories().subscribe(
           res=>{
             this.categories=res;
+            
             alert('BIENVENIDO');
           },
           error=>{
@@ -194,21 +198,17 @@ import { AuthService } from 'src/app/auth-services/auth.service';
     public setOrder(e){
       if(e==1 || e==3){
         this.orderAsc=true
-        if(e==1){
-          this.order=OrderField.price
-        }else{
-          this.order=OrderField.title 
-        }
-        
+        this.order=e==1?OrderField.price : OrderField.title       
       }
       if(e==2 || e==4){
         this.orderAsc=false
-        if(e==2){
-          this.order=OrderField.price 
-        }else{
-          this.order=OrderField.title 
-        }
+        this.order=e==2?OrderField.price : OrderField.title  
       }
+      this.pagination(1)
+    }
+
+    public setCategory(c:number){
+      this.filter.CategoryId=c
       this.pagination(1)
     }
     
