@@ -1,7 +1,6 @@
 import { Component, OnInit , Output, EventEmitter, ViewChild, ElementRef, Inject, Input, Query} from '@angular/core';
-import { Productos } from 'src/app/core/models/productos';
 import { DOCUMENT } from '@angular/common';
-import { CategoryModel } from 'src/app/protected/models/categoryModel';
+import { CategoryModel } from 'src/app/core/models/categoryModel';
 import { ProtectedService } from '../../core/services/protected.service';
 import { QueryDataModel } from 'src/app/core/models/queryDatamodel';
 import { Filter } from 'src/app/core/models/Filter';
@@ -14,6 +13,7 @@ import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/auth-services/auth.service';
 import { CatgeorieService } from 'src/app/core/services/categorie.service.ts';
+import { ProductModelDto } from 'src/app/core/models/productModelDto';
 
 
 @Component({
@@ -24,11 +24,10 @@ import { CatgeorieService } from 'src/app/core/services/categorie.service.ts';
 
   export class ListaProdAdmin implements OnInit {
 
-    @Output() emitProduct;
     
     public user;
 
-    public products:any[]=[];
+    public products:ProductModelDto[]=[];
     public categories:CategoryModel[];
     // public imgDefecto:string;
 
@@ -62,7 +61,7 @@ import { CatgeorieService } from 'src/app/core/services/categorie.service.ts';
       private router: Router, private auth:AuthService
     ) {
     this.user=localStorage.getItem('username')   
-    this.emitProduct=new EventEmitter();
+    // this.emitProduct=new EventEmitter();
     // this.orderKeys=Object.keys(OrderField);
     }
      
@@ -93,8 +92,7 @@ import { CatgeorieService } from 'src/app/core/services/categorie.service.ts';
         this.productService.listAllProducts(this.filter, this.order, this.from, this.itemsPerPage, this.orderAsc).subscribe(
           res=>{
             this.products=[];
-            this.products=res['Data'];
- 
+            this.products=res['Data'] as ProductModelDto [];
             this.recordCount=res['RecordsCount'];
             this.setTotalPages();
             this.loadingService.setLoading(false);
@@ -107,8 +105,9 @@ import { CatgeorieService } from 'src/app/core/services/categorie.service.ts';
         
     }
   
-    public edit(p){   
-      this.emitProduct.emit(p);
+    public edit(productId:number){   
+      this.productService.productId=productId;
+      console.log(this.productService.productId)
       return false;
     }
 

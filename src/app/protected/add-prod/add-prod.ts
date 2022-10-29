@@ -1,13 +1,15 @@
 import { Component, OnInit , Output, EventEmitter, ViewChild, ElementRef, Inject, Input} from '@angular/core';
-import { Productos } from 'src/app/core/models/productos';
 import { DOCUMENT } from '@angular/common';
 // import { ServiceMetodos } from 'src/app/core/servicios-generales/service-general.metodos';
-import { CategoryModel } from 'src/app/protected/models/categoryModel';
+import { CategoryModel } from 'src/app/core/models/categoryModel';
 import { ProtectedService } from '../../core/services/protected.service';
 import { ServiceGeneral } from 'src/app/core/services/service-general.service';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ProductService } from 'src/app/core/services/product.service';
 import { CatgeorieService } from 'src/app/core/services/categorie.service.ts';
+import { ProductModel } from 'src/app/core/models/productModel';
+import { ProductImageModel } from 'src/app/core/models/productImageModel';
+import { ImageService } from 'src/app/core/services/imageService';
 
 
 @Component({
@@ -23,7 +25,8 @@ import { CatgeorieService } from 'src/app/core/services/categorie.service.ts';
   public state: String[]=['Activada', 'Desactivada'];
   public uploadForm: any;
 
-  private product:Productos=null;
+  public product:ProductModel=null;
+  public images: ProductImageModel []=[];
   public buisness;
  
   private userId: string;
@@ -40,36 +43,42 @@ import { CatgeorieService } from 'src/app/core/services/categorie.service.ts';
 
     constructor( 
     private productService:ProductService, 
+    private imageService:ImageService,
     private categoireService:CatgeorieService,
     @Inject(DOCUMENT) private document: Document,
     private _servicioGeneral:ServiceGeneral, 
     private formBuilder:FormBuilder
     ){
-    this.buisness=localStorage.getItem('username')
-    console.log(this.buisness)
-    this.accionBtnFormulario= this.product!=null ? "nuevo" : "editar";
+  
     }
      
-    ngOnInit(): void {
-   
+  ngOnInit(): void {
+    console.log(this.productService.productId)
+    if(this.productService.productId!=null){
+      this.accionBtnFormulario="editar"
+      this.getProduct();
+      // this.getImages(this.productService.productId);
+    }else{
+      this.accionBtnFormulario="nuevo";
+    }
+    this.traerCategorias(); 
     this.userId=localStorage.getItem('codigo_usar'); 
     this.getFecha();
-
     this.uploadForm=this.formBuilder.group({
-        productId:[null],
-        categoryId:[null,[Validators.required]],
-        title:['',[Validators.required]],
-        subtitle:[''],
-        description:[''],
-        nameImage: [null],
-        date:[this.today],
-        price:[null],
-        featured:[''],
-        promotion:[''],
-        userId:[this.userId],
-      });
-      this.traerCategorias();
-      // this.editarPubliId(this.productService.product);
+          productId:[null],
+          categoryId:[null,[Validators.required]],
+          title:['',[Validators.required]],
+          subtitle:[''],
+          description:[''],
+          nameImage: [null],
+          date:[this.today],
+          price:[null],
+          featured:[''],
+          promotion:[''],
+          userId:[this.userId],
+    });
+    
+    // this.editarPubliId(this.productService.product);
     }
 
     get f(){ return this.uploadForm.controls;}
@@ -79,7 +88,30 @@ import { CatgeorieService } from 'src/app/core/services/categorie.service.ts';
       this.categoireService.listCategories().subscribe(
         res=>{
           this.categories=res as [];
-          console.log(this.categories)
+        },
+        error=>{
+          alert('HUBO UN PROBLEMA CON EL SERVIDOR');
+        }
+      );
+    
+    }
+
+    getProduct(){
+      this.productService.getProduct().subscribe(
+        res=>{
+          this.product=res;
+        },
+        error=>{
+          alert('HUBO UN PROBLEMA CON EL SERVIDOR');
+        }
+      );
+    
+    }
+
+    getImages(productId:number){
+      this.imageService.getImages(productId).subscribe(
+        res=>{
+          this.images=res;
         },
         error=>{
           alert('HUBO UN PROBLEMA CON EL SERVIDOR');
@@ -174,23 +206,22 @@ import { CatgeorieService } from 'src/app/core/services/categorie.service.ts';
       // this.router.navigate(['/protected']);
     }
   
-    editarPubliId(e: Productos){
+    editarPubliId(e: ProductModel){
       this.uploadForm.controls.productId.setValue(e.ProductId );
       this.uploadForm.controls.categoryId.setValue(e.CategoryId );
-      this.uploadForm.controls.title.setValue(e.Title );
-      this.uploadForm.controls.subtitle.setValue(e.Subtitle );
+      this.uploadForm.controls.title.setValue(e.Name );
       this.uploadForm.controls.description.setValue(e.Description );
-      this.uploadForm.controls.nameImage.setValue(e.NameImage );
+      // this.uploadForm.controls.nameImage.setValue(e.ImageName );
       this.uploadForm.controls.price.setValue(e.Price );
       this.uploadForm.controls.featured.setValue(e.Featured );
-      this.uploadForm.controls.promotion.setValue(e.Promotion );
-      this.uploadForm.controls.userId.setValue(e.UserId );
+      this.uploadForm.controls.promotion.setValue(e.DiscountAmount );
+      // this.uploadForm.controls.userId.setValue(e.UserId );
       // this.uploadForm.controls['productId'].setValue(e.ProductId ? e.ProductId: ''); // <-- Set Value for Validation
 
       window.scrollTo(0,0);
-      if(e.NameImage!=null){
-        this.editImage=e['nombreImagen']
-      }
+      // if(e.NameImage!=null){
+      //   this.editImage=e['nombreImagen']
+      // }
    }
 
     

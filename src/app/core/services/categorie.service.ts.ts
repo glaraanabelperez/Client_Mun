@@ -1,9 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
-import { Productos } from '../models/productos';
 import { QueryDataModel } from '../models/queryDatamodel';
-import { CategoryModel } from '../../protected/models/categoryModel';
+import { CategoryModel } from '../models/categoryModel';
 import { OrderField } from '../models/OrderField';
 import { Filter } from '../models/Filter';
 import { environment } from 'src/environments/environment';

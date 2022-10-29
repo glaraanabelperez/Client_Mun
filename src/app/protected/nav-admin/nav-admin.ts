@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
 import { Router } from '@angular/router';
-import { CategoryModel } from '../models/categoryModel';
+import { CategoryModel } from '../../core/models/categoryModel';
 import { Filter } from 'src/app/core/models/Filter';
 import { OrderField } from 'src/app/core/models/OrderField';
 import { QueryDataModel } from 'src/app/core/models/queryDatamodel';

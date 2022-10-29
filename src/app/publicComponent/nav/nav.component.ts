@@ -1,7 +1,7 @@
 import { Component, Input, OnInit} from '@angular/core';
 import { Negocio } from 'src/app/core/models/Negocio';
 import { ServicePedidos } from 'src/app/core/servicios-pedidos/service-pedidos.service';
-import { CategoryModel } from 'src/app/protected/models/categoryModel';
+import { CategoryModel } from 'src/app/core/models/categoryModel';
 import { ServiceGeneral } from '../../core/services/service-general.service';
 
 

@@ -65,8 +65,8 @@
                                                         <span class="block_specification__text">p.Discount</span>
                                                 </div>
                                                 <div class="sliderBlock_items__itemPhoto ">
-                                                        <!-- <img  [src]="'assets/'+ user +'/' +  p.NameImage"> -->
-                                                        <img src="https://github.com/BlackStar1991/CardProduct/blob/master/app/img/goods/item1/phones5.png?raw=true"  alt="headphones">
+                                                        <img  [src]="'assets/' +  p.ImageName">
+                                                        <!-- <img src="https://github.com/BlackStar1991/CardProduct/blob/master/app/img/goods/item1/phones5.png?raw=true"  alt="headphones"> -->
                                                 </div>                                                        
         
                                                 <div class="block_product">
@@ -89,7 +89,8 @@
                                                                 Add to Cart
                                                         </button>   
                                                         <div class="btns-edit-prod" *ngIf="isLogin()" >
-                                                                <button class="btn btn-info" (click)="edit(p)" style="margin-right: 2%">
+                                                                <button class="btn btn-info" (click)="edit(p.ProductId)" 
+                                                                routerLink="/formulario" style="margin-right: 2%">
                                                                         Editar
                                                                 </button> 
                                                                 <button class="btn btn-danger" (click)="eliminar(p)">

@@ -5,14 +5,16 @@ import { QueryDataModel } from '../models/queryDatamodel';
 import { OrderField } from '../models/OrderField';
 import { Filter } from '../models/Filter';
 import { environment } from 'src/environments/environment';
+import { ProductModel } from '../models/productModel';
+import { ProductImageModel } from '../models/productImageModel';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService{
 
-url=environment.Url;
-
+  url=environment.Url;
+  public productId:number;
 
 constructor(private http: HttpClient) {
 
@@ -30,6 +32,12 @@ public listAllProducts(f:Filter, o:OrderField, from:number, length:number, order
 
   return this.http.post<any []>(`${this.url}product`, data);
 }
+
+public getProduct():Observable<ProductModel>{
+
+  return this.http.get<any>(`${this.url}product/${this.productId}`);
+}
+
 
 
 

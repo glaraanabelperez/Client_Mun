@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
-import { CategoryModel } from 'src/app/protected/models/categoryModel';
-import { Productos } from '../models/productos';
+import { CategoryModel } from 'src/app/core/models/categoryModel';
+import { ProductModel } from '../models/productModel';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +13,7 @@ export class ServiceGeneral {
   
   // estadoForm: String[]=['Activada', 'Desactivada'];
   // publicacionParaScreenShot:Productos;
-  objetoParaElCardProd:Productos;
+  objetoParaElCardProd:ProductModel;
   verPedido:boolean;
   verPedidoSubject:Subject <boolean> = new Subject <boolean>();
 

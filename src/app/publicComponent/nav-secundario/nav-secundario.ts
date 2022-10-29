@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
-import { CategoryModel } from 'src/app/protected/models/categoryModel';
+import { CategoryModel } from 'src/app/core/models/categoryModel';
 
 
 @Component({

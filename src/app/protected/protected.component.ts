@@ -3,12 +3,13 @@ import {FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Inject } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { ServiceGeneral } from 'src/app/core/services/service-general.service';
-import { CategoryModel } from 'src/app/protected/models/categoryModel';
-import { Productos } from 'src/app/core/models/productos';
+import { CategoryModel } from 'src/app/core/models/categoryModel';
 import { ServiceProtected } from 'src/app/core/services/service-protected';
 import { Router } from '@angular/router';
 import { ProtectedService } from '../core/services/protected.service';
 import { AddProduct } from './add-prod/add-prod';
+import { ProductModel } from '../core/models/productModel';
+import { ProductService } from '../core/services/product.service';
 
 declare var $:any;
 
@@ -20,32 +21,18 @@ declare var $:any;
 
 export class ProtectedComponent implements OnInit {
 
-  private codigo_usuario: string;
-  public product :Productos;
-  private pricePercent:number;
-  public user: string;
 
-  @ViewChild(AddProduct) pup!: AddProduct;
-  loading: boolean;
+  // @ViewChild(AddProduct) pup!: AddProduct;
 
-  constructor(public _serviceProtected : ProtectedService, public rout :Router) {
-    this.user=localStorage.getItem('username')
+  constructor(public _serviceProduct: ProductService, public rout :Router) {
   }
 
   ngOnInit(): void {
   }
 
-  changePrice(){
-    // this._servicioGeneral.changePrice(this.pricePercent, this.codigo_usuario);
-  }
 
 
 
-
-  editarProduct(product:Productos){
-    // this._serviceProtected.product=product;
-    this.rout.navigateByUrl('/formulario');
-  }
  
 
 }

@@ -1,6 +1,6 @@
 import { Component,  OnInit} from '@angular/core';
+import { ProductModel } from 'src/app/core/models/productModel';
 import { ServiceGeneral } from 'src/app/core/services/service-general.service';
-import { Productos } from 'src/app/core/models/productos';
 import { ServicePedidos } from 'src/app/core/servicios-pedidos/service-pedidos.service';
 
 
@@ -10,7 +10,7 @@ import { ServicePedidos } from 'src/app/core/servicios-pedidos/service-pedidos.s
   styleUrls: ['./galeria.component.scss'],
 })
 export class GaleriaComponent implements OnInit {
-  destacada :Productos[] = [];
+  destacada :ProductModel[] = [];
 
   constructor(private _servicioG:ServiceGeneral, public _servicioPedidos:ServicePedidos) {
     this.traerDestacadas();

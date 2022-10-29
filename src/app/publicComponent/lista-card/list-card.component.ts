@@ -1,5 +1,5 @@
 import { Component, OnInit , EventEmitter, Output, Input} from '@angular/core';
-import { Productos } from '../../core/models/productos';
+import { ProductModel } from 'src/app/core/models/productModel';
 import { ServiceGeneral } from '../../core/services/service-general.service';
 import { ServicePedidos } from '../../core/servicios-pedidos/service-pedidos.service';
 
@@ -11,7 +11,7 @@ import { ServicePedidos } from '../../core/servicios-pedidos/service-pedidos.ser
     styleUrls: ['./list-card.component.scss']
   })
   export class ListCardComponent implements OnInit {
-    @Output() onClicked:EventEmitter<Productos>;
+    @Output() onClicked:EventEmitter<ProductModel>;
 
     // categoriaElegida:Categorias;
     
@@ -42,7 +42,7 @@ import { ServicePedidos } from '../../core/servicios-pedidos/service-pedidos.ser
       }
         this._servicioPedidos.agregarPedido(pedido);
     }
-    verCard(p :Productos){
+    verCard(p :ProductModel){
       this._servicio.setObjetoParaCardProd(p);
     } 
 
