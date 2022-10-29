@@ -39,9 +39,7 @@ export class ProtectedComponent implements OnInit {
     // this._servicioGeneral.changePrice(this.pricePercent, this.codigo_usuario);
   }
 
-  subir(){
-    window.scroll(0,0)
-  }
+
 
 
   editarProduct(product:Productos){

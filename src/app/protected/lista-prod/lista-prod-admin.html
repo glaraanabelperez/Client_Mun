@@ -4,12 +4,13 @@
   </div>
 <!--Filtros -->
 <div class="product_base">      
+        <i class="fa-solid fa-plus" style="cursor: pointer;" routerLink="/formulario"></i>
         <form clas="form" #myForm="ngForm" >
                 <div  class="filter-title">
                         <i for="menu" style="cursor:pointer" (click)="showFilters()" class="menuFilter fa-sharp fa-solid fa-filter"></i>
                         <h2>Filtros</h2>
                 </div>
-                <div class="filterLeft" *ngIf="show">
+                <div data-aos="slide-right" class="filterLeft" *ngIf="show">
                         <div class="input-group">
                                 <div class="form-check">
                                         <input class="form-check-input" type="checkbox" name="featured" 
@@ -29,24 +30,24 @@
                                 </div>
                         </div>
                         <hr>
+
                         <div class="input-group">
-                                <select class="custom-select"  name="categories" >
-                                        <option value=""  disabled selected="selected">Todos*</option>
-                                        <option  *ngFor="let c of categories" [value]="c.CategoryId">{{c.Name}}</option>
+                                <select class="custom-select"  #category (change)="setCategory(category.value)">
+                                        <option value=""   selected="selected">Categorias</option>
+                                        <option  *ngFor="let c of categories" [value]="c">{{c.Name}}</option>
+                                </select>
+                        </div>
+                        <div class="input-group">
+                                <select class="custom-select" #order (change)="setOrder(order.value)" >
+                                        <option selected>Oredanr por</option>
+                                        <option value="1">Precio: Menor a mayor</option>
+                                        <option value="2">Precio: Mayor a menor</option>
+                                        <option value="3">A-Z</option>
+                                        <option value="4">Z-A</option>
                                 </select>
                         </div>
                         
-                </div>
-                <div class="input-group-order">
-                        <select class="custom-select" #order (change)="setOrder(order.value)" >
-                                <option selected>Oredanr por</option>
-                                <option value="1">Precio: Menor a mayor</option>
-                                <option value="2">Precio: Mayor a menor</option>
-                                <option value="3">A-Z</option>
-                                <option value="4">Z-A</option>
-                        </select>
-                </div>
-        
+                </div>   
         </form>
             
          <div class="products_rigth">                      
@@ -60,7 +61,7 @@
                                                         <span class="block_specification__text" >Destacado!</span>
                                                 </div>
                                                 <div class="block_specification__informationShow hide" *ngIf="p.DiscountAmount!=null">
-                                                        <i class="fa-duotone fa-badge-percent" style="color: rgb(255, 60, 0); margin-right:5px;"></i>
+                                                        <i class="fa-duotone fa-badge-percent" style="color: #f1425d; margin-right:5px;"></i>
                                                         <span class="block_specification__text">p.Discount</span>
                                                 </div>
                                                 <div class="sliderBlock_items__itemPhoto ">
@@ -87,7 +88,7 @@
                                                         <button class="btn btn-info" *ngIf="!isLogin()">
                                                                 Add to Cart
                                                         </button>   
-                                                        <div *ngIf="isLogin()" style="margin-bottom: 15%">
+                                                        <div class="btns-edit-prod" *ngIf="isLogin()" >
                                                                 <button class="btn btn-info" (click)="edit(p)" style="margin-right: 2%">
                                                                         Editar
                                                                 </button> 
@@ -108,14 +109,16 @@
                                 <option [value]="3">50</option>
                         </select>
                         <div class="pagination_buttons">
-                                <div class="page-item"><p class="page-link"  (click)="pagination(currentPage - 1)">Previous</p></div>      
+                                <div class="page-item"><i class=""  (click)="pagination(currentPage - 1)" 
+                                        style="cursor: pointer;color:grey" class=" page-link fa-sharp fa-solid fa-arrow-left"></i></div>      
                                 <div class="page-item" *ngFor="let page of pages">
                                        <p class="page-link" (click)="pagination(page)">{{page}}</p>
                                 </div>
                                 <div class="page-item" *ngIf="totalPage>pages.length" (click)="pagination(pages[pages.length-1]+1)">
-                                        <p p class="page-link" >...</p>
+                                        <p  class="page-link" >...</p>
                                 </div>
-                                <div class="page-item"><p class="page-link"  (click)="pagination(currentPage + 1)">Next</p></div>
+                                <div class="page-item"><i class=""  (click)="pagination(currentPage + 1)" 
+                                        style="cursor: pointer;color:grey" class=" page-link fa-sharp fa-solid fa-arrow-right"></i></div>
                         </div>
                         
                 </div> 

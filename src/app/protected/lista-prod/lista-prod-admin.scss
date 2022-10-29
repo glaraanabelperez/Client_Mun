@@ -3,6 +3,12 @@
 .product_base{
   display: flex;
   flex-direction: row;
+  .fa-solid.fa-plus{
+    font-size: 50px; 
+    position: absolute;
+    right: 15px;
+    color: #f1425d;
+  }
   .filter-title{
     display: flex;
     flex-direction: row;
@@ -48,14 +54,15 @@ form {
 }
 .pagination{
   display: block;
+  .custom-select{
+    width: 15% !important;
+    display: block;
+    margin: auto;
+    text-align: center;
+    margin-bottom: 2%;
+  }
 }
-.custom-select{
-  width: 90% !important;
-  display: block;
-  margin: auto;
-  text-align: center;
-  margin-bottom: 2%;
-}
+
 .pagination_buttons{
   width: 60%;
   margin: auto;
@@ -65,8 +72,22 @@ form {
 }
 .page-item{
   margin-right: 15px;
+  p{
+    color: grey;
+  }
+  
 }
 
+.btns-edit-prod{
+  text-align: center;
+  padding: 10% 5% 5% 5%;
+  .btn{
+    .btn-danger{
+      color: #f1425d;
+    }
+    margin:0px auto;
+  }
+}
 
 
 

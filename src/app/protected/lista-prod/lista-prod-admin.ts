@@ -38,7 +38,7 @@ import { CatgeorieService } from 'src/app/core/services/categorie.service.ts';
     public order:OrderField;//myform
     public orderAsc:boolean; //myform
     public orderSelect;
-
+    public filterSelection:string="Nigun filtro seleccionado";
 
     public from:number;
     public itemsPerPage:number;
@@ -68,7 +68,6 @@ import { CatgeorieService } from 'src/app/core/services/categorie.service.ts';
      
     ngOnInit(): void {
 
-      this.filter.UserId=parseInt(localStorage.getItem('codigo_usar'),10)  
       this.itemsPerPage=1;
       this.currentPage=1;
       this.traerCategorias();  
@@ -208,14 +207,17 @@ import { CatgeorieService } from 'src/app/core/services/categorie.service.ts';
     }
 
     public setCategory(c:number){
-      this.filter.CategoryId=c
+      this.filter.CategoryId=c;
       this.pagination(1)
     }
     
-
-    ngOnDestroy(): void {
-      this.subsChangeFilters.unsubscribe();
+    public limpiarSelection(){
+      this.filterSelection=null;
     }
+
+    // ngOnDestroy(): void {
+    //   this.subsChangeFilters.unsubscribe();
+    // }
 
 }
   

@@ -17,4 +17,8 @@ export class AppComponent  {
 
   }
 
+  subir(){
+    window.scroll(0,0)
+  }
+  
 }

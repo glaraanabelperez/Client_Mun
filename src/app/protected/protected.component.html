@@ -1,12 +1,5 @@
 
 <app-cabecera-matizo></app-cabecera-matizo>
-
-<a  style="display: block;text-align: right; margin: 1%;" routerLink="/home/{{user}}" target="_blank">ver menu: {{user}}</a>
-<div style="float:right">
-  <button style="color: rgb(248, 247, 247);" routerLink="/home-matizo" class=" button-style" > <p >Volver</p><i style="color: #05dd78;" class="fa fa-arrow-circle-left" aria-hidden="true"></i></button>
-  <button class=" button-style" routerLink="/formulario"><p>Cargar Producto</p><i class="fa fa-arrow-circle-down" aria-hidden="true"></i></button>  
-</div>
-
 <!--  procentaje -->
 <div class="bloque1">         
   <div class="form-group col-md-3">
@@ -23,6 +16,3 @@
   <nav-admin></nav-admin>
   <lista-prod-admin  (emitProduct)="editarProduct($event)"></lista-prod-admin>
 </main>
-<button class="buttons-subir" style="position: fixed; right: 10%; bottom: 7%; z-index: 999;" (click)="subir()">
-  <i style="color: #05dd29; font-size: 25px;" class="fa fa-arrow-circle-up" aria-hidden="true"></i>
-</button> 
