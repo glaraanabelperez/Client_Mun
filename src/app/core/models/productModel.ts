@@ -8,5 +8,4 @@ export interface ProductModel{
     State:Date; 
     Featured:number;
     Price:number;   
-    PriceWithDiscount
 }

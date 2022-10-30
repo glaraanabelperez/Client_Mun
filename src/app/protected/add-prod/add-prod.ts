@@ -42,12 +42,12 @@ import { ImageService } from 'src/app/core/services/imageService';
   categories: CategoryModel[];
 
     constructor( 
-    private productService:ProductService, 
-    private imageService:ImageService,
-    private categoireService:CatgeorieService,
-    @Inject(DOCUMENT) private document: Document,
-    private _servicioGeneral:ServiceGeneral, 
-    private formBuilder:FormBuilder
+      private productService:ProductService, 
+      private imageService:ImageService,
+      private categoireService:CatgeorieService,
+      @Inject(DOCUMENT) private document: Document,
+      private _servicioGeneral:ServiceGeneral, 
+      private formBuilder:FormBuilder
     ){
   
     }
@@ -57,7 +57,7 @@ import { ImageService } from 'src/app/core/services/imageService';
     if(this.productService.productId!=null){
       this.accionBtnFormulario="editar"
       this.getProduct();
-      // this.getImages(this.productService.productId);
+      this.getImages(this.productService.productId);
     }else{
       this.accionBtnFormulario="nuevo";
     }
@@ -100,6 +100,7 @@ import { ImageService } from 'src/app/core/services/imageService';
       this.productService.getProduct().subscribe(
         res=>{
           this.product=res;
+          console.log("prod", this.product)
         },
         error=>{
           alert('HUBO UN PROBLEMA CON EL SERVIDOR');
@@ -112,6 +113,7 @@ import { ImageService } from 'src/app/core/services/imageService';
       this.imageService.getImages(productId).subscribe(
         res=>{
           this.images=res;
+          console.log("img", this.images)
         },
         error=>{
           alert('HUBO UN PROBLEMA CON EL SERVIDOR');
