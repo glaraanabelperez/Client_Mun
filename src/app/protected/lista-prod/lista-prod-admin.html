@@ -2,9 +2,14 @@
   <div *ngIf="loadingService.loading" class="spinner-border" role="status">
     <span class="sr-only">Loading...</span>
   </div>
+  <div class="iconsMenu" *ngIf="isLogin()">
+        <i class="fa-solid fa-plus" routerLink="/formulario" placement="left" ngbTooltip="Nuevo Producto"></i>
+        <i class="fa-solid fa-thumbtack" (click)="setSelectedItem('ok')"  placement="left" ngbTooltip="Administrar Categorias"></i>
+        <i class="fa-solid fa-barcode" routerLink="/marcas"  placement="left" ngbTooltip="Administrar Marcas" style="color:grey"></i>
+        <i class="fa-sharp fa-solid fa-percent" routerLink="/descuentos" placement="left" ngbTooltip="Administrar Desciuentos"></i>
+</div>    
 <!--Filtros -->
-<div class="product_base">      
-        <i class="fa-solid fa-plus" style="cursor: pointer;" routerLink="/formulario"></i>
+<div class="product_base">          
         <form clas="form" #myForm="ngForm" >
                 <div  class="filter-title">
                         <i for="menu" style="cursor:pointer" (click)="showFilters()" class="menuFilter fa-sharp fa-solid fa-filter"></i>
@@ -55,21 +60,19 @@
                 <div *ngFor="let p of products " >
                         <div class="productCard_block" >
                                 <div class="productCard_rightSide">
-                                                <div class="block_specification__informationShow hide" *ngIf="p.Featured">
+                                    <div class="block_specification__informationShow hide" *ngIf="p.Featured">
                                                         <i class="fa-sharp fa-solid fa-star block_specification__button block_specification__button__jump"
                                                                 aria-hidden="true" style="color: rgb(204, 255, 0); margin-right:5px;"></i>
                                                         <span class="block_specification__text" >Destacado!</span>
-                                                </div>
-                                                <div class="block_specification__informationShow hide" *ngIf="p.DiscountAmount!=null">
+                                    </div>
+                                    <div class="block_specification__informationShow hide" *ngIf="p.DiscountAmount!=null">
                                                         <i class="fa-duotone fa-badge-percent" style="color: #f1425d; margin-right:5px;"></i>
                                                         <span class="block_specification__text">p.Discount</span>
-                                                </div>
-                                                <div class="sliderBlock_items__itemPhoto ">
-                                                        <img  [src]="'assets/' +  p.ImageName">
-                                                        <!-- <img src="https://github.com/BlackStar1991/CardProduct/blob/master/app/img/goods/item1/phones5.png?raw=true"  alt="headphones"> -->
-                                                </div>                                                        
-        
-                                                <div class="block_product">
+                                    </div>
+                                    <div class="sliderBlock_items__itemPhoto ">
+                                            <img  [src]="'assets/' +  p.ImageName">
+                                    </div>                                                             
+                                    <div class="block_product">
                                                         <p class="block_model">
                                                                 <span class="block_model__number">{{p.MarcaName}}</span>
                                                         </p>
@@ -97,7 +100,7 @@
                                                                         Eliminar
                                                                 </button> 
                                                         </div>                                       
-                                                </div>
+                                    </div>
                                 </div>
                         </div>
                 </div>
@@ -127,4 +130,7 @@
         </div>    
 </div>
 
-
+<app-categories
+ 
+  (closeModal)="setSelectedItem(null)"
+></app-categories>ok

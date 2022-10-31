@@ -31,25 +31,28 @@ import { LogInComponent } from './publicComponent/log-in/log-inWjn.component';
 import { ProtectedComponent } from './protected/protected.component';
 import { ListaProdAdmin } from './protected/lista-prod/lista-prod-admin';
 import { AddProduct } from './protected/add-prod/add-prod';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { CategoriesComponent } from './protected/categories/categories.component';
+import { DiscountsComponent } from './protected/discounts/discounts.component';
+import { MarcasComponent } from './protected/marcas/marcas.component';
 
-export const childrenRoute:Routes=[// {path: '', redirectTo: 'home/:nombre', pathMatch:'full'},
-    {path: 'list', component: ListCardComponent},
-    
-    {path: 'pedidos', component:VerPedido},
-    ]
+export const childrenRoute:Routes=[
+  // {path: '', redirectTo: 'home/:nombre', pathMatch:'full'},
+{path: 'list', component: ListCardComponent},
+{path: 'pedidos', component:VerPedido},
+];
 
 const routes: Routes = [
-  {path: '', redirectTo: 'home-matizo', pathMatch:'full'},
 
-  {path: 'home-matizo', component: HomeMatizo,},
+{path: '', redirectTo: 'home-matizo', pathMatch:'full'},
+{path: 'home-matizo', component: HomeMatizo,},
+{path: 'home/:nombre', component: HomeComponent, children:childrenRoute},
+{path: 'login', component:LogInComponent},
+{path: 'protected',component: ProtectedComponent,canActivate: [GuardsGuard]},
+{path: 'formulario',component: AddProduct,canActivate: [GuardsGuard]}
 
-  {path: 'home/:nombre', component: HomeComponent, children:childrenRoute},
 
-  {path: 'login', component:LogInComponent},
 
-  {path: 'protected',component: ProtectedComponent,canActivate: [GuardsGuard]},
-
-  {path: 'formulario',component: AddProduct,canActivate: [GuardsGuard]},
 ];
 
 @NgModule({
@@ -70,7 +73,10 @@ const routes: Routes = [
     VerPedido,
     HomeMatizo,
     CabeceraMatizo,
-    AddProduct
+    AddProduct,
+    CategoriesComponent,
+    DiscountsComponent,
+    MarcasComponent
   ],
 
   imports: [
@@ -79,7 +85,8 @@ const routes: Routes = [
     AppRoutingModule,
     RouterModule.forRoot(routes),
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgbModule
   
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],

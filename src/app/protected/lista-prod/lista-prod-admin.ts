@@ -12,8 +12,8 @@ import { ProductService } from 'src/app/core/services/product.service';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/auth-services/auth.service';
-import { CatgeorieService } from 'src/app/core/services/categorie.service.ts';
 import { ProductModelDto } from 'src/app/core/models/productModelDto';
+import { CatgeorieService } from 'src/app/core/services/categorie.service';
 
 
 @Component({
@@ -51,6 +51,10 @@ import { ProductModelDto } from 'src/app/core/models/productModelDto';
     @ViewChild(NgForm) myForm: NgForm; 
   
     public show: any =true;
+
+    //Modales
+    public data = [];
+    public selectedItem: any;
   
     
 
@@ -75,6 +79,12 @@ import { ProductModelDto } from 'src/app/core/models/productModelDto';
     ngAfterViewInit() {
       // this.subsChangeFilters = this.productService.changeFilters$.subscribe(() => this.listAllProducts())
       this.onChangesFilters();
+    }
+
+    //Modales
+    setSelectedItem(item) {
+      this.selectedItem = item;
+      console.log(this.selectedItem)
     }
 
     // Filtros

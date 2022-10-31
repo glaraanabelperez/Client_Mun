@@ -1,0 +1,23 @@
+import { Component, OnInit , Output, EventEmitter, ViewChild, ElementRef, Inject, Input} from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+
+
+
+@Component({
+    selector: 'app-marcas',
+    templateUrl: './marcas.component.html',
+    styleUrls: ['./marcas.component.scss']
+  })
+
+  export class MarcasComponent implements OnInit {
+
+
+  ngOnInit(): void {
+    throw new Error('Method not implemented.');
+  }
+
+
+    
+}
+  
+  

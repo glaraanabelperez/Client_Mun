@@ -1,14 +1,21 @@
 @import '../../shared/styles/tipografias.scss';
 
+.iconsMenu{
+  i{
+    font-size: 30px; 
+    margin-bottom: 35px;
+  }
+ 
+  position: absolute;
+  right: 15px;
+  color: #f1425d;
+  display: flex;
+  flex-direction: column;
+}
 .product_base{
   display: flex;
   flex-direction: row;
-  .fa-solid.fa-plus{
-    font-size: 50px; 
-    position: absolute;
-    right: 15px;
-    color: #f1425d;
-  }
+
   .filter-title{
     display: flex;
     flex-direction: row;

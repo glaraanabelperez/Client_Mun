@@ -6,10 +6,14 @@ import { ProtectedService } from '../../core/services/protected.service';
 import { ServiceGeneral } from 'src/app/core/services/service-general.service';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ProductService } from 'src/app/core/services/product.service';
-import { CatgeorieService } from 'src/app/core/services/categorie.service.ts';
+import { DiscountService } from 'src/app/core/services/discount.service';
 import { ProductModel } from 'src/app/core/models/productModel';
 import { ProductImageModel } from 'src/app/core/models/productImageModel';
 import { ImageService } from 'src/app/core/services/imageService';
+import { MarcaModel } from 'src/app/core/models/marcaModel';
+import { DiscountModel } from 'src/app/core/models/discountModel';
+import { CatgeorieService } from 'src/app/core/services/categorie.service';
+import { MarcaService } from 'src/app/core/services/marca.service';
 
 
 @Component({
@@ -22,12 +26,14 @@ import { ImageService } from 'src/app/core/services/imageService';
 
   // @Input() editProduct :Productos;
 
-  public state: String[]=['Activada', 'Desactivada'];
+  public state: any[]=[{ valor:false, name:'Suspendido'}, { valor:true, name:'Activo'}];
   public uploadForm: any;
 
   public product:ProductModel=null;
+  public marcas:MarcaModel[];
+  public categories: CategoryModel[];
+  public discounts: DiscountModel[];
   public images: ProductImageModel []=[];
-  public buisness;
  
   private userId: string;
   private today: string;
@@ -39,52 +45,53 @@ import { ImageService } from 'src/app/core/services/imageService';
   public message: string;
   public editImage: string;
 
-  categories: CategoryModel[];
+  
 
     constructor( 
-      private productService:ProductService, 
-      private imageService:ImageService,
-      private categoireService:CatgeorieService,
-      @Inject(DOCUMENT) private document: Document,
-      private _servicioGeneral:ServiceGeneral, 
-      private formBuilder:FormBuilder
+      private productService:ProductService, private imageService:ImageService,
+      private categoireService:CatgeorieService,private marcaService:MarcaService,
+      private discountService:DiscountService, private _servicioGeneral:ServiceGeneral, 
+      private formBuilder:FormBuilder, @Inject(DOCUMENT) private document: Document
     ){
   
     }
      
   ngOnInit(): void {
-    console.log(this.productService.productId)
+
+    this.getCategories(); 
+
+    this.uploadForm=this.formBuilder.group({
+      productId:[null],
+      categoryId:[null,[Validators.required]],
+      marcaId:[null,[Validators.required]],
+      discountId:[null],
+      name:['',[Validators.required]],
+      description:[''],
+      nameImage: [null],
+      state:['',[Validators.required]],
+      price:[null],
+      featured:[''],
+    });
+
     if(this.productService.productId!=null){
       this.accionBtnFormulario="editar"
-      this.getProduct();
+      this.getProduct();     
+      this.getAllMarcas(); 
+      this.getActiveDiscounts(); 
       this.getImages(this.productService.productId);
     }else{
       this.accionBtnFormulario="nuevo";
     }
-    this.traerCategorias(); 
+    
     this.userId=localStorage.getItem('codigo_usar'); 
     this.getFecha();
-    this.uploadForm=this.formBuilder.group({
-          productId:[null],
-          categoryId:[null,[Validators.required]],
-          title:['',[Validators.required]],
-          subtitle:[''],
-          description:[''],
-          nameImage: [null],
-          date:[this.today],
-          price:[null],
-          featured:[''],
-          promotion:[''],
-          userId:[this.userId],
-    });
-    
-    // this.editarPubliId(this.productService.product);
+
     }
 
     get f(){ return this.uploadForm.controls;}
 
-    //CATEGORIAS NAV PROTECTED
-    traerCategorias(){
+    //
+    getCategories(){
       this.categoireService.listCategories().subscribe(
         res=>{
           this.categories=res as [];
@@ -96,11 +103,35 @@ import { ImageService } from 'src/app/core/services/imageService';
     
     }
 
+    getAllMarcas(){
+      this.marcaService.getAllMarcas().subscribe(
+        res=>{
+          this.marcas=res as [];
+        },
+        error=>{
+          alert('HUBO UN PROBLEMA CON EL SERVIDOR');
+        }
+      );
+    
+    }
+
+    getActiveDiscounts(){
+      this.discountService.getActiveDiscounts().subscribe(
+        res=>{
+          this.discounts=res as [];
+        },
+        error=>{
+          alert('HUBO UN PROBLEMA CON EL SERVIDOR');
+        }
+      );
+    
+    }
+
     getProduct(){
       this.productService.getProduct().subscribe(
         res=>{
-          this.product=res;
-          console.log("prod", this.product)
+          this.product=res; 
+          this.editarPubliId(res);
         },
         error=>{
           alert('HUBO UN PROBLEMA CON EL SERVIDOR');
@@ -125,6 +156,10 @@ import { ImageService } from 'src/app/core/services/imageService';
     getFecha(){
       var d = new Date();
       this.today = d.getFullYear() + "/" + (d.getMonth()+1) + "/" + d.getDate();
+    }
+
+    public editImage_(image:ProductImageModel){
+      console.log(image)
     }
 
     guardarImagenEnFormGroup(files){
@@ -211,12 +246,14 @@ import { ImageService } from 'src/app/core/services/imageService';
     editarPubliId(e: ProductModel){
       this.uploadForm.controls.productId.setValue(e.ProductId );
       this.uploadForm.controls.categoryId.setValue(e.CategoryId );
-      this.uploadForm.controls.title.setValue(e.Name );
+      this.uploadForm.controls.marcaId.setValue(e.MarcaId );
+      this.uploadForm.controls.discountId.setValue(e.DiscountId );
+      this.uploadForm.controls.name.setValue(e.Name );
       this.uploadForm.controls.description.setValue(e.Description );
       // this.uploadForm.controls.nameImage.setValue(e.ImageName );
       this.uploadForm.controls.price.setValue(e.Price );
       this.uploadForm.controls.featured.setValue(e.Featured );
-      this.uploadForm.controls.promotion.setValue(e.DiscountAmount );
+      this.uploadForm.controls.state.setValue(e.State );
       // this.uploadForm.controls.userId.setValue(e.UserId );
       // this.uploadForm.controls['productId'].setValue(e.ProductId ? e.ProductId: ''); // <-- Set Value for Validation
 
