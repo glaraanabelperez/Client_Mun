@@ -6,21 +6,10 @@ $font-tamanio-botones:12px;
 $color-gris:#eff0ee;
 $color-gris-claro:rgb(239, 240, 238);
 $color-amarillo:#b8f864;
-$color-verde:#26d0ab;
-$white: #F5F5F5;
-$light: #e0dec9;
-$verde: #2ae999;
-$azul: #004182;
-$azul-claro: #0a66c2;
-$azul-turquesa: #378fe9;
-
-$dark: #282928;
-$border:1px solid gainsboro;
+$verde:#26d0ab;
+$red:#dc3545;
 
 $font-tamanio-botones:12px;
-$color-primary: #505e47;
-$color-highlight: #3f8cff;
-$color-fondo:rgb(226, 224, 197);
 
 
 * {
@@ -40,7 +29,6 @@ $color-fondo:rgb(226, 224, 197);
 
 h1{
     font-size: 1.6rem;
-    color: $dark;
     padding: 10px 0px 0px 0px;
     display: block;
     font-weight: 500;
@@ -49,7 +37,6 @@ h1{
 
  h2{
   font-size: 1.4rem;
-  color: $color-primary;
   font-weight: bold;
   letter-spacing: 0.1pc;
 }
@@ -71,18 +58,15 @@ p{
 }
 .p-fondo{
   font-size: 1.8rem;
-  color: $white;
   font-weight: 500;
   text-transform: uppercase;
 }
 
 span{
   font-size: 1rem;
-  color: $azul;
 }
 
 .titulo-secciones{
-  color: $dark;
   font-weight: 600;
   margin-bottom: 0px;
   margin-left: 50px;
@@ -96,7 +80,6 @@ form {
 
 .tituloTarjeta {
   margin-top: 5%;
-   color: $verde;
    display: block;
    font-size: 1rem;
    text-transform: uppercase;
@@ -104,7 +87,6 @@ form {
 
  .subTituloTarjeta {
    margin:0%;
-   color: $dark;
    display: block;
    font-size: 1.2rem;
    text-transform: lowercase;
@@ -119,12 +101,21 @@ form {
    letter-spacing: 1px;
    text-overflow: clip;
  }
+
+ .btn-filtros{
+  border: $red 1px solid;
+  border-radius: 5px;
+  margin-bottom: 1.5rem;
+  padding: 0.6rem;
+  cursor: pointer;
+  font-size: 30px;
+  color: $red;
+}
  //-----------------------------FIN BANNERS
  //-----------------------------MEDIA @QUERY
 @media only screen and (max-width: 1024px) and (min-width: 764px) {
   .tituloTarjeta {
     margin-top: 15%;
-     color: $verde;
      display: block;
      font-size: 1rem;
      text-transform: uppercase;
@@ -132,7 +123,6 @@ form {
   
    .subTituloTarjeta {
      margin:0%;
-     color: $dark;
      display: block;
      font-size: 1.8rem;
      text-transform: lowercase;
@@ -156,7 +146,6 @@ form {
 
   .tituloTarjeta {
     margin-top: 15%;
-     color: $verde;
      display: block;
      font-size: 1.4rem;
      text-transform: uppercase;
@@ -164,7 +153,6 @@ form {
   
    .subTituloTarjeta {
      margin:0%;
-     color: $dark;
      display: block;
      font-size: 1.8rem;
      text-transform: lowercase;

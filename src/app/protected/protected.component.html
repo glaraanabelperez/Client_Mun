@@ -1,18 +1,26 @@
 
 <app-cabecera-matizo></app-cabecera-matizo>
 <!--  procentaje -->
-<div class="bloque1">         
+<div class="bloque1">
   <div class="form-group col-md-3">
     <!-- <label for="titulo">Porcentaje</label>
-    <input maxlength="20" class="form-control" placeholder="Campo Obligatorio" 
-    [(ngModel)]='pricePercent' 
+    <input maxlength="20" class="form-control" placeholder="Campo Obligatorio"
+    [(ngModel)]='pricePercent'
     type="number" requerid > -->
-  </div>  
+  </div>
   <!-- <button class="add"><p style="padding-top: 10px;" (click)="changePrice()" type="submit" >GUARDAR</p></button> -->
   <!-- <button class="add"><p style="padding-top: 10px;" (click)="clean()">CANCELAR</p></button> -->
-</div>               
-
+</div>
 <main class="jumbotron" >
-  <nav-admin></nav-admin>
-  <lista-prod-admin></lista-prod-admin>
+  <div *ngIf="loadingService.loading" class="spinner-border" role="status">
+    <span class="sr-only">Loading...</span>
+  </div>
+  <div class="iconsMenu" *ngIf="isLogin()">
+    <button type="button" class="btn btn-outline-danger"[routerLink]="['/protected/lista-productos']">Administrar productos</button>
+    <button type="button" class="btn btn-outline-danger" [routerLink]="['/protected/categorias']">Administrar categoriasnger</button>
+    <button type="button" class="btn btn-outline-danger" [routerLink]="['/protected/marcas']">Administrar marcas</button>
+    <button type="button" class="btn btn-outline-danger" [routerLink]="['/protected/descuentos']">Adm Descuentos</button>
+ </div>  
+  <i class="fa-sharp fa-solid fa-backward"  (click)="goBack()" ngbTooltip="Volver"></i>
+  <router-outlet></router-outlet>
 </main>

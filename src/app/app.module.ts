@@ -35,11 +35,18 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CategoriesComponent } from './protected/categories/categories.component';
 import { DiscountsComponent } from './protected/discounts/discounts.component';
 import { MarcasComponent } from './protected/marcas/marcas.component';
+import { CategoryDialogComponent } from './protected/categories/catgeory-dialog/categroy-dialog.component';
 
 export const childrenRoute:Routes=[
-  // {path: '', redirectTo: 'home/:nombre', pathMatch:'full'},
+{path: '', redirectTo: 'home/:nombre', pathMatch:'full'},
 {path: 'list', component: ListCardComponent},
 {path: 'pedidos', component:VerPedido},
+];
+
+export const childrenRouteProducts:Routes=[
+  {path: 'formulario',component: AddProduct,canActivate: [GuardsGuard]},
+  {path: 'lista-productos', component:ListaProdAdmin},
+  {path: 'categorias', component:CategoriesComponent},
 ];
 
 const routes: Routes = [
@@ -48,9 +55,7 @@ const routes: Routes = [
 {path: 'home-matizo', component: HomeMatizo,},
 {path: 'home/:nombre', component: HomeComponent, children:childrenRoute},
 {path: 'login', component:LogInComponent},
-{path: 'protected',component: ProtectedComponent,canActivate: [GuardsGuard]},
-{path: 'formulario',component: AddProduct,canActivate: [GuardsGuard]}
-
+{path: 'protected',component: ProtectedComponent,children:childrenRouteProducts},
 
 
 ];
@@ -76,7 +81,8 @@ const routes: Routes = [
     AddProduct,
     CategoriesComponent,
     DiscountsComponent,
-    MarcasComponent
+    MarcasComponent,
+    CategoryDialogComponent
   ],
 
   imports: [

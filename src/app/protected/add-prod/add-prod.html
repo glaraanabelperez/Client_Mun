@@ -1,7 +1,10 @@
   <!--  Formulario cargar product -->
   <div class="conteiner2" >
     <div class="card">
-      <button type="button" class="btn-close" aria-label="Close" [routerLink]="['/protected']">X</button>       
+      <div class="modal-header">
+        <h5 class="modal-title">Tu producto</h5>
+        <button type="button" class="btn-close" aria-label="Close" [routerLink]="['/protected/lista-productos']">X</button>       
+      </div>
       <div class="card-body" >
           <form [formGroup]="uploadForm" #form>
             <div class="bloque1"> 
@@ -119,10 +122,9 @@
                 <option  value="false" >No</option>
               </select>
               </div>
-
-              <div class="buttons">
-                <button class="add"><p style="padding-top: 10px;" (click)="onSubmit()" type="submit" >GUARDAR</p></button>
-                <button class="add"><p style="padding-top: 10px;" (click)="limpiar()">CANCELAR</p></button>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-danger" (click)="onSubmit()" style="margin-right: 5px;">Guardar</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="limpiar()">Cancelar</button>
               </div>
             </div>
           </form>

@@ -1,0 +1,30 @@
+  <!--  Formulario cargar product -->
+  <div class="conteiner2" >
+    <div class="card">
+      <div class="modal-header">
+        <h5 class="modal-title">Su Categoria</h5>
+        <button type="button" class="btn-close" aria-label="Close" (click)="onCloseModal()" >X</button>       
+      </div>
+      <div class="card-body" >
+          <form [formGroup]="uploadForm" #form>
+            <div class="bloque1"> 
+
+              <div class="form-group col-md-12">
+                <label for="titulo">Nombre</label>
+                <input maxlength="20" type="text" class="form-control" placeholder="Campo Obligatorio" [value]=""
+                formControlName="name" [ngClass]="{'is-invalid': submitted && f.name.errors}" >
+                <span style="font-size: 13px;">Maximo 20 caracteres</span>
+              </div>
+              <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                <div *ngIf="f.name.errors.required"> Por favor ingrese datos</div>
+              </div>      
+              <div class="modal-footer">
+                <button type="button" class="btn btn-danger" (click)="onSubmit()" style="margin-right: 5px;">Guardar</button>
+                <button type="button" class="btn btn-secondary" (click)="onCloseModal()" data-dismiss="modal">Cancelar</button>
+              </div> (click)="limpiar()"
+            </div>
+          </form>
+
+        </div>
+    </div>
+</div>

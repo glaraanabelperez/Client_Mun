@@ -1,5 +1,9 @@
 import { Component, OnInit , Output, EventEmitter, ViewChild, ElementRef, Inject, Input} from '@angular/core';
 import { DOCUMENT } from '@angular/common';
+import { Router } from '@angular/router';
+import { CatgeorieService } from 'src/app/core/services/categorie.service';
+import { CategoryModel } from 'src/app/core/models/categoryModel';
+import { LoadingService } from 'src/app/core/services/loading.service';
 
 
 
@@ -11,17 +15,59 @@ import { DOCUMENT } from '@angular/common';
 
   export class CategoriesComponent implements OnInit {
 
-  @Input() data: any;
-  @Output() closeModal = new EventEmitter();
+ 
+  public category: CategoryModel;
+  public categories:CategoryModel[]=[];
 
-
-  constructor(){}
+  constructor(private router: Router,private categorieService:CatgeorieService, public loadingService:LoadingService, ){}
 
   ngOnInit(): void {
+    this.traerCategorias();
   }
 
-  onCloseModal(): void {
-    this.closeModal.emit();
+ 
+  setSelectedItem(item:CategoryModel) {
+    this.category = item;
+    console.log(this.category, "acacac")
+  }
+
+   //lista categorias
+   public traerCategorias(){
+    if(localStorage.getItem('codigo_usar')==undefined || localStorage.getItem('codigo_usar')==null){
+      alert('VUELVA A INGRESAR USUARIO Y PASSWORD')
+      this.router.navigateByUrl('login')
+    }
+      this.categorieService.listCategories().subscribe(
+        res=>{
+          this.categories=res;
+          this.loadingService.setLoading(false);
+          alert('BIENVENIDO');
+        },
+        error=>{
+          this.loadingService.setLoading(false);
+          alert('EL USUARIO NO SE ENCUENTRA REGISTRADO');
+        }
+      );
+
+  }
+
+  public deleteCategoria(categoryId:number){
+    if(localStorage.getItem('codigo_usar')==undefined || localStorage.getItem('codigo_usar')==null){
+      alert('VUELVA A INGRESAR USUARIO Y PASSWORD')
+      this.router.navigateByUrl('login')
+    }
+      this.categorieService.deleteCategory(categoryId).subscribe(
+        res=>{
+         console.log(res)
+          this.loadingService.setLoading(false);
+          alert('BIENVENIDO');
+        },
+        error=>{
+          this.loadingService.setLoading(false);
+          alert('EL USUARIO NO SE ENCUENTRA REGISTRADO');
+        }
+      );
+
   }
     
 }

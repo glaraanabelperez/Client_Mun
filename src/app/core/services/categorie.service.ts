@@ -36,6 +36,17 @@ public listCategories(): Observable<CategoryModel[]> {
   return this.http.get<CategoryModel []>(`${this.url}category/listActive/`);
 }
 
+public deleteCategory(categoryId: number): Observable<any> {
+  return this.http.delete<any>(`${this.url}category/delete/${categoryId}`);
+}
+
+public insertCategory(category:CategoryModel): Observable<any> {
+  return this.http.put<any>(`${this.url}category`, category);
+}
+
+public uploadCategory(category:CategoryModel): Observable<any> {
+  return this.http.put<any>(`${this.url}category/${category.CategoryId}`, category);
+}
   
 }
 

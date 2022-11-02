@@ -20,8 +20,6 @@
     width: 45px;
     height: 45px;
     padding: 10px 10px 10px 10px;
-    border: 1px solid $color-gris;
-    color: $dark;
     background-color: white;
     cursor: pointer;
     border-radius: 10px ;
@@ -40,7 +38,6 @@
       width: 65px;
       height: 65px;
       padding: 10px 10px 10px 10px;
-      border: 1px solid $color-gris;
       background-color: white;
       border-radius: 10px ;
     }   
@@ -48,7 +45,6 @@
   .btn-success{
     width: 90%;
     border-radius: 30px;
-    background-color: $dark;
     margin-left: 5%;
     border: none;
   }
@@ -65,7 +61,6 @@
           margin-left: 7%;
           .boton-eliminar{
             background: none;
-            border: 1px solid $color-gris;
             height: 40px;
             width: 40px;
             border-radius: 100%;

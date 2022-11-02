@@ -1,10 +1,15 @@
-.modal {
-    display: block !important;
+table.table{
+  text-align: center;
+  margin: 5%;
+  background-color: whitesmoke;
+  margin: auto;
+  width: 100%;
+}
+.card{
+  .modal-header{
+    margin-bottom:3rem ;
   }
-  .modal-content{
-    height: 90vh !important;
-    margin: auto !important;
-    position: absolute !important;
-    display: block
-    
-  }
+  width: 60%;
+  padding: 2%;
+  margin: auto;
+}

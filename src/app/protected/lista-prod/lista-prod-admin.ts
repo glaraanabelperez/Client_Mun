@@ -81,12 +81,6 @@ import { CatgeorieService } from 'src/app/core/services/categorie.service';
       this.onChangesFilters();
     }
 
-    //Modales
-    setSelectedItem(item) {
-      this.selectedItem = item;
-      console.log(this.selectedItem)
-    }
-
     // Filtros
     public onChangesFilters(): void {
           this.myForm.valueChanges.subscribe(() => {            

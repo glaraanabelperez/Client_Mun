@@ -1,36 +1,12 @@
 @import '../../shared/styles/tipografias.scss';
 
-.iconsMenu{
-  i{
-    font-size: 30px; 
-    margin-bottom: 35px;
-  }
- 
-  position: absolute;
-  right: 15px;
-  color: #f1425d;
-  display: flex;
-  flex-direction: column;
-}
+
 .product_base{
   display: flex;
   flex-direction: row;
 
-  .filter-title{
-    display: flex;
-    flex-direction: row;
-    margin-bottom: 15%;
-   i{
-    margin-right: 10px;
-    cursor: pointer;
-    font-size: 30px;
-    color: grey;
-   }
-  }
 }
-// .menuFilter{
-//   display: none;
-// }
+
 .products_rigth{
   width: 70%;
 }

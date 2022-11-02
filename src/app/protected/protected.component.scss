@@ -1,13 +1,44 @@
 @import '../shared/styles/tipografias.scss';
+main.jumbotron{
+    background-color: none;
+}
 main{
+    .fa-backward{
+        cursor: pointer;
+        position: absolute;
+        left: 15%;
+        top: 6.5rem;
+        color: rgb(184, 181, 181);
+        font-size: 25px;
+        display: block;
+    }
+    .spinner-border{
+        position: absolute;
+        right: 40vw;
+        width: 150px;
+        height: 150px;
+        z-index: 999;
+        color: gray;
+    }
+    .iconsMenu{
+        margin-bottom: 1rem;
+        position: absolute;
+        right: 15px;
+        top: 25%;
+        display: flex;
+        flex-direction: column;
+        button{
+            margin-bottom: 1rem;
+        }
+      }
     width: 100%;
     .jumbotron{
         display: flex;
         flex-direction: row;
-        padding: 0rem, 2rem;
+        padding: 2rem;
+        margin: 3rem;
         .container2{
             width: 80%;
-            background-color:rgb(248, 239, 239);
             border-radius: 20px;
             padding: 1%;
             display: flex;

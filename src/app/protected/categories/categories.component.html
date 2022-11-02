@@ -1,33 +1,28 @@
-<!-- modal.component.html -->
-<div class="modal" tabindex="-1">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">ok</h5>
-          <button
-            type="button"
-            class="btn-close"
-            data-bs-dismiss="modal"
-            aria-label="Close"
-            (click)="onCloseModal()"
-          ></button>
-        </div>
-        <div class="modal-body">
-          <p>okkkk/p>
-        </div>
-        <div class="modal-footer">
-          <button
-            type="button"
-            class="btn btn-secondary"
-            data-bs-dismiss="modal"
-            (click)="onCloseModal()"
-          >
-            Close
-          </button>
-          <button type="button" class="btn btn-primary" (click)="onCloseModal()">
-            Save changes
-          </button>
-        </div>
-      </div>
-    </div>
+<app-category-dialog
+  *ngIf="category!=null"
+  [data]="category"
+  (closeModal)="setSelectedItem(null)"
+></app-category-dialog>
+<i class="btn-filtros fa-solid fa-plus" [routerLink]="['/protected/formulario']"  placement="right" ngbTooltip="Nueva Categoria"></i>
+
+<div class="card">
+  <div class="modal-header">
+    <h5 class="modal-title">Tus categorias</h5>
   </div>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Identificados</th>
+        <th scope="col">Nombre de la Categoria</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let c of categories">
+        <td>{{c.CategoryId}}</td>
+        <td>c.Name</td>
+        <td><i class="fa-sharp fa-solid fa-pencil" (click)="setSelectedItem(c)" style="cursor:pointer" ></i></td>
+        <td><i class="fa-sharp fa-solid fa-trash" (click)="deleteCategoria(c.CategroyId)" style="cursor:pointer" ></i></td>
+      </tr>
+    </tbody>
+  </table>
+</div>

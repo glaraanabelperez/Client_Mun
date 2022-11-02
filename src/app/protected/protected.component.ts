@@ -1,15 +1,11 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import {FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Inject } from '@angular/core';
-import { DOCUMENT } from '@angular/common';
-import { ServiceGeneral } from 'src/app/core/services/service-general.service';
-import { CategoryModel } from 'src/app/core/models/categoryModel';
-import { ServiceProtected } from 'src/app/core/services/service-protected';
+import { Component, OnInit } from '@angular/core';
+import { Location } from '@angular/common';
+
 import { Router } from '@angular/router';
-import { ProtectedService } from '../core/services/protected.service';
-import { AddProduct } from './add-prod/add-prod';
-import { ProductModel } from '../core/models/productModel';
+
 import { ProductService } from '../core/services/product.service';
+import { AuthService } from '../auth-services/auth.service';
+import { LoadingService } from '../core/services/loading.service';
 
 declare var $:any;
 
@@ -24,12 +20,20 @@ export class ProtectedComponent implements OnInit {
 
   // @ViewChild(AddProduct) pup!: AddProduct;
 
-  constructor(public _serviceProduct: ProductService, public rout :Router) {
+  constructor(public _serviceProduct: ProductService, public rout :Router, private _location: Location ,
+    private auth:AuthService, public loadingService:LoadingService, ) {
   }
 
   ngOnInit(): void {
   }
 
+  goBack(){
+    this._location.back();
+  }
+
+  public  isLogin():boolean{
+    return this.auth.isLoggedIn()
+  }
 
 
 

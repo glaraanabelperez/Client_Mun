@@ -1,20 +1,13 @@
 
-  <div *ngIf="loadingService.loading" class="spinner-border" role="status">
-    <span class="sr-only">Loading...</span>
-  </div>
-  <div class="iconsMenu" *ngIf="isLogin()">
-        <i class="fa-solid fa-plus" routerLink="/formulario" placement="left" ngbTooltip="Nuevo Producto"></i>
-        <i class="fa-solid fa-thumbtack" (click)="setSelectedItem('ok')"  placement="left" ngbTooltip="Administrar Categorias"></i>
-        <i class="fa-solid fa-barcode" routerLink="/marcas"  placement="left" ngbTooltip="Administrar Marcas" style="color:grey"></i>
-        <i class="fa-sharp fa-solid fa-percent" routerLink="/descuentos" placement="left" ngbTooltip="Administrar Desciuentos"></i>
-</div>    
+  
 <!--Filtros -->
-<div class="product_base">          
+<i class="btn-filtros fa-solid fa-plus" [routerLink]="['/protected/formulario']"  placement="right" ngbTooltip="Nuevo Producto"></i>
+
+<div class="product_base">  
+        
         <form clas="form" #myForm="ngForm" >
-                <div  class="filter-title">
-                        <i for="menu" style="cursor:pointer" (click)="showFilters()" class="menuFilter fa-sharp fa-solid fa-filter"></i>
-                        <h2>Filtros</h2>
-                </div>
+                  <i for="menu" ngbTooltip="Filtros"
+                  (click)="showFilters()" class="btn-filtros fa-sharp fa-solid fa-filter"></i>
                 <div data-aos="slide-right" class="filterLeft" *ngIf="show">
                         <div class="input-group">
                                 <div class="form-check">
@@ -93,7 +86,7 @@
                                                         </button>   
                                                         <div class="btns-edit-prod" *ngIf="isLogin()" >
                                                                 <button class="btn btn-info" (click)="edit(p.ProductId)" 
-                                                                routerLink="/formulario" style="margin-right: 2%">
+                                                                [routerLink]="['/protected/formulario']" style="margin-right: 2%">
                                                                         Editar
                                                                 </button> 
                                                                 <button class="btn btn-danger" (click)="eliminar(p)">
@@ -130,7 +123,3 @@
         </div>    
 </div>
 
-<app-categories
- 
-  (closeModal)="setSelectedItem(null)"
-></app-categories>ok
