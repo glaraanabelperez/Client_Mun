@@ -10,13 +10,13 @@
             <div class="bloque1"> 
 
               <div class="form-group col-md-12">
-                <label for="titulo">Nombre</label>
-                <input maxlength="20" type="text" class="form-control" placeholder="Campo Obligatorio" [value]=""
-                formControlName="Name" [ngClass]="{'is-invalid': submitted && f.Name.errors}" >
-                <span style="font-size: 13px;">Maximo 20 caracteres</span>
+                <label for="titulo">Porcentaje</label>
+                <input type="text" class="form-control" placeholder="Campo Obligatorio" [value]="" 
+                formControlName="Amount" [ngClass]="{'is-invalid': submitted && f.Amount.errors}" >
+                <span style="font-size: 13px;">Solo numeros enteros</span>
               </div>
-              <div *ngIf="submitted && f.Name.errors" class="invalid-feedback">
-                <div *ngIf="f.Name.errors.required"> Por favor ingrese datos</div>
+              <div *ngIf="submitted && f.Amount.errors" class="invalid-feedback">
+                <div *ngIf="f.Amount.errors.required"> Por favor ingrese datos</div>
               </div>      
               <div class="modal-footer">
                 <button type="button" class="btn btn-danger" (click)="onSubmit()" style="margin-right: 5px;">Guardar</button>

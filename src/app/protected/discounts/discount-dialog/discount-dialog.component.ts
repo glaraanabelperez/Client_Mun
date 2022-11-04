@@ -33,8 +33,12 @@ import { DiscountService } from 'src/app/core/services/discount.service';
   ngOnInit(): void {
     this.uploadForm=this.formBuilder.group({
         DiscountId:[null],
-        Name:[null,[Validators.required]],    
+        Amount:[null, 
+          [ Validators.min(1), Validators.max(100), Validators.required,
+            Validators.pattern(/^\d+$/)]
+        ],    
     });
+
     this.editing=this.data!=null ? true: false
     this.editarPubliId(this.data)
   }
@@ -47,7 +51,7 @@ import { DiscountService } from 'src/app/core/services/discount.service';
 
   
   editarPubliId(e: DiscountModel){
-      this.uploadForm.controls.CategoryId.setValue(e.DiscountId );
+      this.uploadForm.controls.DiscountId.setValue(e.DiscountId );
       this.uploadForm.controls.Name.setValue(e.Name );
       window.scrollTo(0,0);
   }
@@ -59,16 +63,16 @@ import { DiscountService } from 'src/app/core/services/discount.service';
       return;
     }else{
       if(this.editing){
-        this.uploadCatgeory();
+        this.upload();
       }
       if(!this.editing){
-        this.insertCategory();
+        this.insert();
       }
     }
     this.editing=false;
   }
 
-  uploadCatgeory(){
+  upload(){
     this.discountService.update(this.uploadForm.value).subscribe(
       res=>{
         this.loadingService.setLoading(false);
@@ -82,7 +86,7 @@ import { DiscountService } from 'src/app/core/services/discount.service';
     );
   }
 
-  insertCategory(){
+  insert(){
     this.discountService.save(this.uploadForm.value).subscribe(
       res=>{
         this.loadingService.setLoading(false);

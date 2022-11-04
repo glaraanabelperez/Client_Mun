@@ -49,6 +49,8 @@ export const childrenRouteProducts:Routes=[
   {path: 'formulario',component: AddProduct,canActivate: [GuardsGuard]},
   {path: 'lista-productos', component:ListaProdAdmin},
   {path: 'categorias', component:CategoriesComponent},
+  {path: 'marcas', component:MarcasComponent},
+  {path: 'descuentos', component:DiscountComponent},
 ];
 
 const routes: Routes = [
