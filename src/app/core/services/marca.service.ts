@@ -21,10 +21,6 @@ constructor(private http: HttpClient) {
 }
 
 
-public getActiveMarcas(): Observable<MarcaModel[]> {
-  return this.http.get<MarcaModel []>(`${this.url}marca/listActive/`);
-}
-
 public getAllMarcas(): Observable<MarcaModel[]> {
   return this.http.get<MarcaModel []>(`${this.url}marca/list/`);
 }
@@ -33,8 +29,12 @@ public save(data:MarcaModel): Observable<any> {
   return this.http.put<any>(`${this.url}marca/`, data);
 }
 
-public update(marcaId:number, data:MarcaModel): Observable<any> {
-  return this.http.post<any>(`${this.url}marca/${marcaId}`, data);
+public update(data:MarcaModel): Observable<any> {
+  return this.http.post<any>(`${this.url}marca/${data.MarcaId}`, data);
+}
+
+public delete(marcaId:number): Observable<any> {
+  return this.http.delete(`${this.url}marca/${marcaId}`);
 }
   
 }

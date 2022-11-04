@@ -1,13 +1,13 @@
 <app-category-dialog
-  *ngIf="category!=null"
+  *ngIf="showModal"
   [data]="category"
-  (closeModal)="setSelectedItem(null)"
+  (closeModal)="showingModal(null)"
 ></app-category-dialog>
-<i class="btn-filtros fa-solid fa-plus" [routerLink]="['/protected/formulario']"  placement="right" ngbTooltip="Nueva Categoria"></i>
-
+<!-- <i class="btn-filtros fa-solid fa-plus"(click)="showingModal(null)" placement="right" ngbTooltip="Nueva Categoria"></i> -->
+<button type="button" class="btn-admin btn btn-danger" (click)="showingModal(null)"  ><p>+ categoria</p></button>
 <div class="card">
   <div class="modal-header">
-    <h5 class="modal-title">Tus categorias</h5>
+    <h3 class="modal-title">Tus categorias</h3>
   </div>
   <table class="table">
     <thead>
@@ -19,9 +19,9 @@
     <tbody>
       <tr *ngFor="let c of categories">
         <td>{{c.CategoryId}}</td>
-        <td>c.Name</td>
-        <td><i class="fa-sharp fa-solid fa-pencil" (click)="setSelectedItem(c)" style="cursor:pointer" ></i></td>
-        <td><i class="fa-sharp fa-solid fa-trash" (click)="deleteCategoria(c.CategroyId)" style="cursor:pointer" ></i></td>
+        <td>{{c.Name}}</td>
+        <td><i class="fa-sharp fa-solid fa-pencil" (click)="showingModal(c)" style="cursor:pointer" ></i></td>
+        <td><i class="fa-sharp fa-solid fa-trash" (click)="delete(c.CategroyId)" style="cursor:pointer" ></i></td>
       </tr>
     </tbody>
   </table>

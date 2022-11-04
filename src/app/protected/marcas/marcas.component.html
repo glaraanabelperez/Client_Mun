@@ -1,0 +1,28 @@
+<app-category-dialog
+  *ngIf="showModal"
+  [data]="marca"
+  (closeModal)="showingModal(null)"
+></app-category-dialog>
+<!-- <i class="btn-filtros fa-solid fa-plus"(click)="showingModal(null)" placement="right" ngbTooltip="Nueva Categoria"></i> -->
+<button type="button" class="btn-admin btn btn-danger" (click)="showingModal(null)"  ><p>+ Marcas</p></button>
+<div class="card">
+  <div class="modal-header">
+    <h3 class="modal-title">Tus Marcas</h3>
+  </div>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Identificador</th>
+        <th scope="col">Nombre de la Marca</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let c of marcas">
+        <td>{{c.MarcaId}}</td>
+        <td>{{c.Name}}</td>
+        <td><i class="fa-sharp fa-solid fa-pencil" (click)="showingModal(c)" style="cursor:pointer" ></i></td>
+        <td><i class="fa-sharp fa-solid fa-trash" (click)="delete(c.MarcaId)" style="cursor:pointer" ></i></td>
+      </tr>
+    </tbody>
+  </table>
+</div>

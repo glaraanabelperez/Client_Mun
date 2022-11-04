@@ -1,31 +1,30 @@
 import { Component, OnInit , Output, EventEmitter, ViewChild, ElementRef, Inject, Input} from '@angular/core';
 import { DOCUMENT } from '@angular/common';
-import { CategoryModel } from 'src/app/core/models/categoryModel';
 import { FormBuilder, Validators } from '@angular/forms';
-import { CatgeorieService } from 'src/app/core/services/categorie.service';
-import { MarcaService } from 'src/app/core/services/marca.service';
 import { LoadingService } from 'src/app/core/services/loading.service';
+import { DiscountModel } from 'src/app/core/models/discountModel';
+import { DiscountService } from 'src/app/core/services/discount.service';
 
 
 @Component({
-    selector: 'app-category-dialog',
-    templateUrl: './category-dialog.component.html',
-    styleUrls: ['./category-dialog.component.scss']
+    selector: 'app-discount-dialog',
+    templateUrl: './discount-dialog.component.html',
+    styleUrls: ['./discount-dialog.component.scss']
   })
 
-  export class CategoryDialogComponent
+  export class DiscountDialogComponent
   {
 
   public uploadForm: any;
   private editing: boolean;
 
-  @Input() data: CategoryModel;
+  @Input() data: DiscountModel;
   @Output() closeModal = new EventEmitter();
   
 
     constructor( 
       public loadingService:LoadingService, 
-      private categoireService:CatgeorieService,private marcaService:MarcaService,
+      private discountService:DiscountService,
       private formBuilder:FormBuilder, @Inject(DOCUMENT) private document: Document
     ){
   
@@ -33,7 +32,7 @@ import { LoadingService } from 'src/app/core/services/loading.service';
      
   ngOnInit(): void {
     this.uploadForm=this.formBuilder.group({
-        CategoryId:[null],
+        DiscountId:[null],
         Name:[null,[Validators.required]],    
     });
     this.editing=this.data!=null ? true: false
@@ -47,8 +46,8 @@ import { LoadingService } from 'src/app/core/services/loading.service';
   }
 
   
-  editarPubliId(e: CategoryModel){
-      this.uploadForm.controls.CategoryId.setValue(e.CategoryId );
+  editarPubliId(e: DiscountModel){
+      this.uploadForm.controls.CategoryId.setValue(e.DiscountId );
       this.uploadForm.controls.Name.setValue(e.Name );
       window.scrollTo(0,0);
   }
@@ -70,7 +69,7 @@ import { LoadingService } from 'src/app/core/services/loading.service';
   }
 
   uploadCatgeory(){
-    this.categoireService.uploadCategory(this.uploadForm.value).subscribe(
+    this.discountService.update(this.uploadForm.value).subscribe(
       res=>{
         this.loadingService.setLoading(false);
         alert('SE EDITO CON EXITO ');
@@ -84,7 +83,7 @@ import { LoadingService } from 'src/app/core/services/loading.service';
   }
 
   insertCategory(){
-    this.categoireService.insertCategory(this.uploadForm.value).subscribe(
+    this.discountService.save(this.uploadForm.value).subscribe(
       res=>{
         this.loadingService.setLoading(false);
         alert('SE GUARDO CON EXITO');
@@ -96,6 +95,8 @@ import { LoadingService } from 'src/app/core/services/loading.service';
       }
     );
   }
+
+
 
     
 }

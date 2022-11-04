@@ -1,31 +1,31 @@
 import { Component, OnInit , Output, EventEmitter, ViewChild, ElementRef, Inject, Input} from '@angular/core';
 import { DOCUMENT } from '@angular/common';
-import { CategoryModel } from 'src/app/core/models/categoryModel';
 import { FormBuilder, Validators } from '@angular/forms';
-import { CatgeorieService } from 'src/app/core/services/categorie.service';
 import { MarcaService } from 'src/app/core/services/marca.service';
 import { LoadingService } from 'src/app/core/services/loading.service';
+import { MarcaModel } from 'src/app/core/models/marcaModel';
+import { DiscountModel } from 'src/app/core/models/discountModel';
 
 
 @Component({
-    selector: 'app-category-dialog',
-    templateUrl: './category-dialog.component.html',
-    styleUrls: ['./category-dialog.component.scss']
+    selector: 'app-marca-dialog',
+    templateUrl: './marca-dialog.component.html',
+    styleUrls: ['./marca-dialog.component.scss']
   })
 
-  export class CategoryDialogComponent
+  export class MarcaDialogComponent
   {
 
   public uploadForm: any;
   private editing: boolean;
 
-  @Input() data: CategoryModel;
+  @Input() data: MarcaModel;
   @Output() closeModal = new EventEmitter();
   
 
     constructor( 
       public loadingService:LoadingService, 
-      private categoireService:CatgeorieService,private marcaService:MarcaService,
+      private marcaService:MarcaService,
       private formBuilder:FormBuilder, @Inject(DOCUMENT) private document: Document
     ){
   
@@ -33,7 +33,7 @@ import { LoadingService } from 'src/app/core/services/loading.service';
      
   ngOnInit(): void {
     this.uploadForm=this.formBuilder.group({
-        CategoryId:[null],
+        MarcaId:[null],
         Name:[null,[Validators.required]],    
     });
     this.editing=this.data!=null ? true: false
@@ -47,8 +47,8 @@ import { LoadingService } from 'src/app/core/services/loading.service';
   }
 
   
-  editarPubliId(e: CategoryModel){
-      this.uploadForm.controls.CategoryId.setValue(e.CategoryId );
+  editarPubliId(e: MarcaModel){
+      this.uploadForm.controls.MarcaId.setValue(e.MarcaId );
       this.uploadForm.controls.Name.setValue(e.Name );
       window.scrollTo(0,0);
   }
@@ -60,17 +60,17 @@ import { LoadingService } from 'src/app/core/services/loading.service';
       return;
     }else{
       if(this.editing){
-        this.uploadCatgeory();
+        this.upload();
       }
       if(!this.editing){
-        this.insertCategory();
+        this.insert();
       }
     }
     this.editing=false;
   }
 
-  uploadCatgeory(){
-    this.categoireService.uploadCategory(this.uploadForm.value).subscribe(
+  upload(){
+    this.marcaService.update(this.uploadForm.value).subscribe(
       res=>{
         this.loadingService.setLoading(false);
         alert('SE EDITO CON EXITO ');
@@ -83,11 +83,25 @@ import { LoadingService } from 'src/app/core/services/loading.service';
     );
   }
 
-  insertCategory(){
-    this.categoireService.insertCategory(this.uploadForm.value).subscribe(
+  insert(){
+    this.marcaService.save(this.uploadForm.value).subscribe(
       res=>{
         this.loadingService.setLoading(false);
         alert('SE GUARDO CON EXITO');
+        this.onCloseModal();
+      },
+      error=>{
+        this.loadingService.setLoading(false);
+        alert('EL USUARIO NO SE ENCUENTRA REGISTRADO');
+      }
+    );
+  }
+
+  delete(categoryId:number){
+    this.marcaService.delete(categoryId).subscribe(
+      res=>{
+        this.loadingService.setLoading(false);
+        alert('SE ELIMINO CON EXITO');
         this.onCloseModal();
       },
       error=>{

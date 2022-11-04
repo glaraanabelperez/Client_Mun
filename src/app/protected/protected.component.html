@@ -15,11 +15,11 @@
   <div *ngIf="loadingService.loading" class="spinner-border" role="status">
     <span class="sr-only">Loading...</span>
   </div>
-  <div class="iconsMenu" *ngIf="isLogin()">
-    <button type="button" class="btn btn-outline-danger"[routerLink]="['/protected/lista-productos']">Administrar productos</button>
-    <button type="button" class="btn btn-outline-danger" [routerLink]="['/protected/categorias']">Administrar categoriasnger</button>
-    <button type="button" class="btn btn-outline-danger" [routerLink]="['/protected/marcas']">Administrar marcas</button>
-    <button type="button" class="btn btn-outline-danger" [routerLink]="['/protected/descuentos']">Adm Descuentos</button>
+  <div class="menuAdmin" *ngIf="isLogin()">
+    <button type="button" class="btn btn-outline-danger"[routerLink]="['/protected/lista-productos']">Productos</button>
+    <button type="button" class="btn btn-outline-danger" [routerLink]="['/protected/categorias']">Categorias</button>
+    <button type="button" class="btn btn-outline-danger" [routerLink]="['/protected/marcas']">Marcas</button>
+    <button type="button" class="btn btn-outline-danger" [routerLink]="['/protected/descuentos']">Descuentos</button>
  </div>  
   <i class="fa-sharp fa-solid fa-backward"  (click)="goBack()" ngbTooltip="Volver"></i>
   <router-outlet></router-outlet>

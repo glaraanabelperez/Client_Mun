@@ -32,8 +32,12 @@ public save(data:DiscountModel): Observable<any> {
   return this.http.put<any>(`${this.url}discount/`, data);
 }
 
-public update(discountId:number, data:DiscountModel): Observable<any> {
-  return this.http.post<any>(`${this.url}discount/${discountId}`, data);
+public update(data:DiscountModel): Observable<any> {
+  return this.http.post<any>(`${this.url}discount/${data.DiscountId}`, data);
+}
+
+public delete(discountId:number): Observable<any> {
+  return this.http.delete(`${this.url}discount/${discountId}`);
 }
   
 }

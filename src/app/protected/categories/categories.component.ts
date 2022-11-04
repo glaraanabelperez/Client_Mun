@@ -18,21 +18,22 @@ import { LoadingService } from 'src/app/core/services/loading.service';
  
   public category: CategoryModel;
   public categories:CategoryModel[]=[];
+  public showModal:boolean;
 
   constructor(private router: Router,private categorieService:CatgeorieService, public loadingService:LoadingService, ){}
 
   ngOnInit(): void {
-    this.traerCategorias();
+    this.getCategorias();
   }
 
- 
-  setSelectedItem(item:CategoryModel) {
+  showingModal(item:CategoryModel):void{
     this.category = item;
-    console.log(this.category, "acacac")
-  }
+    this.showModal=this.showModal ? false : true;
+  } 
+
 
    //lista categorias
-   public traerCategorias(){
+   public getCategorias(){
     if(localStorage.getItem('codigo_usar')==undefined || localStorage.getItem('codigo_usar')==null){
       alert('VUELVA A INGRESAR USUARIO Y PASSWORD')
       this.router.navigateByUrl('login')
@@ -45,13 +46,13 @@ import { LoadingService } from 'src/app/core/services/loading.service';
         },
         error=>{
           this.loadingService.setLoading(false);
-          alert('EL USUARIO NO SE ENCUENTRA REGISTRADO');
+          alert('ERROR EN EL SERVIDOR');
         }
       );
 
   }
 
-  public deleteCategoria(categoryId:number){
+  public delete(categoryId:number){
     if(localStorage.getItem('codigo_usar')==undefined || localStorage.getItem('codigo_usar')==null){
       alert('VUELVA A INGRESAR USUARIO Y PASSWORD')
       this.router.navigateByUrl('login')
@@ -64,7 +65,7 @@ import { LoadingService } from 'src/app/core/services/loading.service';
         },
         error=>{
           this.loadingService.setLoading(false);
-          alert('EL USUARIO NO SE ENCUENTRA REGISTRADO');
+          alert('ERROR EN EL SERVIDOR');
         }
       );
 

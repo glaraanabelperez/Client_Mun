@@ -20,13 +20,14 @@ main{
         z-index: 999;
         color: gray;
     }
-    .iconsMenu{
-        margin-bottom: 1rem;
+    .menuAdmin{
         position: absolute;
         right: 15px;
-        top: 25%;
+        top: 35%;
         display: flex;
         flex-direction: column;
+        width: 10rem;
+        
         button{
             margin-bottom: 1rem;
         }

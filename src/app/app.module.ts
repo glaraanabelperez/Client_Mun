@@ -33,9 +33,11 @@ import { ListaProdAdmin } from './protected/lista-prod/lista-prod-admin';
 import { AddProduct } from './protected/add-prod/add-prod';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CategoriesComponent } from './protected/categories/categories.component';
-import { DiscountsComponent } from './protected/discounts/discounts.component';
 import { MarcasComponent } from './protected/marcas/marcas.component';
 import { CategoryDialogComponent } from './protected/categories/catgeory-dialog/categroy-dialog.component';
+import { DiscountComponent } from './protected/discounts/discounts.component';
+import { DiscountDialogComponent } from './protected/discounts/discount-dialog/discount-dialog.component';
+import { MarcaDialogComponent } from './protected/marcas/marca-dialog/marca-dialog.component';
 
 export const childrenRoute:Routes=[
 {path: '', redirectTo: 'home/:nombre', pathMatch:'full'},
@@ -80,9 +82,11 @@ const routes: Routes = [
     CabeceraMatizo,
     AddProduct,
     CategoriesComponent,
-    DiscountsComponent,
+    DiscountComponent,
     MarcasComponent,
-    CategoryDialogComponent
+    CategoryDialogComponent,
+    DiscountDialogComponent,
+    MarcaDialogComponent
   ],
 
   imports: [

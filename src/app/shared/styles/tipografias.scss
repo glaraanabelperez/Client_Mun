@@ -44,6 +44,8 @@ h1{
 h3 {
 	font-size: 1.2em;
   overflow-wrap: break-word;
+  color: $red;
+  font-weight: 600;
 }
 
 h4 {
@@ -138,6 +140,8 @@ form {
      text-overflow: clip;
    }
 }
+
+
  //-----------------------------MEDIA @QUERY
 @media only screen and (max-width: 760px) and (min-width: 300px) {
   h1{
