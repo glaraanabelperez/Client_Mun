@@ -1,8 +1,6 @@
 import { Component, OnInit , Input} from '@angular/core';
 import { AuthService } from '../../auth-services/auth.service';
 import { Observable, of as observableOf, Subject } from 'rxjs'; // since RxJs 6
-// import { ServiceMetodos } from 'src/app/core/servicios-generales/service-general.metodos';
-import { Negocio } from 'src/app/core/models/Negocio';
 
 
 @Component({
@@ -11,7 +9,6 @@ import { Negocio } from 'src/app/core/models/Negocio';
     styleUrls: ['./cabecera.component.scss']
   })
   export class CabeceraComponent implements OnInit {
-    @Input()negocio: Negocio;
     mostrar=false;
 
     constructor(public authService: AuthService) {

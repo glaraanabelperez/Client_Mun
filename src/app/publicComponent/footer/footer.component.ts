@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Negocio } from 'src/app/core/models/Negocio';
 
 @Component({
   selector: 'app-footer',
@@ -8,7 +7,6 @@ import { Negocio } from 'src/app/core/models/Negocio';
 })
 export class FooterComponent implements OnInit {
   fechaHoy: any;
-  @Input()negocio: Negocio;
 
   constructor( ) {
    }

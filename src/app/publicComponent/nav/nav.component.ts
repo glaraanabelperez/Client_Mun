@@ -1,8 +1,6 @@
 import { Component, Input, OnInit} from '@angular/core';
-import { Negocio } from 'src/app/core/models/Negocio';
-import { ServicePedidos } from 'src/app/core/servicios-pedidos/service-pedidos.service';
-import { CategoryModel } from 'src/app/core/models/categoryModel';
-import { ServiceGeneral } from '../../core/services/service-general.service';
+import { ServicePedidos } from 'src/app/publicComponent/products/orders/servicios-pedidos/service-pedidos.service';
+import { CategoryModel } from 'src/app/publicComponent/products/categories/models/categoryModel';
 
 
 @Component({
@@ -12,13 +10,12 @@ import { ServiceGeneral } from '../../core/services/service-general.service';
   })
 
   export class NavComponent implements OnInit {
-    @Input()negocio: Negocio;
     mostrarWhatsapp=false;
     total;
 
     categories:CategoryModel[];
     
-    constructor( public _servicioGeneral:ServiceGeneral, public service_pedidos: ServicePedidos){
+    constructor(public service_pedidos: ServicePedidos){
     }
 
     ngOnInit():void {

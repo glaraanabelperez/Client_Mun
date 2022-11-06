@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { ServiceGeneral } from 'src/app/core/services//service-general.service';
 
 @Component({
   selector: 'app-cabecera-matizo',

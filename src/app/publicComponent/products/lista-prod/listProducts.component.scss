@@ -1,0 +1,196 @@
+@import '../../../generalStyles/generalStyles.scss';
+
+
+.product_base{
+  display: flex;
+  flex-direction: row;
+
+}
+.btn-admin{
+  position: absolute;
+  right: 15px;
+  top: 25%;
+  display: flex;
+  flex-direction: column;
+  width: 10rem;
+  text-align: center;
+}
+.products_rigth{
+  width: 70%;
+}
+
+
+.input-group{
+  margin-top: 20px;
+  width: 99%;
+}
+
+.input-group-order{
+  position: absolute;
+  right:5%;
+  top:30%;
+  margin-top: 20px;
+
+}
+
+.page-item{
+  list-style: none;
+}
+
+form {
+  width: 20% !important;
+  label{
+    font-size: 1.2rem;
+  }
+}
+.pagination{
+  display: block;
+  .custom-select{
+    width: 15% !important;
+    display: block;
+    margin: auto;
+    text-align: center;
+    margin-bottom: 2%;
+  }
+}
+
+.pagination_buttons{
+  width: 60%;
+  margin: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.page-item{
+  margin-right: 15px;
+  p{
+    color: grey;
+  }
+  
+}
+
+.btns-edit-prod{
+  text-align: center;
+  padding: 10% 5% 5% 5%;
+  .btn{
+    .btn-danger{
+      color: #f1425d;
+    }
+    margin:0px auto;
+  }
+}
+
+
+
+/*********************************************/
+  /*COLORS*/
+/*********************************************/
+$colorBlue: #536dfe;
+$colorBlueLight: #536dfe;
+$colorBlueLighter: #6891fe;
+$colorBlueDark: #0d2660;
+$colorRaspberry: #f1425d;
+$colorBackground: #fff;
+
+
+body {
+  font-weight: 400;
+  font-size: 1rem;
+  min-width: 320px;
+  position: relative;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+
+
+.productCard_block {
+  position: relative;
+  margin: 190px auto 0;
+  //margin-top: 190px;
+  max-width: 35%;
+  min-height: 300px;
+  box-shadow: 0 5px 21px rgba(0, 0, 0, 0.08);
+  background-color: #fff;
+}
+
+
+  /*   RIGHT SIDE */
+  .productCard_rightSide {
+    position: relative;
+    padding:5%;
+    width: 100%;
+    min-height: 600px;
+  }
+
+  .sliderBlock_items__itemPhoto{
+    margin-bottom: 3%;
+  }
+
+
+  .block_model {
+    display: inline-block;
+    color: #263238;
+    font-size: 12px;
+    //line-height: 35px;
+    opacity: 0.9;
+  }
+
+  .block_name {
+    width: 100%;
+    color: #263238;
+    font-weight: 400;
+    line-height: 35px;
+
+    &__mainName {
+      margin: 0;
+      padding: 0;
+      font-size: 29px;
+    }
+    &__addName {
+      margin: 0;
+      padding: 0;
+      font-size: 24px;
+    }
+  }
+
+  //////// PRICE
+
+  .block_price {
+    margin-top: 29px;
+    width: 100%;
+    &__currency {
+      padding: 0;
+      margin: 0;
+      vertical-align: top;
+      color: $colorRaspberry;
+      font-size: 26px;
+      font-weight: 600;
+    }
+    &__shipping {
+
+      padding: 0;
+      margin: 0;
+      color: #A2A9AD;
+      font-size: 12px;
+    }
+  }
+
+
+
+
+  
+@media only screen and (max-width: 800px) and (min-width: 320px) {
+    .tarjetas{
+      width: 97%;
+      display: flex;
+      flex-direction: row;
+    }
+    .menuFilter{
+      display: block;
+    }
+}
+

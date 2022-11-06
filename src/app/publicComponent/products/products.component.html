@@ -1,0 +1,26 @@
+
+<app-cabecera-matizo></app-cabecera-matizo>
+<!--  procentaje -->
+<div class="bloque1">
+  <div class="form-group col-md-3">
+    <!-- <label for="titulo">Porcentaje</label>
+    <input maxlength="20" class="form-control" placeholder="Campo Obligatorio"
+    [(ngModel)]='pricePercent'
+    type="number" requerid > -->
+  </div>
+  <!-- <button class="add"><p style="padding-top: 10px;" (click)="changePrice()" type="submit" >GUARDAR</p></button> -->
+  <!-- <button class="add"><p style="padding-top: 10px;" (click)="clean()">CANCELAR</p></button> -->
+</div>
+<main class="jumbotron" >
+  <div *ngIf="loadingService.loading" class="spinner-border" role="status">
+    <span class="sr-only">Loading...</span>
+  </div>
+  <div class="menuAdmin" *ngIf="isLogin()">
+    <button type="button" class="btn btn-outline-danger"[routerLink]="['/productos/lista-productos']">Productos</button>
+    <button type="button" class="btn btn-outline-danger" [routerLink]="['/productos/categorias']">Categorias</button>
+    <button type="button" class="btn btn-outline-danger" [routerLink]="['/productos/marcas']">Marcas</button>
+    <button type="button" class="btn btn-outline-danger" [routerLink]="['/productos/descuentos']">Descuentos</button>
+ </div>  
+  <i class="fa-sharp fa-solid fa-backward"  (click)="goBack()" ngbTooltip="Volver"></i>
+  <router-outlet></router-outlet>
+</main>

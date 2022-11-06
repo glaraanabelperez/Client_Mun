@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ServicePedidos } from '../../core/servicios-pedidos/service-pedidos.service';
-import { Pedidos } from '../../core/models/Pedidos';
+import { ServicePedidos } from '../products/orders/servicios-pedidos/service-pedidos.service';
+import { Pedidos } from '../products/orders/models/Pedidos';
 import {Location} from '@angular/common';
 
 @Component({

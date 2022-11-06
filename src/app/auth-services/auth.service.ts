@@ -2,7 +2,6 @@ import { HttpClient } from '@angular/common/http';
 import { typeWithParameters } from '@angular/compiler/src/render3/util';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ServiceGeneral } from '../core/services/service-general.service';
 import { LoginRequest, LoginResponse } from './login';
 
 @Injectable({
@@ -14,7 +13,7 @@ export class AuthService {
   url='https://localhost:44372/api/';
   
 
-  constructor(private _service_g:ServiceGeneral, private http: HttpClient) { 
+  constructor(private http: HttpClient) { 
   }
 
  
