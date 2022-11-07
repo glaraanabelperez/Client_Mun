@@ -1,15 +1,15 @@
 import { Component, OnInit , Output, EventEmitter, ViewChild, ElementRef, Inject, Input, Query} from '@angular/core';
-import { Filter } from 'src/app/publicComponent/products/models/Filter';
-import { OrderField } from 'src/app/publicComponent/products/models/OrderField';
+import { Filter } from 'src/app/publicComponent/products/listProducts/models/Filter';
+import { OrderField } from 'src/app/publicComponent/products/listProducts/models/OrderField';
 import { Subscription } from 'rxjs';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/auth-services/auth.service';
-import { ProductModelDto } from 'src/app/publicComponent/products/models/productModelDto';
+import { ProductModelDto } from 'src/app/publicComponent/products/listProducts/models/productModelDto';
 import { CategoryModel } from '../categories/models/categoryModel';
 import { LoadingService } from 'src/app/services/loading.service';
 import { CatgeorieService } from '../categories/service/categorie.service';
-import { ProductService } from '../service/product.service';
+import { ProductService } from './service/product.service';
 
 
 @Component({
@@ -139,7 +139,7 @@ import { ProductService } from '../service/product.service';
         alert('VUELVA A INGRESAR USUARIO Y PASSWORD')
         this.router.navigateByUrl('login')
       }
-        this.categorieService.listCategories().subscribe(
+        this.categorieService.list().subscribe(
           res=>{
             this.categories=res;
             

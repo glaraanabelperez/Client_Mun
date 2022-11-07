@@ -27,11 +27,12 @@ import { ProductsComponent } from './publicComponent/products/products.component
 import { MarcaDialogComponent } from './publicComponent/products/marcas/marca-dialog/marca-dialog.component';
 import { DiscountDialogComponent } from './publicComponent/products/discounts/discount-dialog/discount-dialog.component';
 import { CategoryDialogComponent } from './publicComponent/products/categories/catgeory-dialog/categroy-dialog.component';
-import { ListProductsComponent } from './publicComponent/products/lista-prod/listProducts.component';
-import { ProductDialogComponent } from './publicComponent/products/lista-prod/add-prod/product-dialog.component';
+import { ListProductsComponent } from './publicComponent/products/listProducts/listProducts.component';
+import { ProductDialogComponent } from './publicComponent/products/listProducts/product/product.component';
 import { CategoriesComponent } from './publicComponent/products/categories/categories.component';
 import { MarcasComponent } from './publicComponent/products/marcas/marcas.component';
 import { DiscountsComponent } from './publicComponent/products/discounts/discounts.component';
+import { ImageDialogComponent } from './publicComponent/products/listProducts/image-dialog/image-dialog.component';
 
 
 
@@ -78,6 +79,7 @@ const routes: Routes = [
     CategoryDialogComponent,
     DiscountDialogComponent,
     MarcaDialogComponent,
+    ImageDialogComponent
   ],
 
   imports: [

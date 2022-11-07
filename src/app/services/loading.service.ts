@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
-import { QueryDataModel } from '../publicComponent/products/models/queryDatamodel';
+import { QueryDataModel } from '../publicComponent/products/listProducts/models/queryDatamodel';
 import { CategoryModel } from '../publicComponent/products/categories/models/categoryModel';
 
 @Injectable({

@@ -1,1 +1,200 @@
-/* No CSS *//*# sourceMappingURL=add-prod.css.map */
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@800&family=Oswald:wght@500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500&display=swap");
+* {
+  font-size: 15px;
+  font-family: "Quicksand", sans-serif;
+  letter-spacing: 1px;
+}
+
+.row {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+.tituloPrincipal {
+  font-size: 3rem;
+}
+
+h1 {
+  font-size: 1.6rem;
+  padding: 10px 0px 0px 0px;
+  display: block;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+h2 {
+  font-size: 1.4rem;
+  font-weight: bold;
+  letter-spacing: 0.1pc;
+}
+
+h3 {
+  font-size: 1.2em;
+  overflow-wrap: break-word;
+  color: #dc3545;
+  font-weight: 600;
+}
+
+h4 {
+  font-size: 1em;
+  overflow-wrap: break-word !important;
+}
+
+p {
+  margin: 0% !important;
+  width: 100%;
+  overflow-wrap: break-word !important;
+}
+
+.p-fondo {
+  font-size: 1.8rem;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+span {
+  font-size: 1rem;
+}
+
+.titulo-secciones {
+  font-weight: 600;
+  margin-bottom: 0px;
+  margin-left: 50px;
+}
+
+form label {
+  font-size: 0.8rem;
+}
+
+.tituloTarjeta {
+  margin-top: 5%;
+  display: block;
+  font-size: 1rem;
+  text-transform: uppercase;
+}
+
+.subTituloTarjeta {
+  margin: 0%;
+  display: block;
+  font-size: 1.2rem;
+  text-transform: lowercase;
+}
+
+.pTarjeta {
+  margin: 0%;
+  width: auto;
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-overflow: clip;
+}
+
+.btn-filtros {
+  border: #dc3545 1px solid;
+  border-radius: 5px;
+  margin-bottom: 1.5rem;
+  padding: 0.6rem;
+  cursor: pointer;
+  font-size: 30px;
+  color: #dc3545;
+}
+
+@media only screen and (max-width: 1024px) and (min-width: 764px) {
+  .tituloTarjeta {
+    margin-top: 15%;
+    display: block;
+    font-size: 1rem;
+    text-transform: uppercase;
+  }
+  .subTituloTarjeta {
+    margin: 0%;
+    display: block;
+    font-size: 1.8rem;
+    text-transform: lowercase;
+  }
+  .pTarjeta {
+    margin: 0%;
+    width: auto;
+    display: block;
+    font-size: 1.2rem;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-overflow: clip;
+  }
+}
+
+@media only screen and (max-width: 760px) and (min-width: 300px) {
+  h1 {
+    font-size: 17px;
+  }
+  .tituloTarjeta {
+    margin-top: 15%;
+    display: block;
+    font-size: 1.4rem;
+    text-transform: uppercase;
+  }
+  .subTituloTarjeta {
+    margin: 0%;
+    display: block;
+    font-size: 1.8rem;
+    text-transform: lowercase;
+  }
+  .pTarjeta {
+    margin: 0%;
+    width: auto;
+    display: block;
+    font-size: 1.2rem;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-overflow: clip;
+  }
+}
+
+app-marca-dialog {
+  position: absolute;
+  top: 15%;
+  width: 100%;
+  z-index: 999;
+}
+
+.btn-admin {
+  position: absolute;
+  right: 15px;
+  top: 25%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 10rem;
+  text-align: center;
+}
+
+table.table {
+  text-align: center;
+  margin: 5%;
+  background-color: whitesmoke;
+  margin: auto;
+  width: 100%;
+}
+
+.card {
+  width: 60%;
+  padding: 2%;
+  margin: auto;
+}
+
+.card .modal-header {
+  margin-bottom: 3rem;
+}
+/*# sourceMappingURL=marcas.component.css.map */

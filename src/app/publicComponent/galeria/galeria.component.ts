@@ -1,5 +1,5 @@
 import { Component,  OnInit} from '@angular/core';
-import { ProductModel } from 'src/app/publicComponent/products/models/productModel';
+import { ProductModel } from 'src/app/publicComponent/products/listProducts/models/productModel';
 import { ServicePedidos } from 'src/app/publicComponent/products/orders/servicios-pedidos/service-pedidos.service';
 
 

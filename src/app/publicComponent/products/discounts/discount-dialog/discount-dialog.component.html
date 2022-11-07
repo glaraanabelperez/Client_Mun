@@ -18,13 +18,12 @@
               <div *ngIf="submitted && f.Amount.errors" class="invalid-feedback">
                 <div *ngIf="f.Amount.errors.required"> Por favor ingrese datos</div>
               </div>      
-              <div class="modal-footer">
-                <button type="button" class="btn btn-danger" (click)="onSubmit()" style="margin-right: 5px;">Guardar</button>
-                <button type="button" class="btn btn-secondary" (click)="onCloseModal()" data-dismiss="modal">Cancelar</button>
-              </div> 
             </div>
           </form>
-
         </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" (click)="onSubmit()" style="margin-right: 5px;">Guardar</button>
+          <button type="button" class="btn btn-secondary" (click)="onCloseModal()" data-dismiss="modal">Cancelar</button>
+        </div> 
     </div>
 </div>

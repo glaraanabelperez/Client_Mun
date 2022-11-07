@@ -1,0 +1,59 @@
+  <!--  Formulario cargar product -->
+  <div class="conteiner2" >
+    <div class="card">
+      <div class="modal-header">
+        <h5 class="modal-title">Ingresar imagen</h5>
+        <button type="button" class="btn-close" aria-label="Close" (click)="onCloseModal()" >X</button>       
+      </div>
+      <div class="card-body" >
+        <form [formGroup]="uploadForm" #form>
+          <div class="bloque1"> 
+            <div class="form-colum">
+              <div class="form-group col-md-12">
+                <label for="Name">Selecciones una imagen</label>
+                <span style="color:red;" *ngIf="message">{{message}}</span>
+                <input #file type="file" accept='image/*' (change)="previsualizarImg(file.files)" />
+                <img *ngIf="showNewImage!=null; else editImage" [src]="showNewImage" height="200" >
+              </div>
+              <div *ngIf="showNewImage==null && editImage!=null">
+                <img height="180" [src]="'assets/'  +  editImage" >
+              </div>
+            </div> 
+
+            
+
+
+
+
+            <!-- <div class="form-group col-md-12">
+              <label for="nameImage"></label>
+              <br>
+              <span style="color:red;" *ngIf="message">{{message}}</span>
+              <input  #file type="file" accept='image/*' (change)="previsualizarImg(file.files)" />
+              <img *ngIf="showNewImage" [src]="showNewImage" height="200" >
+              <div *ngIf=" editImage && showNewImage==null">
+                <br>
+                <img height="180" [src]="'assets/'+ buisness +'/' +  editImage" >
+              </div>
+            </div>
+          </div> -->
+
+
+          </div>
+       </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" (click)="onSubmit()" style="margin-right: 5px;">Guardar</button>
+          <button type="button" class="btn btn-secondary" (click)="onCloseModal()" data-dismiss="modal">Cancelar</button>
+        </div> 
+    </div>
+</div>
+
+
+
+
+
+
+
+             
+            

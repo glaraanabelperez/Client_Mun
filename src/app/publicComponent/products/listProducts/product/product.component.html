@@ -1,0 +1,121 @@
+<app-image-dialog
+*ngIf="showModal"
+[data]="imageEdit"
+(closeModal)="showingModal(newImage)"
+></app-image-dialog>
+  <!--  Formulario cargar product -->
+  <div class="conteiner2" >
+    <div class="card">
+      <div class="modal-header">
+        <h5 class="modal-title">Tu producto</h5>
+        <button type="button" class="btn-close" aria-label="Close" [routerLink]="['/productos/lista-productos']">X</button>       
+      </div>
+      <div class="card-body" >
+          <form [formGroup]="uploadForm" #form>
+            <div class="bloque1"> 
+              <div class="row">
+                <div class="col form-group col-md-6">
+                  <label for="categorias">Categoria</label>
+                  <select formControlName="categoryId" class="form-control" [ngClass]="{'is-invalid': submitted && f.categoryId.errors}">
+                    <option selected value="null">Seleccionar</option>
+                    <option *ngFor="let c of categories" [value]="c.CategoryId">{{c.Name}}</option>               
+                  </select>
+                  <div *ngIf="submitted && f.categoryId" class="invalid-feedback">
+                    <div *ngIf="f.categoryId.errors?.required"> Por favor ingrese datos</div>
+                  </div>
+                </div> 
+                <div class="col form-group col-md-6">
+                  <label for="categorias">Marcas</label>
+                  <select formControlName="marcaId" class="form-control" [ngClass]="{'is-invalid': submitted && f.marcaId.errors}">
+                    <option selected value="null">Seleccionar</option>
+                    <option *ngFor="let m of marcas" [value]="m.MarcaId">{{m.Name}}</option>
+                    <div *ngIf="submitted && f.marcaId" class="invalid-feedback">
+                      <div *ngIf="f.marcaId.errors?.required"> Por favor ingrese datos</div>
+                    </div>
+                  </select>
+                </div> 
+              </div>
+              <div class="form-group col-md-13" *ngIf="discounts.length>0">
+                <label for="categorias">Descuentos</label>
+                <select formControlName="discountId" class="form-control">
+                  <option selected value="null">Seleccionar</option>
+                  <option *ngFor="let d of discounts" [value]="d.DiscountId">{{d.Amount}} %</option>
+                </select>
+              </div> 
+              <hr>
+              <div class="form-group col-md-13">
+                <label for="estado">Estado</label>
+                <select formControlName="state" class="form-control" [ngClass]="{'is-invalid': submitted && f.state.errors}">
+                  <option value="">Seleccionar</option>
+                  <option  [value]="item.valor" *ngFor="let item of state" >{{item.name}}</option>
+                  <div *ngIf="submitted && f.state.errors" class="invalid-feedback">
+                    <div *ngIf="f.state.errors.required"> Por favor Selecciones una opcion</div>
+                  </div>
+                </select>
+              </div>
+
+              <div class="form-group col-md-13">
+                <label for="titulo">Nombre</label>
+                <input maxlength="20" type="text" class="form-control" placeholder="Campo Obligatorio" [value]=""
+                formControlName="name" [ngClass]="{'is-invalid': submitted && f.name.errors}" >
+                <span style="font-size: 13px;">Maximo 20 caracteres</span>
+              </div>
+              <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                <div *ngIf="f.name.errors.required"> Por favor ingrese datos</div>
+              </div>      
+
+              <div class="form-group col-md-13">
+              <label for="description">Descripcion</label>
+              <textarea type="text" class="form-control" placeholder="Campo Obligatorio" [value]=""
+              formControlName="description" [ngClass]="{'is-invalid': submitted && f.description.errors}" ></textarea>
+              </div>
+              <div *ngIf="submitted && f.description.errors" class="invalid-feedback">
+                <div *ngIf="f.description.errors.required"> Por favor ingrese datos</div>
+              </div>
+
+
+            <div *ngIf="images.length>0; else chargeImages">
+              <div  *ngFor="let i of images" style="display: flex; flex-direction: row;">
+                <div class="itemPhoto">
+                  <img  [src]="'assets/' +  i.Name">
+                </div>
+                <i class="fa-solid fa-eye" (click)="showingModal(i)" ></i>
+              </div>
+            </div>
+            <ng-template #chargeImages><button  type="button" class="btn btn-danger" (click)="showingModal(null)">+ Imagen</button></ng-template>
+              
+              <br><br>
+              <div class="row">
+                <div class="form-group col-md-6">
+                  <label for="price">Precio</label>
+                  <input type="text" class="form-control" [value]="" formControlName="price"  >
+                  <div *ngIf="submitted && f.price.errors" class="invalid-feedback">
+                    <div *ngIf="f.price.errors.required"> Por favor ingrese los datos</div>
+                  </div>
+                  <div *ngIf="submitted && f.price.errors" class="invalid-feedback">
+                    <div *ngIf="f.price.errors.required"> Por favor ingrese los datos</div>
+                  </div>
+                </div>                
+                <div class="form-group col-md-6">
+                  <label for="productId">Codigo Producto</label>
+                  <input type="text" class="form-control" [value]="" formControlName="productId" >
+                 </div>
+              </div>
+              <div class="form-group col-md-12" style="margin: auto;">
+               <label for="featured">Destacada</label>
+               <select formControlName="featured" class="form-control" >
+                 <option selected value="">Seleccionar</option>
+                 <option  value="true" >Si</option>
+                 <option  value="false" >No</option>
+               </select>
+              </div><br><br>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-danger" (click)="onSubmit()" style="margin-right: 5px;">Guardar</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="limpiar()">Cancelar</button>
+              </div>
+            </div>
+          </form>
+
+        </div>
+    </div>
+</div>

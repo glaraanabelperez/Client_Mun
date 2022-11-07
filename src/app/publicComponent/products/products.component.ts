@@ -17,9 +17,7 @@ declare var $:any;
 export class ProductsComponent implements OnInit {
 
 
-  // @ViewChild(AddProduct) pup!: AddProduct;
-
-  constructor(public rout :Router, private _location: Location, 
+  constructor(private _location: Location, 
     public loadingService:LoadingService, public auth:AuthService) {
   }
 

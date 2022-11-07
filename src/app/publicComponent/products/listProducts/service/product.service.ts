@@ -29,16 +29,12 @@ public listAllProducts(f:Filter, o:OrderField, from:number, length:number, order
   data.length = length;
   data.order = o;
   data.orderAsc = orderAsce;
-
   return this.http.post<any []>(`${this.url}product`, data);
 }
 
 public getProduct(productId :number):Observable<ProductModel>{
-
   return this.http.get<any>(`${this.url}product/${productId}`);
 }
-
-
 
 
   

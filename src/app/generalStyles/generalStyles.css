@@ -23,7 +23,6 @@
 
 h1 {
   font-size: 1.6rem;
-  color: #282928;
   padding: 10px 0px 0px 0px;
   display: block;
   font-weight: 500;
@@ -32,7 +31,6 @@ h1 {
 
 h2 {
   font-size: 1.4rem;
-  color: #505e47;
   font-weight: bold;
   letter-spacing: 0.1pc;
 }
@@ -40,6 +38,8 @@ h2 {
 h3 {
   font-size: 1.2em;
   overflow-wrap: break-word;
+  color: #dc3545;
+  font-weight: 600;
 }
 
 h4 {
@@ -55,18 +55,15 @@ p {
 
 .p-fondo {
   font-size: 1.8rem;
-  color: #F5F5F5;
   font-weight: 500;
   text-transform: uppercase;
 }
 
 span {
   font-size: 1rem;
-  color: #004182;
 }
 
 .titulo-secciones {
-  color: #282928;
   font-weight: 600;
   margin-bottom: 0px;
   margin-left: 50px;
@@ -78,7 +75,6 @@ form label {
 
 .tituloTarjeta {
   margin-top: 5%;
-  color: #2ae999;
   display: block;
   font-size: 1rem;
   text-transform: uppercase;
@@ -86,7 +82,6 @@ form label {
 
 .subTituloTarjeta {
   margin: 0%;
-  color: #282928;
   display: block;
   font-size: 1.2rem;
   text-transform: lowercase;
@@ -102,17 +97,25 @@ form label {
   text-overflow: clip;
 }
 
+.btn-filtros {
+  border: #dc3545 1px solid;
+  border-radius: 5px;
+  margin-bottom: 1.5rem;
+  padding: 0.6rem;
+  cursor: pointer;
+  font-size: 30px;
+  color: #dc3545;
+}
+
 @media only screen and (max-width: 1024px) and (min-width: 764px) {
   .tituloTarjeta {
     margin-top: 15%;
-    color: #2ae999;
     display: block;
     font-size: 1rem;
     text-transform: uppercase;
   }
   .subTituloTarjeta {
     margin: 0%;
-    color: #282928;
     display: block;
     font-size: 1.8rem;
     text-transform: lowercase;
@@ -134,14 +137,12 @@ form label {
   }
   .tituloTarjeta {
     margin-top: 15%;
-    color: #2ae999;
     display: block;
     font-size: 1.4rem;
     text-transform: uppercase;
   }
   .subTituloTarjeta {
     margin: 0%;
-    color: #282928;
     display: block;
     font-size: 1.8rem;
     text-transform: lowercase;
@@ -156,4 +157,4 @@ form label {
     text-overflow: clip;
   }
 }
-/*# sourceMappingURL=tipografias.css.map */
+/*# sourceMappingURL=generalStyles.css.map */

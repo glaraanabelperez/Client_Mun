@@ -38,7 +38,7 @@ import { CategoryModel } from './models/categoryModel';
       alert('VUELVA A INGRESAR USUARIO Y PASSWORD')
       this.router.navigateByUrl('login')
     }
-      this.categorieService.listCategories().subscribe(
+      this.categorieService.list().subscribe(
         res=>{
           this.categories=res;
           this.loadingService.setLoading(false);
@@ -57,7 +57,7 @@ import { CategoryModel } from './models/categoryModel';
       alert('VUELVA A INGRESAR USUARIO Y PASSWORD')
       this.router.navigateByUrl('login')
     }
-      this.categorieService.deleteCategory(categoryId).subscribe(
+      this.categorieService.delete(categoryId).subscribe(
         res=>{
           this.loadingService.setLoading(false);
           alert('BIENVENIDO');

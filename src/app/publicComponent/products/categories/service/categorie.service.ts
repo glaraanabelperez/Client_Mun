@@ -1,10 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
-import { QueryDataModel } from '../../models/queryDatamodel';
+import { QueryDataModel } from '../../listProducts/models/queryDatamodel';
 import { CategoryModel } from '../models/categoryModel';
-import { OrderField } from '../../models/OrderField';
-import { Filter } from '../../models/Filter';
+import { OrderField } from '../../listProducts/models/OrderField';
+import { Filter } from '../../listProducts/models/Filter';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -23,7 +23,7 @@ constructor(private http: HttpClient) {
 
 
 
-public obtenerCategoria(categoryId:number): Observable<CategoryModel[]> {
+public get(categoryId:number): Observable<CategoryModel[]> {
   return this.http.get<CategoryModel []>(`${this.url}category/${categoryId}`);
 }
 
@@ -32,19 +32,19 @@ public obtenerCategoria(categoryId:number): Observable<CategoryModel[]> {
 // }
 
 
-public listCategories(): Observable<CategoryModel[]> {
+public list(): Observable<CategoryModel[]> {
   return this.http.get<CategoryModel []>(`${this.url}category/listActive/`);
 }
 
-public deleteCategory(categoryId: number): Observable<any> {
+public delete(categoryId: number): Observable<any> {
   return this.http.delete<any>(`${this.url}category/state/${categoryId}`);
 }
 
-public insertCategory(category:CategoryModel): Observable<any> {
+public insert(category:CategoryModel): Observable<any> {
   return this.http.put<any>(`${this.url}category`, category);
 }
 
-public uploadCategory(category:CategoryModel): Observable<any> {
+public upload(category:CategoryModel): Observable<any> {
   return this.http.post<any>(`${this.url}category/state/${category.CategoryId}`, category);
 }
   

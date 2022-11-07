@@ -25,7 +25,7 @@ import { LoadingService } from 'src/app/services/loading.service';
 
     constructor( 
       public loadingService:LoadingService, 
-      private categoireService:CatgeorieService,private marcaService:MarcaService,
+      private categoireService:CatgeorieService,
       private formBuilder:FormBuilder, @Inject(DOCUMENT) private document: Document
     ){
   
@@ -70,7 +70,7 @@ import { LoadingService } from 'src/app/services/loading.service';
   }
 
   uploadCatgeory(){
-    this.categoireService.uploadCategory(this.uploadForm.value).subscribe(
+    this.categoireService.upload(this.uploadForm.value).subscribe(
       res=>{
         this.loadingService.setLoading(false);
         alert('SE EDITO CON EXITO ');
@@ -84,7 +84,7 @@ import { LoadingService } from 'src/app/services/loading.service';
   }
 
   insertCategory(){
-    this.categoireService.insertCategory(this.uploadForm.value).subscribe(
+    this.categoireService.insert(this.uploadForm.value).subscribe(
       res=>{
         this.loadingService.setLoading(false);
         alert('SE GUARDO CON EXITO');

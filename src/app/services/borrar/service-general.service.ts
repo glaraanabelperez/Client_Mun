@@ -1,7 +1,6 @@
 // import { HttpClient } from '@angular/common/http';
 // import { Injectable } from '@angular/core';
 // import { BehaviorSubject, Observable, Subject } from 'rxjs';
-// import { CategoryModel } from 'src/app/core/models/categoryModel';
 
 // @Injectable({
 //   providedIn: 'root'
@@ -85,9 +84,7 @@
 //   borrarArchivoServidor(datos){
 //     return  this.http.post(`${this.url2}borrarArchivoServidor.php`, JSON.stringify(datos));
 //   }
-//   existeImgServidor(datos){
-//     return  this.http.post(`${this.url2}verificar_imagen_servidor.php`, datos);
-//   }
+
 //   guardarCarpeta(c){
 //     return  this.http.post(`${this.url2}carpeta.php`, JSON.stringify(c));
 //   }
