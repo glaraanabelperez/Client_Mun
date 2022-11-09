@@ -15,7 +15,6 @@ import { ImageTranser } from '../models/imagesTransferModel';
   export class ImageDialogComponent implements OnInit
   {
 
-  @Input() data: ProductImageModel;
   @Output() sendImage = new EventEmitter<ImageTranser>();
 
   public uploadForm: any;
@@ -25,7 +24,7 @@ import { ImageTranser } from '../models/imagesTransferModel';
   public message: string;
   public editImage: string;
 
-  constructor(private formBuilder:FormBuilder, public loadingService:LoadingService,public imageService:ImageService){
+  constructor( public formBuilder:FormBuilder, public loadingService:LoadingService,public imageService:ImageService){
     this.imageTranser=new ImageTranser();
   }
      
@@ -35,20 +34,20 @@ ngOnInit(): void {
     Name:[null],    
   });
 
-  if(this.data!=null){
-    this.editarPubliId(this.data)
-  }
+  // if(this.data!=null){
+  //   this.editarPubliId(this.data)
+  // }
 
 }
 onCloseModal(): void {
   this.sendImage.emit(this.imageTranser);
 }
 
-editarPubliId(e: ProductImageModel){
-  this.uploadForm.controls.ProductImageId.setValue(e.ProductImageId );
-  this.uploadForm.controls.Name.setValue(e.Name );
-  window.scrollTo(0,0);
-}
+// editarPubliId(e: ProductImageModel){
+//   this.uploadForm.controls.ProductImageId.setValue(e.ProductImageId );
+//   this.uploadForm.controls.Name.setValue(e.Name );
+//   window.scrollTo(0,0);
+// }
 
 guardarImagenEnFormGroup(files){
       let imagen = files[0];
@@ -73,11 +72,11 @@ verifyFileOnServer(files) {
     .subscribe(
       response => {
             this.guardarImagenEnFormGroup(files);
-            var fileReader=new FileReader();
-            fileReader.readAsDataURL(files[0]); 
-            fileReader.onload = (_event) => { 
-              this.imageTranser.arrayBuffer = fileReader.result;
-              this.imageTranser.file =files;
+            var fileReade=new FileReader();
+            fileReade.readAsDataURL(files[0]); 
+            // this.imageTranser.fileReade=fileReader
+            fileReade.onload = (_event) => { 
+              this.imageTranser.arrayBuffer = fileReade.result;  
             }
             this.imageTranser.file =files;
       },

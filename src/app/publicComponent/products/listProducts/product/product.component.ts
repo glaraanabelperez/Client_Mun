@@ -44,7 +44,7 @@ import { ImageTranser } from '../models/imagesTransferModel';
 
   public imagesToPreview: any []=[];
   showModal: boolean;
-  imageEdit: ProductImageModel;
+  imagesIndex: number;
 
 
 
@@ -170,21 +170,21 @@ import { ImageTranser } from '../models/imagesTransferModel';
     
     }
 
-    showingModal(sendImage:ImageTranser):void{
+    editImage(i:number){
+      this.showingModalImage(null);
+      this.imagesIndex=i;
+    }
 
+    showingModalImage(sendImage:ImageTranser):void{
       if(sendImage!=null){
-
-        // var reader = new FileReader();
-        // reader.readAsDataURL(sendImage.file[0]); 
-        // reader.onload = (_event) => { 
-        //   sendImage.arrayBuffer= reader.result;
-        // }
         this.serviceImage.imagesInsertList.push(sendImage);
-        if(this.imageEdit!=null){
-          this.serviceImage.imagesDeleteList.push(this.imageEdit);
+        if(this.imagesIndex!=null){
+          this.serviceImage.imagesDeleteList.push(this.images[this.imagesIndex]);
+          this.images.splice(this.imagesIndex, 1);
+          this.imagesIndex = null;
         }
       }
-      this.imageEdit = null;
+      
       this.showModal=this.showModal ? false : true;
       window.scroll(0,0);
     } 
@@ -221,7 +221,9 @@ import { ImageTranser } from '../models/imagesTransferModel';
   
     limpiar(){
       this.document.location.reload(); 
-      // this.router.navigate(['/protected']);
+      this.uploadForm.reset();
+      this.serviceImage.imagesDeleteList=[];
+      this.serviceImage.imagesInsertList=[];
     }
   
     editarPubliId(e: ProductModel){
@@ -239,7 +241,7 @@ import { ImageTranser } from '../models/imagesTransferModel';
    }
 
    public rsta;
- public guardarArchivoServidor(files){
+   public guardarArchivoServidor(files){
   let fileImg=new FormData();
   fileImg.append('file', files[0], files[0].name); 
   fileImg.append('carpeta', localStorage.getItem('username'))

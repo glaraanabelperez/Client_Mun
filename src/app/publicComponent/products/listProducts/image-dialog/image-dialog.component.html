@@ -16,9 +16,7 @@
                 <img *ngIf="this.imageTranser.arrayBuffer!=null; else editImage" [src]="this.imageTranser.arrayBuffer" height="200" >
 
               </div>
-              <div *ngIf="this.imageTranser.arrayBuffer==null && editImage!=null">
-                <img height="180" [src]="'assets/'  +  editImage" >
-              </div>
+              
             </div> 
 
             
