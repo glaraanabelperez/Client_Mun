@@ -4,6 +4,7 @@ import { ProductImageModel } from '../models/productImageModel';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ImageService } from '../service/imageService';
 import { LoadingService } from 'src/app/services/loading.service';
+import { ImageTranser } from '../models/imagesTransferModel';
 
 @Component({
     selector: 'app-image-dialog',
@@ -15,17 +16,18 @@ import { LoadingService } from 'src/app/services/loading.service';
   {
 
   @Input() data: ProductImageModel;
-  @Output() closeModal = new EventEmitter();
+  @Output() sendImage = new EventEmitter<ImageTranser>();
 
   public uploadForm: any;
   private editing: boolean;
 
-  public newImage: any;
-  public showNewImage: string | ArrayBuffer;
+  public imageTranser: ImageTranser;
   public message: string;
   public editImage: string;
 
-  constructor(private formBuilder:FormBuilder, public loadingService:LoadingService,public imageService:ImageService){}
+  constructor(private formBuilder:FormBuilder, public loadingService:LoadingService,public imageService:ImageService){
+    this.imageTranser=new ImageTranser();
+  }
      
 ngOnInit(): void {
   this.uploadForm=this.formBuilder.group({
@@ -39,7 +41,7 @@ ngOnInit(): void {
 
 }
 onCloseModal(): void {
-  this.closeModal.emit();
+  this.sendImage.emit(this.imageTranser);
 }
 
 editarPubliId(e: ProductImageModel){
@@ -49,7 +51,6 @@ editarPubliId(e: ProductImageModel){
 }
 
 guardarImagenEnFormGroup(files){
-  this.newImage=files;
       let imagen = files[0];
       this.uploadForm.controls['Name'].setValue(imagen ? imagen.name : ''); // 
 }
@@ -72,10 +73,14 @@ verifyFileOnServer(files) {
     .subscribe(
       response => {
             this.guardarImagenEnFormGroup(files);
-            var reader = new FileReader();
-            reader.readAsDataURL(files[0]); 
-            reader.onload = (_event) => { this.showNewImage = reader.result;
-        }},
+            var fileReader=new FileReader();
+            fileReader.readAsDataURL(files[0]); 
+            fileReader.onload = (_event) => { 
+              this.imageTranser.arrayBuffer = fileReader.result;
+              this.imageTranser.file =files;
+            }
+            this.imageTranser.file =files;
+      },
       error => {
         alert("Error en el servidor")
         return;

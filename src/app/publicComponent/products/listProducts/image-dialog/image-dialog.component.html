@@ -13,9 +13,10 @@
                 <label for="Name">Selecciones una imagen</label>
                 <span style="color:red;" *ngIf="message">{{message}}</span>
                 <input #file type="file" accept='image/*' (change)="previsualizarImg(file.files)" />
-                <img *ngIf="showNewImage!=null; else editImage" [src]="showNewImage" height="200" >
+                <img *ngIf="this.imageTranser.arrayBuffer!=null; else editImage" [src]="this.imageTranser.arrayBuffer" height="200" >
+
               </div>
-              <div *ngIf="showNewImage==null && editImage!=null">
+              <div *ngIf="this.imageTranser.arrayBuffer==null && editImage!=null">
                 <img height="180" [src]="'assets/'  +  editImage" >
               </div>
             </div> 
@@ -43,7 +44,7 @@
        </form>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-danger" (click)="onSubmit()" style="margin-right: 5px;">Guardar</button>
+          <button type="button" class="btn btn-danger" (click)="onCloseModal()" style="margin-right: 5px;">Guardar</button>
           <button type="button" class="btn btn-secondary" (click)="onCloseModal()" data-dismiss="modal">Cancelar</button>
         </div> 
     </div>

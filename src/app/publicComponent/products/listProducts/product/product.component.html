@@ -1,7 +1,7 @@
 <app-image-dialog
 *ngIf="showModal"
 [data]="imageEdit"
-(closeModal)="showingModal(newImage)"
+(sendImage)="showingModal($event)"
 ></app-image-dialog>
   <!--  Formulario cargar product -->
   <div class="conteiner2" >
@@ -73,8 +73,8 @@
                 <div *ngIf="f.description.errors.required"> Por favor ingrese datos</div>
               </div>
 
-
-            <div *ngIf="images.length>0; else chargeImages">
+            <!--Imagenes-->
+            <div>
               <div  *ngFor="let i of images" style="display: flex; flex-direction: row;">
                 <div class="itemPhoto">
                   <img  [src]="'assets/' +  i.Name">
@@ -82,7 +82,13 @@
                 <i class="fa-solid fa-eye" (click)="showingModal(i)" ></i>
               </div>
             </div>
-            <ng-template #chargeImages><button  type="button" class="btn btn-danger" (click)="showingModal(null)">+ Imagen</button></ng-template>
+              <div  *ngFor="let image of  this.serviceImage.imagesInsertList; let i=index" style="display: flex; flex-direction: row;">
+                <div class="itemPhoto">
+                  <img [src]="image.arrayBuffer" width="100">
+                </div>
+                <i class="fa-solid fa-trash" (click)="deleteSelectionImage(i)" ></i>
+              </div>
+            <button *ngIf="(images.length + this.serviceImage.imagesInsertList.length)<5" type="button" class="btn btn-danger" (click)="showingModal(null)">+ Imagen</button>
               
               <br><br>
               <div class="row">

@@ -14,6 +14,7 @@ import { ProductService } from '../service/product.service';
 import { MarcaService } from '../../marcas/service/marca.service';
 import { ImageService } from '../service/imageService';
 import { LoadingService } from 'src/app/services/loading.service';
+import { ImageTranser } from '../models/imagesTransferModel';
 
 
 
@@ -45,15 +46,14 @@ import { LoadingService } from 'src/app/services/loading.service';
   showModal: boolean;
   imageEdit: ProductImageModel;
 
-  imagesDeleteList: any []=[];
-  imagesInsertList: any []=[];
+
 
 
   
 
   constructor( 
       private productService:ProductService, 
-      private serviceImage:ImageService,
+      public serviceImage:ImageService,
       private categoireService:CatgeorieService,
       private marcaService:MarcaService,
       private discountService:DiscountService,
@@ -170,16 +170,28 @@ import { LoadingService } from 'src/app/services/loading.service';
     
     }
 
-    showingModal(item:ProductImageModel):void{
-      if(this.imageEdit!=null && item!=null){
-        this.imagesDeleteList.push(this.imageEdit);
-        this.imageEdit = null;
-        this.imagesInsertList.push(item);
+    showingModal(sendImage:ImageTranser):void{
+
+      if(sendImage!=null){
+
+        // var reader = new FileReader();
+        // reader.readAsDataURL(sendImage.file[0]); 
+        // reader.onload = (_event) => { 
+        //   sendImage.arrayBuffer= reader.result;
+        // }
+        this.serviceImage.imagesInsertList.push(sendImage);
+        if(this.imageEdit!=null){
+          this.serviceImage.imagesDeleteList.push(this.imageEdit);
+        }
       }
-      this.imageEdit = item;
+      this.imageEdit = null;
       this.showModal=this.showModal ? false : true;
       window.scroll(0,0);
     } 
+
+    deleteSelectionImage(i:number){
+      this.serviceImage.imagesInsertList.splice(i,1);
+    }
 
     getFecha(){
       var d = new Date();
