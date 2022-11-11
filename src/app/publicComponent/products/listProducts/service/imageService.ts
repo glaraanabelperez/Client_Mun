@@ -21,7 +21,7 @@ public get(productId:number):Observable<ProductImageModel[]>{
   return this.http.get<ProductImageModel[]>(`${this.url}images/${productId}`);
 }
 
-verifyFileOnServer(imageName:string):Observable<any>{
+public verifyFileOnServer(imageName:string):Observable<any>{
   var data:ProductImageModel=new ProductImageModel();
   data.Name=imageName.toString();
   return this.http.post<ProductImageModel>(`${this.url}images`, data);
@@ -40,10 +40,26 @@ public upload(productImage:ProductImageModel): Observable<any> {
 }
 
   //CONSULTAS SERVIDOR
-public  insertFileOnServer(image){
+public  insertFileOnServer(image): Observable<any>{
     return  this.http.post(`${this.url}images/server}`, image);
   }
 
+  public deleteImageServer(image:any) :Observable<any>{
+    return  this.http.post(`${this.url}images/server}`, image);
+  }
+
+  //observables encadenados
+  
+  // deleteImages(list:any[]) {
+  //   return this.http.get('/api/books/' + id).pipe(
+  //     switchMap((book: any) => this.http.get('/api/authors/' + book.author_id).pipe(
+  //       map((author: any) => {
+  //         book.author = author;
+  //         return book;
+  //       })
+  //     ))
+  //   );
+  // }
 
   
 }

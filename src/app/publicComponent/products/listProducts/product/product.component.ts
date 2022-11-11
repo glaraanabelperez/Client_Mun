@@ -26,7 +26,6 @@ import { ImageTranser } from '../models/imagesTransferModel';
 
   export class ProductDialogComponent implements OnInit {
 
-  // @Input() editProduct :Productos;
 
   public state: any[]=[{ valor:false, name:'Suspendido'}, { valor:true, name:'Activo'}];
   public uploadForm: any;
@@ -36,20 +35,12 @@ import { ImageTranser } from '../models/imagesTransferModel';
   public categories: CategoryModel[];
   public discounts: DiscountModel[]=[];
   public images: ProductImageModel []=[];
- 
-  private userId: string;
-  private today: string;
   
   private accionBtnFormulario: string;
 
-  public imagesToPreview: any []=[];
-  showModal: boolean;
-  imagesIndex: number;
+  public showModal: boolean;
+  public oldImageIndex: number;
 
-
-
-
-  
 
   constructor( 
       private productService:ProductService, 
@@ -83,16 +74,13 @@ import { ImageTranser } from '../models/imagesTransferModel';
 
     if(this.productService.productId!=null){
       this.accionBtnFormulario="editar"
-      this.getProducts(this.productService.productId);     
+      this.getProduct(this.productService.productId);     
       this.getImages(this.productService.productId);
     }else{
       this.accionBtnFormulario="nuevo";
     }
     
-    this.userId=localStorage.getItem('codigo_usar'); 
-    this.getFecha();
-
-    }
+  }
 
     get f(){ return this.uploadForm.controls;}
 
@@ -142,7 +130,7 @@ import { ImageTranser } from '../models/imagesTransferModel';
     
     }
 
-    getProducts(productId :number){
+    getProduct(productId :number){
       this.loadingService.setLoading(true);
       this.productService.getProduct(productId).subscribe(
         res=>{
@@ -171,31 +159,47 @@ import { ImageTranser } from '../models/imagesTransferModel';
     }
 
     editImage(i:number){
-      this.showingModalImage(null);
-      this.imagesIndex=i;
+      this.procesImages(null);
+      this.oldImageIndex=i;
     }
 
-    showingModalImage(sendImage:ImageTranser):void{
-      if(sendImage!=null){
-        this.serviceImage.imagesInsertList.push(sendImage);
-        if(this.imagesIndex!=null){
-          this.serviceImage.imagesDeleteList.push(this.images[this.imagesIndex]);
-          this.images.splice(this.imagesIndex, 1);
-          this.imagesIndex = null;
+    procesImages(newImage:ImageTranser):void{
+      if(newImage.file.size>0){
+        this.modifyImagenList(newImage, null, null);
+        if(this.oldImageIndex!=null){
+          this.modifyImagenList(null, this.images[this.oldImageIndex], null);
         }
       }
-      
       this.showModal=this.showModal ? false : true;
       window.scroll(0,0);
     } 
 
-    deleteSelectionImage(i:number){
-      this.serviceImage.imagesInsertList.splice(i,1);
+    modifyImagenList(newImage?:ImageTranser , oldImage? :ProductImageModel, deleteNewImage?:number){
+      if(newImage.file.size>0){
+        this.serviceImage.imagesInsertList.push(newImage);
+      }
+      if(oldImage){
+        this.serviceImage.imagesDeleteList.push(oldImage);
+        this.images.splice(this.oldImageIndex, 1);
+        this.oldImageIndex = null;
+      }
+      if(deleteNewImage){
+        this.serviceImage.imagesInsertList.splice(deleteNewImage,1);
+      }
+      
     }
 
-    getFecha(){
-      var d = new Date();
-      this.today = d.getFullYear() + "/" + (d.getMonth()+1) + "/" + d.getDate();
+    deleteImages(list:any[]){
+      list.forEach(element => {
+        this.serviceImage.delete(element)
+        .subscribe(
+          res=>{
+            console.log(res)
+          }, error =>{
+              console.log(error)
+          }
+        )
+      });
     }
 
     submitted=false;
@@ -204,10 +208,22 @@ import { ImageTranser } from '../models/imagesTransferModel';
       if(this.uploadForm.invalid){
         return;
       }else{
+        this.loadingService.setLoading(true);
         if(this.accionBtnFormulario=="editar"){
-            // this._service_protected.procesar(this.img_editar,this.imagenNueva_guardar, this.uploadForm.value );
-            // this._service_protected.editarDatos(this.uploadForm.value);
-            alert('Publicacion Editada');
+          this.deleteImages(this.serviceImage.imagesDeleteList);
+            // this.insertImages();
+            // this.productService.update(this.uploadForm.value)
+            // .subscribe(
+            //   res => {
+            //     this.loadingService.setLoading(false)
+            //     console.log(res)
+            //     alert('Publicacion Editada');
+            //   },
+            //   error => {
+            //     console.log(error)
+            //   }
+            // );
+            
         }
         if(this.accionBtnFormulario=="nuevo"){
             // this._service_protected.guardarArchivoServidor(this.imagenNueva_guardar);
@@ -220,7 +236,6 @@ import { ImageTranser } from '../models/imagesTransferModel';
     }
   
     limpiar(){
-      this.document.location.reload(); 
       this.uploadForm.reset();
       this.serviceImage.imagesDeleteList=[];
       this.serviceImage.imagesInsertList=[];
@@ -229,8 +244,8 @@ import { ImageTranser } from '../models/imagesTransferModel';
     editarPubliId(e: ProductModel){
       this.uploadForm.controls.productId.setValue(e.ProductId );
       this.uploadForm.controls.categoryId.setValue(e.CategoryId );
-      this.uploadForm.controls.marcaId.setValue(e.MarcaId );
-      this.uploadForm.controls.discountId.setValue(e.DiscountId );
+      this.uploadForm.controls.marcaId.setValue(e.MarcaId!=null ? e.MarcaId : null );
+      this.uploadForm.controls.discountId.setValue(e.DiscountId !=null ? e.DiscountId : null);
       this.uploadForm.controls.name.setValue(e.Name );
       this.uploadForm.controls.description.setValue(e.Description );
       this.uploadForm.controls.price.setValue(e.Price );
@@ -238,31 +253,31 @@ import { ImageTranser } from '../models/imagesTransferModel';
       this.uploadForm.controls.state.setValue(e.State );
 
       window.scrollTo(0,0);
-   }
+    }
 
    public rsta;
    public guardarArchivoServidor(files){
-  let fileImg=new FormData();
-  fileImg.append('file', files[0], files[0].name); 
-  fileImg.append('carpeta', localStorage.getItem('username'))
-  this.serviceImage.insertFileOnServer(fileImg)
-  .subscribe(
-    response => {
-      this.rsta = response; 
-      if(this.rsta <= 1){
-        alert("ERROR AL GUARDAR LA IMAGEN") 
-      }else{
-        if(this.rsta.code == 200 && this.rsta.status == "success"){
-          alert("LA IMEGEN SE SUBIO") 
-        }else{
-          alert("ERROR AL GUARDAR LA IMAGEN") 
-        }
-      }
-    },
-    error => {
-      alert("ERROR AL GUARDAR LA IMAGEN") 
-    });
-}
+     let fileImg=new FormData();
+     fileImg.append('file', files[0], files[0].name); 
+     fileImg.append('carpeta', localStorage.getItem('username'))
+     this.serviceImage.insertFileOnServer(fileImg)
+     .subscribe(
+        response => {
+          this.rsta = response; 
+          if(this.rsta <= 1){
+            alert("ERROR AL GUARDAR LA IMAGEN") 
+          }else{
+            if(this.rsta.code == 200 && this.rsta.status == "success"){
+                alert("LA IMEGEN SE SUBIO") 
+             }else{
+                 alert("ERROR AL GUARDAR LA IMAGEN") 
+             }
+           }
+        },
+        error => {
+            alert("ERROR AL GUARDAR LA IMAGEN") 
+        });
+    }
 
     
 }

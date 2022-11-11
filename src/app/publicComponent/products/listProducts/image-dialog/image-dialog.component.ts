@@ -1,7 +1,7 @@
-import { Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { ProductImageModel } from '../models/productImageModel';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ImageService } from '../service/imageService';
 import { LoadingService } from 'src/app/services/loading.service';
 import { ImageTranser } from '../models/imagesTransferModel';
@@ -16,6 +16,7 @@ import { ImageTranser } from '../models/imagesTransferModel';
   {
 
   @Output() sendImage = new EventEmitter<ImageTranser>();
+  @ViewChild('file') file: ElementRef;
 
   public uploadForm: any;
   private editing: boolean;
@@ -23,35 +24,30 @@ import { ImageTranser } from '../models/imagesTransferModel';
   public imageTranser: ImageTranser;
   public message: string;
   public editImage: string;
+  public Name:any;
 
   constructor( public formBuilder:FormBuilder, public loadingService:LoadingService,public imageService:ImageService){
     this.imageTranser=new ImageTranser();
   }
      
 ngOnInit(): void {
-  this.uploadForm=this.formBuilder.group({
-    ProductImageId:[null], 
-    Name:[null],    
-  });
-
-  // if(this.data!=null){
-  //   this.editarPubliId(this.data)
-  // }
-
 }
+
+
+clean(){
+  this.file.nativeElement.value = '';
+  this.imageTranser.arrayBuffer=null;
+}
+
 onCloseModal(): void {
   this.sendImage.emit(this.imageTranser);
 }
 
-// editarPubliId(e: ProductImageModel){
-//   this.uploadForm.controls.ProductImageId.setValue(e.ProductImageId );
-//   this.uploadForm.controls.Name.setValue(e.Name );
-//   window.scrollTo(0,0);
-// }
 
 guardarImagenEnFormGroup(files){
       let imagen = files[0];
-      this.uploadForm.controls['Name'].setValue(imagen ? imagen.name : ''); // 
+      // this.uploadForm.controls['Name'].setValue(imagen ? imagen.name : ''); // 
+      this.Name=imagen.name;
 }
 
 previsualizarImg(files){
@@ -86,51 +82,50 @@ verifyFileOnServer(files) {
       });
   return;
 }
-
  
-submitted=false;
-onSubmit(){
-  this.submitted=true;
-  if(this.uploadForm.invalid){
-    return;
-  }else{
-    if(this.editing){
-      this.upload();
-    }
-    if(!this.editing){
-      this.insert();
-    }
-  }
-  this.editing=false;
-}
+// submitted=false;
+// onSubmit(){
+//   this.submitted=true;
+//   if(this.uploadForm.invalid){
+//     return;
+//   }else{
+//     if(this.editing){
+//       this.upload();
+//     }
+//     if(!this.editing){
+//       this.insert();
+//     }
+//   }
+//   this.editing=false;
+// }
 
-upload(){
-  this.imageService.upload(this.uploadForm.value).subscribe(
-    res=>{
-      this.loadingService.setLoading(false);
-      alert('SE EDITO CON EXITO ');
-      this.onCloseModal();
-    },
-    error=>{
-      this.loadingService.setLoading(false);
-      alert('ERROR EN EL SERVIDOR');
-    }
-  );
-}
+// upload(){
+//   this.imageService.upload(this.uploadForm.value).subscribe(
+//     res=>{
+//       this.loadingService.setLoading(false);
+//       alert('SE EDITO CON EXITO ');
+//       this.onCloseModal();
+//     },
+//     error=>{
+//       this.loadingService.setLoading(false);
+//       alert('ERROR EN EL SERVIDOR');
+//     }
+//   );
+// }
 
-insert(){
-  this.imageService.insert(this.uploadForm.value).subscribe(
-    res=>{
-      this.loadingService.setLoading(false);
-      alert('SE GUARDO CON EXITO');
-      this.onCloseModal();
-    },
-    error=>{
-      this.loadingService.setLoading(false);
-      alert('EL USUARIO NO SE ENCUENTRA REGISTRADO');
-    }
-  );
-}
+// insert(){
+//   this.imageService.insert(this.uploadForm.value).subscribe(
+//     res=>{
+//       this.loadingService.setLoading(false);
+//       alert('SE GUARDO CON EXITO');
+//       this.onCloseModal();
+//     },
+//     error=>{
+//       this.loadingService.setLoading(false);
+//       alert('EL USUARIO NO SE ENCUENTRA REGISTRADO');
+//     }
+//   );
+// }
 
 
     

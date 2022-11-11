@@ -1,6 +1,6 @@
 <app-image-dialog
 *ngIf="showModal"
-(sendImage)="showingModalImage($event)"
+(sendImage)="procesImages($event)"
 ></app-image-dialog>
   <!--  Formulario cargar product -->
   <div class="conteiner2" >
@@ -73,22 +73,27 @@
               </div>
 
             <!--Imagenes-->
-            <div>
+            <div class="images">
               <div  *ngFor="let i of images" style="display: flex; flex-direction: row;">
                 <div class="itemPhoto">
-                  <img  [src]="'assets/' +  i.Name">
+                  <img   class="viewImg" [src]="'assets/' +  i.Name">
+                  <div class="btn-images" >
+                    <i class="fa-solid fa-pencil" (click)="editImage(i)" ></i>
+                    <i class="fa-solid fa-trash" (click)="modifyImagenList(null, i, null)" ></i>
+                  </div>
+                  
                 </div>
-                <i class="fa-solid fa-pencil" (click)="editImage(i)" ></i>
+                
               </div>
             </div>
               <div  *ngFor="let image of  this.serviceImage.imagesInsertList; let i=index" style="display: flex; flex-direction: row;">
                 <div class="itemPhoto">
-                  <img [src]="image.arrayBuffer" width="100">
+                  <img class="viewImg" [src]="image.arrayBuffer" >
                 </div>
                 <!--BTN Agregar Imagenes -->
-                <i class="fa-solid fa-trash" (click)="deleteSelectionImage(i)" ></i>
+                <i class="fa-solid fa-trash" (click)="modifyImagenList(null, null, i)"></i>
               </div>
-            <button *ngIf="(images.length + this.serviceImage.imagesInsertList.length)<5" type="button" class="btn btn-danger" (click)="showingModalImage(null)">+ Imagen</button>
+            <button *ngIf="(images.length + this.serviceImage.imagesInsertList.length)<5" type="button" class="btn btn-danger" (click)="procesImages(null)">+ Imagen</button>
             <!--Fin Imagenes -->
               <br><br>
               <div class="row">
