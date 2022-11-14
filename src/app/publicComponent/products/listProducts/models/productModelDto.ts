@@ -1,4 +1,4 @@
-export interface ProductModelDto{
+export interface ProductModelResponse{
     ProductId:number;
     CategoryName:string;
     MarcaName:string;
@@ -11,3 +11,5 @@ export interface ProductModelDto{
     PriceWithDiscount:number;
     ImageName:string;
 }
+
+

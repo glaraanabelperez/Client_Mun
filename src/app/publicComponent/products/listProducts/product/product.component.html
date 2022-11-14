@@ -1,5 +1,5 @@
 <app-image-dialog
-*ngIf="showModal"
+*ngIf="hiddeModal"
 (sendImage)="procesImages($event)"
 ></app-image-dialog>
   <!--  Formulario cargar product -->
@@ -79,7 +79,7 @@
                   <img   class="viewImg" [src]="'assets/' +  i.Name">
                   <div class="btn-images" >
                     <i class="fa-solid fa-pencil" (click)="editImage(i)" ></i>
-                    <i class="fa-solid fa-trash" (click)="modifyImagenList(null, i, null)" ></i>
+                    <i class="fa-solid fa-trash" (click)="putOffOldImage_List(i)" ></i>
                   </div>
                   
                 </div>
@@ -91,7 +91,7 @@
                   <img class="viewImg" [src]="image.arrayBuffer" >
                 </div>
                 <!--BTN Agregar Imagenes -->
-                <i class="fa-solid fa-trash" (click)="modifyImagenList(null, null, i)"></i>
+                <i class="fa-solid fa-trash" (click)="procesImages(i)"></i>
               </div>
             <button *ngIf="(images.length + this.serviceImage.imagesInsertList.length)<5" type="button" class="btn btn-danger" (click)="procesImages(null)">+ Imagen</button>
             <!--Fin Imagenes -->

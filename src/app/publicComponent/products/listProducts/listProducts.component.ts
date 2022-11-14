@@ -5,11 +5,11 @@ import { Subscription } from 'rxjs';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/auth-services/auth.service';
-import { ProductModelDto } from 'src/app/publicComponent/products/listProducts/models/productModelDto';
 import { CategoryModel } from '../categories/models/categoryModel';
 import { LoadingService } from 'src/app/services/loading.service';
 import { CatgeorieService } from '../categories/service/categorie.service';
 import { ProductService } from './service/product.service';
+import { ProductModelResponse } from './models/productModelDto';
 
 
 @Component({
@@ -32,7 +32,7 @@ import { ProductService } from './service/product.service';
   // }
     public user;
 
-    public products:ProductModelDto[]=[];
+    public products:ProductModelResponse[]=[];
     public categories:CategoryModel[];
     // public imgDefecto:string;
 
@@ -101,7 +101,7 @@ import { ProductService } from './service/product.service';
         this.productService.listAllProducts(this.filter, this.order, this.from, this.itemsPerPage, this.orderAsc).subscribe(
           res=>{
             this.products=[];
-            this.products=res['Data'] as ProductModelDto [];
+            this.products=res['Data'] as ProductModelResponse [];
             this.recordCount=res['RecordsCount'];
             this.setTotalPages();
             this.loadingService.setLoading(false);

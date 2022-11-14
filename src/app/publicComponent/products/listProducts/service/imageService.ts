@@ -27,12 +27,12 @@ public verifyFileOnServer(imageName:string):Observable<any>{
   return this.http.post<ProductImageModel>(`${this.url}images`, data);
 }
 
-public delete(productImage: number): Observable<any> {
-  return this.http.delete<any>(`${this.url}category/state/${productImage}`);
+public delete(list:ProductImageModel[]): Observable<any> {
+  return this.http.delete<any>(`${this.url}category/state/${list}`);
 }
   
-public insert(productImage:ProductImageModel): Observable<any> {
-  return this.http.put<any>(`${this.url}images`, productImage);
+public insert(imageTransfer:any, productId: number): Observable<any> {
+  return this.http.put<any>(`${this.url}insert_Image/${productId}`, imageTransfer);
 }
   
 public upload(productImage:ProductImageModel): Observable<any> {

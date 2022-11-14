@@ -36,6 +36,14 @@ public getProduct(productId :number):Observable<ProductModel>{
   return this.http.get<any>(`${this.url}product/${productId}`);
 }
 
+public update(product :ProductModel):Observable<any>{
+  return this.http.put<any>(`${this.url}product`, product);
+}
+
+public insert(product :ProductModel):Observable<any>{
+  return this.http.put<any>(`${this.url}product`, product);
+}
+
 
   
 }

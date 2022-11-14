@@ -40,7 +40,7 @@ clean(){
 }
 
 onCloseModal(): void {
-  this.sendImage.emit(this.imageTranser);
+  this.sendImage.emit(this.imageTranser.arrayBuffer!=null ? this.imageTranser : null);
 }
 
 

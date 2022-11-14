@@ -1,4 +1,4 @@
-import { Component, OnInit , Output, EventEmitter, ViewChild, ElementRef, Inject, Input} from '@angular/core';
+import { Component, OnInit , Output, EventEmitter, ViewChild, ElementRef, Inject, Input, ChangeDetectorRef} from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 // import { ServiceMetodos } from 'src/app/core/servicios-generales/service-general.metodos';
 import { FormBuilder, Validators } from '@angular/forms';
@@ -38,7 +38,7 @@ import { ImageTranser } from '../models/imagesTransferModel';
   
   private accionBtnFormulario: string;
 
-  public showModal: boolean;
+  public hiddeModal: boolean;
   public oldImageIndex: number;
 
 
@@ -49,12 +49,14 @@ import { ImageTranser } from '../models/imagesTransferModel';
       private marcaService:MarcaService,
       private discountService:DiscountService,
       private loadingService:LoadingService,  
-      private formBuilder:FormBuilder, @Inject(DOCUMENT) private document: Document
+      private formBuilder:FormBuilder, @Inject(DOCUMENT) private document: Document,
+      private cdRef:ChangeDetectorRef
     ){
   }
      
   ngOnInit(): void {
 
+    
     this.getCategories(); 
     this.getMarcas(); 
     this.getActiveDiscounts(); 
@@ -81,6 +83,7 @@ import { ImageTranser } from '../models/imagesTransferModel';
     }
     
   }
+
 
     get f(){ return this.uploadForm.controls;}
 
@@ -163,35 +166,33 @@ import { ImageTranser } from '../models/imagesTransferModel';
       this.oldImageIndex=i;
     }
 
-    procesImages(newImage:ImageTranser):void{
-      if(newImage.file.size>0){
-        this.modifyImagenList(newImage, null, null);
+    procesImages(newImage?:ImageTranser):void{
+      if(newImage!=null && newImage.arrayBuffer!=null){
+        this.addNewImage_List(newImage);
         if(this.oldImageIndex!=null){
-          this.modifyImagenList(null, this.images[this.oldImageIndex], null);
+          this.putOffOldImage_List(this.images[this.oldImageIndex]);
         }
       }
-      this.showModal=this.showModal ? false : true;
+      this.hiddeModal=this.hiddeModal ? false : true;
       window.scroll(0,0);
     } 
 
-    modifyImagenList(newImage?:ImageTranser , oldImage? :ProductImageModel, deleteNewImage?:number){
-      if(newImage.file.size>0){
-        this.serviceImage.imagesInsertList.push(newImage);
-      }
-      if(oldImage){
-        this.serviceImage.imagesDeleteList.push(oldImage);
-        this.images.splice(this.oldImageIndex, 1);
-        this.oldImageIndex = null;
-      }
-      if(deleteNewImage){
-        this.serviceImage.imagesInsertList.splice(deleteNewImage,1);
-      }
-      
+    addNewImage_List(newImage:ImageTranser){
+      this.serviceImage.imagesInsertList.push(newImage);
     }
 
-    deleteImages(list:any[]){
-      list.forEach(element => {
-        this.serviceImage.delete(element)
+    putOffOldImage_List(oldImage :ProductImageModel){
+      this.serviceImage.imagesDeleteList.push(oldImage);
+        this.images.splice(this.oldImageIndex, 1);
+        this.oldImageIndex = null;
+    }
+
+    putOffNewImage_List(deleteNewImage:number){
+     this.serviceImage.imagesInsertList.splice(deleteNewImage,1);
+    }
+
+    deleteImagesServer(image){
+        this.serviceImage.delete(image)
         .subscribe(
           res=>{
             console.log(res)
@@ -199,40 +200,65 @@ import { ImageTranser } from '../models/imagesTransferModel';
               console.log(error)
           }
         )
-      });
     }
+
+    insertImage(list:ImageTranser [], productId:number){
+      const formData = new FormData();
+      formData.append('file', list[0].file);
+      formData.append('file2', list[0].file[0], list[0].file[0].name); 
+        this.serviceImage.insert(formData, productId)
+        .subscribe(
+          res=>{
+            console.log(res)
+          }, error =>{
+              console.log(error)
+          }
+        )
+    }
+
+    
 
     submitted=false;
     onSubmit(){
-      this.submitted=true;
-      if(this.uploadForm.invalid){
-        return;
-      }else{
-        this.loadingService.setLoading(true);
-        if(this.accionBtnFormulario=="editar"){
-          this.deleteImages(this.serviceImage.imagesDeleteList);
-            // this.insertImages();
-            // this.productService.update(this.uploadForm.value)
-            // .subscribe(
-            //   res => {
-            //     this.loadingService.setLoading(false)
-            //     console.log(res)
-            //     alert('Publicacion Editada');
-            //   },
-            //   error => {
-            //     console.log(error)
-            //   }
-            // );
+      // this.submitted=true;
+      // if(this.uploadForm.invalid){
+      //   return;
+      // }else{
+      //   this.loadingService.setLoading(true);
+      //   if(this.accionBtnFormulario=="editar"){
+      //       this.productService.update(this.uploadForm.value)
+      //       .subscribe(
+      //         res => {
+      //           this.loadingService.setLoading(false)
+      //           console.log(res)
+      //           alert('Publicacion Editada');
+      //         },
+      //         error => {
+      //           console.log(error)
+      //         }
+      //       );
             
-        }
+      //   }
         if(this.accionBtnFormulario=="nuevo"){
-            // this._service_protected.guardarArchivoServidor(this.imagenNueva_guardar);
-          // this._service_protected.insertarDatos(this.uploadForm.value);
-          alert('Publicacion Cargada');
-        }
-      }
-      this.accionBtnFormulario="nuevo";
-      this.limpiar();
+          this.insertImage(this.serviceImage.imagesInsertList, 2);
+          // alert('Publicacion Cargada');
+          // this.productService.insert(this.uploadForm.value)
+          //   .subscribe(
+          //     res => {
+          //       this.loadingService.setLoading(false)
+          //       console.log(res)
+          //       //llamada encadenada
+          //       this.insertImage(this.serviceImage.imagesInsertList, 2);
+          //       alert('Publicacion Editada');
+          //     },
+          //     error => {
+          //       console.log(error)
+          //     }
+          //   );
+         }
+      // }
+      // this.accionBtnFormulario="nuevo";
+      // this.limpiar();
     }
   
     limpiar(){
