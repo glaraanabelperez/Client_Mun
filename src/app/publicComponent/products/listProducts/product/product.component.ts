@@ -15,7 +15,8 @@ import { MarcaService } from '../../marcas/service/marca.service';
 import { ImageService } from '../service/imageService';
 import { LoadingService } from 'src/app/services/loading.service';
 import { ImageTranser } from '../models/imagesTransferModel';
-
+import { Observable, pipe } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
 
 
 @Component({
@@ -179,6 +180,7 @@ import { ImageTranser } from '../models/imagesTransferModel';
 
     addNewImage_List(newImage:ImageTranser){
       this.serviceImage.imagesInsertList.push(newImage);
+      console.log(this.serviceImage.imagesInsertList)
     }
 
     putOffOldImage_List(oldImage :ProductImageModel){
@@ -202,63 +204,80 @@ import { ImageTranser } from '../models/imagesTransferModel';
         )
     }
 
-    insertImage(list:ImageTranser [], productId:number){
-      const formData = new FormData();
-      formData.append('file', list[0].file);
-      formData.append('file2', list[0].file[0], list[0].file[0].name); 
-        this.serviceImage.insert(formData, productId)
-        .subscribe(
-          res=>{
-            console.log(res)
-          }, error =>{
-              console.log(error)
-          }
-        )
-    }
+    // insertImage(list:ImageTranser [], productId:number){
+    //   const formData = new FormData();
+    //   formData.append('file', list[0].file);
+    //   formData.append('file2', list[0].file[0], list[0].file[0].name); 
+    //     this.serviceImage.insert(formData, productId)
+    //     .subscribe(
+    //       res=>{
+    //         console.log(res)
+    //       }, error =>{
+    //           console.log(error)
+    //       }
+    //     )
+    // }
 
-    
+    appendImages(list:ImageTranser []):FormData{
+      const formData = new FormData();
+      list.forEach(element => {
+        formData.append('file', list[0].file);
+        formData.append('file', element.file[0], element.file[0].name); 
+      });
+      return formData;
+    }
 
     submitted=false;
     onSubmit(){
-      // this.submitted=true;
-      // if(this.uploadForm.invalid){
-      //   return;
-      // }else{
-      //   this.loadingService.setLoading(true);
-      //   if(this.accionBtnFormulario=="editar"){
-      //       this.productService.update(this.uploadForm.value)
-      //       .subscribe(
-      //         res => {
-      //           this.loadingService.setLoading(false)
-      //           console.log(res)
-      //           alert('Publicacion Editada');
-      //         },
-      //         error => {
-      //           console.log(error)
-      //         }
-      //       );
-            
-      //   }
+      this.submitted=true;
+      if(this.uploadForm.invalid){
+        return;
+      }else{
+        this.loadingService.setLoading(true);
+        // var formData=this.appendImages(this.serviceImage.imagesInsertList);
+        const formData = new FormData();
+        // this.serviceImage.imagesInsertList.forEach(element => {
+          console.log(this.serviceImage.imagesInsertList, "acacaca");
+          formData.append('file', this.serviceImage.imagesInsertList[0].file);
+          formData.append('file2', this.serviceImage.imagesInsertList[0].file[0], this.serviceImage.imagesInsertList[0].file[0].name); 
+        // });
         if(this.accionBtnFormulario=="nuevo"){
-          this.insertImage(this.serviceImage.imagesInsertList, 2);
-          // alert('Publicacion Cargada');
-          // this.productService.insert(this.uploadForm.value)
-          //   .subscribe(
-          //     res => {
-          //       this.loadingService.setLoading(false)
-          //       console.log(res)
-          //       //llamada encadenada
-          //       this.insertImage(this.serviceImage.imagesInsertList, 2);
-          //       alert('Publicacion Editada');
-          //     },
-          //     error => {
-          //       console.log(error)
-          //     }
-          //   );
-         }
-      // }
-      // this.accionBtnFormulario="nuevo";
-      // this.limpiar();
+          this.productService.insert(this.uploadForm.value).pipe(
+            switchMap(productId=> {
+             
+              return this.serviceImage.insert(formData, productId);
+            })
+           ).subscribe(result => console.log(result));
+      
+           
+            // this.productService.update(this.uploadForm.value, formdata)
+            // .subscribe(
+            //   res => {
+            //     this.loadingService.setLoading(false)
+            //     console.log(res)
+            //     alert('Publicacion Editada');
+            //   },
+            //   error => {
+            //     console.log(error)
+            //   }
+            // );
+            
+        }
+        // if(this.accionBtnFormulario=="nuevo"){
+        //   this.productService.insert(this.uploadForm.value, formdata)
+        //     .subscribe(
+        //       res => {
+        //         this.loadingService.setLoading(false)
+        //         alert('Publicacion Editada');
+        //       },
+        //       error => {
+        //         console.log(error)
+        //       }
+        //     );
+        //  }
+      }
+      this.accionBtnFormulario="nuevo";
+      this.limpiar();
     }
   
     limpiar(){
@@ -281,31 +300,30 @@ import { ImageTranser } from '../models/imagesTransferModel';
       window.scrollTo(0,0);
     }
 
-   public rsta;
-   public guardarArchivoServidor(files){
-     let fileImg=new FormData();
-     fileImg.append('file', files[0], files[0].name); 
-     fileImg.append('carpeta', localStorage.getItem('username'))
-     this.serviceImage.insertFileOnServer(fileImg)
-     .subscribe(
-        response => {
-          this.rsta = response; 
-          if(this.rsta <= 1){
-            alert("ERROR AL GUARDAR LA IMAGEN") 
-          }else{
-            if(this.rsta.code == 200 && this.rsta.status == "success"){
-                alert("LA IMEGEN SE SUBIO") 
-             }else{
-                 alert("ERROR AL GUARDAR LA IMAGEN") 
-             }
-           }
-        },
-        error => {
-            alert("ERROR AL GUARDAR LA IMAGEN") 
-        });
-    }
+  //  public rsta;
+  //  public guardarArchivoServidor(files){
+  //    let fileImg=new FormData();
+  //    fileImg.append('file', files[0], files[0].name); 
+  //    fileImg.append('carpeta', localStorage.getItem('username'))
+  //    this.serviceImage.insertFileOnServer(fileImg)
+  //    .subscribe(
+  //       response => {
+  //         this.rsta = response; 
+  //         if(this.rsta <= 1){
+  //           alert("ERROR AL GUARDAR LA IMAGEN") 
+  //         }else{
+  //           if(this.rsta.code == 200 && this.rsta.status == "success"){
+  //               alert("LA IMEGEN SE SUBIO") 
+  //            }else{
+  //                alert("ERROR AL GUARDAR LA IMAGEN") 
+  //            }
+  //          }
+  //       },
+  //       error => {
+  //           alert("ERROR AL GUARDAR LA IMAGEN") 
+  //       });
+  //   }
 
     
 }
-  
   

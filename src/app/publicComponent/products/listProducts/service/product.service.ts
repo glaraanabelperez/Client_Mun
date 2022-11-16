@@ -41,7 +41,7 @@ public update(product :ProductModel):Observable<any>{
 }
 
 public insert(product :ProductModel):Observable<any>{
-  return this.http.put<any>(`${this.url}product`, product);
+  return this.http.post<any>(`${this.url}product/insert`, product );
 }
 
 

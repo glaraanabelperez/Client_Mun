@@ -31,18 +31,18 @@ public delete(list:ProductImageModel[]): Observable<any> {
   return this.http.delete<any>(`${this.url}category/state/${list}`);
 }
   
-public insert(imageTransfer:any, productId: number): Observable<any> {
-  return this.http.put<any>(`${this.url}insert_Image/${productId}`, imageTransfer);
+public insert(formData:any, productId: number): Observable<any> {
+  return this.http.put<any>(`${this.url}insert_Image/${productId}`, formData);
 }
   
-public upload(productImage:ProductImageModel): Observable<any> {
-  return this.http.post<any>(`${this.url}images/state/${productImage.ProductImageId}`, productImage);
-}
+// public upload(productImage:ProductImageModel): Observable<any> {
+//   return this.http.post<any>(`${this.url}images/state/${productImage.ProductImageId}`, productImage);
+// }
 
   //CONSULTAS SERVIDOR
-public  insertFileOnServer(image): Observable<any>{
-    return  this.http.post(`${this.url}images/server}`, image);
-  }
+// public  insertFileOnServer(image): Observable<any>{
+//     return  this.http.post(`${this.url}images/server}`, image);
+//   }
 
   public deleteImageServer(image:any) :Observable<any>{
     return  this.http.post(`${this.url}images/server}`, image);
