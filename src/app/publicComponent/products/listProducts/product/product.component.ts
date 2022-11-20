@@ -15,7 +15,6 @@ import { MarcaService } from '../../marcas/service/marca.service';
 import { ImageService } from '../service/imageService';
 import { LoadingService } from 'src/app/services/loading.service';
 import { ImageTranser } from '../models/imagesTransferModel';
-import { Observable, pipe } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 
 
@@ -84,7 +83,6 @@ import { switchMap } from 'rxjs/operators';
     }
     
   }
-
 
     get f(){ return this.uploadForm.controls;}
 
@@ -159,20 +157,11 @@ import { switchMap } from 'rxjs/operators';
           alert('HUBO UN PROBLEMA CON EL SERVIDOR');
         }
       );
-    
-    }
-
-    editImage(i:number){
-      this.procesImages(null);
-      this.oldImageIndex=i;
     }
 
     procesImages(newImage?:ImageTranser):void{
       if(newImage!=null && newImage.arrayBuffer!=null){
         this.addNewImage_List(newImage);
-        if(this.oldImageIndex!=null){
-          this.putOffOldImage_List(this.images[this.oldImageIndex]);
-        }
       }
       this.hiddeModal=this.hiddeModal ? false : true;
       window.scroll(0,0);
@@ -183,40 +172,20 @@ import { switchMap } from 'rxjs/operators';
       console.log(this.serviceImage.imagesInsertList)
     }
 
-    putOffOldImage_List(oldImage :ProductImageModel){
-      this.serviceImage.imagesDeleteList.push(oldImage);
-        this.images.splice(this.oldImageIndex, 1);
-        this.oldImageIndex = null;
-    }
-
     putOffNewImage_List(deleteNewImage:number){
      this.serviceImage.imagesInsertList.splice(deleteNewImage,1);
     }
 
-    deleteImagesServer(image){
+    deleteImages(image: ProductImageModel){
         this.serviceImage.delete(image)
         .subscribe(
           res=>{
-            console.log(res)
+            this.getImages(this.productService.productId);
           }, error =>{
-              console.log(error)
+              alert("Error al borrar imagen")
           }
         )
     }
-
-    // insertImage(list:ImageTranser [], productId:number){
-    //   const formData = new FormData();
-    //   formData.append('file', list[0].file);
-    //   formData.append('file2', list[0].file[0], list[0].file[0].name); 
-    //     this.serviceImage.insert(formData, productId)
-    //     .subscribe(
-    //       res=>{
-    //         console.log(res)
-    //       }, error =>{
-    //           console.log(error)
-    //       }
-    //     )
-    // }
 
     appendImages(list:ImageTranser []):FormData{
       const formData = new FormData();
@@ -234,47 +203,31 @@ import { switchMap } from 'rxjs/operators';
         return;
       }else{
         this.loadingService.setLoading(true);
-        // var formData=this.appendImages(this.serviceImage.imagesInsertList);
+
         const formData = new FormData();
-        // this.serviceImage.imagesInsertList.forEach(element => {
-          console.log(this.serviceImage.imagesInsertList, "acacaca");
-          formData.append('file', this.serviceImage.imagesInsertList[0].file);
-          formData.append('file2', this.serviceImage.imagesInsertList[0].file[0], this.serviceImage.imagesInsertList[0].file[0].name); 
-        // });
+         this.serviceImage.imagesInsertList.forEach(element => {
+          formData.append('file', element.file[0]);
+         });
         if(this.accionBtnFormulario=="nuevo"){
           this.productService.insert(this.uploadForm.value).pipe(
             switchMap(productId=> {
-             
               return this.serviceImage.insert(formData, productId);
             })
-           ).subscribe(result => console.log(result));
-      
-           
-            // this.productService.update(this.uploadForm.value, formdata)
-            // .subscribe(
-            //   res => {
-            //     this.loadingService.setLoading(false)
-            //     console.log(res)
-            //     alert('Publicacion Editada');
-            //   },
-            //   error => {
-            //     console.log(error)
-            //   }
-            // );
-            
+           ).subscribe(result => {
+            this.loadingService.setLoading(false);
+            alert('Datos guardados');
+           });         
         }
-        // if(this.accionBtnFormulario=="nuevo"){
-        //   this.productService.insert(this.uploadForm.value, formdata)
-        //     .subscribe(
-        //       res => {
-        //         this.loadingService.setLoading(false)
-        //         alert('Publicacion Editada');
-        //       },
-        //       error => {
-        //         console.log(error)
-        //       }
-        //     );
-        //  }
+        if(this.accionBtnFormulario=="editar"){       
+          this.productService.update(this.uploadForm.value).pipe(
+            switchMap(productId=> {
+              return this.serviceImage.insert(formData, productId);
+            })
+           ).subscribe(result => {
+            this.loadingService.setLoading(false);
+            alert('Datos guardados');
+           }); 
+         }
       }
       this.accionBtnFormulario="nuevo";
       this.limpiar();
@@ -282,7 +235,6 @@ import { switchMap } from 'rxjs/operators';
   
     limpiar(){
       this.uploadForm.reset();
-      this.serviceImage.imagesDeleteList=[];
       this.serviceImage.imagesInsertList=[];
     }
   

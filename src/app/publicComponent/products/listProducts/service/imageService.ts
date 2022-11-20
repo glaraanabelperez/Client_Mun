@@ -10,7 +10,6 @@ import { ProductImageModel } from '../models/productImageModel';
 })
 export class ImageService{
 
-  imagesDeleteList: any []=[];
   imagesInsertList: ImageTranser []=[];
   url=environment.Url;
 
@@ -27,26 +26,18 @@ public verifyFileOnServer(imageName:string):Observable<any>{
   return this.http.post<ProductImageModel>(`${this.url}images`, data);
 }
 
-public delete(list:ProductImageModel[]): Observable<any> {
-  return this.http.delete<any>(`${this.url}category/state/${list}`);
+public delete(image:ProductImageModel): Observable<any> {
+  return this.http.post<any>(`${this.url}images/delete`, image);
 }
   
 public insert(formData:any, productId: number): Observable<any> {
   return this.http.put<any>(`${this.url}insert_Image/${productId}`, formData);
 }
   
-// public upload(productImage:ProductImageModel): Observable<any> {
-//   return this.http.post<any>(`${this.url}images/state/${productImage.ProductImageId}`, productImage);
-// }
 
-  //CONSULTAS SERVIDOR
-// public  insertFileOnServer(image): Observable<any>{
-//     return  this.http.post(`${this.url}images/server}`, image);
-//   }
-
-  public deleteImageServer(image:any) :Observable<any>{
-    return  this.http.post(`${this.url}images/server}`, image);
-  }
+public deleteImageServer(image:any) :Observable<any>{
+  return  this.http.post(`${this.url}images/server}`, image);
+}
 
   //observables encadenados
   

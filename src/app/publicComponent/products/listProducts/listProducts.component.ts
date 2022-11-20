@@ -75,7 +75,7 @@ import { ProductModelResponse } from './models/productModelDto';
     }
      
     ngOnInit(): void {
-
+      this.productService.productId=null;
       this.itemsPerPage=1;
       this.currentPage=1;
       this.traerCategorias();  
@@ -97,7 +97,7 @@ import { ProductModelResponse } from './models/productModelDto';
  
     public listAllProducts(){      
       this.loadingService.setLoading(true);
-      this.itemsPerPage=1;
+      this.itemsPerPage=50;
         this.productService.listAllProducts(this.filter, this.order, this.from, this.itemsPerPage, this.orderAsc).subscribe(
           res=>{
             this.products=[];
