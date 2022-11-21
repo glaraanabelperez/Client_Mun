@@ -146,6 +146,7 @@ import { switchMap } from 'rxjs/operators';
         }
       );
       this.loadingService.setLoading(false);
+      this.productService.productId=null;
     }
 
     getImages(productId:number){
@@ -169,7 +170,6 @@ import { switchMap } from 'rxjs/operators';
 
     addNewImage_List(newImage:ImageTranser){
       this.serviceImage.imagesInsertList.push(newImage);
-      console.log(this.serviceImage.imagesInsertList)
     }
 
     putOffNewImage_List(deleteNewImage:number){
@@ -229,7 +229,6 @@ import { switchMap } from 'rxjs/operators';
          }
       }
       this.loadingService.setLoading(false);
-
       this.accionBtnFormulario="nuevo";
       this.limpiar();
     }

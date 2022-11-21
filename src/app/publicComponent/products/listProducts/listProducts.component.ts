@@ -3,7 +3,7 @@ import { Filter } from 'src/app/publicComponent/products/listProducts/models/Fil
 import { OrderField } from 'src/app/publicComponent/products/listProducts/models/OrderField';
 import { Subscription } from 'rxjs';
 import { NgForm } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { AuthService } from 'src/app/auth-services/auth.service';
 import { CategoryModel } from '../categories/models/categoryModel';
 import { LoadingService } from 'src/app/services/loading.service';
@@ -40,7 +40,7 @@ import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
     public marcas:MarcaModel []=[];
 
     //Filtros
-    public filter:Filter = new Filter();
+    public filter:Filter;
     public order:OrderField;
     public orderAsc:boolean; 
     public orderSelect;
@@ -58,17 +58,27 @@ import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
       private categorieService:CatgeorieService, 
       private marcasService:MarcaService,
       public loadingService:LoadingService, 
-      private router: Router, private auth:AuthService
+      private router: Router, private auth:AuthService,
+      private rutaActiva: ActivatedRoute
     ) {}
      
     ngOnInit(): void {
-      this.productService.productId=null;
+      this.filter=new Filter();
       this.traerCategorias();  
       this.getMarcas();
+      this.rutaActiva.params.subscribe(
+        (params: Params) => {
+          this.filter.MarcaId=params.filterId;
+          this.filter.CategoryId=params.categoryId;
+          this.filter.Featured=params.featured;
+        }
+      );
+      this.filter.MarcaId=this.rutaActiva.snapshot.params.filterId != 0 ? this.rutaActiva.snapshot.params.filterId : null;
+      this.filter.CategoryId=this.rutaActiva.snapshot.params.categoryId != 0 ? this.rutaActiva.snapshot.params.categoryId : null;
+      this.filter.Featured=this.rutaActiva.snapshot.params.featured != 0 ? this.rutaActiva.snapshot.params.featured : false;
     }
 
-    ngAfterViewInit() {
-      //this.subsChangeFilters = this.productService.changeFilters$.subscribe(() => this.listAllProducts())
+    ngAfterViewInit() {  
       this.onChangesFilters();
     }
     
@@ -92,7 +102,6 @@ import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
           error=>{
             alert('ERROR DE SERVIDOR');
             this.loadingService.setLoading(false);
-
           }
         );
         if(this.products.length=0){

@@ -1,4 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { MarcaModel } from '../products/marcas/models/marcaModel';
+import { MarcaService } from '../products/marcas/service/marca.service';
 
 @Component({
   selector: 'app-footer',
@@ -7,11 +9,23 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class FooterComponent implements OnInit {
   fechaHoy: any;
+  marcas: MarcaModel[]=[];
 
-  constructor( ) {
+  constructor( private servicesMarcas:MarcaService) {
    }
 
   ngOnInit(): void {
+    this.getAllMarcasActive();
   }
 
+  public getAllMarcasActive(){
+    this.servicesMarcas.getMarcas().subscribe(
+      res=>{
+        this.marcas=res as MarcaModel[];
+      }, 
+      error=>[
+
+      ]
+    )
+  }
 }

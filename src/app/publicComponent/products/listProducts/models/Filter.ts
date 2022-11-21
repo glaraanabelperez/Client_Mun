@@ -4,4 +4,11 @@ export class Filter{
     CategoryId:number;
     Featured :boolean;
     MarcaId:number;
+
+    constructor(){
+        this.MarcaId=null;
+        this.State=false;
+        this.Featured=false;
+        this.CategoryId=null;
+    }
 }

@@ -40,6 +40,7 @@ export const childrenRoute:Routes=[
 
 export const childrenRouteProducts:Routes=[
   {path: 'formulario',component: ProductDialogComponent,canActivate: [GuardsGuard]},
+  {path: 'lista-productos/:filterId/:categoryId/:featured', component:ListProductsComponent},
   {path: 'lista-productos', component:ListProductsComponent},
   {path: 'categorias', component:CategoriesComponent ,canActivate: [GuardsGuard]},
   {path: 'marcas', component:MarcasComponent ,canActivate: [GuardsGuard]},
