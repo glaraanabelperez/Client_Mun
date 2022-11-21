@@ -1,4 +1,4 @@
-<!-- <div class="contenedor-galeria" *ngIf="_service_metodos.negocio">
+<div class="contenedor-galeria">
     <div class="contenedor_titulo">
         <h3 class="titulo-tarjeta">Los destacados de este mes <span> Consultanos!</span></h3>
     </div>
@@ -6,7 +6,7 @@
         <div *ngFor="let p of destacada" >
             <div class="contenedor-card">
                 <div class="foto-destacada" *ngIf="p.nombreImagen; else photo">
-                    <img  [src]="'assets/'+ _service_metodos.negocio.nombre_negocio + '/' +  p.nombreImagen" >
+                    <img  [src]="'assets/'+ p.nombreImagen" >
                 </div>
                 <ng-template #photo>
                     <div class="foto-destacada" >
@@ -24,4 +24,4 @@
             </div>
         </div>
     </div>
-</div> -->
+</div>

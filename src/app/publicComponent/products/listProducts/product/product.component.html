@@ -1,7 +1,3 @@
-<!-- <app-image-dialog
-*ngIf="hiddeModal"
-(sendImage)="procesImages($event)"
-></app-image-dialog> -->
 <app-image-dialog
 *ngIf="hiddeModal"
 (sendImage)="procesImages($event)"
@@ -89,12 +85,12 @@
                 
               </div>
             </div>
-              <div  *ngFor="let image of  this.serviceImage.imagesInsertList; let i=index" style="display: flex; flex-direction: row;">
+              <div style="margin-bottom: 3px" *ngFor="let image of  this.serviceImage.imagesInsertList; let i=index" >
                 <div class="itemPhoto">
                   <img class="viewImg" [src]="image.arrayBuffer" >
+                  <i class="fa-solid fa-trash" (click)="putOffNewImage_List(i)"></i>
                 </div>
-                <!--BTN Agregar Imagenes -->
-                <i class="fa-solid fa-trash" (click)="putOffNewImage_List(i)"></i>
+
               </div>
             <button *ngIf="(images.length + this.serviceImage.imagesInsertList.length)<5" type="button" class="btn btn-danger" (click)="procesImages(null)">+ Imagen</button>
             <!--Fin Imagenes -->
@@ -129,7 +125,6 @@
               </div>
             </div>
           </form>
-
         </div>
     </div>
 </div>

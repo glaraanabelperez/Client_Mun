@@ -36,6 +36,10 @@ public getProduct(productId :number):Observable<ProductModel>{
   return this.http.get<any>(`${this.url}product/${productId}`);
 }
 
+public getProductfeatured():Observable<ProductModel[]>{
+  return this.http.get<any>(`${this.url}products/list_feature`);
+}
+
 public update(product :ProductModel):Observable<any>{
   return this.http.put<any>(`${this.url}product`, product);
 }
@@ -44,6 +48,9 @@ public insert(product :ProductModel):Observable<any>{
   return this.http.post<any>(`${this.url}product/insert`, product );
 }
 
+public delete(productId:number):Observable<any>{
+  return this.http.delete<any>(`${this.url}product/state/${productId}` );
+}
 
   
 }

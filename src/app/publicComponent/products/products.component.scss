@@ -24,10 +24,10 @@ main{
     .menuAdmin{
         position: absolute;
         right: 15px;
-        top: 35%;
+        top: 300px;
         display: flex;
         flex-direction: column;
-        width: 10rem;
+        width: 7.2rem;
         
         button{
             margin-bottom: 1rem;
@@ -65,8 +65,21 @@ main{
 
 
 
-@media only screen and (max-width: 800px) and (min-width: 320px) {
-
+@media only screen and (max-width: 1300px) and (min-width: 200px) {
+    .menuAdmin{
+        position: relative !important;
+        top: 45% !important;
+        display: flex;
+        flex-direction: row !important;
+        width: 100% !important;
+        overflow-y: auto;
+        scroll-behavior: auto;
+        margin-bottom: 2rem;
+        button{
+            margin-bottom: 1rem;
+            margin-right: 1rem;
+        }
+      }
     .conteiner1{
         width: 10%;
         display: flex;

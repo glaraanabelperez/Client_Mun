@@ -2,6 +2,6 @@ export class Filter{
 
     State :boolean;
     CategoryId:number;
-    Featured :boolean
-  
+    Featured :boolean;
+    MarcaId:number;
 }

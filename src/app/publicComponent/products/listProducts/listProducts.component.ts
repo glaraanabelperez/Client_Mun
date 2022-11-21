@@ -10,6 +10,9 @@ import { LoadingService } from 'src/app/services/loading.service';
 import { CatgeorieService } from '../categories/service/categorie.service';
 import { ProductService } from './service/product.service';
 import { ProductModelResponse } from './models/productModelDto';
+import { MarcaModel } from '../marcas/models/marcaModel';
+import { MarcaService } from '../marcas/service/marca.service';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 
 @Component({
@@ -30,110 +33,91 @@ import { ProductModelResponse } from './models/productModelDto';
   //   }
   //     this._servicioPedidos.agregarPedido(pedido);
   // }
-    public user;
 
     public products:ProductModelResponse[]=[];
+    public recordCount: any=0;
     public categories:CategoryModel[];
-    // public imgDefecto:string;
+    public marcas:MarcaModel []=[];
 
     //Filtros
-    public subsChangeFilters: Subscription;
-    public filter:Filter = new Filter();//myform
-    public order:OrderField;//myform
-    public orderAsc:boolean; //myform
+    public filter:Filter = new Filter();
+    public order:OrderField;
+    public orderAsc:boolean; 
     public orderSelect;
     public filterSelection:string="Nigun filtro seleccionado";
-
     public from:number;
-    public itemsPerPage:number;
 
-    public lengthMaxPages=4;
-    public pages:Array<number>=[1,2,3,4];
-    public recordCount: any=0;
-    public currentPage;
-    public totalPage: number;
-
-    @ViewChild(NgForm) myForm: NgForm; 
-  
+    @ViewChild(NgForm) myForm: NgForm;  
     public show: any =true;
-
     //Modales
     public data = [];
     public selectedItem: any;
   
-    
-
     constructor( 
       private productService:ProductService, 
       private categorieService:CatgeorieService, 
+      private marcasService:MarcaService,
       public loadingService:LoadingService, 
       private router: Router, private auth:AuthService
-    ) {
-    this.user=localStorage.getItem('username')   
-    // this.emitProduct=new EventEmitter();
-    // this.orderKeys=Object.keys(OrderField);
-    }
+    ) {}
      
     ngOnInit(): void {
       this.productService.productId=null;
-      this.itemsPerPage=1;
-      this.currentPage=1;
       this.traerCategorias();  
+      this.getMarcas();
     }
 
     ngAfterViewInit() {
-      // this.subsChangeFilters = this.productService.changeFilters$.subscribe(() => this.listAllProducts())
+      //this.subsChangeFilters = this.productService.changeFilters$.subscribe(() => this.listAllProducts())
       this.onChangesFilters();
     }
     
     // Filtros
     public onChangesFilters(): void {
           this.myForm.valueChanges.subscribe(() => {            
-            this.pagination(1);
-
+            this.listAllProducts();
           });
     }
-
  
     public listAllProducts(){      
       this.loadingService.setLoading(true);
-      this.itemsPerPage=50;
-        this.productService.listAllProducts(this.filter, this.order, this.from, this.itemsPerPage, this.orderAsc).subscribe(
+      var itemsPerPage=null;
+        this.productService.listAllProducts(this.filter, this.order, this.from, itemsPerPage, this.orderAsc).subscribe(
           res=>{
             this.products=[];
             this.products=res['Data'] as ProductModelResponse [];
             this.recordCount=res['RecordsCount'];
-            this.setTotalPages();
             this.loadingService.setLoading(false);
           },
           error=>{
-            alert('NO SE ECNUENTRAN RESULTADOS');
+            alert('ERROR DE SERVIDOR');
             this.loadingService.setLoading(false);
+
           }
         );
-        
+        if(this.products.length=0){
+          alert("No se encuentra productos disponibles con esas caratceristicas")
+        }
     }
   
     public edit(productId:number){   
       this.productService.productId=productId;
-      console.log(this.productService.productId)
       return false;
     }
 
     public eliminar(p){
-      // this._servicioGeneral.eliminar(p).subscribe(
-      //   datos=>{
-      //     if(datos['resultado']=='OK'){
-      //       alert("SE ELIMINO EXITOSAMENTE")
-      //     }else{ 
-      //       alert("ERROR DE CONEXION")
-      //     }
-      //   }
-      // );   
-      // this.document.location.reload(); 
+      this.productService.delete(p).subscribe(
+        datos=>{
+            alert("SE ELIMINO EXITOSAMENTE")
+        },
+        error =>{
+          alert('ERROR DE SERVIDOR');
+        }
+      );   
+      this.listAllProducts(); 
     }
 
-     //lista categorias
+    //lista categorias
      public traerCategorias(){
       if(localStorage.getItem('codigo_usar')==undefined || localStorage.getItem('codigo_usar')==null){
         alert('VUELVA A INGRESAR USUARIO Y PASSWORD')
@@ -152,46 +136,16 @@ import { ProductModelResponse } from './models/productModelDto';
 
     }
 
-  //Paginacion y logica de controles
-    public pagination(page:number): void {//trae los registros segun pagina
-      if(this.currentPage>0 || this.currentPage<=this.recordCount){
-          this.currentPage=page;
-          this.from=(page*this.itemsPerPage)-this.itemsPerPage; 
-          this.listAllProducts();  
-          this.changePagination();
-      }
-    }
+    public getMarcas(){
+        this.marcasService.getMarcas().subscribe(
+          res=>{
+            this.marcas=res;      
+          },
+          error=>{
+            alert('HUBO UN PROBLEMA CON EL SERVIDOR');
+          }
+        );
 
-    public changePagination(): void{ 
-      var x;
-     
-        switch (this.currentPage) {
-          case (this.currentPage>this.pages[this.pages.length-1] && this.currentPage!=this.recordCount) || this.currentPage==1 :
-            x=this.currentPage;
-            this.pages=[];
-                while(this.pages.length<=this.lengthMaxPages && this.currentPage<this.recordCount){
-                this.pages.push(x)  
-                x+=1;
-                }
-            break;
-  
-          case this.currentPage<this.pages[0] && this.currentPage>=1 && this.currentPage<this.recordCount
-                || this.currentPage==this.recordCount && this.currentPage<this.recordCount:
-            x=this.currentPage;
-          this.pages=[];
-              while(this.pages.length<=this.lengthMaxPages){
-               this.pages.unshift(x)  
-               x-=1;
-              }
-            break;
-        
-        }
-          
-    }
-
-
-    public setTotalPages(){
-      this.totalPage=this.recordCount/this.itemsPerPage; 
     }
 
     public  isLogin():boolean{
@@ -211,14 +165,20 @@ import { ProductModelResponse } from './models/productModelDto';
         this.orderAsc=false
         this.order=e==2?OrderField.price : OrderField.title  
       }
-      this.pagination(1)
+      this.listAllProducts()
     }
 
     public setCategory(c:number){
       this.filter.CategoryId=c;
-      this.pagination(1)
+      this.listAllProducts()
+
     }
-    
+
+    public setMarca(c:number){
+      this.filter.MarcaId=c;
+      this.listAllProducts()
+    }
+
     public limpiarSelection(){
       this.filterSelection=null;
     }

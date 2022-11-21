@@ -12,13 +12,13 @@
   <table class="table">
     <thead>
       <tr>
-        <th scope="col">Identificador</th>
+        <th class="id" scope="col">Identificador</th>
         <th scope="col">Nombre de la Marca</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let c of marcas">
-        <td>{{c.MarcaId}}</td>
+        <td class="id">{{c.MarcaId}}</td>
         <td>{{c.Name}}</td>
         <td><i class="fa-sharp fa-solid fa-pencil" (click)="showingModal(c)" style="cursor:pointer" ></i></td>
         <td><i class="fa-sharp fa-solid fa-trash" (click)="delete(c.MarcaId)" style="cursor:pointer" ></i></td>

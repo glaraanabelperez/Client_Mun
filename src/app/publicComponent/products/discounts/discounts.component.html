@@ -12,13 +12,13 @@
   <table class="table">
     <thead> 
       <tr>
-        <th scope="col">Identificador</th>
+        <th class="id" scope="col">Identificador</th>
         <th scope="col">Porcentaje</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let c of discounts">
-        <td>{{c.DiscountId}}</td>
+        <td class="id">{{c.DiscountId}}</td>
         <td>% {{c.Amount}}</td>
         <td><i class="fa-sharp fa-solid fa-pencil" (click)="showingModal(c)" style="cursor:pointer" ></i></td>
         <td><i class="fa-sharp fa-solid fa-trash" (click)="delete(c.DiscountId)" style="cursor:pointer" ></i></td>

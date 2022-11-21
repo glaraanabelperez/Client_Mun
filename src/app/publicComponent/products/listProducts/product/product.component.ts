@@ -27,7 +27,7 @@ import { switchMap } from 'rxjs/operators';
   export class ProductDialogComponent implements OnInit {
 
 
-  public state: any[]=[{ valor:false, name:'Suspendido'}, { valor:true, name:'Activo'}];
+  public state: any[]=[{ valor:false, name:'Agotado'}, { valor:true, name:'Disponible'}];
   public uploadForm: any;
 
   public product:ProductModel=null;
@@ -190,7 +190,7 @@ import { switchMap } from 'rxjs/operators';
     appendImages(list:ImageTranser []):FormData{
       const formData = new FormData();
       list.forEach(element => {
-        formData.append('file', list[0].file);
+        // formData.append('file', list[0].file);
         formData.append('file', element.file[0], element.file[0].name); 
       });
       return formData;
@@ -224,11 +224,12 @@ import { switchMap } from 'rxjs/operators';
               return this.serviceImage.insert(formData, productId);
             })
            ).subscribe(result => {
-            this.loadingService.setLoading(false);
             alert('Datos guardados');
            }); 
          }
       }
+      this.loadingService.setLoading(false);
+
       this.accionBtnFormulario="nuevo";
       this.limpiar();
     }

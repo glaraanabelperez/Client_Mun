@@ -1,6 +1,7 @@
 import { Component,  OnInit} from '@angular/core';
 import { ProductModel } from 'src/app/publicComponent/products/listProducts/models/productModel';
 import { ServicePedidos } from 'src/app/publicComponent/products/orders/servicios-pedidos/service-pedidos.service';
+import { ProductService } from '../products/listProducts/service/product.service';
 
 
 @Component({
@@ -11,7 +12,7 @@ import { ServicePedidos } from 'src/app/publicComponent/products/orders/servicio
 export class GaleriaComponent implements OnInit {
   destacada :ProductModel[] = [];
 
-  constructor(public _servicioPedidos:ServicePedidos) {
+  constructor(public serviceProducts:ProductService) {
     this.traerDestacadas();
    }
    
@@ -19,7 +20,15 @@ export class GaleriaComponent implements OnInit {
   }
 
   traerDestacadas(){
-      
+      this.serviceProducts.getProductfeatured().subscribe(
+        res=>{
+          this.destacada=res as ProductModel [];
+          console.log(res)
+        },
+        error=>{
+          
+        }
+      )
   }
 
   mostrarDestacadas(res:[]){
@@ -38,7 +47,7 @@ export class GaleriaComponent implements OnInit {
     titulo:p.titulo,
     precio:p.precio,
   }
-    this._servicioPedidos.agregarPedido(pedido);
+    // this._servicioPedidos.agregarPedido(pedido);
 }
 
 }

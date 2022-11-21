@@ -21,8 +21,12 @@ constructor(private http: HttpClient) {
 }
 
 
-public getAllMarcas(): Observable<MarcaModel[]> {
+public getMarcas(): Observable<MarcaModel[]> {
   return this.http.get<MarcaModel []>(`${this.url}marca/listActive/`);
+}
+
+public getAllMarcas(): Observable<MarcaModel[]> {
+  return this.http.get<MarcaModel []>(`${this.url}marca/list`);
 }
 
 public save(data:MarcaModel): Observable<any> {

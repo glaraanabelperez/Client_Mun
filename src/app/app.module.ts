@@ -14,14 +14,11 @@ import { ServicePedidos } from './publicComponent/products/orders/servicios-pedi
 
 import { AppComponent } from './app.component';
 
-import { CabeceraComponent} from './publicComponent/cabecera/cabecera.component';
-import { NavComponent} from './publicComponent/nav/nav.component';
 import { HomeComponent } from './publicComponent/home/home.component';
 import { GaleriaComponent} from './publicComponent/galeria/galeria.component';
-import { VerPedido } from './publicComponent/list-ver-pedido/ver-pedido.component';
+import { VerPedido } from './publicComponent/pedidos/ver-pedido.component';
 import { FooterComponent } from './publicComponent/footer/footer.component';
-import { HomeMatizo} from '../app/home-matizo/home-matizo';
-import { CabeceraMatizo} from '../app/home-matizo/cabecera-matizo/cabecera-matizo';
+import { Cabecera} from './publicComponent/cabecera/cabecera';
 import { LogInComponent } from './publicComponent/log-in/log-inWjn.component';
 import { ProductsComponent } from './publicComponent/products/products.component';
 import { MarcaDialogComponent } from './publicComponent/products/marcas/marca-dialog/marca-dialog.component';
@@ -51,8 +48,7 @@ export const childrenRouteProducts:Routes=[
 
 const routes: Routes = [
 {path: '', redirectTo: 'home-matizo', pathMatch:'full'},
-{path: 'home-matizo', component: HomeMatizo,},
-{path: 'home/:nombre', component: HomeComponent, children:childrenRoute},
+{path: 'home', component: HomeComponent, children:childrenRoute},
 {path: 'login', component:LogInComponent},
 {path: 'productos',component: ProductsComponent,children:childrenRouteProducts},
 ];
@@ -61,14 +57,11 @@ const routes: Routes = [
 
   declarations: [
     AppComponent,
-    CabeceraComponent,
-    NavComponent,
     HomeComponent,
     GaleriaComponent,
     FooterComponent,
     LogInComponent,
-    HomeMatizo,
-    CabeceraMatizo,
+    Cabecera,
     ProductsComponent,
     DiscountsComponent,
     MarcasComponent,

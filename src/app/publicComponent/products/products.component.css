@@ -100,10 +100,10 @@ form label {
 .btn-filtros {
   border: #dc3545 1px solid;
   border-radius: 5px;
-  margin-bottom: 1.5rem;
+  margin-bottom: 0.5rem;
   padding: 0.6rem;
   cursor: pointer;
-  font-size: 30px;
+  font-size: 17px;
   color: #dc3545;
 }
 
@@ -188,7 +188,7 @@ main .spinner-border {
 main .menuAdmin {
   position: absolute;
   right: 15px;
-  top: 35%;
+  top: 300px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -196,7 +196,7 @@ main .menuAdmin {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  width: 10rem;
+  width: 7.2rem;
 }
 
 main .menuAdmin button {
@@ -254,7 +254,26 @@ main .jumbotron .container2 .card-text {
   margin-right: 20px;
 }
 
-@media only screen and (max-width: 800px) and (min-width: 320px) {
+@media only screen and (max-width: 1300px) and (min-width: 200px) {
+  .menuAdmin {
+    position: relative !important;
+    top: 45% !important;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal !important;
+    -webkit-box-direction: normal !important;
+        -ms-flex-direction: row !important;
+            flex-direction: row !important;
+    width: 100% !important;
+    overflow-y: auto;
+    scroll-behavior: auto;
+    margin-bottom: 2rem;
+  }
+  .menuAdmin button {
+    margin-bottom: 1rem;
+    margin-right: 1rem;
+  }
   .conteiner1 {
     width: 10%;
     display: -webkit-box;
