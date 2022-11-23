@@ -40,15 +40,17 @@ export const childrenRoute:Routes=[
 
 export const childrenRouteProducts:Routes=[
   {path: 'formulario',component: ProductDialogComponent,canActivate: [GuardsGuard]},
-  {path: 'lista-productos/:filterId/:categoryId/:featured', component:ListProductsComponent},
+  {path: 'lista-productos/:filter/:value', component:ListProductsComponent},
+  {path: 'lista-productos/:filter', component:ListProductsComponent},
   {path: 'lista-productos', component:ListProductsComponent},
+
   {path: 'categorias', component:CategoriesComponent ,canActivate: [GuardsGuard]},
   {path: 'marcas', component:MarcasComponent ,canActivate: [GuardsGuard]},
   {path: 'descuentos', component:DiscountsComponent ,canActivate: [GuardsGuard]},
 ];
 
 const routes: Routes = [
-{path: '', redirectTo: 'home-matizo', pathMatch:'full'},
+{path: '', redirectTo: 'home', pathMatch:'full'},
 {path: 'home', component: HomeComponent, children:childrenRoute},
 {path: 'login', component:LogInComponent},
 {path: 'productos',component: ProductsComponent,children:childrenRouteProducts},

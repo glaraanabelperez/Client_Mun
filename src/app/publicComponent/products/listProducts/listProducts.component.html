@@ -62,7 +62,8 @@
                                                 aria-hidden="true" style="color: rgb(204, 255, 0); margin-right:5px;"></i>
                     </div>
                     <div class="sliderBlock_items__itemPhoto ">
-                            <img  [src]="'assets/' +  p.ImageName">
+                            <img *ngIf="p.ImageName != null" [src]="'assets/' +  p.ImageName">
+                            <img *ngIf="p.ImageName == null" [src]="'assets/' +  p.ImageName">
                     </div>                                                             
                     <div class="block_product">
                         <p class="block_model"><span style="font-size:0.7rem" class="block_model__number">Categoria {{p.CategoryName}}</span></p>
@@ -70,14 +71,13 @@
                         <h2 class="block_name block_name__mainName">{{p.Name}}<sup>&reg; </sup></h2>
                          <h2 class="block_name block_name__addName">{{p.Description}}</h2>      
                         <div class="block_price" >
-                        <!-- <p class="block_price__currency_old" *ngIf="descuento">{{p.Price}}</p> -->
-                        <p *ngIf="p.DiscountAmount==null"  class="block_price__currency">$ {{p.Price}}</p>
-                        <div *ngIf="p.DiscountAmount!=null">
-                           <p  class="block_price__currency" style="text-decoration:line-through;">$ {{p.Price}}</p>
-                           <p  class="block_price__currency" style="color:black"> $ {{p.Price - (p.Price * p.DiscountAmount /100)}}</p>
+                          <p *ngIf="p.DiscountAmount==null"  class="block_price__currency">$ {{p.Price}}</p>
+                          <div class="prices" *ngIf="p.DiscountAmount!=null">
+                             <p  class="block_price__currency" style="text-decoration:line-through;">$ {{p.Price}}</p>
+                             <p  class="block_price__currency" style="color:black"> $ {{p.Price - (p.Price * p.DiscountAmount /100)}}</p>
+                          </div>
                         </div>
-                        </div>
-                        <p *ngIf="!p.State"  class="block_model" style="text-align:center;"><span  class="block_model__number">AGOTADO!</span></p>
+                        <p *ngIf="!p.State"  class="block_model agotado" style="text-align:center;"><span  class="block_model__number">AGOTADO!</span></p>
                         <button class="btn btn-info" *ngIf="!isLogin()">
                                 Add to Cart
                         </button>   

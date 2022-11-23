@@ -68,10 +68,7 @@ body {
   position: relative;
 }
 
-img {
-  max-width: 100%;
-  height: auto;
-}
+
 
 .product_base{
   display: flex;
@@ -90,7 +87,7 @@ img {
 .productCard_rightSide {
   padding: 3%;
   max-width: 100%;
-  min-height: 300px;
+  height: 400px;
   box-shadow: 0 5px 21px rgba(0, 0, 0, 0.08);
   background-color: #fff;
   border-radius: 5px;
@@ -98,34 +95,47 @@ img {
 .productCard_rightSide:nth-child(5) {
   grid-column-start: 2;
 }
-
+.block_specification__informationShow{
+  float: right;
+}
 .sliderBlock_items__itemPhoto{
   margin-bottom: 3%;
+  width: 100% !important;
+  height: 35% !important;
+  background-color: white;
+  img{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+
+  }
 }
 
   .block_model {
     display: inline-block;
     color: #263238;
-    font-size: 12px;
+    font-size: 0.7rem;
     //line-height: 35px;
     opacity: 0.9;
+  }
+  .agotado{
+    float: inline-end;
   }
 
   .block_name {
     width: 100%;
     color: #263238;
     font-weight: 400;
-    line-height: 35px;
 
     &__mainName {
       margin: 0;
       padding: 0;
-      font-size: 19px;
+      font-size: 1rem;
     }
     &__addName {
       margin: 0;
       padding: 0;
-      font-size: 19px;
+      font-size: 1rem;
     }
   }
 
@@ -134,13 +144,16 @@ img {
   .block_price {
     text-align: center;
     margin-top: 29px;
-    width: 100%;
+    .prices{
+      display: flex;
+      flex-direction: row !important;
+    }
     &__currency {
       padding: 0;
       margin: 0;
       vertical-align: top;
       color: $colorRaspberry;
-      font-size: 26px;
+      font-size: 1rem;
       font-weight: 600;
     }
     &__shipping {
@@ -148,7 +161,10 @@ img {
       padding: 0;
       margin: 0;
       color: #A2A9AD;
-      font-size: 12px;
+      font-size: 1rem;
+    }
+    .btn-info{
+      background-color: $verde;
     }
   }
 

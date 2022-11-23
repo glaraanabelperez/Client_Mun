@@ -70,15 +70,17 @@ import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
         (params: Params) => {
           this.filter.MarcaId=params.filterId;
           this.filter.CategoryId=params.categoryId;
-          this.filter.Featured=params.featured;
+          this.filter.Discount=params.discount;
         }
       );
-      this.filter.MarcaId=this.rutaActiva.snapshot.params.filterId != 0 ? this.rutaActiva.snapshot.params.filterId : null;
-      this.filter.CategoryId=this.rutaActiva.snapshot.params.categoryId != 0 ? this.rutaActiva.snapshot.params.categoryId : null;
-      this.filter.Featured=this.rutaActiva.snapshot.params.featured != 0 ? this.rutaActiva.snapshot.params.featured : false;
+      this.filter.CategoryId=this.rutaActiva.snapshot.params.filter == 'categoria'? this.rutaActiva.snapshot.params.value : null;
+      this.filter.MarcaId=this.rutaActiva.snapshot.params.filter == 'marca'? this.rutaActiva.snapshot.params.value : null;
+      this.filter.Discount=this.rutaActiva.snapshot.params.filter == 'descuento'? true : null;
+      console.log(this.filter)
     }
 
-    ngAfterViewInit() {  
+    ngAfterViewInit() { 
+      console.log(this.filter) 
       this.onChangesFilters();
     }
     

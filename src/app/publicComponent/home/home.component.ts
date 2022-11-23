@@ -1,5 +1,7 @@
 import { Component, EventEmitter, ViewChild } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
+import { CategoryModel } from '../products/categories/models/categoryModel';
+import { CatgeorieService } from '../products/categories/service/categorie.service';
 
 @Component({
   selector: 'app-home',
@@ -8,15 +10,25 @@ import { ActivatedRoute, Params } from '@angular/router';
 
 })
 export class HomeComponent {
-  VerPedido
+  categorias: CategoryModel[];
 
-  chosenStore: string;
 
-  constructor(private rutaActiva: ActivatedRoute){
-    this.chosenStore=this.rutaActiva.snapshot.params.nombre;
+  constructor(private serviceCategorias:CatgeorieService){
   }
   
-  ngOnInit() {}
+  ngOnInit(): void {
+    this.getAllMarcasActive();
+  }
+  public getAllMarcasActive(){
+    this.serviceCategorias.list().subscribe(
+      res=>{
+        this.categorias=res as CategoryModel[];
+      }, 
+      error=>[
+ 
+      ]
+    )
+  }
        
 
  

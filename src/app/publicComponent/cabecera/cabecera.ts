@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { MarcaModel } from '../products/marcas/models/marcaModel';
+import { MarcaService } from '../products/marcas/service/marca.service';
 
 @Component({
   selector: 'app-cabecera',
@@ -8,15 +10,32 @@ import { Component } from '@angular/core';
 export class Cabecera {
 
   show:boolean;
+  marcas: MarcaModel[];
+  showDropdown: boolean;
 
-  constructor( ){
+  constructor( private servicesMarcas:MarcaService){
   }
   
-  ngOnInit() {
-    
-  }  
+  ngOnInit(): void {
+    this.getAllMarcasActive();
+  }
+  public getAllMarcasActive(){
+    this.servicesMarcas.getMarcas().subscribe(
+      res=>{
+        this.marcas=res as MarcaModel[];
+      }, 
+      error=>[
+ 
+      ]
+    )
+  }
+
   showNav(){
     this.show=this.show ? false : true;
+  }
+
+  showList(){
+    this.showDropdown=this.showDropdown ? false : true;
   }
 
 }

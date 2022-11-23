@@ -3,14 +3,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500&display=swap');
 $font:  'Quicksand', sans-serif;
 $font-tamanio-botones:12px;
-$color-gris:#eff0ee;
-$color-gris-claro:rgb(239, 240, 238);
-$color-amarillo:#b8f864;
-$verde:#26d0ab;
+$gris:#eff0ee;
+$gris-claro:rgb(239, 240, 238);
+$verde-amarillo:#b8f864;
+$verde:#0dc164;
 $red:#dc3545;
-
 $font-tamanio-botones:12px;
-
+$negro:#898989;
 
 * {
   font-size: 15px;
@@ -42,10 +41,9 @@ h1{
 }
 
 h3 {
-	font-size: 1.2em;
+	font-size: 1em;
   overflow-wrap: break-word;
   color: $red;
-  font-weight: 600;
 }
 
 h4 {
@@ -67,43 +65,17 @@ p{
 span{
   font-size: 1rem;
 }
-
-.titulo-secciones{
-  font-weight: 600;
-  margin-bottom: 0px;
-  margin-left: 50px;
-}
-
-form {
-      label{
-        font-size: 0.8rem;
+.contenedor_titulo{
+  background-color: $red;
+  margin-top: 5%;
+  margin-bottom: 1%;
+  padding: 1%;
+  h3{
+      color: whitesmoke;
+      text-align: center;
+      text-transform: uppercase;
   }
 }
-
-.tituloTarjeta {
-  margin-top: 5%;
-   display: block;
-   font-size: 1rem;
-   text-transform: uppercase;
- }
-
- .subTituloTarjeta {
-   margin:0%;
-   display: block;
-   font-size: 1.2rem;
-   text-transform: lowercase;
- }
-
- .pTarjeta {
-   margin:0%;
-   width: auto;
-   display: block;
-   font-size: 0.9rem;
-   font-weight: 500;
-   letter-spacing: 1px;
-   text-overflow: clip;
- }
-
  .btn-filtros{
   border: $red 1px solid;
   border-radius: 5px;
@@ -116,61 +88,13 @@ form {
  //-----------------------------FIN BANNERS
  //-----------------------------MEDIA @QUERY
 @media only screen and (max-width: 1024px) and (min-width: 764px) {
-  .tituloTarjeta {
-    margin-top: 15%;
-     display: block;
-     font-size: 1rem;
-     text-transform: uppercase;
-   }
-  
-   .subTituloTarjeta {
-     margin:0%;
-     display: block;
-     font-size: 1.8rem;
-     text-transform: lowercase;
-   }
-  
-   .pTarjeta {
-     margin:0%;
-     width: auto;
-     display: block;
-     font-size: 1.2rem;
-     font-weight: 500;
-     letter-spacing: 1px;
-     text-overflow: clip;
-   }
 }
-
-
  //-----------------------------MEDIA @QUERY
 @media only screen and (max-width: 760px) and (min-width: 300px) {
   h1{
     font-size: 17px;
   }
 
-  .tituloTarjeta {
-    margin-top: 15%;
-     display: block;
-     font-size: 1.4rem;
-     text-transform: uppercase;
-   }
-  
-   .subTituloTarjeta {
-     margin:0%;
-     display: block;
-     font-size: 1.8rem;
-     text-transform: lowercase;
-   }
-  
-   .pTarjeta {
-     margin:0%;
-     width: auto;
-     display: block;
-     font-size: 1.2rem;
-     font-weight: 500;
-     letter-spacing: 1px;
-     text-overflow: clip;
-   }
 }
 @media only screen and (max-width: 1024px) and (min-width: 760px) {
 

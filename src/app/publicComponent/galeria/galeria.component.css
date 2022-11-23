@@ -36,10 +36,9 @@ h2 {
 }
 
 h3 {
-  font-size: 1.2em;
+  font-size: 1em;
   overflow-wrap: break-word;
   color: #dc3545;
-  font-weight: 600;
 }
 
 h4 {
@@ -63,38 +62,17 @@ span {
   font-size: 1rem;
 }
 
-.titulo-secciones {
-  font-weight: 600;
-  margin-bottom: 0px;
-  margin-left: 50px;
-}
-
-form label {
-  font-size: 0.8rem;
-}
-
-.tituloTarjeta {
+.contenedor_titulo {
+  background-color: #dc3545;
   margin-top: 5%;
-  display: block;
-  font-size: 1rem;
+  margin-bottom: 1%;
+  padding: 1%;
+}
+
+.contenedor_titulo h3 {
+  color: whitesmoke;
+  text-align: center;
   text-transform: uppercase;
-}
-
-.subTituloTarjeta {
-  margin: 0%;
-  display: block;
-  font-size: 1.2rem;
-  text-transform: lowercase;
-}
-
-.pTarjeta {
-  margin: 0%;
-  width: auto;
-  display: block;
-  font-size: 0.9rem;
-  font-weight: 500;
-  letter-spacing: 1px;
-  text-overflow: clip;
 }
 
 .btn-filtros {
@@ -107,66 +85,15 @@ form label {
   color: #dc3545;
 }
 
-@media only screen and (max-width: 1024px) and (min-width: 764px) {
-  .tituloTarjeta {
-    margin-top: 15%;
-    display: block;
-    font-size: 1rem;
-    text-transform: uppercase;
-  }
-  .subTituloTarjeta {
-    margin: 0%;
-    display: block;
-    font-size: 1.8rem;
-    text-transform: lowercase;
-  }
-  .pTarjeta {
-    margin: 0%;
-    width: auto;
-    display: block;
-    font-size: 1.2rem;
-    font-weight: 500;
-    letter-spacing: 1px;
-    text-overflow: clip;
-  }
-}
-
 @media only screen and (max-width: 760px) and (min-width: 300px) {
   h1 {
     font-size: 17px;
   }
-  .tituloTarjeta {
-    margin-top: 15%;
-    display: block;
-    font-size: 1.4rem;
-    text-transform: uppercase;
-  }
-  .subTituloTarjeta {
-    margin: 0%;
-    display: block;
-    font-size: 1.8rem;
-    text-transform: lowercase;
-  }
-  .pTarjeta {
-    margin: 0%;
-    width: auto;
-    display: block;
-    font-size: 1.2rem;
-    font-weight: 500;
-    letter-spacing: 1px;
-    text-overflow: clip;
-  }
 }
 
 .contenedor-galeria {
-  margin: 5%;
-}
-
-.contenedor-galeria .contenedor_titulo {
-  background-color: white;
-  margin-top: 5%;
   padding: 2%;
-  border-radius: 10px;
+  margin: 0% 0% 5% 0%;
 }
 
 .contenedor-galeria #carousel {
@@ -186,7 +113,7 @@ form label {
 
 .contenedor-galeria #carousel div .contenedor-card {
   width: 100%;
-  height: 330px;
+  height: 430px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -194,24 +121,24 @@ form label {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  background-color: white;
+  border: 2px solid #eff0ee;
   text-align: center;
   border-radius: 10px;
 }
 
 .contenedor-galeria #carousel div .contenedor-card .foto-destacada {
   width: 100% !important;
-  height: 55% !important;
+  height: 35% !important;
   background-color: white;
 }
 
 .contenedor-galeria #carousel div .contenedor-card .foto-destacada img {
-  border-radius: 10px;
+  margin-TOP: 4%;
   background-size: cover;
   width: 100%;
   height: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
+  -o-object-fit: contain;
+     object-fit: contain;
 }
 
 .contenedor-galeria #carousel div .contenedor-card .info {
@@ -220,6 +147,19 @@ form label {
   padding: 5%;
   text-align: center;
   margin: 0%;
+}
+
+.contenedor-galeria #carousel div .contenedor-card .info .block_price {
+  text-align: center;
+  margin-top: 29px;
+  margin-right: 5px !important;
+}
+
+.contenedor-galeria #carousel div .contenedor-card .info .block_price__currency {
+  padding: 0;
+  vertical-align: top;
+  color: #dc3545;
+  font-size: 26px;
 }
 
 .contenedor-galeria #carousel div .contenedor-card .info .titulo-tarjeta {
@@ -243,9 +183,13 @@ form label {
 
 .contenedor-galeria #carousel div .contenedor-card .info .btn-outline-success {
   margin-top: 5%;
-  width: 80%;
+  width: 100%;
   background-color: none;
-  border-radius: 30px;
+  border-radius: 10px;
+}
+
+.contenedor-galeria #carousel div .contenedor-card .info .btn-outline-success:hover {
+  background-color: #0dc164;
 }
 
 @media screen and (min-width: 280px) and (max-width: 768px) {

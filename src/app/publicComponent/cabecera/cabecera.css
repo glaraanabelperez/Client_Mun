@@ -161,14 +161,7 @@ form label {
 .contenedor-cabecera {
   background-color: white;
   margin-top: 0%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  height: 5%;
+  height: 100px;
   width: 100%;
   font-size: 12px;
 }
@@ -176,23 +169,11 @@ form label {
 .contenedor-cabecera .logo {
   width: 7%;
   margin: auto;
-  margin-left: 10%;
 }
 
 .contenedor-cabecera .logo img {
   width: 100%;
   background-size: cover;
-}
-
-.contenedor-cabecera .titulo {
-  width: 60%;
-  border-bottom-left-radius: 20px;
-  text-align: center;
-  font-size: 1.8rem;
-  padding: 1%;
-  color: black;
-  border-right: 1px solid gainsboro;
-  opacity: 0.5;
 }
 
 .contenedor-cabecera .botonCabecera {
@@ -208,6 +189,20 @@ form label {
   font-size: 40px;
 }
 
+.searchShop {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  margin-right: 1rem;
+}
+
 .navbar {
   background-color: #05dd29;
   height: 5%;
@@ -215,8 +210,8 @@ form label {
   margin: 10px !important;
 }
 
-.home {
-  margin-right: 35px;
+.navbar .nav-item {
+  margin-right: 5rem;
 }
 
 .btn-success {
@@ -250,6 +245,19 @@ form label {
   }
   .contenedor-cabecera .botonCabecera .fa-user-circle {
     font-size: 60px;
+  }
+  .searchShop {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-pack: none;
+        -ms-flex-pack: none;
+            justify-content: none;
+    margin-right: 0px;
   }
 }
 
