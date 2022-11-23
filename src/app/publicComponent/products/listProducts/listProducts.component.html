@@ -1,13 +1,20 @@
 
-  
+<button *ngIf="isLogin()" type="button" class="btn-admin btn btn-danger" [routerLink]="['/productos/formulario']" >+ Producto</button>
 <!--Filtros -->
-<button *ngIf="isLogin()" type="button" class="btn-admin btn btn-danger" [routerLink]="['/productos/formulario']"  ><p>+ Producto</p></button>
-
 <div class="product_base">        
         <form clas="form" #myForm="ngForm" >
                   <i for="menu" ngbTooltip="Filtros"
                   (click)="showFilters()" class="btn-filtros fa-sharp fa-solid fa-filter"></i>
                 <div data-aos="slide-right" [style.display]="show ? 'block' : 'none'">
+                        <div class="input-group">
+                                <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" name="discount" 
+                                        id="discount" [(ngModel)]= "filter.Discount">
+                                        <label  for="featured">
+                                                Con descuentos!
+                                        </label>
+                                </div>
+                        </div>
                         <div class="input-group">
                                 <div class="form-check">
                                         <input class="form-check-input" type="checkbox" name="featured" 
@@ -69,7 +76,7 @@
                         <p class="block_model"><span style="font-size:0.7rem" class="block_model__number">Categoria {{p.CategoryName}}</span></p>
                         <p class="block_model"><span class="block_model__number">{{p.MarcaName}}</span></p>
                         <h2 class="block_name block_name__mainName">{{p.Name}}<sup>&reg; </sup></h2>
-                         <h2 class="block_name block_name__addName">{{p.Description}}</h2>      
+                         <!-- <h2 class="block_name block_name__addName">{{p.Description}}</h2>       -->
                         <div class="block_price" >
                           <p *ngIf="p.DiscountAmount==null"  class="block_price__currency">$ {{p.Price}}</p>
                           <div class="prices" *ngIf="p.DiscountAmount!=null">
@@ -77,8 +84,7 @@
                              <p  class="block_price__currency" style="color:black"> $ {{p.Price - (p.Price * p.DiscountAmount /100)}}</p>
                           </div>
                         </div>
-                        <p *ngIf="!p.State"  class="block_model agotado" style="text-align:center;"><span  class="block_model__number">AGOTADO!</span></p>
-                        <button class="btn btn-info" *ngIf="!isLogin()">
+                        <button class="btn btn-info" *ngIf="!isLogin() && p.State">
                                 Add to Cart
                         </button>   
                         <div class="btns-edit-prod" *ngIf="isLogin()" >
@@ -91,6 +97,8 @@
                                 </button> 
                         </div>                                       
                     </div>
+                    <p *ngIf="!p.State" class="block_model agotado" style="text-align:center;"><span  class="block_model__number">AGOTADO!</span></p>
+
                 </div>
                 <br>
         </div>    

@@ -14,10 +14,10 @@
     <span class="sr-only">Loading...</span>
   </div>
   <div class="menuAdmin" *ngIf="isLogin()">
-    <button type="button" class="btn btn-outline-danger"[routerLink]="['/productos/lista-productos']">Productos</button>
-    <button type="button" class="btn btn-outline-danger" [routerLink]="['/productos/categorias']">Categorias</button>
-    <button type="button" class="btn btn-outline-danger" [routerLink]="['/productos/marcas']">Marcas</button>
-    <button type="button" class="btn btn-outline-danger" [routerLink]="['/productos/descuentos']">Descuentos</button>
+    <button type="button" class="btn btn-outline-danger" [routerLink]="['/productos/lista-productos']">Adm Productos</button>
+    <button type="button" class="btn btn-outline-danger" [routerLink]="['/productos/categorias']">Adm Categorias</button>
+    <button type="button" class="btn btn-outline-danger" [routerLink]="['/productos/marcas']">Adm Marcas</button>
+    <button type="button" class="btn btn-outline-danger" [routerLink]="['/productos/descuentos']">Adm Descuentos</button>
  </div>  
   <!-- <i class="fa-sharp fa-solid fa-backward"  (click)="goBack()" ngbTooltip="Volver"></i> -->
   <router-outlet></router-outlet>

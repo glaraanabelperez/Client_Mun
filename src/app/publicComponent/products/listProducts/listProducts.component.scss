@@ -1,13 +1,14 @@
 @import '../../../generalStyles/generalStyles.scss';
 
 .btn-admin{
-  position: absolute;
-  right: 15px;
-  top:230px;
+  position: relative;
+  right:0px;
+  top:0px;
   display: flex;
   flex-direction: column;
   width: 7.2rem;
   text-align: center;
+  margin-bottom: 25px;
 }
 .form-check-label{
   font-size: 1rem !important;
@@ -56,6 +57,8 @@ $colorBackground: #fff;
 form {
   width: 15% !important;
   background-color: #e9ecef;
+  margin-right: 25px;
+  margin-top: 4%;
  
   label{
     font-size: 1rem;
@@ -75,6 +78,7 @@ body {
   flex-direction: row;
 }
 .products_rigth{
+
   width: 75%;
   margin-left: 1%;
   margin-right: 3%;
@@ -85,6 +89,7 @@ body {
 }
 
 .productCard_rightSide {
+  position:relative;
   padding: 3%;
   max-width: 100%;
   height: 400px;
@@ -119,7 +124,12 @@ body {
     opacity: 0.9;
   }
   .agotado{
-    float: inline-end;
+    position: absolute;
+    bottom: 270px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    background-color: $verde-amarillo;
   }
 
   .block_name {
