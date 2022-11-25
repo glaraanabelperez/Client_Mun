@@ -10,6 +10,7 @@ $verde:#0dc164;
 $red:#dc3545;
 $font-tamanio-botones:12px;
 $negro:#898989;
+$gris:rgba(248, 249, 250);
 
 * {
   font-size: 15px;
@@ -84,6 +85,10 @@ span{
   cursor: pointer;
   font-size: 17px;
   color: $red;
+}
+.btn-success{
+  background-color: $verde;
+  border: $verde;
 }
 
  //-----------------------------FIN BANNERS

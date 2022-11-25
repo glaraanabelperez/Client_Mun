@@ -9,7 +9,7 @@ import { CategoryModel } from '../categories/models/categoryModel';
 import { LoadingService } from 'src/app/services/loading.service';
 import { CatgeorieService } from '../categories/service/categorie.service';
 import { ProductService } from './service/product.service';
-import { ProductModelResponse } from './models/productModelDto';
+import { ProductModelResponse } from './models/productModelResponse';
 import { MarcaModel } from '../marcas/models/marcaModel';
 import { MarcaService } from '../marcas/service/marca.service';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
@@ -120,12 +120,12 @@ import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
       this.productService.delete(p).subscribe(
         datos=>{
             alert("SE ELIMINO EXITOSAMENTE")
+            this.listAllProducts(); 
         },
         error =>{
           alert('ERROR DE SERVIDOR');
         }
       );   
-      this.listAllProducts(); 
     }
 
     //lista categorias

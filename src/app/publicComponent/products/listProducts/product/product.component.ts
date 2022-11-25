@@ -27,7 +27,7 @@ import { switchMap } from 'rxjs/operators';
   export class ProductDialogComponent implements OnInit {
 
 
-  public state: any[]=[{ valor:false, name:'Agotado'}, { valor:true, name:'Disponible'}];
+  public stock: any[]=[{ valor:false, name:'No Disponible'}, { valor:true, name:'Disponible'}];
   public uploadForm: any;
 
   public product:ProductModel=null;

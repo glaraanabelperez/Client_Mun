@@ -96,84 +96,49 @@ span {
   }
 }
 
-.contenedor_titulo {
-  background-color: #b8f864;
+.rowCard {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
 }
 
-.contenedor_titulo h3 {
-  color: #898989;
+label.form-label {
+  margin-top: 18px;
 }
 
-.contenedor-galeria {
-  margin: 5%;
+.form {
+  width: 70%;
+  margin: auto;
+  padding: 3%;
 }
 
-.contenedor-galeria #carousel {
-  padding: 3% 0% 3% 0%;
-  width: 100%;
-  height: auto;
-  white-space: nowrap;
-  overflow-x: auto;
+.form .form_div {
+  width: 50%;
   margin: auto;
 }
 
-.textBtn {
-  color: #dc3545;
-  text-decoration: none;
-  font-weight: 600;
-  font-size: 1.5rem;
-  margin-right: 2.3rem;
-  text-transform: uppercase;
-}
-
-@media only screen and (min-width: 320px) and (max-width: 680px) {
-  .espacio {
-    height: 130px;
+@media screen and (min-width: 280px) and (max-width: 768px) {
+  .form {
+    width: 100%;
+    margin: auto;
+    padding: 3%;
   }
-  .base_home {
+  .form .form_div {
+    width: 100%;
+    margin: auto;
+  }
+  .rowCard {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: row;
-            flex-direction: row;
-  }
-  .base_home .lateral_izq {
-    display: none;
-  }
-  .base_home .lateral_der {
-    width: 100%;
-  }
-  .contenedor-galeria {
-    margin-top: 1%;
-    margin-bottom: 1%;
-  }
-  .contenedor-galeria #carousel div {
-    display: inline-block;
-    width: 40%;
-    margin-right: 1%;
+    -webkit-box-orient: vertical !important;
+    -webkit-box-direction: normal !important;
+        -ms-flex-direction: column !important;
+            flex-direction: column !important;
   }
 }
-
-@media only screen and (min-width: 680px) and (max-width: 1200px) {
-  .espacio {
-    height: 140px;
-  }
-  .base_home {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: row;
-            flex-direction: row;
-  }
-  .base_home .lateral_izq {
-    display: none;
-  }
-  .base_home .lateral_der {
-    width: 100%;
-  }
-}
-/*# sourceMappingURL=home.component.css.map */
+/*# sourceMappingURL=contact.component.css.map */

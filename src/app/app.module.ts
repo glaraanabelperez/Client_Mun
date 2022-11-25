@@ -18,7 +18,8 @@ import { HomeComponent } from './publicComponent/home/home.component';
 import { GaleriaComponent} from './publicComponent/galeria/galeria.component';
 import { VerPedido } from './publicComponent/pedidos/ver-pedido.component';
 import { FooterComponent } from './publicComponent/footer/footer.component';
-import { Cabecera} from './publicComponent/cabecera/cabecera';
+import { CabeceraComponent} from './publicComponent/cabecera/cabecera.component';
+
 import { LogInComponent } from './publicComponent/log-in/log-inWjn.component';
 import { ProductsComponent } from './publicComponent/products/products.component';
 import { MarcaDialogComponent } from './publicComponent/products/marcas/marca-dialog/marca-dialog.component';
@@ -30,6 +31,7 @@ import { CategoriesComponent } from './publicComponent/products/categories/categ
 import { MarcasComponent } from './publicComponent/products/marcas/marcas.component';
 import { DiscountsComponent } from './publicComponent/products/discounts/discounts.component';
 import { ImageDialogComponent } from './publicComponent/products/listProducts/image-dialog/image-dialog.component';
+import { ContactComponent } from './publicComponent/contact/contact..component';
 
 
 
@@ -54,6 +56,8 @@ const routes: Routes = [
 {path: 'home', component: HomeComponent, children:childrenRoute},
 {path: 'login', component:LogInComponent},
 {path: 'productos',component: ProductsComponent,children:childrenRouteProducts},
+{path: 'contacto',component: ContactComponent},
+
 ];
 
 @NgModule({
@@ -64,7 +68,8 @@ const routes: Routes = [
     GaleriaComponent,
     FooterComponent,
     LogInComponent,
-    Cabecera,
+    CabeceraComponent,
+    ContactComponent,
     ProductsComponent,
     DiscountsComponent,
     MarcasComponent,

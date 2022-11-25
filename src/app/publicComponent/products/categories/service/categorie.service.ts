@@ -45,7 +45,7 @@ public insert(category:CategoryModel): Observable<any> {
 }
 
 public upload(category:CategoryModel): Observable<any> {
-  return this.http.post<any>(`${this.url}category/state/${category.CategoryId}`, category);
+  return this.http.post<any>(`${this.url}category`, category);
 }
   
 }

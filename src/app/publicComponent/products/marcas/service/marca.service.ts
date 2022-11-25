@@ -34,7 +34,7 @@ public save(data:MarcaModel): Observable<any> {
 }
 
 public update(data:MarcaModel): Observable<any> {
-  return this.http.post<any>(`${this.url}marca/${data.MarcaId}`, data);
+  return this.http.post<any>(`${this.url}marca/`, data);
 }
 
 public delete(marcaId:number): Observable<any> {

@@ -5,8 +5,9 @@ export interface ProductModelResponse{
     Name:string;
     Description:string;
     DiscountAmount:string;
-    State:Date; 
-    Featured:number;
+    State:boolean; 
+    Stock:boolean;
+    Featured:boolean;
     Price:number;   
     PriceWithDiscount:number;
     ImageName:string;

@@ -89,6 +89,39 @@
 {
   margin:0
 }
+
+.contact_icons{
+  padding: 6%;
+  margin: auto;
+}
+li.list-group-item{
+  margin-bottom: 15px !important;
+  color: #eceeef;
+
+}
+li.list-group-item i{
+  font-size: 25px;
+}
+.fab{
+  font-size: 25px;
+}
+.fa-facebook{
+  color: #3366cc;
+}
+.fa-instagram{
+  color: $red;
+}
+.fa-whatsapp{
+  color: darkgreen;
+}
+.fa-location-dot{
+  color: black;
+}
+.fa-location-dot{
+  color: gray;
+}
+
+
 @media (max-width:991px)
 {
   .site-footer [class^=col-]

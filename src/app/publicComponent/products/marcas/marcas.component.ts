@@ -25,7 +25,7 @@ import { MarcaService } from './service/marca.service';
     public loadingService:LoadingService, ){}
 
   ngOnInit(): void {
-    this.getDiscounts();
+    this.getMarcas();
   }
 
   showingModal(item:MarcaModel):void{
@@ -35,7 +35,7 @@ import { MarcaService } from './service/marca.service';
 
 
    //lista categorias
-   public getDiscounts(){
+   public getMarcas(){
       this.marcaService.getAllMarcas().subscribe(
         res=>{
           this.marcas=res;
@@ -53,9 +53,9 @@ import { MarcaService } from './service/marca.service';
   public delete(marcaId:number){
       this.marcaService.delete(marcaId).subscribe(
         res=>{
-         console.log(res)
           this.loadingService.setLoading(false);
           alert('BIENVENIDO');
+          this.getMarcas();
         },
         error=>{
           this.loadingService.setLoading(false);

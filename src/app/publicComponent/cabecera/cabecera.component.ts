@@ -4,10 +4,10 @@ import { MarcaService } from '../products/marcas/service/marca.service';
 
 @Component({
   selector: 'app-cabecera',
-  templateUrl: './cabecera.html',
-  styleUrls: ['./cabecera.scss']
+  templateUrl: './cabecera.component.html',
+  styleUrls: ['./cabecera.component.scss']
 })
-export class Cabecera {
+export class CabeceraComponent {
 
   show:boolean;
   marcas: MarcaModel[];

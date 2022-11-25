@@ -29,15 +29,14 @@ import { CategoryModel } from './models/categoryModel';
   showingModal(item:CategoryModel):void{
     this.category = item;
     this.showModal=this.showModal ? false : true;
+    if(!this.showModal){
+      this.getCategorias();
+    }
   } 
 
 
    //lista categorias
    public getCategorias(){
-    if(localStorage.getItem('codigo_usar')==undefined || localStorage.getItem('codigo_usar')==null){
-      alert('VUELVA A INGRESAR USUARIO Y PASSWORD')
-      this.router.navigateByUrl('login')
-    }
       this.categorieService.list().subscribe(
         res=>{
           this.categories=res;
@@ -53,14 +52,11 @@ import { CategoryModel } from './models/categoryModel';
   }
 
   public delete(categoryId:number){
-    if(localStorage.getItem('codigo_usar')==undefined || localStorage.getItem('codigo_usar')==null){
-      alert('VUELVA A INGRESAR USUARIO Y PASSWORD')
-      this.router.navigateByUrl('login')
-    }
       this.categorieService.delete(categoryId).subscribe(
         res=>{
           this.loadingService.setLoading(false);
-          alert('BIENVENIDO');
+          alert('LOS DATOS SE ELIMINARON CON EXITO');
+          this.getCategorias();
         },
         error=>{
           this.loadingService.setLoading(false);

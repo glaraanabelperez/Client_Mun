@@ -6,6 +6,7 @@ export interface ProductModel{
     Name:string;
     Description:string;
     State:boolean; 
+    Stock:boolean; 
     Featured:number;
     Price:number;   
 }

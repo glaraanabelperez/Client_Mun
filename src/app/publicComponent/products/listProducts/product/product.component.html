@@ -43,12 +43,12 @@
               </div> 
               <hr>
               <div class="form-group col-md-13">
-                <label for="estado">Estado</label>
-                <select formControlName="state" class="form-control" [ngClass]="{'is-invalid': submitted && f.state.errors}">
+                <label for="stock">Stock</label>
+                <select formControlName="stock" class="form-control" [ngClass]="{'is-invalid': submitted && f.stock.errors}">
                   <option value="">Seleccionar</option>
-                  <option  [value]="item.valor" *ngFor="let item of state" >{{item.name}}</option>
-                  <div *ngIf="submitted && f.state.errors" class="invalid-feedback">
-                    <div *ngIf="f.state.errors.required"> Por favor Selecciones una opcion</div>
+                  <option  [value]="item.valor" *ngFor="let item of stock" >{{item.name}}</option>
+                  <div *ngIf="submitted && f.stock.errors" class="invalid-feedback">
+                    <div *ngIf="f.stock.errors.required"> Por favor Selecciones una opcion</div>
                   </div>
                 </select>
               </div>

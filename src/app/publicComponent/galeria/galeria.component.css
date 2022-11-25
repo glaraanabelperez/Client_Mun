@@ -85,6 +85,11 @@ span {
   color: #dc3545;
 }
 
+.btn-success {
+  background-color: #0dc164;
+  border: #0dc164;
+}
+
 @media only screen and (max-width: 760px) and (min-width: 300px) {
   h1 {
     font-size: 17px;
