@@ -130,15 +130,9 @@ import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
     //lista categorias
      public traerCategorias(){
-      if(localStorage.getItem('codigo_usar')==undefined || localStorage.getItem('codigo_usar')==null){
-        alert('VUELVA A INGRESAR USUARIO Y PASSWORD')
-        this.router.navigateByUrl('login')
-      }
         this.categorieService.list().subscribe(
           res=>{
             this.categories=res;
-            
-            alert('BIENVENIDO');
           },
           error=>{
             alert('EL USUARIO NO SE ENCUENTRA REGISTRADO');

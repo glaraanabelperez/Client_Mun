@@ -21,7 +21,7 @@ import { MarcaService } from './service/marca.service';
   public marcas:MarcaModel[]=[];
   public showModal:boolean;
 
-  constructor(private router: Router,private marcaService:MarcaService, 
+  constructor(private router: Router, private marcaService:MarcaService, 
     public loadingService:LoadingService, ){}
 
   ngOnInit(): void {
@@ -30,17 +30,24 @@ import { MarcaService } from './service/marca.service';
 
   showingModal(item:MarcaModel):void{
     this.marca = item;
-    this.showModal=this.showModal ? false : true;
+    if(this.showModal){
+      this.showModal=false;
+      window.scroll(0,0);
+    }else{
+      this.showModal=true;
+      this.getMarcas();
+    }
   } 
 
 
    //lista categorias
    public getMarcas(){
-      this.marcaService.getAllMarcas().subscribe(
+    this.loadingService.setLoading(true);
+
+      this.marcaService.getMarcas().subscribe(
         res=>{
           this.marcas=res;
           this.loadingService.setLoading(false);
-          alert('BIENVENIDO');
         },
         error=>{
           this.loadingService.setLoading(false);
@@ -51,6 +58,8 @@ import { MarcaService } from './service/marca.service';
   }
 
   public delete(marcaId:number){
+    this.loadingService.setLoading(true);
+
       this.marcaService.delete(marcaId).subscribe(
         res=>{
           this.loadingService.setLoading(false);

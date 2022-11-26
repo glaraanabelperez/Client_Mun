@@ -69,7 +69,7 @@ import { switchMap } from 'rxjs/operators';
       name:['',[Validators.required]],
       description:[''],
       nameImage: [null],
-      state:['',[Validators.required]],
+      stock:['',[Validators.required]],
       price:[null],
       featured:[''],
     });
@@ -104,7 +104,7 @@ import { switchMap } from 'rxjs/operators';
 
     getMarcas(){
       this.loadingService.setLoading(true);
-      this.marcaService.getAllMarcas().subscribe(
+      this.marcaService.getMarcas().subscribe(
         res=>{
           this.marcas=res as [];
           this.loadingService.setLoading(false);

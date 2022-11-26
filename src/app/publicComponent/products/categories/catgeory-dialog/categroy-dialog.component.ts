@@ -73,7 +73,7 @@ import { LoadingService } from 'src/app/services/loading.service';
     this.categoireService.upload(this.uploadForm.value).subscribe(
       res=>{
         this.loadingService.setLoading(false);
-        alert('SE EDITO CON EXITO ');
+        alert('DATOS GUARDADOS');
         this.onCloseModal();
       },
       error=>{
@@ -87,7 +87,7 @@ import { LoadingService } from 'src/app/services/loading.service';
     this.categoireService.insert(this.uploadForm.value).subscribe(
       res=>{
         this.loadingService.setLoading(false);
-        alert('SE GUARDO CON EXITO');
+        alert('DATOS GUARDADOS');
         this.onCloseModal();
       },
       error=>{

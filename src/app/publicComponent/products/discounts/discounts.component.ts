@@ -31,7 +31,14 @@ import { DiscountService } from './service/discount.service';
 
   showingModal(item:DiscountModel):void{
     this.discount = item;
-    this.showModal=this.showModal ? false : true;
+    if(!this.showModal){
+      this.showModal=true;
+      window.scroll(0,0);
+
+    }else{
+      this.showModal=false;
+      this.getDiscounts();
+    }
   } 
 
 
@@ -41,7 +48,6 @@ import { DiscountService } from './service/discount.service';
         res=>{
           this.discounts=res;
           this.loadingService.setLoading(false);
-          alert('BIENVENIDO');
         },
         error=>{
           this.loadingService.setLoading(false);
@@ -56,7 +62,6 @@ import { DiscountService } from './service/discount.service';
         res=>{
          console.log(res)
           this.loadingService.setLoading(false);
-          alert('BIENVENIDO');
         },
         error=>{
           this.loadingService.setLoading(false);

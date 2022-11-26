@@ -36,7 +36,8 @@ import { DiscountService } from 'src/app/publicComponent/products/discounts/serv
         Amount:[null, 
           [ Validators.min(1), Validators.max(100), Validators.required,
             Validators.pattern(/^\d+$/)]
-        ],    
+        ], 
+        CretaedBy:[null]   
     });
 
     this.editing=this.data!=null ? true: false
@@ -51,7 +52,7 @@ import { DiscountService } from 'src/app/publicComponent/products/discounts/serv
 
   
   editarPubliId(e: DiscountModel){
-      this.uploadForm.controls.DiscountId.setValue(e.DiscountId );
+      this.uploadForm.controls.DiscountId.setValue(e.DiscountId?e.DiscountId : null );
       this.uploadForm.controls.Name.setValue(e.Name );
       window.scrollTo(0,0);
   }
@@ -76,7 +77,7 @@ import { DiscountService } from 'src/app/publicComponent/products/discounts/serv
     this.discountService.update(this.uploadForm.value).subscribe(
       res=>{
         this.loadingService.setLoading(false);
-        alert('SE EDITO CON EXITO ');
+        alert('DATOS GUARDADOS');
         this.onCloseModal();
       },
       error=>{
@@ -87,15 +88,16 @@ import { DiscountService } from 'src/app/publicComponent/products/discounts/serv
   }
 
   insert(){
+    this.uploadForm.controls.CretaedBy.setValue(parseInt(localStorage.getItem('codigo_usar')))
     this.discountService.save(this.uploadForm.value).subscribe(
       res=>{
         this.loadingService.setLoading(false);
-        alert('SE GUARDO CON EXITO');
+        alert('DATOS GUARDADOS');
         this.onCloseModal();
       },
       error=>{
         this.loadingService.setLoading(false);
-        alert('EL USUARIO NO SE ENCUENTRA REGISTRADO');
+        alert('ERROR EN EL SERVIDOR');
       }
     );
   }

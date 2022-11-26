@@ -28,8 +28,11 @@ import { CategoryModel } from './models/categoryModel';
 
   showingModal(item:CategoryModel):void{
     this.category = item;
-    this.showModal=this.showModal ? false : true;
     if(!this.showModal){
+      this.showModal=true;
+      window.scroll(0,0);
+    }else{
+      this.showModal=false;
       this.getCategorias();
     }
   } 
@@ -41,7 +44,6 @@ import { CategoryModel } from './models/categoryModel';
         res=>{
           this.categories=res;
           this.loadingService.setLoading(false);
-          alert('BIENVENIDO');
         },
         error=>{
           this.loadingService.setLoading(false);
