@@ -70,11 +70,13 @@ import { DiscountModel } from 'src/app/publicComponent/products/discounts/models
   }
 
   upload(){
+    this.loadingService.setLoading(true);
+
     this.marcaService.update(this.uploadForm.value).subscribe(
       res=>{
         this.loadingService.setLoading(false);
-        alert('SE EDITO CON EXITO ');
         this.onCloseModal();
+        alert('DATOS GUARDADOS');
       },
       error=>{
         this.loadingService.setLoading(false);
@@ -87,8 +89,8 @@ import { DiscountModel } from 'src/app/publicComponent/products/discounts/models
     this.marcaService.save(this.uploadForm.value).subscribe(
       res=>{
         this.loadingService.setLoading(false);
-        alert('SE GUARDO CON EXITO');
         this.onCloseModal();
+        alert('DATOS GUARDADOS');
       },
       error=>{
         this.loadingService.setLoading(false);
@@ -97,19 +99,21 @@ import { DiscountModel } from 'src/app/publicComponent/products/discounts/models
     );
   }
 
-  delete(categoryId:number){
-    this.marcaService.delete(categoryId).subscribe(
-      res=>{
-        this.loadingService.setLoading(false);
-        alert('SE ELIMINO CON EXITO');
-        this.onCloseModal();
-      },
-      error=>{
-        this.loadingService.setLoading(false);
-        alert('EL USUARIO NO SE ENCUENTRA REGISTRADO');
-      }
-    );
-  }
+  // delete(categoryId:number){
+  //   this.loadingService.setLoading(true);
+
+  //   this.marcaService.delete(categoryId).subscribe(
+  //     res=>{
+  //       this.loadingService.setLoading(false);
+  //       alert('SE ELIMINO CON EXITO');
+  //       this.onCloseModal();
+  //     },
+  //     error=>{
+  //       this.loadingService.setLoading(false);
+  //       alert('EL USUARIO NO SE ENCUENTRA REGISTRADO');
+  //     }
+  //   );
+  // }
 
     
 }
