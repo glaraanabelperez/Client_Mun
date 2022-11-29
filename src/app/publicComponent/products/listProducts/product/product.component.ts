@@ -1,5 +1,5 @@
 import { Component, OnInit , Output, EventEmitter, ViewChild, ElementRef, Inject, Input, ChangeDetectorRef} from '@angular/core';
-import { DOCUMENT } from '@angular/common';
+import { DOCUMENT, formatDate } from '@angular/common';
 // import { ServiceMetodos } from 'src/app/core/servicios-generales/service-general.metodos';
 import { FormBuilder, Validators } from '@angular/forms';
 
@@ -16,6 +16,7 @@ import { ImageService } from '../service/imageService';
 import { LoadingService } from 'src/app/services/loading.service';
 import { ImageTranser } from '../models/imagesTransferModel';
 import { switchMap } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -34,23 +35,21 @@ import { switchMap } from 'rxjs/operators';
   public marcas:MarcaModel[];
   public categories: CategoryModel[];
   public discounts: DiscountModel[]=[];
-  public images: ProductImageModel []=[];
-  
+
+
   private accionBtnFormulario: string;
 
-  public hiddeModal: boolean;
-  public oldImageIndex: number;
+
 
 
   constructor( 
       private productService:ProductService, 
-      public serviceImage:ImageService,
       private categoireService:CatgeorieService,
       private marcaService:MarcaService,
       private discountService:DiscountService,
       private loadingService:LoadingService,  
       private formBuilder:FormBuilder, @Inject(DOCUMENT) private document: Document,
-      private cdRef:ChangeDetectorRef
+      private router: Router
     ){
   }
      
@@ -75,9 +74,10 @@ import { switchMap } from 'rxjs/operators';
     });
 
     if(this.productService.productId!=null){
+      var prodId=this.productService.productId;
       this.accionBtnFormulario="editar"
       this.getProduct(this.productService.productId);     
-      this.getImages(this.productService.productId);
+      // this.getImages(prodId);
     }else{
       this.accionBtnFormulario="nuevo";
     }
@@ -134,6 +134,7 @@ import { switchMap } from 'rxjs/operators';
 
     getProduct(productId :number){
       this.loadingService.setLoading(true);
+      
       this.productService.getProduct(productId).subscribe(
         res=>{
           this.product=res; 
@@ -149,52 +150,7 @@ import { switchMap } from 'rxjs/operators';
       this.productService.productId=null;
     }
 
-    getImages(productId:number){
-      this.serviceImage.get(productId).subscribe(
-        res=>{
-          this.images=res;
-        },
-        error=>{
-          alert('HUBO UN PROBLEMA CON EL SERVIDOR');
-        }
-      );
-    }
-
-    procesImages(newImage?:ImageTranser):void{
-      if(newImage!=null && newImage.arrayBuffer!=null){
-        this.addNewImage_List(newImage);
-      }
-      this.hiddeModal=this.hiddeModal ? false : true;
-      window.scroll(0,0);
-    } 
-
-    addNewImage_List(newImage:ImageTranser){
-      this.serviceImage.imagesInsertList.push(newImage);
-    }
-
-    putOffNewImage_List(deleteNewImage:number){
-     this.serviceImage.imagesInsertList.splice(deleteNewImage,1);
-    }
-
-    deleteImages(image: ProductImageModel){
-        this.serviceImage.delete(image)
-        .subscribe(
-          res=>{
-            this.getImages(this.productService.productId);
-          }, error =>{
-              alert("Error al borrar imagen")
-          }
-        )
-    }
-
-    appendImages(list:ImageTranser []):FormData{
-      const formData = new FormData();
-      list.forEach(element => {
-        // formData.append('file', list[0].file);
-        formData.append('file', element.file[0], element.file[0].name); 
-      });
-      return formData;
-    }
+    public limpiar(){}
 
     submitted=false;
     onSubmit(){
@@ -203,39 +159,30 @@ import { switchMap } from 'rxjs/operators';
         return;
       }else{
         this.loadingService.setLoading(true);
-
-        const formData = new FormData();
-         this.serviceImage.imagesInsertList.forEach(element => {
-          formData.append('file', element.file[0]);
-         });
-        if(this.accionBtnFormulario=="nuevo"){
-          this.productService.insert(this.uploadForm.value).pipe(
-            switchMap(productId=> {
-              return this.serviceImage.insert(formData, productId);
-            })
-           ).subscribe(result => {
+         if(this.accionBtnFormulario=="nuevo"){
+          this.productService.insert(this.uploadForm.value).subscribe(
+            result => {
+              this.loadingService.setLoading(false);
+              alert('Datos guardados');
+           },
+           error=>{
+            alert('Error en el servidor');
             this.loadingService.setLoading(false);
-            alert('Datos guardados');
            });         
         }
-        if(this.accionBtnFormulario=="editar"){       
-          this.productService.update(this.uploadForm.value).pipe(
-            switchMap(productId=> {
-              return this.serviceImage.insert(formData, productId);
-            })
-           ).subscribe(result => {
-            alert('Datos guardados');
-           }); 
-         }
+        if(this.accionBtnFormulario=="editar"){
+          this.productService.update(this.uploadForm.value).subscribe(
+            result => {
+              this.loadingService.setLoading(false);
+              alert('Datos guardados');
+           },
+           error=>{
+            alert('Error en el servidor');
+            this.loadingService.setLoading(false);
+           });         
+        }
       }
-      this.loadingService.setLoading(false);
-      this.accionBtnFormulario="nuevo";
-      this.limpiar();
-    }
-  
-    limpiar(){
-      this.uploadForm.reset();
-      this.serviceImage.imagesInsertList=[];
+      this.router.navigate(['./productos/lista-productos']);
     }
   
     editarPubliId(e: ProductModel){
@@ -247,35 +194,11 @@ import { switchMap } from 'rxjs/operators';
       this.uploadForm.controls.description.setValue(e.Description );
       this.uploadForm.controls.price.setValue(e.Price );
       this.uploadForm.controls.featured.setValue(e.Featured );
-      this.uploadForm.controls.state.setValue(e.State );
+      this.uploadForm.controls.stock.setValue(e.Stock );
 
       window.scrollTo(0,0);
     }
 
-  //  public rsta;
-  //  public guardarArchivoServidor(files){
-  //    let fileImg=new FormData();
-  //    fileImg.append('file', files[0], files[0].name); 
-  //    fileImg.append('carpeta', localStorage.getItem('username'))
-  //    this.serviceImage.insertFileOnServer(fileImg)
-  //    .subscribe(
-  //       response => {
-  //         this.rsta = response; 
-  //         if(this.rsta <= 1){
-  //           alert("ERROR AL GUARDAR LA IMAGEN") 
-  //         }else{
-  //           if(this.rsta.code == 200 && this.rsta.status == "success"){
-  //               alert("LA IMEGEN SE SUBIO") 
-  //            }else{
-  //                alert("ERROR AL GUARDAR LA IMAGEN") 
-  //            }
-  //          }
-  //       },
-  //       error => {
-  //           alert("ERROR AL GUARDAR LA IMAGEN") 
-  //       });
-  //   }
 
-    
 }
   

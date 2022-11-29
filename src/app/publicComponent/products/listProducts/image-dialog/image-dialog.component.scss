@@ -19,3 +19,27 @@
         }
     }
 }
+
+.images{
+ 
+    margin-bottom: 10%;
+    margin-top: 10%;
+}
+.itemPhoto{
+    width: 40%;
+    margin: auto;
+    margin-bottom: 3px;
+    .btn-images.fa-trash{
+        float: right;
+    }
+    .viewImg{
+        max-width: 100%;
+       height: auto;
+       margin-bottom: 5%;
+    }
+    .fa-solid {
+        font-size: 20px;
+        cursor: pointer;
+    }
+}
+

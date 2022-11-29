@@ -26,7 +26,7 @@ public verifyFileOnServer(imageName:string):Observable<any>{
   return this.http.post<ProductImageModel>(`${this.url}images`, data);
 }
 
-public delete(image:ProductImageModel): Observable<any> {
+public delete(image:ProductImageModel []): Observable<any> {
   return this.http.post<any>(`${this.url}images/delete`, image);
 }
   
@@ -35,9 +35,9 @@ public insert(formData:any, productId: number): Observable<any> {
 }
   
 
-public deleteImageServer(image:any) :Observable<any>{
-  return  this.http.post(`${this.url}images/server}`, image);
-}
+// public deleteImageServer(images:any []) :Observable<any>{
+//   return  this.http.post(`${this.url}images/server}`, images);
+// }
 
   //observables encadenados
   

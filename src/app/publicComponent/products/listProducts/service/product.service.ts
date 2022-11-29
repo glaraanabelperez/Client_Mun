@@ -13,8 +13,8 @@ import { ProductImageModel } from '../models/productImageModel';
 })
 export class ProductService{
 
-  url=environment.Url;
-  public productId:number;
+  public url=environment.Url;
+  public productId:number=null;
 
 constructor(private http: HttpClient) {
 

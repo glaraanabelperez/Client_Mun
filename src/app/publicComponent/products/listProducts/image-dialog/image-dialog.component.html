@@ -6,44 +6,45 @@
         <button type="button" class="btn-close" aria-label="Close" (click)="onCloseModal()" >X</button>       
       </div>
       <div class="card-body" >
-        <form >
+         <!--Imagenes-->
+         <div class="images">
+          <div  *ngFor="let im of images; let i=index">
+            <div class="itemPhoto">
+              <img   class="viewImg" [src]="'assets/' +  im.Name">
+              <div class="btn-images" >
+                <i class="fa-solid fa-trash" (click)="deleteImagesOld(im, i)" ></i>
+              </div>            
+            </div>           
+          </div>
+        </div>
+        <div class="images">
+          <div  *ngFor="let im of listImagesToInsert; let i=index">
+            <div class="itemPhoto">
+                <img *ngIf="listImagesToInsert.length > 0" [src]="im.arrayBuffer" height="200" >
+                <div class="btn-images" >
+                   <i class="fa-solid fa-trash" (click)="deleteImageNew(i)" ></i>
+                </div>            
+            </div>           
+          </div>
+        </div>
+        
+        <!--Fin Imagenes -->
+        <form *ngIf="( images.length + (listImagesToInsert.length - listImagesToDelete.length) ) < 5">
           <div class="bloque1"> 
             <div class="form-colum">
               <div class="form-group col-md-12">
                 <label for="Name">Selecciones una imagen</label>
                 <span style="color:red;" *ngIf="message">{{message}}</span>
-                <input  #file type="file" accept='image/*' (change)="previsualizarImg(file.files)" />
-                <img *ngIf="this.imageTranser.arrayBuffer!=null" [src]="this.imageTranser.arrayBuffer" height="200" >
-
-              </div>
-              
+                <input  #file type="file" accept='image/*' (change)="saveImage(file.files)" />
+              </div>  
             </div> 
-
-            
-
-
-
-
-            <!-- <div class="form-group col-md-12">
-              <label for="nameImage"></label>
-              <br>
-              <span style="color:red;" *ngIf="message">{{message}}</span>
-              <input  #file type="file" accept='image/*' (change)="previsualizarImg(file.files)" />
-              <img *ngIf="showNewImage" [src]="showNewImage" height="200" >
-              <div *ngIf=" editImage && showNewImage==null">
-                <br>
-                <img height="180" [src]="'assets/'+ buisness +'/' +  editImage" >
-              </div>
-            </div>
-          </div> -->
-
-
           </div>
        </form>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-danger" (click)="onCloseModal()" style="margin-right: 5px;">Guardar</button>
-          <button type="button" class="btn btn-secondary" (click)="clean()" data-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-secondary" (click)="confirm()" data-dismiss="modal">Confirmar</button>
+          <!-- <button type="button" class="btn btn-secondary" (click)="saveInserver()" data-dismiss="modal">Eliminar</button> -->
+
         </div> 
     </div>
 </div>

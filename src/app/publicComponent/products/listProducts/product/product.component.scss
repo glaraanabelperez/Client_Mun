@@ -10,30 +10,7 @@
     }
 }
 
-.itemPhoto{
-    width: 40%;
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 3px;
-    .btn-images{
-        display: flex; flex-direction:row;
-        text-align: center;
-        margin: auto;
-    }
-    .viewImg{
-        max-width: 100%;
-       height: auto;
-       margin-bottom: 5%;
-    }
-    .fa-solid {
-        font-size: 20px;
-        cursor: pointer;
-    }
-}
-.images{
-    margin-bottom: 10%;
-    margin-top: 10%;
-}
+
 
 
 @media only screen and (max-width: 600px) and (min-width: 200px) {

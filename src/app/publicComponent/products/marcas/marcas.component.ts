@@ -32,10 +32,10 @@ import { MarcaService } from './service/marca.service';
     this.marca = item;
     if(this.showModal){
       this.showModal=false;
-      window.scroll(0,0);
+      this.getMarcas();
     }else{
       this.showModal=true;
-      this.getMarcas();
+      window.scroll(0,0);
     }
   } 
 
@@ -63,7 +63,7 @@ import { MarcaService } from './service/marca.service';
       this.marcaService.delete(marcaId).subscribe(
         res=>{
           this.loadingService.setLoading(false);
-          alert('BIENVENIDO');
+          alert('Dato Eliminado');
           this.getMarcas();
         },
         error=>{

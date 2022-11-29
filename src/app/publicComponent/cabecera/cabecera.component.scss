@@ -47,6 +47,23 @@ margin-right: 1rem;
     background-color: rgb(5, 221, 41);
 }
 
+.navbar .nav-item:not(:last-child) {
+    margin-right: 35px;
+  }
+   
+  .dropdown-toggle::after {
+     transition: transform 0.15s linear; 
+  }
+   
+  .show.dropdown .dropdown-toggle::after {
+    transform: translateY(3px);
+  }
+  .drop{
+    max-height: 200px;
+    min-width: 50px;
+    overflow-y: auto;
+    scroll-behavior: smooth;
+  }
   
 /* Smartphones (portrait and landscape) ----------- */  
 @media (max-width : 768px) {  

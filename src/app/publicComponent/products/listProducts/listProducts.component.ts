@@ -12,7 +12,6 @@ import { ProductService } from './service/product.service';
 import { ProductModelResponse } from './models/productModelResponse';
 import { MarcaModel } from '../marcas/models/marcaModel';
 import { MarcaService } from '../marcas/service/marca.service';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 
 @Component({
@@ -40,19 +39,25 @@ import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
     public marcas:MarcaModel []=[];
 
     //Filtros
+    @ViewChild(NgForm) myForm: NgForm;  
+
     public filter:Filter;
     public order:OrderField;
     public orderAsc:boolean; 
     public orderSelect;
     public filterSelection:string="Nigun filtro seleccionado";
     public from:number;
-
-    @ViewChild(NgForm) myForm: NgForm;  
     public show: any =true;
+    
     //Modales
     public data = [];
     public selectedItem: any;
-  
+
+
+    //Images
+    public hiddeModal: boolean;
+    public productIdToModel: number;
+
     constructor( 
       private productService:ProductService, 
       private categorieService:CatgeorieService, 
@@ -60,7 +65,9 @@ import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
       public loadingService:LoadingService, 
       private router: Router, private auth:AuthService,
       private rutaActiva: ActivatedRoute
-    ) {}
+    ) {
+
+    }
      
     ngOnInit(): void {
       this.filter=new Filter();
@@ -76,19 +83,35 @@ import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
       this.filter.CategoryId=this.rutaActiva.snapshot.params.filter == 'categoria'? this.rutaActiva.snapshot.params.value : null;
       this.filter.MarcaId=this.rutaActiva.snapshot.params.filter == 'marca'? this.rutaActiva.snapshot.params.value : null;
       this.filter.Discount=this.rutaActiva.snapshot.params.filter == 'descuento'? true : null;
-      console.log(this.filter)
+      this.listAllProducts();
+
     }
 
     ngAfterViewInit() { 
-      console.log(this.filter) 
-      this.onChangesFilters();
+      // this.onChangesFilters();
+      //this.subs = this.myForm.valueChanges.pipe(
+    //             switchMap(() => {
+    //               // this.isLoadingResults = true;
+    //               return this.productService.listAllProducts(
+    //                 this.filter, this.order, this.from, null, this.orderAsc
+    //               );
+    //             }),
+    //             map(res => {
+    //               this.recordCount=res['RecordsCount'];
+    //               this.loadingService.setLoading(false);
+    //               return res['Data'] as ProductModelResponse [];
+    //             }),
+    //             catchError(() => {
+    //               return observableOf([]);
+    //             })
+    //           ).subscribe(data => this.products = data as []);
     }
     
     // Filtros
     public onChangesFilters(): void {
-          this.myForm.valueChanges.subscribe(() => {            
-            this.listAllProducts();
-          });
+      this.myForm.valueChanges.subscribe((x) => {   
+        this.listAllProducts();
+      });
     }
  
     public listAllProducts(){      
@@ -117,16 +140,25 @@ import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
     }
 
     public eliminar(p){
+      this.loadingService.setLoading(true);
       this.productService.delete(p).subscribe(
         datos=>{
             alert("SE ELIMINO EXITOSAMENTE")
+            this.loadingService.setLoading(false);
             this.listAllProducts(); 
         },
         error =>{
           alert('ERROR DE SERVIDOR');
+          this.loadingService.setLoading(false);
         }
       );   
     }
+
+    public procesImages(productId:number):void{
+      this.productIdToModel=productId
+      this.hiddeModal=  this.hiddeModal ? false : true;
+      window.scroll(0,0)
+    } 
 
     //lista categorias
      public traerCategorias(){
@@ -164,32 +196,31 @@ import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
     public setOrder(e){
       if(e==1 || e==3){
         this.orderAsc=true
-        this.order=e==1?OrderField.price : OrderField.title       
+        this.order = e == 1 ? OrderField.price : OrderField.title       
       }
-      if(e==2 || e==4){
-        this.orderAsc=false
-        this.order=e==2?OrderField.price : OrderField.title  
+      if(e == 2 || e == 4){
+        this.orderAsc= false
+        this.order= e == 2 ? OrderField.price : OrderField.title  
       }
       this.listAllProducts()
     }
 
-    public setCategory(c:number){
-      this.filter.CategoryId=c;
-      this.listAllProducts()
+    // public setCategory(c:number){
+    //   this.filter.CategoryId=c;
+    //   // this.listAllProducts()
+    // }
 
-    }
-
-    public setMarca(c:number){
-      this.filter.MarcaId=c;
-      this.listAllProducts()
-    }
+    // public setMarca(c:number){
+    //   this.filter.MarcaId=c;
+    //   // this.listAllProducts()
+    // }
 
     public limpiarSelection(){
       this.filterSelection=null;
     }
 
     // ngOnDestroy(): void {
-    //   this.subsChangeFilters.unsubscribe();
+    //   // this.subsChangeFilters.unsubscribe();
     // }
 
 }

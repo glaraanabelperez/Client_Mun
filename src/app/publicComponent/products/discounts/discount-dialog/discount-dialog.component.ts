@@ -88,7 +88,7 @@ import { DiscountService } from 'src/app/publicComponent/products/discounts/serv
   }
 
   insert(){
-    this.uploadForm.controls.CretaedBy.setValue(parseInt(localStorage.getItem('codigo_usar')))
+    // this.uploadForm.controls.CretaedBy.setValue(parseInt(localStorage.getItem('codigo_usar')))
     this.discountService.save(this.uploadForm.value).subscribe(
       res=>{
         this.loadingService.setLoading(false);

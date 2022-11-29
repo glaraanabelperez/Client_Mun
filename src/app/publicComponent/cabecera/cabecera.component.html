@@ -26,12 +26,14 @@
         <li class="nav-item">
           <a class="nav-link" [routerLink]="['/productos/lista-productos']">Productos</a>
         </li>       
-        <li class="nav-item " style="width:110px" (mouseenter)="showList()" (mouseleave)="showList()">
-          <a class="nav-link " style="cursor:pointer;" >Marcas</a>
-          <ul style="list-style:none; padding-left: 0px; width: 100%;" *ngFor="let m of marcas"   [style.display]="showDropdown ? 'block' : 'none'"  >
-            <li style=" margin-top:0.5rem; font-weight: 600;"><a class="nav-link " 
-              [routerLink]="['/productos/lista-productos','marca', m.MarcaId]">{{m.Name}}</a></li>
-          </ul>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle"  id="navbarDropdown1" role="button" 
+          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Marcas</a>
+          <div class="dropdown-menu drop" aria-labelledby="navbarDropdown1" >
+            <div *ngFor="let m of marcas">
+              <a class="dropdown-item" [routerLink]="['/productos/lista-productos','marca', m.MarcaId]">{{m.Name}}</a>
+            </div>
+          </div>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="#">Envios</a>

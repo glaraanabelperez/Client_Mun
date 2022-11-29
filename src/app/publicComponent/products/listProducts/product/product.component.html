@@ -1,7 +1,4 @@
-<app-image-dialog
-*ngIf="hiddeModal"
-(sendImage)="procesImages($event)"
-></app-image-dialog>
+
   <!--  Formulario cargar product -->
   <div class="conteiner2" >
     <div class="card">
@@ -45,8 +42,8 @@
               <div class="form-group col-md-13">
                 <label for="stock">Stock</label>
                 <select formControlName="stock" class="form-control" [ngClass]="{'is-invalid': submitted && f.stock.errors}">
-                  <option value="">Seleccionar</option>
-                  <option  [value]="item.valor" *ngFor="let item of stock" >{{item.name}}</option>
+                  <option selected value="null">Seleccionar</option>
+                  <option *ngFor="let item of stock"  [value]="item.valor" >{{item.name}}</option>
                   <div *ngIf="submitted && f.stock.errors" class="invalid-feedback">
                     <div *ngIf="f.stock.errors.required"> Por favor Selecciones una opcion</div>
                   </div>
@@ -55,9 +52,9 @@
 
               <div class="form-group col-md-13">
                 <label for="titulo">Nombre</label>
-                <input maxlength="20" type="text" class="form-control" placeholder="Campo Obligatorio" [value]=""
+                <input maxlength="60" type="text" class="form-control" placeholder="Campo Obligatorio" [value]=""
                 formControlName="name" [ngClass]="{'is-invalid': submitted && f.name.errors}" >
-                <span style="font-size: 13px;">Maximo 20 caracteres</span>
+                <span style="font-size: 13px;">Maximo 60 caracteres</span>
               </div>
               <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
                 <div *ngIf="f.name.errors.required"> Por favor ingrese datos</div>
@@ -72,28 +69,7 @@
                 <div *ngIf="f.description.errors.required"> Por favor ingrese datos</div>
               </div>
 
-            <!--Imagenes-->
-            <div class="images">
-              <div  *ngFor="let i of images" style="display: flex; flex-direction: row;">
-                <div class="itemPhoto">
-                  <img   class="viewImg" [src]="'assets/' +  i.Name">
-                  <div class="btn-images" >
-                    <i class="fa-solid fa-trash" (click)="deleteImages(i)" ></i>
-                  </div>
-                  
-                </div>
-                
-              </div>
-            </div>
-              <div style="margin-bottom: 3px" *ngFor="let image of  this.serviceImage.imagesInsertList; let i=index" >
-                <div class="itemPhoto">
-                  <img class="viewImg" [src]="image.arrayBuffer" >
-                  <i class="fa-solid fa-trash" (click)="putOffNewImage_List(i)"></i>
-                </div>
-
-              </div>
-            <button *ngIf="(images.length + this.serviceImage.imagesInsertList.length)<5" type="button" class="btn btn-danger" (click)="procesImages(null)">+ Imagen</button>
-            <!--Fin Imagenes -->
+           
               <br><br>
               <div class="row">
                 <div class="form-group col-md-6">
