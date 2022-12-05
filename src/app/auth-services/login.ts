@@ -1,6 +1,5 @@
 export interface LoginResponse{
     UserId: number;
-    BusinessName: string;
     email:string;
     Password:string
   }

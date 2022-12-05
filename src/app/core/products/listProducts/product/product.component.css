@@ -1,0 +1,27 @@
+.card {
+  width: 80%;
+  height: 50%;
+  padding: 2%;
+  margin: auto;
+}
+
+.card .btn-close {
+  width: 40px;
+  height: 40px;
+  padding: 5px;
+}
+
+@media only screen and (max-width: 600px) and (min-width: 200px) {
+  .card {
+    width: 100% !important;
+    height: 50%;
+    padding: 2%;
+    margin: auto;
+  }
+  .card .btn-close {
+    width: 40px;
+    height: 40px;
+    padding: 5px;
+  }
+}
+/*# sourceMappingURL=product.component.css.map */

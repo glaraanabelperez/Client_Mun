@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { OrderService } from './orders/service/order.service';
 
 
 @Component({
@@ -8,9 +9,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent  {
 
-  title = 'mi-tienda';
-  
-  constructor(){ }
+
+  constructor(public _serviceOrder:OrderService){ }
 
   ngOnInit(): void {
 
@@ -18,6 +18,14 @@ export class AppComponent  {
 
   subir(){
     window.scroll(0,0)
+  }
+
+  public getShowModal():boolean{
+    return this._serviceOrder.showModal
+  }
+
+  public closeModal(){
+     this._serviceOrder.setShowingModal();
   }
   
 }

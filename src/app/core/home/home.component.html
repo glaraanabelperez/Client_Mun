@@ -1,0 +1,39 @@
+ <div *ngIf="loadingService.loading" class="spinner-border" role="status">
+   <span class="sr-only">Loading...</span>
+  </div>
+  <div class='container-fluid'>   
+    <div class='col-12'>  
+        <ngb-carousel>  
+            <ng-template ngbSlide>  
+              <img class="d-block w-100" src="assets/slide1.jpg"  alt="Third slide">
+            </ng-template>  
+            <ng-template ngbSlide>  
+              <img class="d-block w-100" src="assets/slide2.jpg"  alt="Second slide">
+    
+            </ng-template>  
+            <ng-template ngbSlide>  
+              <img class="d-block w-100" src="assets/slide3.png"  alt="Second slide">
+            </ng-template>  
+        </ngb-carousel>  
+    </div>  
+  
+</div>  
+
+
+
+
+  <app-galeria></app-galeria>
+
+  <div class="contenedor_titulo">
+    <h3>Busca por CATEGORIAS</h3>
+</div>
+  <div class="contenedor-galeria">
+    <div id="carousel">      
+          <div  style="display: flex;flex-direction:row">
+            <div *ngFor="let m of categorias">
+              <button [routerLink]="['/productos/lista-productos','categoria', m.CategoryId]" 
+              type="button" class="btn btn-info" style="margin-right: 10px;">{{m.Name}}</button>
+            </div>
+          </div>
+    </div>
+</div>

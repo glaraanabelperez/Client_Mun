@@ -1,6 +1,10 @@
 
 <app-cabecera></app-cabecera>
 <div class="contenedor-app">
+    <order-list
+        *ngIf="getShowModal()"
+        (closeModal)="closeModal()"
+    ></order-list>
     <div class="rooter">
         <router-outlet></router-outlet>
         <i data-aos="fade-up" class="fa-solid fa-circle-arrow-up subir" (click)="subir()"></i>   

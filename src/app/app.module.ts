@@ -8,36 +8,36 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AuthService } from './auth-services/auth.service';
 import { GuardsGuard } from './guards/guards.guard';
-import { ServicePedidos } from './publicComponent/products/orders/servicios-pedidos/service-pedidos.service';
 
 
 
 import { AppComponent } from './app.component';
 
-import { HomeComponent } from './publicComponent/home/home.component';
-import { GaleriaComponent} from './publicComponent/galeria/galeria.component';
-import { VerPedido } from './publicComponent/pedidos/ver-pedido.component';
-import { FooterComponent } from './publicComponent/footer/footer.component';
-import { CabeceraComponent} from './publicComponent/cabecera/cabecera.component';
+import { HomeComponent } from './core/home/home.component';
+import { GaleriaComponent} from './core/galeria/galeria.component';
+import { FooterComponent } from './core/footer/footer.component';
+import { CabeceraComponent} from './core/cabecera/cabecera.component';
 
-import { LogInComponent } from './publicComponent/log-in/log-inWjn.component';
-import { ProductsComponent } from './publicComponent/products/products.component';
-import { MarcaDialogComponent } from './publicComponent/products/marcas/marca-dialog/marca-dialog.component';
-import { DiscountDialogComponent } from './publicComponent/products/discounts/discount-dialog/discount-dialog.component';
-import { CategoryDialogComponent } from './publicComponent/products/categories/catgeory-dialog/categroy-dialog.component';
-import { ListProductsComponent } from './publicComponent/products/listProducts/listProducts.component';
-import { ProductDialogComponent } from './publicComponent/products/listProducts/product/product.component';
-import { CategoriesComponent } from './publicComponent/products/categories/categories.component';
-import { MarcasComponent } from './publicComponent/products/marcas/marcas.component';
-import { DiscountsComponent } from './publicComponent/products/discounts/discounts.component';
-import { ImageDialogComponent } from './publicComponent/products/listProducts/image-dialog/image-dialog.component';
-import { ContactComponent } from './publicComponent/contact/contact..component';
+import { LogInComponent } from './core/log-in/log-inWjn.component';
+import { ProductsComponent } from './core/products/products.component';
+import { MarcaDialogComponent } from './core/products/marcas/marca-dialog/marca-dialog.component';
+import { DiscountDialogComponent } from './core/products/discounts/discount-dialog/discount-dialog.component';
+import { CategoryDialogComponent } from './core/products/categories/catgeory-dialog/categroy-dialog.component';
+import { ListProductsComponent } from './core/products/listProducts/listProducts.component'
+import { ProductDialogComponent } from './core/products/listProducts/product/product.component';
+import { CategoriesComponent } from './core/products/categories/categories.component';
+import { MarcasComponent } from './core/products/marcas/marcas.component';
+import { DiscountsComponent } from './core/products/discounts/discounts.component';
+import { ImageDialogComponent } from './core/products/listProducts/image-dialog/image-dialog.component';
+import { ContactComponent } from './core/contact/contact.component';
+import { OrderList } from './orders/order-list/order-list.component';
+import { OrderService } from './orders/service/order.service';
 
 
 
 export const childrenRoute:Routes=[
 // {path: '', redirectTo: 'home/:nombre', pathMatch:'full'},
-{path: 'pedidos', component:VerPedido},
+{path: 'pedidos', component:OrderList},
 ];
 
 export const childrenRouteProducts:Routes=[
@@ -75,7 +75,7 @@ const routes: Routes = [
     MarcasComponent,
     CategoriesComponent,
     ListProductsComponent,
-    VerPedido,
+    OrderList,
     ProductDialogComponent,
     CategoryDialogComponent,
     DiscountDialogComponent,
@@ -102,7 +102,7 @@ const routes: Routes = [
   providers: [
     AuthService, 
     GuardsGuard, 
-    ServicePedidos,
+    OrderService,
   ],
   bootstrap: [
     AppComponent

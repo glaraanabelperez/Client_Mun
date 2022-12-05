@@ -1,0 +1,58 @@
+
+<div class="menu-collapse"data-aos="slide-left">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="offcanvasRightLabel">Carrito</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close" (click)="onCloseModal()"></button>
+  </div>
+  <div class="container text-center" *ngFor="let p of _serviceOrder.order; let i=index">
+    <div class="row">
+      <div class="col">
+        <div class="sliderBlock_items__itemPhoto ">
+          <img *ngIf="p.ImageName != ''" [src]="'assets/' +  p.nameImage">
+          <img *ngIf="p.ImageName == ''" src="assets/camara.png">
+        </div>  
+      </div>
+      <div class="col" style="width: 50% !important;">
+        <div class="info-derecha">
+          <div class="info">
+            <p >{{p.marcaName}}</p>
+            <h3>{{p.name}}</h3>
+            <p>codigo: {{p.productId}}</p>
+            <p>$ {{p.price}}</p>
+            <br>
+          </div>
+          <div class="list-card-botones" >
+            <button class="boton_car" (click)="sumar(i)">
+              +
+            </button>
+            <button class="boton_car" (click)="restar(i)">
+              <p style="font-size:1rem">{{p.count}}</p>
+            </button>       
+            <button class="boton_car" (click)="restar(i)">
+              <p style="font-size:1.5rem">-</p>
+            </button>
+          </div> 
+        </div>
+      </div>
+
+      <div class="col">
+          <p>$ {{p.price*p.count}}</p>
+      </div>
+      <div class="col">
+        <i class="fa-sharp fa-solid fa-trash" (click)="eliminar(i)"></i>
+      </div>
+    </div>
+    <div class="footer_car">
+      <div class="col">Cantidad Unidades {{_serviceOrder.total}}</div>
+      <div class="col">Total compra {{_serviceOrder.totalFact}}</div>
+    </div>
+  </div>
+  <div class="msjCar" *ngIf="_serviceOrder.order.length==0"> Su carrito esta vacio</div>
+</div>
+
+
+
+
+
+
+
