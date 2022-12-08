@@ -102,13 +102,16 @@ span {
   right: 20px;
   z-index: 999;
   margin-left: 20px;
-  width: 80%;
-  max-height: 100%;
+  width: 50%;
+  max-height: 90%;
   -webkit-box-shadow: 0 5px 21px rgba(0, 0, 0, 0.08);
           box-shadow: 0 5px 21px rgba(0, 0, 0, 0.08);
   background-color: #fff;
   border-radius: 5px;
   border-radius: 10px;
+  overflow-y: auto;
+  overflow: overlay;
+  padding-bottom: 20px;
 }
 
 .offcanvas-header {
@@ -122,7 +125,6 @@ span {
 }
 
 .container {
-  overflow-y: auto;
   padding: 1.5rem;
 }
 
@@ -141,9 +143,10 @@ span {
 }
 
 button.boton_car {
-  background-color: inherit;
+  background-color: #fafbf9;
+  border-radius: 10px;
   border: none;
-  font-size: 1.1rem;
+  font-size: 1rem;
 }
 
 .list-card-botones {
@@ -154,11 +157,12 @@ button.boton_car {
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
-  border: 2px solid crimson;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
   border-radius: 20px;
+  width: 50%;
+  margin: auto;
+  padding: 3px;
 }
 
 .footer_car {

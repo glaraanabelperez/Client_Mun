@@ -1,6 +1,13 @@
 @import '../../generalStyles/generalStyles.scss';
 main.jumbotron{
     background-color: $blanco;
+    padding-top: 20px !important;
+}
+.jumbotron{
+    padding-top: 0px !important;
+    display: flex;
+    flex-direction: row;
+    background-color: $blanco !important;
 }
 main{
     .fa-backward{
@@ -33,12 +40,7 @@ main{
         }
       }
     width: 100%;
-    .jumbotron{
-        margin-top: 5px !important;
-        display: flex;
-        flex-direction: row;
-        background-color: $blanco !important;
-    }
+
 }
 
 

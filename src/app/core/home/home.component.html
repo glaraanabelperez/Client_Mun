@@ -1,8 +1,5 @@
- <div *ngIf="loadingService.loading" class="spinner-border" role="status">
-   <span class="sr-only">Loading...</span>
-  </div>
-  <div class='container-fluid'>   
-    <div class='col-12'>  
+ <div class='container-fluid'>   
+    <div class='col-12' style="padding: 0px;">  
         <ngb-carousel>  
             <ng-template ngbSlide>  
               <img class="d-block w-100" src="assets/slide1.jpg"  alt="Third slide">
@@ -16,24 +13,28 @@
             </ng-template>  
         </ngb-carousel>  
     </div>  
-  
 </div>  
 
-
-
-
-  <app-galeria></app-galeria>
-
+  <app-galeria></app-galeria><br>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#FF6A6A" fill-opacity="1" d="M0,288L120,282.7C240,277,480,267,720,261.3C960,256,1200,256,1320,256L1440,256L1440,0L1320,0C1200,0,960,0,720,0C480,0,240,0,120,0L0,0Z"></path></svg>
   <div class="contenedor_titulo">
-    <h3>Busca por CATEGORIAS</h3>
-</div>
+    <h3>Buscar por CATEGORIAS</h3>
+  </div>
   <div class="contenedor-galeria">
     <div id="carousel">      
           <div  style="display: flex;flex-direction:row">
             <div *ngFor="let m of categorias">
               <button [routerLink]="['/productos/lista-productos','categoria', m.CategoryId]" 
-              type="button" class="btn btn-info" style="margin-right: 10px;">{{m.Name}}</button>
+              type="button" class="btn btn-light" style="margin-right: 10px;">{{m.Name}}</button>
             </div>
           </div>
+    </div>
+</div>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#C6FF6A" fill-opacity="1" d="M0,96L48,96C96,96,192,96,288,101.3C384,107,480,117,576,138.7C672,160,768,192,864,213.3C960,235,1056,245,1152,213.3C1248,181,1344,107,1392,69.3L1440,32L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>
+<!-- <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#FF6A6A" fill-opacity="1" d="M0,32L48,74.7C96,117,192,203,288,224C384,245,480,203,576,202.7C672,203,768,245,864,234.7C960,224,1056,160,1152,165.3C1248,171,1344,245,1392,282.7L1440,320L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>   -->
+<div class="base_white" >
+    <div class="contenedor_titulo">
+      <h3>Medios de Pago</h3>
+      <img style="width: 55%;" src="assets/pagos.jpg" alt="">
     </div>
 </div>

@@ -6,9 +6,9 @@ $font:  'Quicksand', sans-serif;
 $font-tamanio-botones:12px;
 $gris:#fafbf9;
 $blanco:#ffffff;
-$verde-amarillo:#b8f864;
+$verde-amarillo:#C6FF6A;
 $verde:#0dc164;
-$red:#dc3545;
+$red:#FF6A6A;
 $font-tamanio-botones:12px;
 $negro:#898989;
 
@@ -66,14 +66,18 @@ p{
 span{
   font-size: 1rem;
 }
+.base_white{
+  background-color: white;
+  padding: 0px;
+}
 .contenedor_titulo{
-  background-color: $red;
-  margin-top: 5%;
-  margin-bottom: 1%;
-  padding: 1%;
+  padding: 3% 1% 1% 1%;
   h3{
-      color: whitesmoke;
-      text-align: center;
+    font-weight: 600;
+    font-size: 1.1rem;
+      color: gray;
+      text-align: right;
+      margin-right: 15%;
       text-transform: uppercase;
   }
 }
@@ -91,6 +95,14 @@ span{
   border: $verde;
 }
 
+.spinner-border{
+  position: absolute;
+  right: 40vw;
+  width: 150px;
+  height: 150px;
+  z-index: 999;
+  color: gray;
+}
  //-----------------------------FIN BANNERS
  //-----------------------------MEDIA @QUERY
 @media only screen and (max-width: 1024px) and (min-width: 764px) {
@@ -100,9 +112,11 @@ span{
   h1{
     font-size: 17px;
   }
-
-}
-@media only screen and (max-width: 1024px) and (min-width: 760px) {
-
+  .contenedor_titulo{
+    margin-top: 2rem;
+    h3{
+      margin-right: 0.5rem !important;
+    }
+  }
 
 }

@@ -17,21 +17,17 @@
                     </div>
                 </ng-template>
                 <div class="info">
-                    <p>{{p.MarcaName}}</p>
-                    <p>Categoria {{p.CategoryName}}</p>
+                    <!-- <p>Categoria {{p.CategoryName}}</p> -->
                     <h4 class="titulo-tarjeta">{{p.Name}}</h4>
-                    <p class="promocion">{{p.Description}}</p>
-                        <div class="block_price" >
-                        <p *ngIf="p.DiscountAmount==null"  class="block_price__currency">${{p.Price}}</p>
-                            <div *ngIf="p.DiscountAmount!=null" style="display:flex; flex-direction: row; width: 100%;">
-                                <p  class="block_price__currency" style="text-decoration:line-through;">${{p.Price}}   </p> <br>
-                                <p  class="block_price__currency" style="color:black"> ${{p.Price - (p.Price * p.DiscountAmount /100)}}</p>
-                            </div>
-                        <p *ngIf="!p.Stock"  class="block_model" style="text-align:center;"><span  class="block_model__number">AGOTADO!</span></p>
-                            <button *ngIf="p.Stock"   class="btn btn-outline-success" (click)="agregarPedido(p)">
-                                <p>Agregar</p>
-                            </button>        
-                        </div>
+                    <p style="font-weight: 600;">{{p.MarcaName}}</p>
+                    <!-- <p class="promocion">{{p.Description}}</p> -->
+                    <p *ngIf="p.DiscountAmount==null"  class="block_price__currency">${{p.Price}}</p>
+                    <p *ngIf="p.DiscountAmount!=null" class="block_price__currency" style="text-decoration:line-through;"> ${{p.Price}}   </p>
+                    <p *ngIf="p.DiscountAmount!=null"  class="block_price__currency" style="color:#2F7BB2;font-weight: 600; font-size: 1.1rem;"> ${{p.Price - (p.Price * p.DiscountAmount /100)}}</p>
+                    <p *ngIf="!p.Stock"  class="block_model" style="text-align:center;"><span class="btn agotado btn-success">AGOTADO!</span></p>
+                    <button *ngIf="p.Stock"   class="btn btn-outline-success" (click)="agregarPedido(p)">
+                        <p>Agregar</p>
+                    </button>  
                 </div>
         </div>
     </div>

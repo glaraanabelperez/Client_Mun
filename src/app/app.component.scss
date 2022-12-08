@@ -1,14 +1,15 @@
 @import './generalStyles/generalStyles.scss';
-
+.specewhite{
+    height: 180px;
+    background-color: inherit;
+  }
 .contenedor-app{
     .fixed{
         position: fixed;
         z-index: 999;
         top: 0%;
     }    
-    .espacio{
-        height: 170px;
-    }
+
     .footer{
         height: 90vh;
     }
@@ -18,13 +19,27 @@
         position: fixed; right: 7.5%; bottom: 11%; z-index: 999;
         cursor: pointer;
     }
+    .redes{
+        // color: #dc3545;
+        background-color: white;
+        border-radius: 20px;
+        padding: 5px;
+        position: fixed; left: 5.2%; top: 16%; z-index: 999;
+        cursor: pointer;
+    }
+    .icons{
+
+        i{
+            margin-right: 1rem;
+            font-size: 1.5rem;
+        }
+        display: flex;
+        flex-direction: row;
+    }
+
 
 }
-@media (max-width : 667px) {
-    .espacio{
-        height: 170px !important;
-    }
-}
+@media (max-width : 667px) {}
 @media only screen  
 and (min-width : 768px)  
 and (max-width : 1024px) {  

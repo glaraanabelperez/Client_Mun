@@ -6,53 +6,81 @@
   </div>
   <div class="container text-center" *ngFor="let p of _serviceOrder.order; let i=index">
     <div class="row">
-      <div class="col">
+      <div class="col-md-3">
         <div class="sliderBlock_items__itemPhoto ">
-          <img *ngIf="p.ImageName != ''" [src]="'assets/' +  p.nameImage">
-          <img *ngIf="p.ImageName == ''" src="assets/camara.png">
+          <img *ngIf="p.nameImage != ''" [src]="'assets/' +  p.nameImage">
+          <img *ngIf="p.nameImage == ''" src="assets/camara.png">
         </div>  
       </div>
-      <div class="col" style="width: 50% !important;">
+      <div class="col-md-4">
         <div class="info-derecha">
           <div class="info">
             <p >{{p.marcaName}}</p>
             <h3>{{p.name}}</h3>
             <p>codigo: {{p.productId}}</p>
-            <p>$ {{p.price}}</p>
+            <p>$ {{p.price}} x unid</p>
             <br>
           </div>
           <div class="list-card-botones" >
             <button class="boton_car" (click)="sumar(i)">
-              +
+              <i class="fa-sharp fa-solid fa-plus"></i>
             </button>
-            <button class="boton_car" (click)="restar(i)">
+            <!-- <button class="boton_car" (click)="restar(i)">
               <p style="font-size:1rem">{{p.count}}</p>
-            </button>       
+            </button>        -->
             <button class="boton_car" (click)="restar(i)">
-              <p style="font-size:1.5rem">-</p>
+              <i class="fa-sharp fa-solid fa-minus"></i>
             </button>
           </div> 
         </div>
       </div>
 
-      <div class="col">
-          <p>$ {{p.price*p.count}}</p>
+      <div class="col-md-3">
+          <p>$ {{p.price*p.count}} x {{p.count}}</p>
       </div>
-      <div class="col">
+      <div class="col-1">
         <i class="fa-sharp fa-solid fa-trash" (click)="eliminar(i)"></i>
       </div>
     </div>
-    <div class="footer_car">
-      <div class="col">Cantidad Unidades {{_serviceOrder.total}}</div>
-      <div class="col">Total compra {{_serviceOrder.totalFact}}</div>
-    </div>
+  </div>
+  <div class="footer_car">
+    <div class="col">Cantidad Unidades {{_serviceOrder.total}}</div>
+    <div class="col">Total compra {{_serviceOrder.totalFact}}</div>
   </div>
   <div class="msjCar" *ngIf="_serviceOrder.order.length==0"> Su carrito esta vacio</div>
+  <hr>
+
+  <div class="card">
+    <div class="card-header">
+      <h5 class="card-title"><i class="fa-sharp fa-solid fa-truck"></i>Envio</h5>
+    </div>
+    <div [formGroup]="formOrder" class="card-body">
+      <div class="row">
+        <div class="col-md-2">
+          <input type="checkbox" id="casa" name="casa" value="Retiro en local" (change)="onItemChange($event.target.value)" >
+        </div>      
+        <h5 class="col-md-6">Retiro en Local</h5>
+        <h5 class="col-md-4">Gratis</h5>
+      </div>
+      <hr>
+
+      <div class="row">
+        <div class="col-md-2">
+          <input type="checkbox" id="casa" name="casa" [value]='null' 
+          (change)="onItemChange($event.target.value)">
+        </div>      
+        <h5 class="col-md-6">Envio CABA (de 24 a 72 hs)</h5>
+        <h5 class="col-md-4">Gratis</h5>
+        <div class=" form-group mb-3">
+          <input type="text" formControlName="direction" (change)="onItemChange($event.target.value)" 
+          class="form-control"  id="direction" [ngClass]="{ 'is-invalid':f.direction.touched && f.direction.errors }">
+          <div *ngIf="f.direction.touched && f.direction.errors" class="invalid-feedback">
+            <div *ngIf="f.direction.errors.required">La direccion no quedar vacio</div>
+            <div *ngIf="f.direction.errors.minLength">Debe ingresar 10 caracteres minimo</div>
+            <div *ngIf="f.direction.errors.maxlength">Solo puede ingresar 40 caracteres</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
-
-
-
-
-
-
-

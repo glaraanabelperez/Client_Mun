@@ -20,6 +20,7 @@ export class AppComponent  {
     window.scroll(0,0)
   }
 
+
   public getShowModal():boolean{
     return this._serviceOrder.showModal
   }

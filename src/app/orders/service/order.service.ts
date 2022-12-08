@@ -43,6 +43,7 @@ export class OrderService {
         this.calcularTotal(+1);
         this.total_suscribeOnChange();
       }
+      this.pay()
   }
 
     corroborarProductoEnPedido(p :Order):boolean{
@@ -71,6 +72,7 @@ export class OrderService {
       this.calcularTotal(-this.order[i].count)
       this.order.splice(i, 1);
       this.total_suscribeOnChange();
+      this.pay()
     }
 
     mostrarTotal(){
@@ -84,15 +86,18 @@ export class OrderService {
         this.eliminarPedido(i);
       }
       this.total_suscribeOnChange();
+      this.pay()
     }
 
     sumarCantidad(i){
       this.order[i].count+=1;
       this.calcularTotal(+1);
       this.total_suscribeOnChange();
+      this.pay()
     }
 
     pay(){
+      this.totalFact=0;
       this.order.forEach(element => {
         this.totalFact+=(element.price*element.count)
       });

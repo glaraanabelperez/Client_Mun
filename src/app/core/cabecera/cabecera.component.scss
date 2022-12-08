@@ -1,21 +1,29 @@
 @import '../../generalStyles/generalStyles.scss';
 
-
+.cabecera_fixed{
+    position: fixed;
+    z-index: 999;
+    background-color: white;
+    width: 100%;
+}
+li.logo{
+    width: 7%;
+    margin: 5px 15px 0px 20px !important;
+    img {
+        width: 100%;
+        background-size: cover;
+    }
+} 
+.logo2{
+    display: none;
+} 
 .contenedor-cabecera{
     z-index: 999;
     background-color: white;
     margin-top: 0%;
-    height: 100px;
     width: 100%;
     font-size: $font-tamanio-botones;
-    .logo{
-        width: 7%;
-        margin: auto;
-        img {
-            width: 100%;
-            background-size: cover;
-        }
-    }  
+
     .botonCabecera{
         .fa-user-circle{
             font-size: 40px;
@@ -33,13 +41,17 @@ display: flex;
 flex-direction: row;
 justify-content: flex-end;
 margin-right: 1rem;
+position:absolute;
+top:45px;
+right: 15px;
+z-index: 999;
 }
-.nav{
-    margin: 0%;
+.navbar-nav{
+    margin:auto;
 }
 .navbar {
-    padding: 0px;
-    margin: 20px 0px 30px 30px !important;
+    padding-top: 25px;
+    // margin: 20px 0px 50px 10px !important;
     background-color: $blanco !important;
     border-bottom: 3px solid $gris !important;
 
@@ -72,6 +84,13 @@ margin-right: 1rem;
   
 /* Smartphones (portrait and landscape) ----------- */  
 @media (max-width : 768px) {  
+    li.logo{
+       display: none;
+    } 
+    .logo2{
+        display: block;
+        text-align: center;
+    } 
     .form-inline{
         display: none !important;
     }
@@ -103,6 +122,8 @@ margin-right: 1rem;
         flex-direction: column;
         justify-content: none;
         margin-right: 0px;
+        top:50px;
+        right: 30px;
         }
 }  
 

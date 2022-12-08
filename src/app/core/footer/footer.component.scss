@@ -91,8 +91,14 @@
 }
 
 .contact_icons{
-  padding: 6%;
+  padding-top: 6%;
   margin: auto;
+  display: flex;
+  flex-direction: row;
+}
+.icons{
+  margin-top: 2rem;
+  padding-left: 0px;
 }
 li.list-group-item{
   margin-bottom: 15px !important;
@@ -131,6 +137,19 @@ li.list-group-item i{
 }
 @media (max-width:767px)
 {
+  .contact_icons{
+    .mapa{
+      display: block;
+      text-align: center;
+    }
+    .icons{
+      margin-top: 40px;
+      padding-left: 0px;
+    }
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column !important;
+  }
   .site-footer
   {
     padding-bottom:0
