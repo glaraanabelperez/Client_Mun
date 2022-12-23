@@ -45,26 +45,38 @@
   </div>
   <div class="footer_car">
     <div class="col">Cantidad Unidades {{_serviceOrder.total}}</div>
-    <div class="col">Total compra {{_serviceOrder.totalFact}}</div>
+    <div class="col total">Total compra {{_serviceOrder.totalFact}}</div>
   </div>
   <div class="msjCar" *ngIf="_serviceOrder.order.length==0"> Su carrito esta vacio</div>
   <hr>
 
   <div class="card">
     <div class="card-header">
-      <h5 class="card-title"><i class="fa-sharp fa-solid fa-truck"></i>Envio</h5>
+      <h5 class="card-title"><i class="fa-sharp fa-solid fa-truck"></i>  Envios</h5>
     </div>
     <div [formGroup]="formOrder" class="card-body">
-      <div class="row">
+      <div class="row">    
+        <h5 class="col-md-6">Retiro en Local</h5>
+        <h5 class="col-md-4">Gratis</h5>
+      </div>
+      <div class="row">    
+        <h5 class="col-md-6">Envios a CABA</h5>
+        <h5 class="col-md-4">Gratis</h5>
+      </div>
+      <div class="row">    
+        <h5 class="col-md-6">Envios Bs As o Interior</h5>
+        <h5 class="col-md-4">Consultar</h5>
+      </div>
+      <!-- <div class="row">
         <div class="col-md-2">
           <input type="checkbox" id="casa" name="casa" value="Retiro en local" (change)="onItemChange($event.target.value)" >
         </div>      
         <h5 class="col-md-6">Retiro en Local</h5>
         <h5 class="col-md-4">Gratis</h5>
-      </div>
-      <hr>
+      </div> -->
+      <br>
 
-      <div class="row">
+      <!-- <div class="row">
         <div class="col-md-2">
           <input type="checkbox" id="casa" name="casa" [value]='null' 
           (change)="onItemChange($event.target.value)">
@@ -80,7 +92,8 @@
             <div *ngIf="f.direction.errors.maxlength">Solo puede ingresar 40 caracteres</div>
           </div>
         </div>
-      </div>
+      </div> -->
     </div>
   </div>
+  <button style="display: block;margin: auto;" class="btn btn-warning" (click)="procesPayment()">Procesar</button>
 </div>

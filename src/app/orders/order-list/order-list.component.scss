@@ -40,11 +40,12 @@
 
   }
 }
+
 button.boton_car{ 
-  background-color: $gris;
   border-radius: 10px;
   border: none;
   font-size: 1rem;
+  background: none !important;
 }
 .list-card-botones{
   display: flex;
@@ -54,6 +55,7 @@ button.boton_car{
   width: 50%;
   margin: auto;
   padding: 3px;
+  border: 1px solid grey;
 }
 .footer_car{
 display: flex;
@@ -62,6 +64,22 @@ flex-direction: row;
 .msjCar{
   padding: 75px;
   margin: auto;
+}
+.row{
+  margin-bottom:10px;
+}
+.fa-truck{
+  font-size: 25px;
+  color: grey;
+}
+.card{
+  border: 0px;
+}
+.total{
+  background-color: $red;
+  padding: 10px;
+  border-radius: 5px;
+  color: white;
 }
  @media only screen  
   and (min-width : 600px)  

@@ -2,6 +2,12 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import {Location} from '@angular/common';
 import { OrderService } from '../service/order.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { LoadingService } from 'src/app/services/loading.service';
+import { ItemsBuy } from '../models/ItemsBuy';
+import { get } from 'scriptjs';
+
+const FORM_ID = 'payment-form';
+
 
 @Component({
   selector: 'order-list',
@@ -15,13 +21,15 @@ export class OrderList implements OnInit {
   public _delivery: boolean=false;
   public direction_delivery: string;
   public formOrder : FormGroup;
-  constructor( public _serviceOrder:OrderService, private readonly formBuilder : FormBuilder) { 
+
+  constructor( public _serviceOrder:OrderService, private readonly formBuilder : FormBuilder,   public loadingService:LoadingService) { 
     this.formOrder = this.formBuilder.group({
       direction : ["", [Validators.required, Validators.maxLength(100), Validators.minLength(2)]],
      });
   }
 
   ngOnInit():void {
+ 
   }
 
   get f(){return this.formOrder.controls;}
@@ -42,12 +50,12 @@ export class OrderList implements OnInit {
     this._serviceOrder.restarCantidad(c);
   }
 
-  finalizarPedido(){
-    let p :any []=[];
-    let pedido=(JSON.stringify(this._serviceOrder.order)).replace(/["{}]+/g, " ");
-    this._serviceOrder.order=[];
-    // window.location.href="https://api.whatsapp.com/send?phone=" + this._service_metodos.negocio.telefono + "&text=" + pedido;
-  }
+  // finalizarPedido(){
+  //   let p :any []=[];
+  //   let pedido=(JSON.stringify(this._serviceOrder.order)).replace(/["{}]+/g, " ");
+  //   this._serviceOrder.order=[];
+  //   // window.location.href="https://api.whatsapp.com/send?phone=" + this._service_metodos.negocio.telefono + "&text=" + pedido;
+  // }
 
 
   public finishOrder(){
@@ -67,6 +75,59 @@ export class OrderList implements OnInit {
   public onItemChange(value){
     this.formOrder.controls['direction'].setValue(value);
     this.direction_delivery=this.formOrder.get('direction').value;
+  }
+
+  // public procesPayment(){
+  //   this._serviceOrder.order.forEach(element => {
+      
+  //   });
+  // }
+
+
+  public procesPayment(){
+    let p :ItemsBuy={
+      OrderId:0,
+      Title: "test",
+      Quantity: 0,
+      Price: 0,
+      CurrencyId: 'ARS'
+    }
+    this.loadingService.setLoading(true);
+      var itemsPerPage=null;
+        this._serviceOrder.processPayment(p).subscribe(
+          res=>{
+          
+            this.loadingService.setLoading(false);
+            const script = document.createElement('script');
+            script.type = 'text/javascript';
+            script.src =
+              'https://www.mercadopago.cl/integrations/v1/web-payment-checkout.js';
+            script.setAttribute('data-preference-id', res);
+            const form = document.getElementById(FORM_ID);
+            form.appendChild(script);
+          },
+          error=>{
+            alert('ERROR DE SERVIDOR');
+            this.loadingService.setLoading(false);
+          }
+        );
+
+  }
+
+  public getPaymentMethods(){
+
+    this.loadingService.setLoading(true);
+        this._serviceOrder.getMethodsPayment().subscribe(
+          res=>{
+          
+           console.log(res);
+          },
+          error=>{
+            alert('ERROR DE SERVIDOR');
+            this.loadingService.setLoading(false);
+          }
+        );
+
   }
 
 }

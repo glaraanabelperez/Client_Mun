@@ -1,5 +1,8 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Subject } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { environment } from 'src/environments/environment';
+import { ItemsBuy } from '../models/ItemsBuy';
 import { Order } from '../models/Order';
 
 
@@ -18,9 +21,12 @@ export class OrderService {
   public totalFact=0;
   public totalFactSubject:Subject <any> = new  Subject <any>(); //avisar que total cambio...
 
+  public url=environment.Url;
 
-  constructor() { 
+
+  constructor(private http: HttpClient) { 
     this._showModal.subscribe(x => this.showModal=x); //modifica y avisa que showModel cambio
+    
   }
 
   setShowingModal():void{
@@ -43,7 +49,7 @@ export class OrderService {
         this.calcularTotal(+1);
         this.total_suscribeOnChange();
       }
-      this.pay()
+      this.procesTotal()
   }
 
     corroborarProductoEnPedido(p :Order):boolean{
@@ -72,7 +78,7 @@ export class OrderService {
       this.calcularTotal(-this.order[i].count)
       this.order.splice(i, 1);
       this.total_suscribeOnChange();
-      this.pay()
+      this.procesTotal()
     }
 
     mostrarTotal(){
@@ -86,22 +92,30 @@ export class OrderService {
         this.eliminarPedido(i);
       }
       this.total_suscribeOnChange();
-      this.pay()
+      this.procesTotal()
     }
 
     sumarCantidad(i){
       this.order[i].count+=1;
       this.calcularTotal(+1);
       this.total_suscribeOnChange();
-      this.pay()
+      this.procesTotal()
     }
 
-    pay(){
+    procesTotal(){
       this.totalFact=0;
       this.order.forEach(element => {
         this.totalFact+=(element.price*element.count)
       });
       this.totalFact_suscribeOnChange();
+    }
+
+    processPayment(itemsBuy: ItemsBuy):Observable<any>{
+      return this.http.post<any>(`${this.url}payments/post`, itemsBuy );
+    }
+
+    getMethodsPayment():Observable<any>{
+      return this.http.get<any>(`${this.url}payments/paymentsMethods` );
     }
    
 
