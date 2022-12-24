@@ -2,23 +2,25 @@
 <div class="menu-collapse"data-aos="slide-left">
   <div class="offcanvas-header">
     <h5 class="offcanvas-title" id="offcanvasRightLabel">Carrito</h5>
-    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close" (click)="onCloseModal()"></button>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close" 
+    (click)="onCloseModal()"
+    style="margin-right: 10px;"></button>
   </div>
   <div class="container text-center" *ngFor="let p of _serviceOrder.order; let i=index">
-    <div class="row">
-      <div class="col-md-3">
+    <div class="row" style="margin: auto;">
+      <div class="col-md-4">
         <div class="sliderBlock_items__itemPhoto ">
           <img *ngIf="p.nameImage != ''" [src]="'assets/' +  p.nameImage">
           <img *ngIf="p.nameImage == ''" src="assets/camara.png">
         </div>  
       </div>
-      <div class="col-md-4">
+      <div class="col-md-5">
         <div class="info-derecha">
           <div class="info">
-            <p >{{p.marcaName}}</p>
-            <h3>{{p.name}}</h3>
-            <p>codigo: {{p.productId}}</p>
-            <p>$ {{p.price}} x unid</p>
+            <p>{{p.marcaName}}</p>
+            <h3 style="margin: 0px;">{{p.name}}</h3>
+            <p style="color: gray;">$ {{p.price}} x unid</p>
+            <p style="font-weight: 600;">$ {{p.price*p.count}} x {{p.count}}</p>
             <br>
           </div>
           <div class="list-card-botones" >
@@ -34,11 +36,7 @@
           </div> 
         </div>
       </div>
-
-      <div class="col-md-3">
-          <p>$ {{p.price*p.count}} x {{p.count}}</p>
-      </div>
-      <div class="col-1">
+      <div class="col-3">
         <i class="fa-sharp fa-solid fa-trash" (click)="eliminar(i)"></i>
       </div>
     </div>
@@ -96,4 +94,5 @@
     </div>
   </div>
   <button style="display: block;margin: auto;" class="btn btn-warning" (click)="procesPayment()">Procesar</button>
+  <button id="FORM_ID"><a href="http://"></a>test</button>
 </div>

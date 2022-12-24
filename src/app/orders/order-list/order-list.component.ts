@@ -85,23 +85,27 @@ export class OrderList implements OnInit {
 
 
   public procesPayment(){
-    let p :ItemsBuy={
-      OrderId:0,
-      Title: "test",
-      Quantity: 0,
-      Price: 0,
-      CurrencyId: 'ARS'
-    }
+    let p: ItemsBuy[] = [
+      { Title: "p1",
+        Quantity: 1,
+        Price: 12 
+      },
+      { Title: "p2",
+        Quantity: 2,
+        Price: 12 
+      }
+    ]
+
+
     this.loadingService.setLoading(true);
-      var itemsPerPage=null;
         this._serviceOrder.processPayment(p).subscribe(
           res=>{
-          
+            console.log(res["InitPoint"], res)
+
             this.loadingService.setLoading(false);
             const script = document.createElement('script');
             script.type = 'text/javascript';
-            script.src =
-              'https://www.mercadopago.cl/integrations/v1/web-payment-checkout.js';
+            script.src =`${res["InitPoint"]}`;
             script.setAttribute('data-preference-id', res);
             const form = document.getElementById(FORM_ID);
             form.appendChild(script);

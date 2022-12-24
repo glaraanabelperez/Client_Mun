@@ -81,14 +81,15 @@ span{
       text-transform: uppercase;
   }
 }
- .btn-filtros{
-  border: $red 1px solid;
+ .btn-danger{
+  border: none;
   border-radius: 5px;
   margin-bottom: 0.5rem;
   padding: 0.6rem;
   cursor: pointer;
   font-size: 17px;
-  color: $red;
+  background-color: $red;
+  color: white;
 }
 .btn-success{
   background-color: $verde;

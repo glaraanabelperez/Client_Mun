@@ -1,6 +1,6 @@
 
 <button *ngIf="isLogin()" type="button" class="btn-admin btn btn-danger" [routerLink]="['/productos/formulario']" >+ Producto</button>
-<button (click)="showFilters()" type="button" class="btn-admin btn btn-danger" ><p>Filtros</p></button>
+<button (click)="showFilters()" type="button" class="btn btn-danger" ><p>Filtros</p></button>
 
 <!--ImageModel-->
 <app-image-dialog
@@ -92,8 +92,9 @@
                           </div>
                         </div>
                         <div *ngIf="!isLogin() && p.Stock">
-                                <button class="btn btn-info" (click)="addToCar(p)" >
-                                        Agregar al pedido
+                                <button 
+                                style="background-color: #FF6A6A;color: white;border: none;" 
+                                class="btn btn-info" (click)="addToCar(p)">Agregar
                                 </button> 
                         </div>
 

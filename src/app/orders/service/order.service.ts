@@ -110,12 +110,12 @@ export class OrderService {
       this.totalFact_suscribeOnChange();
     }
 
-    processPayment(itemsBuy: ItemsBuy):Observable<any>{
+    processPayment(itemsBuy:Array<ItemsBuy>):Observable<any>{
       return this.http.post<any>(`${this.url}payments/post`, itemsBuy );
     }
 
     getMethodsPayment():Observable<any>{
-      return this.http.get<any>(`${this.url}payments/paymentsMethods` );
+      return this.http.get<any>(`${this.url}paymentsMethods`);
     }
    
 
