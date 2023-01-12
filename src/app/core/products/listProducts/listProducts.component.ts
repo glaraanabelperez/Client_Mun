@@ -92,7 +92,6 @@ import { ProductModel } from './models/productModel';
     }
     
     public addToCar(p:ProductModelResponse){
-      let priceWithDiscount=(p.Price-p.DiscountAmount)
       let pedido:Order={
         nameImage: p.ImageName,
         categoryName: p.CategoryName,
@@ -101,21 +100,14 @@ import { ProductModel } from './models/productModel';
         count: 1,
         name: p.Name,
         price: p.Price,
-        priceWithDiscount: priceWithDiscount,
-        priceTotal: priceWithDiscount,
+        priceWithDiscount: p.PriceWithDiscount,
+        priceTotal: p.PriceWithDiscount,
         discount: p.DiscountAmount      
       }
       this._serviceOrder.agregarPedido(pedido);
   }
 
     public getParams(){
-      this.rutaActiva.params.subscribe(
-        (params: Params) => {
-          this.filter.MarcaId=params.filterId;
-          this.filter.CategoryId=params.categoryId;
-          this.filter.Discount=params.discount;
-        }
-      );
       this.filter.CategoryId=this.rutaActiva.snapshot.params.filter == 'categoria'? this.rutaActiva.snapshot.params.value : null;
       this.filter.MarcaId=this.rutaActiva.snapshot.params.filter == 'marca'? this.rutaActiva.snapshot.params.value : null;
       this.filter.Discount=this.rutaActiva.snapshot.params.filter == 'descuento'? true : null;
@@ -136,15 +128,16 @@ import { ProductModel } from './models/productModel';
             this.products=res['Data'] as ProductModelResponse [];
             this.recordCount=res['RecordsCount'];
             this.loadingService.setLoading(false);
+            if(this.products.length==0){
+              alert("NO HAY PRODUCTOS CARGADOS")
+            }
           },
           error=>{
             alert('ERROR DE SERVIDOR');
             this.loadingService.setLoading(false);
           }
         );
-        if(this.products.length=0){
-          alert("No se encuentra productos disponibles con esas caratceristicas")
-        }
+        
     }
   
     public edit(productId:number){   
@@ -180,7 +173,7 @@ import { ProductModel } from './models/productModel';
             this.categories=res;
           },
           error=>{
-            alert('EL USUARIO NO SE ENCUENTRA REGISTRADO');
+            alert(this.loadingService.error);
           }
         );
 
@@ -192,7 +185,7 @@ import { ProductModel } from './models/productModel';
             this.marcas=res;      
           },
           error=>{
-            alert('HUBO UN PROBLEMA CON EL SERVIDOR');
+            alert(this.loadingService.error);
           }
         );
 

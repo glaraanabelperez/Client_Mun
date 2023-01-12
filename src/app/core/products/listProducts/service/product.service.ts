@@ -7,6 +7,7 @@ import { Filter } from '../models/Filter';
 import { environment } from 'src/environments/environment';
 import { ProductModel } from '../models/productModel';
 import { ProductImageModel } from '../models/productImageModel';
+import { ProductModelResponse } from '../models/productModelResponse';
 
 @Injectable({
   providedIn: 'root'
@@ -36,7 +37,7 @@ public getProduct(productId :number):Observable<ProductModel>{
   return this.http.get<any>(`${this.url}product/${productId}`);
 }
 
-public getProductfeatured():Observable<ProductModel[]>{
+public getProductfeatured():Observable<ProductModelResponse[]>{
   return this.http.get<any>(`${this.url}products/list_feature`);
 }
 

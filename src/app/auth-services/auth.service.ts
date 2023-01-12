@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { typeWithParameters } from '@angular/compiler/src/render3/util';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { LoginRequest, LoginResponse } from './login';
 
 @Injectable({
@@ -10,10 +11,11 @@ import { LoginRequest, LoginResponse } from './login';
 export class AuthService {
 
   login_correcto: boolean;
-  url='https://localhost:44372/api/';
-  
+  public url=environment.Url;
+
 
   constructor(private http: HttpClient) { 
+    console.log(localStorage.getItem('username')!=null)
   }
 
  
@@ -30,6 +32,10 @@ export class AuthService {
     return localStorage.getItem('username');
   }
 
+  IsLogin():any{
+    return localStorage.getItem('username')!=null;
+  }
+
   isLoggedIn():boolean{
     return this.getUser()!== null;
   }
@@ -37,7 +43,9 @@ export class AuthService {
 
   register(data:LoginResponse) {
         this.login_correcto=true;
-        localStorage.setItem('codigo_usar', data.UserId.toString(10));
+        // localStorage.setItem('codigo_usar', data.UserId.toString(10));
+        localStorage.setItem('username', data.UserName);
+
   }
 
 }

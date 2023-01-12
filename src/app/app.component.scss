@@ -1,8 +1,11 @@
 @import './generalStyles/generalStyles.scss';
 .specewhite{
-    height: 180px;
+    height: 140px;
     background-color: inherit;
   }
+// .rooter{
+//     margin: 0% 3% 0% 3%;
+// }
 .contenedor-app{
     .fixed{
         position: fixed;
@@ -13,28 +16,44 @@
     .footer{
         height: 90vh;
     }
+    .icons_rigth{
+        i{
+            margin-right: 10px;
+        }
+        .fa-whatsapp{
+            color: $verde;
+            font-size: 35px;
+            cursor: pointer;
+        }
+        display: flex;
+        flex-direction: row;
+        position: fixed; right: 7.5%; bottom: 11%; z-index: 999;
+    }
     .subir{
         color: #dc3545;
         font-size: 35px;
-        position: fixed; right: 7.5%; bottom: 11%; z-index: 999;
         cursor: pointer;
     }
     .redes{
         // color: #dc3545;
-        background-color: white;
+        background-color: rgb(233, 246, 231);
         border-radius: 20px;
         padding: 5px;
-        position: fixed; left: 5.2%; top: 16%; z-index: 999;
+        position: fixed; left: 2%; top: 7%; z-index: 999;
         cursor: pointer;
     }
     .icons{
 
         i{
             margin-right: 1rem;
-            font-size: 1.5rem;
+            font-size: 1.8rem;
         }
         display: flex;
         flex-direction: row;
+        .fa-whatsapp{
+            color: rgb(26, 181, 57);
+            font-size: 1.9rem;
+        }
     }
 
 

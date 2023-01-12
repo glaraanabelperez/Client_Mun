@@ -51,7 +51,7 @@ import { MarcaService } from './service/marca.service';
         },
         error=>{
           this.loadingService.setLoading(false);
-          alert('ERROR EN EL SERVIDOR');
+          alert(this.loadingService.error);
         }
       );
 
@@ -68,7 +68,7 @@ import { MarcaService } from './service/marca.service';
         },
         error=>{
           this.loadingService.setLoading(false);
-          alert('ERROR EN EL SERVIDOR');
+          alert(this.loadingService.error);
         }
       );
 

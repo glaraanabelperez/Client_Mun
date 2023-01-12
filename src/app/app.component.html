@@ -3,13 +3,12 @@
 <div class="specewhite"></div>
 
 <div class="contenedor-app">
-    <order-list
-        *ngIf="getShowModal()"
-        (closeModal)="closeModal()"
-    ></order-list>
+    <order-list *ngIf="getShowModal()" (closeModal)="closeModal()"></order-list>
     <div class="rooter">
         <router-outlet></router-outlet>
-        <i data-aos="fade-up" class="fa-solid fa-circle-arrow-up subir" (click)="subir()"></i>   
+        <div class="icons_rigth">
+            <i data-aos="fade-up" class="fa-solid fa-circle-arrow-up subir" (click)="subir()"></i>   
+        </div>
         <div  class="redes icons">
             <a style="margin-left: 15px;" class="list-group-item"><i class="fa-brands fa-facebook"></i></a>
             <a class="list-group-item"><i class="fa-brands fa-instagram"></i></a>
@@ -17,4 +16,4 @@
         </div>
     </div>
 </div>
-<app-footer ></app-footer>
+<app-footer></app-footer>

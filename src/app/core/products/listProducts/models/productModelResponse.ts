@@ -9,6 +9,7 @@ export interface ProductModelResponse{
     Stock:boolean;
     Featured:boolean;
     Price:number;   
+    PriceWithDiscount:number;
     ImageName:string;
 }
 

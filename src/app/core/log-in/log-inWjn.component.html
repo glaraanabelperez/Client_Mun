@@ -6,8 +6,7 @@
       </div>
       <div class="card-body" >
           <h2>Bienvenido</h2>
-          <h3>{{titulo}}</h3>
-          <form *ngIf="!authService.getUser()">
+          <form *ngIf="!authService.IsLogin();else logout">
             <div class="form-group">
               <label for="username">User</label>
               <input type="user" #username  class="form-control" id="username" aria-describedby="username" placeholder="Ingrese usuario">
@@ -20,13 +19,14 @@
               <button (click)="login(username.value, password.value)"  type="button" class="btn btn-info"  data-dismiss="modal">Ingresar</button>
               <p>{{mensajerror}}</p>
             </div>
-            <div class="modal-footer">
-              <div class="botonesAdmin" *ngIf="authService.getUser()">
-                <button (click)="logOut()"  type="button" class="btn btn-danger"  data-dismiss="modal">Salir</button>
-                <button [routerLink]="['/productos/lista-productos']"   type="button" class="btn btn-secondary"  data-dismiss="modal">Panel</button>
-              </div>  
-            </div>           
+          
           </form>
+          <ng-template #logout class="modal-footer">
+            <div class="btnPanel" >
+              <button (click)="logOut()"  type="button" class="btn btn-danger"  data-dismiss="modal">Salir</button>
+              <button [routerLink]="['/productos/lista-productos']"   type="button" class="btn btn-success"  data-dismiss="modal">Panel</button>
+            </div>  
+          </ng-template> 
       </div>
     </div>
 </div>

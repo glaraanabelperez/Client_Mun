@@ -15,11 +15,12 @@ export class LogInComponent implements OnInit {
   constructor( public authService: AuthService, private router:Router) { }
 
   ngOnInit(): void {
+    
   }
 
   login( username: string, password: string) :boolean {
     let data:LoginRequest={
-      Email:username,
+      UserName:username,
       Password:password
     }
     this.mensajerror="";

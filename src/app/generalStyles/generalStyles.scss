@@ -7,11 +7,11 @@ $font-tamanio-botones:12px;
 $gris:#fafbf9;
 $blanco:#ffffff;
 $verde-amarillo:#C6FF6A;
-$verde:#0dc164;
+$verde:#05dd29;
 $red:#FF6A6A;
 $font-tamanio-botones:12px;
 $negro:#898989;
-
+$white_verde:#f3f8ee;
 * {
   font-size: 15px;
   font-family: $font;
@@ -88,12 +88,20 @@ span{
   padding: 0.6rem;
   cursor: pointer;
   font-size: 17px;
-  background-color: $red;
   color: white;
+
+  background-color: $red;
 }
 .btn-success{
   background-color: $verde;
-  border: $verde;
+  border: none;
+  border-radius: 5px;
+  margin-bottom: 0.5rem;
+  padding: 0.6rem;
+  cursor: pointer;
+  font-size: 17px;
+  color: white;
+
 }
 
 .spinner-border{

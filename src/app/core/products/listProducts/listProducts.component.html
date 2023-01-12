@@ -88,7 +88,7 @@
                           <p *ngIf="p.DiscountAmount==null"  class="block_price__currency">$ {{p.Price}}</p>
                           <div class="prices" *ngIf="p.DiscountAmount!=null">
                              <p  class="block_price__currency" style="text-decoration:line-through;">$ {{p.Price}}</p>
-                             <p  class="block_price__currency" style="color:black"> $ {{p.Price - (p.Price * p.DiscountAmount /100)}}</p>
+                             <p  class="block_price__currency" style="color:black"> $ {{p.PriceWithDiscount}}</p>
                           </div>
                         </div>
                         <div *ngIf="!isLogin() && p.Stock">

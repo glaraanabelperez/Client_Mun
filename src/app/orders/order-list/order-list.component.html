@@ -19,80 +19,58 @@
           <div class="info">
             <p>{{p.marcaName}}</p>
             <h3 style="margin: 0px;">{{p.name}}</h3>
-            <p style="color: gray;">$ {{p.price}} x unid</p>
-            <p style="font-weight: 600;">$ {{p.price*p.count}} x {{p.count}}</p>
+            <p *ngIf="p.discount==null"  class="block_price__currency">$ {{p.price}} x unid</p>
+            <div class="prices" *ngIf="p.discount!=null">
+               <p  class="block_price__currency" style="text-decoration:line-through;">$ {{p.price}}</p>
+               <p  class="block_price__currency" style="color:black">$ {{p.priceWithDiscount*p.count}} x {{p.count}}</p>
+            </div>
             <br>
           </div>
-          <div class="list-card-botones" >
+          <div *ngIf="!goPayShow" class="list-card-botones" >
             <button class="boton_car" (click)="sumar(i)">
               <i class="fa-sharp fa-solid fa-plus"></i>
             </button>
-            <!-- <button class="boton_car" (click)="restar(i)">
-              <p style="font-size:1rem">{{p.count}}</p>
-            </button>        -->
             <button class="boton_car" (click)="restar(i)">
               <i class="fa-sharp fa-solid fa-minus"></i>
             </button>
           </div> 
         </div>
       </div>
-      <div class="col-3">
+      <div *ngIf="!goPayShow" class="col-3">
         <i class="fa-sharp fa-solid fa-trash" (click)="eliminar(i)"></i>
       </div>
     </div>
   </div>
   <div class="footer_car">
     <div class="col">Cantidad Unidades {{_serviceOrder.total}}</div>
-    <div class="col total">Total compra {{_serviceOrder.totalFact}}</div>
+    <div style="margin:10px" class="col total">Total compra {{_serviceOrder.totalFact}}</div>
   </div>
   <div class="msjCar" *ngIf="_serviceOrder.order.length==0"> Su carrito esta vacio</div>
   <hr>
 
   <div class="card">
     <div class="card-header">
-      <h5 class="card-title"><i class="fa-sharp fa-solid fa-truck"></i>  Envios</h5>
+      <h5 class="card-title"><i class="fa-sharp fa-solid fa-truck"></i> Para el Envio comuniquese con el vendedor</h5>
     </div>
-    <div [formGroup]="formOrder" class="card-body">
+    <div class="card-body">
       <div class="row">    
-        <h5 class="col-md-6">Retiro en Local</h5>
-        <h5 class="col-md-4">Gratis</h5>
-      </div>
-      <div class="row">    
-        <h5 class="col-md-6">Envios a CABA</h5>
+        <h5 class="col-md-6">Retiro en Local y Envios a CABA</h5>
         <h5 class="col-md-4">Gratis</h5>
       </div>
       <div class="row">    
         <h5 class="col-md-6">Envios Bs As o Interior</h5>
         <h5 class="col-md-4">Consultar</h5>
       </div>
-      <!-- <div class="row">
-        <div class="col-md-2">
-          <input type="checkbox" id="casa" name="casa" value="Retiro en local" (change)="onItemChange($event.target.value)" >
-        </div>      
-        <h5 class="col-md-6">Retiro en Local</h5>
-        <h5 class="col-md-4">Gratis</h5>
-      </div> -->
       <br>
-
-      <!-- <div class="row">
-        <div class="col-md-2">
-          <input type="checkbox" id="casa" name="casa" [value]='null' 
-          (change)="onItemChange($event.target.value)">
-        </div>      
-        <h5 class="col-md-6">Envio CABA (de 24 a 72 hs)</h5>
-        <h5 class="col-md-4">Gratis</h5>
-        <div class=" form-group mb-3">
-          <input type="text" formControlName="direction" (change)="onItemChange($event.target.value)" 
-          class="form-control"  id="direction" [ngClass]="{ 'is-invalid':f.direction.touched && f.direction.errors }">
-          <div *ngIf="f.direction.touched && f.direction.errors" class="invalid-feedback">
-            <div *ngIf="f.direction.errors.required">La direccion no quedar vacio</div>
-            <div *ngIf="f.direction.errors.minLength">Debe ingresar 10 caracteres minimo</div>
-            <div *ngIf="f.direction.errors.maxlength">Solo puede ingresar 40 caracteres</div>
-          </div>
-        </div>
-      </div> -->
-    </div>
   </div>
-  <button style="display: block;margin: auto;" class="btn btn-warning" (click)="procesPayment()">Procesar</button>
-  <button id="FORM_ID"><a href="http://"></a>test</button>
+  <button *ngIf="_serviceOrder.order.length!=0 && !goPayShow" style="display: block;margin: auto;" class="btn btn-warning" (click)="procesPayment()">Procesar</button><br><br>
+  <div *ngIf="goPayShow">
+    <div class="alert alert-primary" role="alert">
+        Luego de su pago contactese con el vendedor por whatsapp para la entrega del producto
+    </div>
+    <a class="btn btnPay btn-success" [href]="goPay" target="_blank">Pagar</a>
+    <button class="btn btnPayCancel btn-dark" (click)="cancelPayment()">Cancelar</button>
+
+  </div>
+    
 </div>

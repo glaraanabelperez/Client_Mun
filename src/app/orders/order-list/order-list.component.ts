@@ -4,9 +4,7 @@ import { OrderService } from '../service/order.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LoadingService } from 'src/app/services/loading.service';
 import { ItemsBuy } from '../models/ItemsBuy';
-import { get } from 'scriptjs';
 
-const FORM_ID = 'payment-form';
 
 
 @Component({
@@ -21,18 +19,29 @@ export class OrderList implements OnInit {
   public _delivery: boolean=false;
   public direction_delivery: string;
   public formOrder : FormGroup;
+  goPay: any;
+  public goPayShow:boolean=false;
 
   constructor( public _serviceOrder:OrderService, private readonly formBuilder : FormBuilder,   public loadingService:LoadingService) { 
-    this.formOrder = this.formBuilder.group({
-      direction : ["", [Validators.required, Validators.maxLength(100), Validators.minLength(2)]],
-     });
+    // this.formOrder = this.formBuilder.group({
+    //   Name: ["", [Validators.required, Validators.maxLength(100), Validators.minLength(2)]],
+    //   LastName: ["", [Validators.required, Validators.maxLength(100), Validators.minLength(2)]],
+    //   DirectionName: ["", [Validators.required, Validators.maxLength(100), Validators.minLength(2)]],
+    //   DirectionNumber: ["", [Validators.required, Validators.maxLength(100), Validators.minLength(2)]],
+    //   DirectionLocation: ["", [Validators.required, Validators.maxLength(100), Validators.minLength(2)]],
+    //   PhoneArea: ["", [Validators.required, Validators.maxLength(5), Validators.minLength(2)]],
+    //   PhoneNumber: ["", [Validators.required, Validators.maxLength(20), Validators.minLength(2)]],
+    //   Email: ["", [Validators.required, Validators.maxLength(100), Validators.minLength(2)]],
+    //   IdentificationType: ["", [Validators.required, Validators.maxLength(5), Validators.minLength(2)]],
+    //   IdentificationNumber: ["", [Validators.required, Validators.maxLength(10), Validators.minLength(2)]],
+    //  });
   }
 
   ngOnInit():void {
  
   }
 
-  get f(){return this.formOrder.controls;}
+  // get f(){return this.formOrder.controls;}
 
   onCloseModal(): void {
     this.closeModal.emit();
@@ -58,68 +67,52 @@ export class OrderList implements OnInit {
   // }
 
 
-  public finishOrder(){
-    if(this.direction_delivery==null || this.direction_delivery==""){
-      alert("LA DIRECCION NO PUEDE ESTAR VACIA");
-    }else{
-      console.log(this.direction_delivery)
-        
-    }
-
+  public cancelPayment(){
+    this.goPay=null;
+    this.goPayShow=false;
   }
-
-  public pickUp(){
-    this.direction_delivery="Retiro en Local"
-  }
-
-  public onItemChange(value){
-    this.formOrder.controls['direction'].setValue(value);
-    this.direction_delivery=this.formOrder.get('direction').value;
-  }
-
-  // public procesPayment(){
-  //   this._serviceOrder.order.forEach(element => {
-      
-  //   });
-  // }
-
 
   public procesPayment(){
-    let p: ItemsBuy[] = [
-      { Title: "p1",
-        Quantity: 1,
-        Price: 12 
-      },
-      { Title: "p2",
-        Quantity: 2,
-        Price: 12 
-      }
-    ]
 
+    let items: ItemsBuy[]=[];
+    this._serviceOrder.order.forEach(e => {
+      let i={
+        Id:e.productId,
+        Title: e.name +" /id: " + e.productId ,
+        Quantity: e.count,
+        Price: e.priceWithDiscount
+      }
+      items.push(i);
+    });
+
+    // let p: ItemsBuy[] = [
+    //   {  Id:1,
+    //     Title: "p1",
+    //     Quantity: 1,
+    //     Price: 5 
+    //   },
+    //   { Id:1,
+    //     Title: "p2",
+    //     Quantity: 2,
+    //     Price: 2 
+    //   }
+    // ]
 
     this.loadingService.setLoading(true);
-        this._serviceOrder.processPayment(p).subscribe(
+    this._serviceOrder.processPayment(items).subscribe(
           res=>{
-            console.log(res["InitPoint"], res)
-
+            this.goPay=res["InitPoint"]
+            this.goPayShow=true;
             this.loadingService.setLoading(false);
-            const script = document.createElement('script');
-            script.type = 'text/javascript';
-            script.src =`${res["InitPoint"]}`;
-            script.setAttribute('data-preference-id', res);
-            const form = document.getElementById(FORM_ID);
-            form.appendChild(script);
           },
           error=>{
             alert('ERROR DE SERVIDOR');
             this.loadingService.setLoading(false);
           }
-        );
-
+    );
   }
 
   public getPaymentMethods(){
-
     this.loadingService.setLoading(true);
         this._serviceOrder.getMethodsPayment().subscribe(
           res=>{

@@ -40,11 +40,12 @@ export class OrderService {
   } 
  
 
-  agregarPedido(p){
+  agregarPedido(p:Order){
       if(this.corroborarProductoEnPedido(p)){
         alert("PARA SUMAR UNIDADES ACCEDA AL CARRITO")
       }else{
         this.order.push(p);
+        console.log(p)
         this.showModal=true;
         this.calcularTotal(+1);
         this.total_suscribeOnChange();
@@ -105,7 +106,7 @@ export class OrderService {
     procesTotal(){
       this.totalFact=0;
       this.order.forEach(element => {
-        this.totalFact+=(element.price*element.count)
+        this.totalFact+=(element.priceWithDiscount*element.count)
       });
       this.totalFact_suscribeOnChange();
     }
@@ -117,6 +118,11 @@ export class OrderService {
     getMethodsPayment():Observable<any>{
       return this.http.get<any>(`${this.url}paymentsMethods`);
     }
+
+    getPayment(id:any):Observable<any>{
+      return this.http.get<any>(`${this.url}payment/${id}`);
+    }
+   
    
 
   }

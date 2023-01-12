@@ -3,6 +3,8 @@ import { ProductModel } from 'src/app/core/products/listProducts/models/productM
 import { OrderService } from 'src/app/orders/service/order.service';
 import { LoadingService } from 'src/app/services/loading.service';
 import { ProductService } from '../products/listProducts/service/product.service';
+import { Order } from '../../orders/models/Order';
+import { ProductModelResponse } from '../products/listProducts/models/productModelResponse';
 
 
 @Component({
@@ -11,7 +13,7 @@ import { ProductService } from '../products/listProducts/service/product.service
   styleUrls: ['./galeria.component.scss'],
 })
 export class GaleriaComponent implements OnInit {
-  destacada :ProductModel[] = [];
+  destacada :ProductModelResponse[] = [];
 
   constructor(public serviceProducts:ProductService, public _serviceOrder:OrderService, 
     public loadingService:LoadingService) {
@@ -26,7 +28,8 @@ export class GaleriaComponent implements OnInit {
 
       this.serviceProducts.getProductfeatured().subscribe(
         res=>{
-          this.destacada=res as ProductModel [];
+          console.log(res)
+          this.destacada=res as ProductModelResponse [];
           this.loadingService.setLoading(false);
         },
         error=>{
@@ -44,14 +47,21 @@ export class GaleriaComponent implements OnInit {
     }
      
   }
-  agregarPedido(p){
-    let pedido={
-    codigo_producto: p.codigo_producto,
-    cantidad:1,
-    titulo:p.titulo,
-    precio:p.precio,
+  agregarPedido(p:ProductModelResponse){
+
+    let pedido:Order={
+      productId: p.ProductId,
+      categoryName:p.CategoryName,
+      marcaName:p.MarcaName,
+      name: p.Name,
+      nameImage:p.ImageName,
+      count:1 ,
+      price:p.Price,
+      priceWithDiscount:p.PriceWithDiscount,
+      priceTotal:p.PriceWithDiscount,
+      discount:p.DiscountAmount,
   }
-    // this._servicioPedidos.agregarPedido(pedido);
+  this._serviceOrder.agregarPedido(pedido);
 }
 
 }

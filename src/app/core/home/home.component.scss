@@ -4,79 +4,64 @@
   padding: 0px;
 }
 .contenedor-galeria{
-  margin: 5%;
+  // margin: 5%;
 
   #carousel {
-      padding: 0% 0% 3% 0%;
+      padding: 0px;
       width: 100%;
       height: auto;
       white-space: nowrap;
-      overflow-x: auto;
       margin: auto;
+      .cont_carrousel{
+        display: flex;flex-direction:row;
+        justify-content: center;
+      }
+      overflow-x: auto;
+
   }
 }
 .btn-light{
+  border: 1px solid gainsboro;
   border-radius: 20px;
   font-size: 1.1rem;
-  background-color: white;
-  color: $negro
+  background-color: $white_verde;
+  color: $negro;
+  margin-right: 5px;
 }
-
+.btn-light:hover{
+  background-color: $verde;
+  color: white;
+}
 
   @media only screen  
   and (min-width : 265px)  
   and (max-width : 680px) { 
-    .specewhite{
-      height: 150px;
-    }
-    .carousel-inner{
-      height: 30vh !important
-    }
-    .espacio{
-      height: 130px;
-    }
-    .base_home{
-      display: flex;
-      flex-direction: row;
-      .lateral_izq{
-        display: none;
-      }
-      .lateral_der{
-        width: 100%;
-      }
-    }
-
+    
     .contenedor-galeria{
       margin-top:2rem !important;
       margin-bottom: 4rem !important;
       #carousel {
         margin-bottom: 20px;
-          div{
+        .cont_carrousel{
               display: inline-block;
               width: 100%;
               margin-right: 1.5rem ;
           }
+          overflow-x: hidden;
+          overflow-y: auto;
       }
-  }
+    }
   }
 
   @media only screen  
   and (min-width : 680px)  
   and (max-width : 1200px) { 
-    .carousel-inner{
-      height: 30vh !important
-    }
-    .espacio{
-      height: 140px;
-    }
-    .base_home{
-      display: flex;
-      flex-direction: row;
-      .lateral_izq{
-        display: none;
-      }
-      .lateral_der{
-        width: 100%;
+    .contenedor-galeria{
+
+      #carousel {
+
+          overflow-x: auto;
+          overflow-y: hidden;
       }
     }
   }

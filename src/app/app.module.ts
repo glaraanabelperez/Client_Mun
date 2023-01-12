@@ -54,6 +54,7 @@ export const childrenRouteProducts:Routes=[
 const routes: Routes = [
 {path: '', redirectTo: 'home', pathMatch:'full'},
 {path: 'home', component: HomeComponent, children:childrenRoute},
+
 {path: 'login', component:LogInComponent},
 {path: 'productos',component: ProductsComponent,children:childrenRouteProducts},
 {path: 'contacto',component: ContactComponent},

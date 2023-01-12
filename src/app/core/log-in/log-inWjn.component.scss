@@ -17,6 +17,13 @@
     margin-right: 25px;
     margin-top: 10px;
   }
+.btnPanel{
+  display: block;
+  text-align: center;
+  .btn{
+    margin-right: 5px;
+  }
+}
   
   @media only screen  and (min-width : 280px)  and (max-width : 765px) {
 

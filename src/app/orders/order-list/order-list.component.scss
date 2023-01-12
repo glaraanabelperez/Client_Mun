@@ -64,6 +64,7 @@ flex-direction: row;
 .msjCar{
   padding: 75px;
   margin: auto;
+  text-align: center;
 }
 .row{
   margin-bottom:10px;
@@ -80,6 +81,17 @@ flex-direction: row;
   padding: 10px;
   border-radius: 5px;
   color: white;
+}
+.btnPay{
+  display: block;
+  text-align: center;
+  background-color: $red;
+}
+.btnPayCancel{
+  color: white;
+  display: block;
+  text-align: center;
+  width: 100%;
 }
 
  @media only screen  

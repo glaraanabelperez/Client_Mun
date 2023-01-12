@@ -11,7 +11,7 @@ export class LoadingService{
 
   private _loading = new BehaviorSubject<boolean>(true);
   public loading;
-
+  public error="SIN RESULTADOS"
   constructor() {
       this._loading.subscribe(x => this.loading=x);
   }

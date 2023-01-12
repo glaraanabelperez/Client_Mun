@@ -23,9 +23,8 @@
                     <!-- <p class="promocion">{{p.Description}}</p> -->
                     <p *ngIf="p.DiscountAmount==null"  class="block_price__currency">${{p.Price}}</p>
                     <p *ngIf="p.DiscountAmount!=null" class="block_price__currency" style="text-decoration:line-through;"> ${{p.Price}}   </p>
-                    <p *ngIf="p.DiscountAmount!=null"  class="block_price__currency" style="color:#2F7BB2;font-weight: 600; font-size: 1.1rem;"> ${{p.Price - (p.Price * p.DiscountAmount /100)}}</p>
-                    <p *ngIf="!p.Stock"  class="block_model" style="text-align:center;"><span class="btn agotado btn-success">AGOTADO!</span></p>
-                    <button *ngIf="p.Stock"   class="btn btn-outline-success" (click)="agregarPedido(p)">
+                    <p *ngIf="p.DiscountAmount!=null"  class="block_price__currency" style="color:#2F7BB2;font-weight: 600; font-size: 1.1rem;"> ${{p.PriceWithDiscount}}</p>
+                    <button  class="btn btn-outline-success" (click)="agregarPedido(p)">
                         <p>Agregar</p>
                     </button>  
                 </div>
