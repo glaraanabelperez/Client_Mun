@@ -15,6 +15,7 @@ import { MarcaService } from '../marcas/service/marca.service';
 import { OrderService } from 'src/app/orders/service/order.service';
 import { Order } from 'src/app/orders/models/Order';
 import { ProductModel } from './models/productModel';
+import { catchError, map, switchMap } from 'rxjs/operators';
 
 
 @Component({
@@ -49,6 +50,7 @@ import { ProductModel } from './models/productModel';
     //Images
     public hiddeModal: boolean;
     public productIdToModel: number;
+    
 
     constructor( 
       private productService:ProductService, 
@@ -59,7 +61,6 @@ import { ProductModel } from './models/productModel';
       private router: Router, private auth:AuthService,
       private rutaActiva: ActivatedRoute
     ) {
-
     }
      
     ngOnInit(): void {
@@ -67,28 +68,28 @@ import { ProductModel } from './models/productModel';
       this.traerCategorias();  
       this.getMarcas();
       this.getParams();
-      this.listAllProducts();
       window.scroll(0,0)
+
     }
 
     ngAfterViewInit() { 
-      // this.onChangesFilters();
-      //this.subs = this.myForm.valueChanges.pipe(
-    //             switchMap(() => {
-    //               // this.isLoadingResults = true;
-    //               return this.productService.listAllProducts(
-    //                 this.filter, this.order, this.from, null, this.orderAsc
-    //               );
-    //             }),
-    //             map(res => {
-    //               this.recordCount=res['RecordsCount'];
-    //               this.loadingService.setLoading(false);
-    //               return res['Data'] as ProductModelResponse [];
-    //             }),
-    //             catchError(() => {
-    //               return observableOf([]);
-    //             })
-    //           ).subscribe(data => this.products = data as []);
+      this.onChangesFilters();
+      // this.subs = this.myForm.valueChanges.pipe(
+      //           switchMap(() => {
+      //             this.isLoadingResults = true;
+      //             return this.productService.listAllProducts(
+      //               this.filter, this.order, this.from, null, this.orderAsc
+      //             );
+      //           }),
+      //           map(res => {
+      //             this.recordCount=res['RecordsCount'];
+      //             this.loadingService.setLoading(false);
+      //             return res['Data'] as ProductModelResponse [];
+      //           }),
+      //           catchError(() => {
+      //             return observableOf([]);
+      //           })
+      //         ).subscribe(data => this.products = data as []);
     }
     
     public addToCar(p:ProductModelResponse){
@@ -114,15 +115,17 @@ import { ProductModel } from './models/productModel';
     }
     // Filtros
     public onChangesFilters(): void {
-      this.myForm.valueChanges.subscribe((x) => {   
-        this.listAllProducts();
+      this.myForm.valueChanges.subscribe((x:Filter) => {  
+        console.log(x)
+        this.listAllProducts(x);
       });
     }
  
-    public listAllProducts(){      
+    public listAllProducts(x:Filter){     
+      console.log(this.filter) 
       this.loadingService.setLoading(true);
       var itemsPerPage=null;
-        this.productService.listAllProducts(this.filter, this.order, this.from, itemsPerPage, this.orderAsc).subscribe(
+        this.productService.listAllProducts(x, this.order, this.from, itemsPerPage, this.orderAsc).subscribe(
           res=>{
             this.products=[];
             this.products=res['Data'] as ProductModelResponse [];
@@ -142,7 +145,6 @@ import { ProductModel } from './models/productModel';
   
     public edit(productId:number){   
       this.productService.productId=productId;
-      return false;
     }
 
     public eliminar(p){
@@ -151,7 +153,7 @@ import { ProductModel } from './models/productModel';
         datos=>{
             alert("SE ELIMINO EXITOSAMENTE")
             this.loadingService.setLoading(false);
-            this.listAllProducts(); 
+            this.onChangesFilters();
         },
         error =>{
           alert('ERROR DE SERVIDOR');
@@ -208,18 +210,45 @@ import { ProductModel } from './models/productModel';
         this.orderAsc= false
         this.order= e == 2 ? OrderField.price : OrderField.title  
       }
-      this.listAllProducts()
+      this.onChangesFilters();
     }
 
-    // public setCategory(c:number){
-    //   this.filter.CategoryId=c;
-    //   // this.listAllProducts()
-    // }
+    public setCategory(){
+      this.loadingService.setLoading(true);
+      this.categorieService.getCategoryByMarca(this.filter.MarcaId).subscribe(
+      res=>{
+        this.categories=[];
+        this.categories=res as CategoryModel[];        
+        this.loadingService.setLoading(false);
+        if(this.products.length==0){
+          alert("NO HAY PRODUCTOS CARGADOS")
+        }
+      },
+      error=>{
+        alert('ERROR DE SERVIDOR');
+        this.loadingService.setLoading(false);
+      }
+    );
+      this.onChangesFilters()
+    }
 
-    // public setMarca(c:number){
-    //   this.filter.MarcaId=c;
-    //   // this.listAllProducts()
-    // }
+    public setMarca(){
+      this.marcasService.getMarcaByCategory(this.filter.CategoryId).subscribe(
+        res=>{
+          this.marcas=[];
+          this.marcas=res as MarcaModel[];        
+          this.loadingService.setLoading(false);
+          if(this.products.length==0){
+            alert("NO HAY PRODUCTOS CARGADOS")
+          }
+        },
+        error=>{
+          alert('ERROR DE SERVIDOR');
+          this.loadingService.setLoading(false);
+        }
+      );
+      this.onChangesFilters()
+    }
 
     public limpiarSelection(){
       this.filterSelection=null;
@@ -231,4 +260,8 @@ import { ProductModel } from './models/productModel';
 
 }
   
+
+function observableOf(arg0: undefined[]): any {
+  throw new Error('Function not implemented.');
+}
   

@@ -74,9 +74,9 @@ import { Router } from '@angular/router';
     });
 
     if(this.productService.productId!=null){
-      var prodId=this.productService.productId;
       this.accionBtnFormulario="editar"
       this.getProduct(this.productService.productId);     
+      this.productService.productId=null
       // this.getImages(prodId);
     }else{
       this.accionBtnFormulario="nuevo";
@@ -147,10 +147,10 @@ import { Router } from '@angular/router';
         }
       );
       this.loadingService.setLoading(false);
-      this.productService.productId=null;
     }
 
-    public limpiar(){}
+    public limpiar(){
+    }
 
     submitted=false;
     onSubmit(){

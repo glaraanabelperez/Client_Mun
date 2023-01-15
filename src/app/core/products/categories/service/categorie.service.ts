@@ -27,10 +27,9 @@ public get(categoryId:number): Observable<CategoryModel[]> {
   return this.http.get<CategoryModel []>(`${this.url}category/${categoryId}`);
 }
 
-// public ChengeFilters(){
-//   this.changeFilters$.next(true);
-// }
-
+public getCategoryByMarca(marcaId:number): Observable<CategoryModel[]> {
+  return this.http.get<CategoryModel []>(`${this.url}category/listByMarca/${marcaId}`);
+}
 
 public list(): Observable<CategoryModel[]> {
   return this.http.get<CategoryModel []>(`${this.url}category/listActive/`);

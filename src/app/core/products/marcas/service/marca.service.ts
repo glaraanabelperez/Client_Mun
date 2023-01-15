@@ -29,6 +29,9 @@ public getAllMarcas(): Observable<MarcaModel[]> {
   return this.http.get<MarcaModel []>(`${this.url}marca/list`);
 }
 
+public getMarcaByCategory(marcaId): Observable<MarcaModel[]> {
+  return this.http.get<MarcaModel []>(`${this.url}marca/listByCategory/${marcaId}`);
+}
 public save(data:MarcaModel): Observable<any> {
   return this.http.put<any>(`${this.url}marca/`, data);
 }
