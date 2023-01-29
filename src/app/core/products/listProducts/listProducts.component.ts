@@ -73,6 +73,8 @@ import { catchError, map, switchMap } from 'rxjs/operators';
     }
 
     ngAfterViewInit() { 
+      this.listAllProducts(this.filter);
+
       this.onChangesFilters();
       // this.subs = this.myForm.valueChanges.pipe(
       //           switchMap(() => {
@@ -116,13 +118,11 @@ import { catchError, map, switchMap } from 'rxjs/operators';
     // Filtros
     public onChangesFilters(): void {
       this.myForm.valueChanges.subscribe((x:Filter) => {  
-        console.log(x)
         this.listAllProducts(x);
       });
     }
  
     public listAllProducts(x:Filter){     
-      console.log(this.filter) 
       this.loadingService.setLoading(true);
       var itemsPerPage=null;
         this.productService.listAllProducts(x, this.order, this.from, itemsPerPage, this.orderAsc).subscribe(
@@ -260,8 +260,4 @@ import { catchError, map, switchMap } from 'rxjs/operators';
 
 }
   
-
-function observableOf(arg0: undefined[]): any {
-  throw new Error('Function not implemented.');
-}
   

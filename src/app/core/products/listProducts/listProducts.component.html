@@ -76,8 +76,8 @@
                         aria-hidden="true" style="color: rgb(204, 255, 0); margin-right:5px;"></i>
                     </div>
                     <div class="sliderBlock_items__itemPhoto ">
-                            <img *ngIf="p.ImageName != ''" [src]="'assets/' +  p.ImageName">
-                            <img *ngIf="p.ImageName == ''" src="assets/camara.png">
+                        <img *ngIf="p.ImageName != ''"  class="viewImg" [src]="'assets/' + p.ProductId + '/'+ p.ImageName ">
+                        <img *ngIf="p.ImageName == ''" src="assets/camara.png">
                     </div>                                                             
                     <div class="block_product">
                         <p class="block_model"><span style="font-size:0.7rem" class="block_model__number">Categoria {{p.CategoryName}}</span></p>

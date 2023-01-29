@@ -35,11 +35,7 @@ import { Router } from '@angular/router';
   public marcas:MarcaModel[];
   public categories: CategoryModel[];
   public discounts: DiscountModel[]=[];
-
-
-  private accionBtnFormulario: string;
-
-
+  editarForm: boolean;
 
 
   constructor( 
@@ -74,12 +70,12 @@ import { Router } from '@angular/router';
     });
 
     if(this.productService.productId!=null){
-      this.accionBtnFormulario="editar"
+      this.editarForm=true;
       this.getProduct(this.productService.productId);     
       this.productService.productId=null
       // this.getImages(prodId);
     }else{
-      this.accionBtnFormulario="nuevo";
+      this.editarForm=false;
     }
     
   }
@@ -159,7 +155,7 @@ import { Router } from '@angular/router';
         return;
       }else{
         this.loadingService.setLoading(true);
-         if(this.accionBtnFormulario=="nuevo"){
+         if(!this.editarForm){
           this.productService.insert(this.uploadForm.value).subscribe(
             result => {
               this.loadingService.setLoading(false);
@@ -169,8 +165,7 @@ import { Router } from '@angular/router';
             alert('Error en el servidor');
             this.loadingService.setLoading(false);
            });         
-        }
-        if(this.accionBtnFormulario=="editar"){
+        }else{
           this.productService.update(this.uploadForm.value).subscribe(
             result => {
               this.loadingService.setLoading(false);

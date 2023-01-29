@@ -20,9 +20,10 @@ public get(productId:number):Observable<ProductImageModel[]>{
   return this.http.get<ProductImageModel[]>(`${this.url}images/${productId}`);
 }
 
-public verifyFileOnServer(imageName:string):Observable<any>{
+public verifyFileOnServer(imageName:string, productIdToModel):Observable<any>{
   var data:ProductImageModel=new ProductImageModel();
   data.Name=imageName.toString();
+  data.ProductId=productIdToModel;
   return this.http.post<ProductImageModel>(`${this.url}images`, data);
 }
 

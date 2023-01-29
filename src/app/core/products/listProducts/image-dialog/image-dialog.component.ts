@@ -89,7 +89,7 @@ saveImage(files){
     alert("Only images are supported.");
     return; 
   }else{
-    this.verifyFileOnServer(files);
+    this.verifyFileOnServer(files, this.productIdToModel);
   }
 }
 
@@ -127,9 +127,9 @@ deleteInserver(){
     });
 }
 
-verifyFileOnServer(files) {
+verifyFileOnServer(files, productIdToModel) {
   this.loadingService.setLoading(true)
-  this.serviceImage.verifyFileOnServer(files[0].name) 
+  this.serviceImage.verifyFileOnServer(files[0].name, productIdToModel) 
     .subscribe(
       response => {
         this.loadingService.setLoading(false)
