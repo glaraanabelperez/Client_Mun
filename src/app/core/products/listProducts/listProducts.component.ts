@@ -1,7 +1,6 @@
 import { Component, OnInit , Output, EventEmitter, ViewChild, ElementRef, Inject, Input, Query} from '@angular/core';
 import { Filter } from 'src/app/core/products/listProducts/models/Filter';
 import { OrderField } from 'src/app/core/products/listProducts/models/OrderField';
-import { Subscription } from 'rxjs';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { AuthService } from 'src/app/auth-services/auth.service';
@@ -14,8 +13,7 @@ import { MarcaModel } from '../marcas/models/marcaModel';
 import { MarcaService } from '../marcas/service/marca.service';
 import { OrderService } from 'src/app/orders/service/order.service';
 import { Order } from 'src/app/orders/models/Order';
-import { ProductModel } from './models/productModel';
-import { catchError, map, switchMap } from 'rxjs/operators';
+
 
 
 @Component({
@@ -38,7 +36,6 @@ import { catchError, map, switchMap } from 'rxjs/operators';
     public order:OrderField;
     public orderAsc:boolean; 
     public orderSelect;
-    public filterSelection:string="Nigun filtro seleccionado";
     public from:number;
     public show: any =true;
     
@@ -47,9 +44,10 @@ import { catchError, map, switchMap } from 'rxjs/operators';
     public selectedItem: any;
 
 
-    //Images
+    //Modal Images
     public hiddeModal: boolean;
     public productIdToModel: number;
+    public cabecera: string;
     
 
     constructor( 
@@ -65,8 +63,8 @@ import { catchError, map, switchMap } from 'rxjs/operators';
      
     ngOnInit(): void {
       this.filter=new Filter();
-      this.traerCategorias();  
-      this.getMarcas();
+      this.getCategoryByMarca();  
+      this.getMarkByCategory();
       this.getParams();
       window.scroll(0,0)
 
@@ -76,22 +74,6 @@ import { catchError, map, switchMap } from 'rxjs/operators';
       this.listAllProducts(this.filter);
 
       this.onChangesFilters();
-      // this.subs = this.myForm.valueChanges.pipe(
-      //           switchMap(() => {
-      //             this.isLoadingResults = true;
-      //             return this.productService.listAllProducts(
-      //               this.filter, this.order, this.from, null, this.orderAsc
-      //             );
-      //           }),
-      //           map(res => {
-      //             this.recordCount=res['RecordsCount'];
-      //             this.loadingService.setLoading(false);
-      //             return res['Data'] as ProductModelResponse [];
-      //           }),
-      //           catchError(() => {
-      //             return observableOf([]);
-      //           })
-      //         ).subscribe(data => this.products = data as []);
     }
     
     public addToCar(p:ProductModelResponse){
@@ -111,8 +93,14 @@ import { catchError, map, switchMap } from 'rxjs/operators';
   }
 
     public getParams(){
-      this.filter.CategoryId=this.rutaActiva.snapshot.params.filter == 'categoria'? this.rutaActiva.snapshot.params.value : null;
-      this.filter.MarcaId=this.rutaActiva.snapshot.params.filter == 'marca'? this.rutaActiva.snapshot.params.value : null;
+      if(this.rutaActiva.snapshot.params.filter == 'categoria'){
+        this.filter.CategoryId=this.rutaActiva.snapshot.params.value;
+        this.setHeaderCategory();
+      }
+      if(this.rutaActiva.snapshot.params.filter == 'marca'){
+        this.rutaActiva.snapshot.params.value;
+        this.setHeaderMark();
+      }
       this.filter.Discount=this.rutaActiva.snapshot.params.filter == 'descuento'? true : null;
     }
     // Filtros
@@ -127,13 +115,14 @@ import { catchError, map, switchMap } from 'rxjs/operators';
       var itemsPerPage=null;
         this.productService.listAllProducts(x, this.order, this.from, itemsPerPage, this.orderAsc).subscribe(
           res=>{
-            this.products=[];
-            this.products=res['Data'] as ProductModelResponse [];
-            this.recordCount=res['RecordsCount'];
+            if(res['RecordsCount']!=0){
+              this.products=[];
+              this.products=res['Data'] as ProductModelResponse [];
+              this.recordCount=res['RecordsCount'];
+            }else{
+              alert("PRODUCTO NO DISPONIBLE, INTENTE CAMBIANDO LOS FILTROS")
+            }          
             this.loadingService.setLoading(false);
-            if(this.products.length==0){
-              alert("NO HAY PRODUCTOS CARGADOS")
-            }
           },
           error=>{
             alert('ERROR DE SERVIDOR');
@@ -168,31 +157,6 @@ import { catchError, map, switchMap } from 'rxjs/operators';
       window.scroll(0,0)
     } 
 
-    //lista categorias
-     public traerCategorias(){
-        this.categorieService.list().subscribe(
-          res=>{
-            this.categories=res;
-          },
-          error=>{
-            alert(this.loadingService.error);
-          }
-        );
-
-    }
-
-    public getMarcas(){
-        this.marcasService.getMarcas().subscribe(
-          res=>{
-            this.marcas=res;      
-          },
-          error=>{
-            alert(this.loadingService.error);
-          }
-        );
-
-    }
-
     public  isLogin():boolean{
       return this.auth.isLoggedIn()
     }
@@ -212,46 +176,72 @@ import { catchError, map, switchMap } from 'rxjs/operators';
       }
       this.onChangesFilters();
     }
+    // Is Active when change Mark!
+    public setHeaderMark(){
+      var marca:number = this.filter.MarcaId;
+      var cate:number = this.filter.CategoryId;
 
-    public setCategory(){
-      this.loadingService.setLoading(true);
-      this.categorieService.getCategoryByMarca(this.filter.MarcaId).subscribe(
-      res=>{
-        this.categories=[];
-        this.categories=res as CategoryModel[];        
-        this.loadingService.setLoading(false);
-        if(this.products.length==0){
-          alert("NO HAY PRODUCTOS CARGADOS")
-        }
-      },
-      error=>{
-        alert('ERROR DE SERVIDOR');
-        this.loadingService.setLoading(false);
+      if(marca!=null && cate==null){
+        this.cabecera="marca";
       }
-    );
-      this.onChangesFilters()
+      if(marca==null){
+        this.cabecera="";
+      }
+      // If change the header mark restarts everything. Returns all categories with that mark and sets the current category filter to 0.
+      if(this.cabecera=="marca"|| marca==null){
+        this.filter.CategoryId=null;
+        this.getCategoryByMarca();
+      }
+
     }
 
-    public setMarca(){
-      this.marcasService.getMarcaByCategory(this.filter.CategoryId).subscribe(
+    //Is Active when cgange Category!
+    public setHeaderCategory(){
+      var mark:number = this.filter.MarcaId;
+      var cate:number = this.filter.CategoryId;
+
+      if(cate!=null && mark==null){
+        this.cabecera="category";
+      }
+      if(cate==null){
+        this.cabecera="";
+      }
+      
+      // If change the header mark restarts everything. Returns all categories with that mark and sets the current category filter to 0.
+      if(this.cabecera=="category" || cate==null){
+        this.filter.MarcaId==null;
+        this.getMarkByCategory();
+      }
+
+    }
+
+    public getCategoryByMarca(){
+      this.loadingService.setLoading(true);
+      this.categorieService.getCategoryByMarca(this.filter.MarcaId).subscribe(
         res=>{
-          this.marcas=[];
-          this.marcas=res as MarcaModel[];        
+          this.categories=[];
+          this.categories=res as CategoryModel[];        
           this.loadingService.setLoading(false);
-          if(this.products.length==0){
-            alert("NO HAY PRODUCTOS CARGADOS")
-          }
         },
         error=>{
           alert('ERROR DE SERVIDOR');
           this.loadingService.setLoading(false);
         }
       );
-      this.onChangesFilters()
     }
 
-    public limpiarSelection(){
-      this.filterSelection=null;
+    public getMarkByCategory(){
+      this.marcasService.getMarcaByCategory(this.filter.CategoryId).subscribe(
+        res=>{
+          this.marcas=[];
+          this.marcas=res as MarcaModel[];        
+          this.loadingService.setLoading(false);
+        },
+        error=>{
+          alert('ERROR DE SERVIDOR');
+          this.loadingService.setLoading(false);
+        }
+      );
     }
 
     // ngOnDestroy(): void {

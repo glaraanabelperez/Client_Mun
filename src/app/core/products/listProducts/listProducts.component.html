@@ -44,13 +44,13 @@
                               <hr>
       
                               <div class="input-group">
-                                      <select class="custom-select"  name="CategoryId"  [(ngModel)]= "filter.CategoryId" (change)="setMarca()" >
+                                      <select class="custom-select"  name="CategoryId"  [(ngModel)]= "filter.CategoryId" (change)="setHeaderCategory()" >
                                               <option [value]="null" selected="selected">Categorias</option>
                                               <option  *ngFor="let c of categories" [value]="c.CategoryId">{{c.Name}}</option>
                                       </select>
                               </div>
                               <div class="input-group">
-                                      <select class="custom-select" name="MarcaId"  [(ngModel)]= "filter.MarcaId" (change)="setCategory()">
+                                      <select class="custom-select" name="MarcaId"  [(ngModel)]= "filter.MarcaId" (change)="setHeaderMark()">
                                               <option [value]="null" >Marcas</option>
                                               <option  *ngFor="let m of marcas" [value]="m.MarcaId">{{m.Name}}</option>
                                       </select>
