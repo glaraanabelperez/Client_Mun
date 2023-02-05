@@ -9,7 +9,7 @@
         <div *ngFor="let p of destacada" >
             <div class="contenedor-card">
                 <div class="foto-destacada" *ngIf="p.ImageName; else photo">
-                    <img  [src]="'assets/'+ p.ImageName" >
+                    <img  [src]="'assets/' + p.ProductId + '/'+ p.ImageName " >
                 </div>
                 <ng-template #photo>
                     <div class="foto-destacada" >

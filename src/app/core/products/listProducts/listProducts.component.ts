@@ -65,13 +65,13 @@ import { Order } from 'src/app/orders/models/Order';
       this.filter=new Filter();
       this.getCategoryByMarca();  
       this.getMarkByCategory();
-      this.getParams();
       window.scroll(0,0)
+      this.getParams();
 
     }
 
     ngAfterViewInit() { 
-      this.listAllProducts(this.filter);
+      //this.listAllProducts(this.filter);
 
       this.onChangesFilters();
     }
@@ -90,20 +90,26 @@ import { Order } from 'src/app/orders/models/Order';
         discount: p.DiscountAmount      
       }
       this._serviceOrder.agregarPedido(pedido);
-  }
+    }
 
     public getParams(){
       if(this.rutaActiva.snapshot.params.filter == 'categoria'){
         this.filter.CategoryId=this.rutaActiva.snapshot.params.value;
         this.setHeaderCategory();
       }
-      if(this.rutaActiva.snapshot.params.filter == 'marca'){
-        this.rutaActiva.snapshot.params.value;
-        this.setHeaderMark();
+      if(this.rutaActiva.snapshot.params.filter == 'descuento'){
+        this.filter.Discount=this.rutaActiva.snapshot.params.filter == 'descuento'? true : null;
       }
-      this.filter.Discount=this.rutaActiva.snapshot.params.filter == 'descuento'? true : null;
+      this.rutaActiva.params.subscribe(params => {
+        // this.param = params['yourParam'];
+        if(this.rutaActiva.snapshot.params.filter == 'marca'){
+          this.filter.MarcaId=this.rutaActiva.snapshot.params.value;
+          this.filter.MarcaId = this.filter.MarcaId ==-1 ? null : this.filter.MarcaId;
+          this.setHeaderMark();
+        }
+      }); 
     }
-    // Filtros
+
     public onChangesFilters(): void {
       this.myForm.valueChanges.subscribe((x:Filter) => {  
         this.listAllProducts(x);

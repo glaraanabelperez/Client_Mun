@@ -3,9 +3,6 @@
     height: 140px;
     background-color: inherit;
   }
-// .rooter{
-//     margin: 0% 3% 0% 3%;
-// }
 .contenedor-app{
     .fixed{
         position: fixed;
@@ -58,7 +55,18 @@
 
 
 }
-@media (max-width : 667px) {}
+
+@media only screen  
+and (min-width : 320px)  
+and (max-width : 780px) {  
+    .contenedor-app{
+        .redes{
+            // color: #dc3545;
+            position: fixed; left: 40%; top: 10%; z-index: 999;
+            cursor: pointer;
+        }
+    }
+}
 @media only screen  
 and (min-width : 768px)  
 and (max-width : 1024px) {  

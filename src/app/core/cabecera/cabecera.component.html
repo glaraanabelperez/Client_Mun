@@ -44,6 +44,7 @@
             <a class="nav-link dropdown-toggle"  id="navbarDropdown1" role="button" 
             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Marcas</a>
             <div class="dropdown-menu drop" aria-labelledby="navbarDropdown1" >
+              <a class="dropdown-item" [routerLink]="['/productos/lista-productos','marca', -1]">Todas</a>
               <div *ngFor="let m of marcas">
                 <a class="dropdown-item" [routerLink]="['/productos/lista-productos','marca', m.MarcaId]">{{m.Name}}</a>
               </div>
