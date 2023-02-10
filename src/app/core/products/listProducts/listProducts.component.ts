@@ -72,7 +72,6 @@ import { Order } from 'src/app/orders/models/Order';
 
     ngAfterViewInit() { 
       //this.listAllProducts(this.filter);
-
       this.onChangesFilters();
     }
     
@@ -127,6 +126,12 @@ import { Order } from 'src/app/orders/models/Order';
               this.recordCount=res['RecordsCount'];
             }else{
               alert("PRODUCTO NO DISPONIBLE, INTENTE CAMBIANDO LOS FILTROS")
+              //Case when list product is null then empty secondary filters.
+              if(this.cabecera=="marca"){
+                this.filter.CategoryId=null;
+              }else{
+                this.filter.MarcaId=null;
+              }
             }          
             this.loadingService.setLoading(false);
           },
@@ -171,12 +176,17 @@ import { Order } from 'src/app/orders/models/Order';
       this.show=!this.show ? true : false;
     }
 
+    //The options values for e are in the html.
     public setOrder(e){
       if(e==1 || e==3){
+        //Case 1 and 3 ever the order is asc, But this order can be by price or title then:
+        //Case when e = 1 (Order by price )  OrderField.Pprice else  OrderField.title
         this.orderAsc=true
         this.order = e == 1 ? OrderField.price : OrderField.title       
       }
       if(e == 2 || e == 4){
+         //Case 2 and 4 ever the order is desc, But this order can be by price or title then:
+        //Case when e = 1 (Order by price )  OrderField.Pprice else  OrderField.title
         this.orderAsc= false
         this.order= e == 2 ? OrderField.price : OrderField.title  
       }
@@ -184,40 +194,39 @@ import { Order } from 'src/app/orders/models/Order';
     }
     // Is Active when change Mark!
     public setHeaderMark(){
-      var marca:number = this.filter.MarcaId;
-      var cate:number = this.filter.CategoryId;
-
-      if(marca!=null && cate==null){
+      //Set Header Filter with Mark, only if Catgeory is null
+      if( this.filter.MarcaId!=null && this.filter.CategoryId==null){
         this.cabecera="marca";
       }
-      if(marca==null){
-        this.cabecera="";
-      }
-      // If change the header mark restarts everything. Returns all categories with that mark and sets the current category filter to 0.
-      if(this.cabecera=="marca"|| marca==null){
+      
+      // If change the headerMark change categories.
+      if(this.cabecera=="marca" ||  this.filter.MarcaId==null){
+        if( this.filter.MarcaId==null){ //Put Off HeadreFilters
+          this.cabecera="";
+        }
         this.filter.CategoryId=null;
         this.getCategoryByMarca();
       }
+      this.listAllProducts(this.filter);
 
     }
 
-    //Is Active when cgange Category!
+    //Is Active when chenge Category!
     public setHeaderCategory(){
-      var mark:number = this.filter.MarcaId;
-      var cate:number = this.filter.CategoryId;
-
-      if(cate!=null && mark==null){
+      //Set headerFilters with Category only if Mark is null
+      if(this.filter.CategoryId!=null && this.filter.MarcaId==null){
         this.cabecera="category";
       }
-      if(cate==null){
-        this.cabecera="";
-      }
       
-      // If change the header mark restarts everything. Returns all categories with that mark and sets the current category filter to 0.
-      if(this.cabecera=="category" || cate==null){
-        this.filter.MarcaId==null;
+      // If change the headerCategory change marks.
+      if(this.cabecera =="category" || this.filter.CategoryId==null){
+        if(this.filter.CategoryId==null){ //Put off headerFilters
+          this.cabecera="";
+        }
+        this.filter.MarcaId=null;
         this.getMarkByCategory();
       }
+      this.listAllProducts(this.filter);
 
     }
 
