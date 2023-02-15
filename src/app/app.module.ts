@@ -14,7 +14,6 @@ import { GuardsGuard } from './guards/guards.guard';
 import { AppComponent } from './app.component';
 
 import { HomeComponent } from './core/home/home.component';
-import { GaleriaComponent} from './core/galeria/galeria.component';
 import { FooterComponent } from './core/footer/footer.component';
 import { CabeceraComponent} from './core/cabecera/cabecera.component';
 
@@ -66,7 +65,6 @@ const routes: Routes = [
   declarations: [
     AppComponent,
     HomeComponent,
-    GaleriaComponent,
     FooterComponent,
     LogInComponent,
     CabeceraComponent,

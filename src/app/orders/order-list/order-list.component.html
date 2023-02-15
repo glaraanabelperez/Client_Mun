@@ -10,7 +10,7 @@
     <div class="row" style="margin: auto;">
       <div class="col-md-4">
         <div class="sliderBlock_items__itemPhoto ">
-          <img *ngIf="p.nameImage != ''" [src]="'assets/' +  p.nameImage">
+          <img *ngIf="p.nameImage != ''"  class="viewImg" [src]="'assets/' + p.productId + '/'+ p.nameImage ">
           <img *ngIf="p.nameImage == ''" src="assets/camara.png">
         </div>  
       </div>

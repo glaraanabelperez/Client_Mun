@@ -17,7 +17,8 @@ export class GaleriaComponent implements OnInit {
 
   constructor(public serviceProducts:ProductService, public _serviceOrder:OrderService, 
     public loadingService:LoadingService) {
-    this.traerDestacadas();
+      this.traerDestacadas();
+      console.log("aca")
    }
    
   ngOnInit(): void {
@@ -28,7 +29,6 @@ export class GaleriaComponent implements OnInit {
 
       this.serviceProducts.getProductfeatured().subscribe(
         res=>{
-          console.log(res)
           this.destacada=res as ProductModelResponse [];
           this.loadingService.setLoading(false);
         },
