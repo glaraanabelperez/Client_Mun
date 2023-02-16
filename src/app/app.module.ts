@@ -8,11 +8,13 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AuthService } from './auth-services/auth.service';
 import { GuardsGuard } from './guards/guards.guard';
+import { OrderService } from './orders/service/order.service';
+import { LoadingService } from './services/loading.service';
 
 
 
 import { AppComponent } from './app.component';
-
+import { GaleriaComponent } from './core/galeria/galeria.component';
 import { HomeComponent } from './core/home/home.component';
 import { FooterComponent } from './core/footer/footer.component';
 import { CabeceraComponent} from './core/cabecera/cabecera.component';
@@ -30,7 +32,6 @@ import { DiscountsComponent } from './core/products/discounts/discounts.componen
 import { ImageDialogComponent } from './core/products/listProducts/image-dialog/image-dialog.component';
 import { ContactComponent } from './core/contact/contact.component';
 import { OrderList } from './orders/order-list/order-list.component';
-import { OrderService } from './orders/service/order.service';
 
 
 
@@ -64,6 +65,7 @@ const routes: Routes = [
 
   declarations: [
     AppComponent,
+    GaleriaComponent,
     HomeComponent,
     FooterComponent,
     LogInComponent,
@@ -80,7 +82,7 @@ const routes: Routes = [
     DiscountDialogComponent,
     MarcaDialogComponent,
     ImageDialogComponent
-  ],
+    ],
 
   imports: [
     BrowserModule,
@@ -102,6 +104,7 @@ const routes: Routes = [
     AuthService, 
     GuardsGuard, 
     OrderService,
+    LoadingService
   ],
   bootstrap: [
     AppComponent

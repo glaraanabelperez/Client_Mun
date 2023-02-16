@@ -59,10 +59,12 @@ import { Order } from 'src/app/orders/models/Order';
       private router: Router, private auth:AuthService,
       private rutaActiva: ActivatedRoute
     ) {
+ 
     }
      
     ngOnInit(): void {
       this.filter=new Filter();
+
       this.getCategoryByMarca();  
       this.getMarkByCategory();
       window.scroll(0,0)
@@ -194,8 +196,9 @@ import { Order } from 'src/app/orders/models/Order';
     }
     // Is Active when change Mark!
     public setHeaderMark(){
+      var x:number=this.filter.CategoryId
       //Set Header Filter with Mark, only if Catgeory is null
-      if( this.filter.MarcaId!=null && this.filter.CategoryId==null){
+      if( this.filter.MarcaId!=null && x==null){
         this.cabecera="marca";
       }
       

@@ -46,13 +46,13 @@
                 </form>     
                 <div class="input-group">
                         <select class="custom-select"  name="CategoryId"  [(ngModel)]= "filter.CategoryId" (change)="setHeaderCategory()" >
-                                <option [value]=null selected="selected">Categorias</option>
+                                <option value="null" selected="selected">Categorias</option>
                                 <option  *ngFor="let c of categories" [value]="c.CategoryId">{{c.Name}}</option>
                         </select>
                 </div>
                 <div class="input-group">
                         <select class="custom-select" name="MarcaId"  [(ngModel)]= "filter.MarcaId" (change)="setHeaderMark()">
-                                <option [value]=null >Marcas</option>
+                                <option value="null" selected="selected">Marcas</option>
                                 <option  *ngFor="let m of marcas" [value]="m.MarcaId">{{m.Name}}</option>
                         </select>
                 </div>   

@@ -18,7 +18,6 @@ export class GaleriaComponent implements OnInit {
   constructor(public serviceProducts:ProductService, public _serviceOrder:OrderService, 
     public loadingService:LoadingService) {
       this.traerDestacadas();
-      console.log("aca")
    }
    
   ngOnInit(): void {
