@@ -22,14 +22,14 @@ constructor(private http: HttpClient) {
 }
 
 
-public listAllProducts(f:Filter, o:OrderField, from:number, length:number, orderAsce:boolean): Observable<any[]> {
+public listAllProducts( f:Filter, from:number, length:number, orderAsce:boolean , o:OrderField): Observable<any[]> {
   const data = new QueryDataModel<Filter, OrderField>();
 
   data.filter = f;
   data.from = from;
   data.length = length;
-  data.order = o;
   data.orderAsc = orderAsce;
+  data.orderField = o;
   return this.http.post<any []>(`${this.url}product`, data);
 }
 

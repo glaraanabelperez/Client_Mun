@@ -13,7 +13,15 @@
 .btn-info{
 display: block;
 margin: 30px auto;
-
+}
+.bloque1{
+  display: flex;
+  flex-direction: row;
+}
+.btnProducts_Percent{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 .form-check-label{
   font-size: 1rem !important;

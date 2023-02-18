@@ -1,5 +1,14 @@
-
-<button *ngIf="isLogin()" type="button" class="btn-admin btn btn-danger" [routerLink]="['/productos/formulario']" >+ Producto</button>
+<!--Nav Adm Producto-->
+<div class="btnProducts_Percent">
+        <button *ngIf="isLogin()" type="button" class="btn-admin btn btn-danger" [routerLink]="['/productos/formulario']" >+ Producto</button>
+        <div class="bloque1">
+                  <input maxlength="20" class="form-control" placeholder="Campo Obligatorio"
+                  [(ngModel)]='pricePercent'
+                  type="number" requerid >
+                <button class="add"><p style="padding-top: 10px;" (click)="changePrice()" type="submit" >GUARDAR</p></button>
+                <button class="add"><p style="padding-top: 10px;" (click)="clean()">CANCELAR</p></button>
+        </div>
+</div>
 <button (click)="showFilters()" type="button" class="btn btn-danger" ><p>Filtros</p></button>
 
 <!--ImageModel-->
@@ -59,10 +68,10 @@
                 <div class="input-group">
                         <select class="custom-select" #order (change)="setOrder(order.value)" >
                                 <option selected>Oredanr por</option>
-                                <option value="1">Precio: Menor a mayor</option>
-                                <option value="2">Precio: Mayor a menor</option>
-                                <option value="3">A-Z</option>
-                                <option value="4">Z-A</option>
+                                <option value="Precio>">Precio: Menor a mayor</option>
+                                <option value="Precio<">Precio: Mayor a menor</option>
+                                <option value="Name>">A-Z</option>
+                                <option value="Name<">Z-A</option>
                         </select>
                 </div> 
         </div>      

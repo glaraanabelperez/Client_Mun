@@ -33,7 +33,7 @@ import { Order } from 'src/app/orders/models/Order';
     @ViewChild(NgForm) myForm: NgForm;  
 
     public filter:Filter;
-    public order:OrderField;
+    public orderField:OrderField;
     public orderAsc:boolean; 
     public orderSelect;
     public from:number;
@@ -119,8 +119,9 @@ import { Order } from 'src/app/orders/models/Order';
  
     public listAllProducts(x:Filter){     
       this.loadingService.setLoading(true);
+      this.from=null;
       var itemsPerPage=null;
-        this.productService.listAllProducts(x, this.order, this.from, itemsPerPage, this.orderAsc).subscribe(
+        this.productService.listAllProducts(x, this.from, itemsPerPage, this.orderAsc , this.orderField ).subscribe(
           res=>{
             if(res['RecordsCount']!=0){
               this.products=[];
@@ -180,31 +181,33 @@ import { Order } from 'src/app/orders/models/Order';
 
     //The options values for e are in the html.
     public setOrder(e){
-      if(e==1 || e==3){
+      if(e=="Price>" || e=="Name>"){
         //Case 1 and 3 ever the order is asc, But this order can be by price or title then:
         //Case when e = 1 (Order by price )  OrderField.Pprice else  OrderField.title
         this.orderAsc=true
-        this.order = e == 1 ? OrderField.price : OrderField.title       
+        this.orderField = e == "Price>" ? OrderField.Price : OrderField.ProductName       
       }
-      if(e == 2 || e == 4){
+      if(e == "price<" || e == "Name<"){
          //Case 2 and 4 ever the order is desc, But this order can be by price or title then:
         //Case when e = 1 (Order by price )  OrderField.Pprice else  OrderField.title
         this.orderAsc= false
-        this.order= e == 2 ? OrderField.price : OrderField.title  
+        this.orderField= e == "price<" ? OrderField.Price : OrderField.ProductName  
       }
-      this.onChangesFilters();
+      this.listAllProducts(this.filter);
     }
     // Is Active when change Mark!
     public setHeaderMark(){
-      var x:number=this.filter.CategoryId
+      var CategoryId:number=this.filter.CategoryId
+      var MarkId:number=this.filter.MarcaId
+
       //Set Header Filter with Mark, only if Catgeory is null
-      if( this.filter.MarcaId!=null && x==null){
+      if( MarkId!=null && CategoryId==null){
         this.cabecera="marca";
       }
       
       // If change the headerMark change categories.
-      if(this.cabecera=="marca" ||  this.filter.MarcaId==null){
-        if( this.filter.MarcaId==null){ //Put Off HeadreFilters
+      if(this.cabecera=="marca" ||  MarkId==null){
+        if( MarkId==null){ //Put Off HeadreFilters
           this.cabecera="";
         }
         this.filter.CategoryId=null;
@@ -216,13 +219,16 @@ import { Order } from 'src/app/orders/models/Order';
 
     //Is Active when chenge Category!
     public setHeaderCategory(){
+      var CategoryId:number=this.filter.CategoryId
+      var MarkId:number=this.filter.MarcaId
+
       //Set headerFilters with Category only if Mark is null
-      if(this.filter.CategoryId!=null && this.filter.MarcaId==null){
+      if(CategoryId!=null && MarkId==null){
         this.cabecera="category";
       }
       
       // If change the headerCategory change marks.
-      if(this.cabecera =="category" || this.filter.CategoryId==null){
+      if(this.cabecera =="category" || CategoryId==null){
         if(this.filter.CategoryId==null){ //Put off headerFilters
           this.cabecera="";
         }

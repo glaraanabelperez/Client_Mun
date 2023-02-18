@@ -2,9 +2,9 @@
 
 export class QueryDataModel<F, O>{
 
-    order?:O;
-    orderAsc?:boolean;
     filter? :F ;
     from: number;
-    length :number
+    length :number;
+    orderAsc?:boolean;
+    orderField?:O
 }
