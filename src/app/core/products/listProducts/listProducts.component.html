@@ -1,28 +1,36 @@
-<!--Nav Adm Producto-->
-<div class="btnProducts_Percent">
-        <button *ngIf="isLogin()" type="button" class="btn-admin btn btn-danger" [routerLink]="['/productos/formulario']" >+ Producto</button>
-        <div class="bloque1">
-                  <input maxlength="20" class="form-control" placeholder="Campo Obligatorio"
-                  [(ngModel)]='pricePercent'
-                  type="number" requerid >
-                <button class="add"><p style="padding-top: 10px;" (click)="changePrice()" type="submit" >GUARDAR</p></button>
-                <button class="add"><p style="padding-top: 10px;" (click)="clean()">CANCELAR</p></button>
+<!--Nav Adm Product-->
+<div style="display: flex; flex-direction: row;">
+        <button class="btn-admin btn btn-danger" *ngIf="isLogin()" type="button"  [routerLink]="['/productos/formulario']" >+ Producto</button>
+        <button class="btn-admin btn btn-danger" style ="margin-left: 15px;" type="button"  (click)="show_ChangePrice()">% Precio</button>
+        <div *ngIf="showChangePrice" class="bloque1">
+                <input #pricePercent    maxlength="20" class="form-control" placeholder="Monto a aumentar %"
+                  type="number"  step=0.1 requerid >
+                <button class="addPrice"><p (click)="changePrice(pricePercent.value)" type="submit" ><i style="
+                        color:green" class="fa-sharp fa-solid fa-check"></i></p></button>
         </div>
 </div>
 <button (click)="showFilters()" type="button" class="btn btn-danger" ><p>Filtros</p></button>
-
-<!--ImageModel-->
+<!--ImageModel New Product-->
 <app-image-dialog
 *ngIf="hiddeModal"
 [productIdToModel]="productIdToModel"
 (close)="procesImages($event)"
 ></app-image-dialog>
-<!--Filtros -->
-<div class="product_base">        
-        <div clas="products_left filters" [style.display]="show ? 'block' : 'none'">
-                <!--Filtros-->
+<!--Contenedor -->
+<div class="product_base"> 
+        <!--Filtros-->       
+        <div clas="products_left filters" [style.display]="show ? 'block' : 'none'">       
                 <form action="" #myForm="ngForm" >
                       <div data-aos="slide-right">
+                        <div class="input-group">
+                                <div class="input-group" >
+                                        <input min="3" class="form-control" type="text" name="search"  placeholder="Buscar"
+                                        id="search" [(ngModel)]= "filter.Search">
+                                        <div class="input-group-append" (click)="clear()">
+                                            <span class="input-group-text" style="background-color: gray; color: white;" >X</span>
+                                        </div>
+                                </div>
+                        </div>
                               <div class="input-group">
                                       <div class="form-check" >
                                               <input class="form-check-input" type="checkbox" name="Discount" 
@@ -68,13 +76,14 @@
                 <div class="input-group">
                         <select class="custom-select" #order (change)="setOrder(order.value)" >
                                 <option selected>Oredanr por</option>
-                                <option value="Precio>">Precio: Menor a mayor</option>
-                                <option value="Precio<">Precio: Mayor a menor</option>
-                                <option value="Name>">A-Z</option>
-                                <option value="Name<">Z-A</option>
+                                <option value="PrecioAsc">Precio: Menor a mayor</option>
+                                <option value="PrecioDesc">Precio: Mayor a menor</option>
+                                <option value="NameAsc">A-Z</option>
+                                <option value="NameDesc">Z-A</option>
                         </select>
                 </div> 
-        </div>      
+        </div>
+        <!--Card Products-->      
          <div class="products_rigth"  >                      
                 <div class="productCard_rightSide" *ngFor="let p of products " >
                     <span *ngIf="p.DiscountAmount!=null"  class="block_specification__text" style="color: #f1425d; margin-right:5px;">{{p.DiscountAmount}} % OFF</span>

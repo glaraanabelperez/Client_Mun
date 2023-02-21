@@ -26,8 +26,9 @@ main{
         color: gray;
     }
     .menuAdmin{
+        margin-top: 0%;
         position: relative !important;
-        top: 45% !important;
+        top: 55% !important;
         display: flex;
         flex-direction: row !important;
         width: 100% !important;
@@ -45,16 +46,13 @@ main{
 
 
 
-@media only screen  and (min-width: 200px)and (max-width: 714px){
+@media  (max-width: 714px){
     .menuAdmin{
-        position: relative !important;
-        top: 45% !important;
+        margin-top:20% !important;
         display: flex;
         flex-direction: row !important;
         width: 100% !important;
-        overflow-y: auto;
-        scroll-behavior: auto;
-        margin-bottom: 2rem;
+        margin-bottom: 15px;
         button{
             margin-bottom: 1rem;
             margin-right: 1rem;

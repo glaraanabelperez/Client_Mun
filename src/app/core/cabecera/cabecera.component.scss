@@ -6,6 +6,28 @@
     background-color: white;
     width: 100%;
 }
+.redes{
+    // color: #dc3545;
+    background-color:rgb(248,249,250);
+    border-radius: 10px;
+    border: 1px solid gainsboro;
+    padding: 5px;
+    position: fixed; left: 2%; top: 4%; z-index: 999;
+    cursor: pointer;
+}
+.icons{
+
+    i{
+        margin-right: 1rem;
+        font-size: 1.8rem;
+    }
+    display: flex;
+    flex-direction: row;
+    .fa-whatsapp{
+        color: rgb(26, 181, 57);
+        font-size: 1.9rem;
+    }
+}
 li.logo{
     width: 7%;
     margin: 5px 15px 0px 20px !important;
@@ -90,7 +112,9 @@ z-index: 999;
 //         cursor: pointer;
 //     }
 //   }
-  
+@media (max-width : 1360px) { 
+    .redes{display: none;}
+}
 /* Smartphones (portrait and landscape) ----------- */  
 @media (max-width : 768px) {  
     li.logo{

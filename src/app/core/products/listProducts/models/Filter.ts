@@ -5,5 +5,5 @@ export class Filter{
     Featured :boolean=null;
     MarcaId:number=null;
     Discount:boolean=null;
-    
+    Search:string=null;
 }

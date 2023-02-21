@@ -80,8 +80,6 @@ import { Router } from '@angular/router';
     
   }
 
-    get f(){ return this.uploadForm.controls;}
-
     //
     getCategories(){
       this.loadingService.setLoading(true);
@@ -148,6 +146,7 @@ import { Router } from '@angular/router';
     public limpiar(){
     }
 
+    get f(){ return this.uploadForm.controls;}
     submitted=false;
     onSubmit(){
       this.submitted=true;
