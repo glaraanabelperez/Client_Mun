@@ -2,14 +2,16 @@ import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild} 
 import { LoadingService } from 'src/app/services/loading.service';
 import { ProductService } from '../service/product.service';
 import { ProductModelResponse } from '../models/productModelResponse';
+import { OrderService } from 'src/app/orders/service/order.service';
+import { Order } from 'src/app/orders/models/Order';
 
 @Component({
-    selector: 'app-productView-dialog',
-    templateUrl: './product-view-dialog.component.html',
-    styleUrls: ['./product-view-dialog.component.scss']
+    selector: 'app-productView',
+    templateUrl: './product-view.component.html',
+    styleUrls: ['./product-view.component.scss']
   })
 
-  export class ProductViewDialogComponent implements OnInit
+  export class ProductViewComponent implements OnInit
   {
 
   @Output() close = new EventEmitter<any>();
@@ -19,7 +21,8 @@ import { ProductModelResponse } from '../models/productModelResponse';
   imageArray2: string;
 
   constructor(
-    public loadingService:LoadingService, private productService:ProductService, 
+    public loadingService:LoadingService, private productService:ProductService,private _serviceOrder:OrderService,
+
     ){
     
   }
@@ -36,6 +39,23 @@ clean(){
 
 onCloseModal(): void {
   this.close.emit();
+}
+
+public addToCar(p:ProductModelResponse){
+  let pedido:Order={
+    nameImage: this.imageArray[0],
+    categoryName: p.CategoryName,
+    marcaName: p.MarcaName,
+    productId: p.ProductId,
+    count: 1,
+    name: p.Name,
+    price: p.Price,
+    priceWithDiscount: p.PriceWithDiscount,
+    priceTotal: p.PriceWithDiscount,
+    discount: p.DiscountAmount      
+  }
+  this._serviceOrder.agregarPedido(pedido);
+  this.onCloseModal();
 }
 
 getProduct(productId :number){

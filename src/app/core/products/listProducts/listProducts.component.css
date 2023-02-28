@@ -195,7 +195,7 @@ body {
   display: -ms-grid;
   display: grid;
   grid-gap: 1em;
-  -ms-grid-columns: (1fr)[3];
+  /* -ms-grid-columns: (1fr)[3] */
       grid-template-columns: repeat(3, 1fr);
 }
 
@@ -212,7 +212,7 @@ body {
 }
 
 .productCard_rightSide:nth-child(5) {
-  -ms-grid-column: 2;
+  /* -ms-grid-column: 2; */
       grid-column-start: 2;
 }
 

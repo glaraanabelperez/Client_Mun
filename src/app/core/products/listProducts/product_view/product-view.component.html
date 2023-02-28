@@ -1,0 +1,38 @@
+  <!--  Formulario cargar product -->
+  <div class="conteiner2" >
+    <div class="card">
+      <div class="modal-header">
+        <button type="button" class="btn-close" aria-label="Close" (click)="onCloseModal()" >X</button>       
+      </div>
+      <div class="card-body" >
+        <span *ngIf="product.DiscountAmount!=null"  class="block_specification__text" style="color: #f1425d; margin-right:5px;">{{product.DiscountAmount}} % OFF</span>
+
+          <div class='container-fluid'>   
+            <div class='col-12 imgSlide' style="padding: 0px;">  
+              <ngb-carousel style="justify-content: center;">
+                <ng-template ngbSlide *ngFor="let im of imageArray">
+                  <img  [src]="'assets/' + product.ProductId + '/'+ im "   alt="Random slide">          
+                </ng-template>
+              </ngb-carousel>
+            </div> 
+            <div class='col-12 info' style="padding: 0px;"> 
+              <h2 class="block_name block_name__mainName">{{product.Name}}<sup>&reg; </sup></h2>
+              <p style="font-weight: 600;">{{product.MarcaName}}</p>
+              <p style="font-weight: 600;">{{product.Description}}</p>
+
+              <div style="margin-top: 5%;">
+                <p *ngIf="product.DiscountAmount==null"  class="block_price__currency">${{product.Price}}</p>
+                <p *ngIf="product.DiscountAmount!=null" class="block_price__currency" style="text-decoration:line-through;"> ${{product.Price}}   </p>
+                <p *ngIf="product.DiscountAmount!=null"  class="block_price__currency" style="color:#2F7BB2;font-weight: 600; font-size: 1.1rem;"> ${{product.PriceWithDiscount}}</p>
+                
+              </div>
+             <button (click)="addToCar(product)" style="margin-top: 5%;" class="btn btn-outline-success">
+                  <p>Agregar</p>
+              </button>  
+            </div> 
+          </div>  
+       
+
+      </div>
+    </div>
+</div>

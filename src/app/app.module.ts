@@ -32,7 +32,7 @@ import { DiscountsComponent } from './core/products/discounts/discounts.componen
 import { ImageDialogComponent } from './core/products/listProducts/image-dialog/image-dialog.component';
 import { ContactComponent } from './core/contact/contact.component';
 import { OrderList } from './orders/order-list/order-list.component';
-import { ProductViewDialogComponent } from './core/products/listProducts/productView/product-view-dialog.component';
+import { ProductViewComponent } from './core/products/listProducts/product_view/product-view.component';
 
 
 
@@ -83,7 +83,7 @@ const routes: Routes = [
     DiscountDialogComponent,
     MarcaDialogComponent,
     ImageDialogComponent,
-    ProductViewDialogComponent
+    ProductViewComponent
     ],
 
   imports: [

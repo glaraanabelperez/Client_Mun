@@ -1,0 +1,89 @@
+@import '../../../../generalStyles/generalStyles.scss';
+
+.conteiner2{
+    position: absolute;
+    top: 5rem;
+    z-index: 999;
+    width: 90%;
+    height:100%;
+
+    .card{
+        width: 40%;
+        height: 80%;
+        padding: 2%;
+        margin: auto;
+    
+            -webkit-box-shadow: 6px 5px 18px 0px rgba(138,138,138,1);
+            -moz-box-shadow: 6px 5px 18px 0px rgba(138,138,138,1);
+            box-shadow: 6px 5px 18px 0px rgba(138,138,138,1);
+        .info{
+            text-align: center;
+            margin-top: 10%;
+        }
+        .btn-close{
+            width: 40px;
+            height: 40px;
+            padding: 5px;
+        }
+
+
+    }
+}
+
+img{
+    height: 200px;
+    margin-left: 15%;
+    object-fit: cover;  
+    margin-bottom: 5%;
+}
+
+@media  (max-width: 939px)and(min-width: 780px){
+
+    .conteiner2{
+        margin: 0% !important;
+        div.card{
+            width: 99%;
+        }
+    }
+    
+    img{
+        height: 230px;
+        margin-left: 25% !important;
+        margin-bottom: 10%;
+        object-position: 0%;  
+    }
+}
+
+@media  (max-width: 780px)and(min-width: 370px){
+
+    .conteiner2{
+        margin: 0% !important;
+
+        div.card{
+            width: 99%;
+        }
+    }
+    
+    img{
+        height: 230px;
+        margin-left: 10% !important;
+        margin-bottom: 10%;
+    }
+}
+
+@media  (max-width: 375px) and (min-width: 270px){
+
+    .conteiner2{
+        margin: 0% !important;
+
+        div.card{
+            width: 99%;
+        }
+    }
+    
+    img{
+        height: 170px;
+
+        margin-left: 0% !important;
+    }
+}

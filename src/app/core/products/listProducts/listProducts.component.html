@@ -12,7 +12,7 @@
 <button (click)="showFilters()" type="button" class="btn btn-danger" ><p>Filtros</p></button>
 <!--ImageModel New Product-->
 <app-image-dialog *ngIf="hiddeModal" [productIdToModel]="productIdToModel" (close)="procesImages($event)" ></app-image-dialog>
-<app-productView-dialog *ngIf="hiddeModalViewProduct" [productIdToModel]="productIdToModel" (close)="viewProduct($event)"></app-productView-dialog>
+<app-productView *ngIf="hiddeModalViewProduct" [productIdToModel]="productIdToModel" (close)="viewProduct($event)"></app-productView>
 
 <!--Contenedor -->
 <div class="product_base"> 
@@ -135,4 +135,6 @@
                 <br>
         </div>    
 </div>
+
+
 
