@@ -1,0 +1,46 @@
+  <!--  Formulario cargar product -->
+  <div class="conteiner2" >
+    <div class="card">
+      <div class="modal-header">
+        <button type="button" class="btn-close" aria-label="Close" (click)="onCloseModal()" >X</button>       
+      </div>
+      <div class="card-body" >
+
+          <div class='container-fluid'>   
+            <div class='col-12 imgSlide' style="padding: 0px;">  
+              <ngb-carousel >
+                <ng-template ngbSlide *ngFor="let im of imageArray">
+                  <img [src]="'assets/' + product.ProductId + '/'+ im "   alt="Random slide">     
+                  <div class="carousel-caption">
+                  </div>          
+                </ng-template>
+                okokokok
+              </ngb-carousel>
+            </div> 
+            <div class='col-12' style="padding: 0px;">  
+              <h4 class="titulo-tarjeta">{{product.Name}}</h4>
+              <p style="font-weight: 600;">{{product.MarcaName}}</p>
+              <!-- <p class="promocion">{{p.Description}}</p> -->
+              <p *ngIf="product.DiscountAmount==null"  class="block_price__currency">${{product.Price}}</p>
+              <p *ngIf="product.DiscountAmount!=null" class="block_price__currency" style="text-decoration:line-through;"> ${{product.Price}}   </p>
+              <p *ngIf="product.DiscountAmount!=null"  class="block_price__currency" style="color:#2F7BB2;font-weight: 600; font-size: 1.1rem;"> ${{product.PriceWithDiscount}}</p>
+              <button  class="btn btn-outline-success">
+                  <p>Agregar</p>
+              </button>  
+            </div> 
+          </div>  
+       
+
+      </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+             
+            

@@ -11,11 +11,9 @@
 </div>
 <button (click)="showFilters()" type="button" class="btn btn-danger" ><p>Filtros</p></button>
 <!--ImageModel New Product-->
-<app-image-dialog
-*ngIf="hiddeModal"
-[productIdToModel]="productIdToModel"
-(close)="procesImages($event)"
-></app-image-dialog>
+<app-image-dialog *ngIf="hiddeModal" [productIdToModel]="productIdToModel" (close)="procesImages($event)" ></app-image-dialog>
+<app-productView-dialog *ngIf="hiddeModalViewProduct" [productIdToModel]="productIdToModel" (close)="viewProduct($event)"></app-productView-dialog>
+
 <!--Contenedor -->
 <div class="product_base"> 
         <!--Filtros-->       
@@ -25,7 +23,7 @@
                         <div class="input-group">
                                 <div class="input-group" >
                                         <input min="3" class="form-control" type="text" name="search"  placeholder="Buscar"
-                                        id="search" [(ngModel)]= "filter.Search">
+                                        id="search" [(ngModel)]= "filter.Search" (ngModelChange)="changeFilter()">
                                         <div class="input-group-append" (click)="clear()">
                                             <span class="input-group-text" style="background-color: gray; color: white;" >X</span>
                                         </div>
@@ -75,7 +73,7 @@
                 </div>   
                 <div class="input-group">
                         <select class="custom-select" #order (change)="setOrder(order.value)" >
-                                <option selected>Oredanr por</option>
+                                <option selected>Oredanar por</option>
                                 <option value="PrecioAsc">Precio: Menor a mayor</option>
                                 <option value="PrecioDesc">Precio: Mayor a menor</option>
                                 <option value="NameAsc">A-Z</option>
@@ -107,6 +105,10 @@
                              <p  class="block_price__currency" style="color:black"> $ {{p.PriceWithDiscount}}</p>
                           </div>
                         </div>
+                        <button 
+                        style="background-color: gainsboro;color: rgb(25, 25, 25);border: none;" 
+                        class="btn btn-info" (click)="viewProduct(p.ProductId)">Ver
+                        </button> 
                         <div *ngIf="!isLogin() && p.Stock">
                                 <button 
                                 style="background-color: #FF6A6A;color: white;border: none;" 

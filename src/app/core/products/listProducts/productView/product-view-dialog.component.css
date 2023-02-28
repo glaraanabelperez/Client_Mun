@@ -1,0 +1,48 @@
+.conteiner2 {
+  position: absolute;
+  top: 5rem;
+  z-index: 999;
+  width: 100%;
+}
+
+.conteiner2 .card {
+  width: 50%;
+  height: 50%;
+  padding: 2%;
+  margin: auto;
+  -webkit-box-shadow: 6px 5px 18px 0px #8a8a8a;
+  box-shadow: 6px 5px 18px 0px #8a8a8a;
+}
+
+.conteiner2 .card .btn-close {
+  width: 40px;
+  height: 40px;
+  padding: 5px;
+}
+
+.images {
+  margin-bottom: 10%;
+  margin-top: 10%;
+}
+
+.itemPhoto {
+  width: 40%;
+  margin: auto;
+  margin-bottom: 3px;
+}
+
+.itemPhoto .btn-images.fa-trash {
+  float: right;
+}
+
+.itemPhoto .viewImg {
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 5%;
+}
+
+.itemPhoto .fa-solid {
+  font-size: 20px;
+  cursor: pointer;
+}
+/*# sourceMappingURL=image-dialog.component.css.map */

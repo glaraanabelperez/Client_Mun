@@ -62,6 +62,7 @@ confirm(){
   if(this.listImagesToDelete.length>0){
     this.deleteInserver();
   }
+  this.onCloseModal();
 }
 
 saveInserver(){

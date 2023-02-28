@@ -51,6 +51,10 @@ public getProduct(productId :number):Observable<ProductModel>{
   return this.http.get<any>(`${this.url}product/${productId}`);
 }
 
+public ProductToCard(productId :number):Observable<ProductModelResponse>{
+  return this.http.get<any>(`${this.url}ProductToCard/${productId}`);
+}
+
 public getProductfeatured():Observable<ProductModelResponse[]>{
   return this.http.get<any>(`${this.url}products/list_feature`);
 }
@@ -60,7 +64,12 @@ public update(product :ProductModel):Observable<any>{
 }
 
 public insert(product :ProductModel):Observable<any>{
-  return this.http.post<any>(`${this.url}product/insert`, product );
+  return this.http.post<any>(`${this.url}product/insert`, product )
+  .pipe(
+    tap(()=>{
+      this.refresh$.next();
+    })
+  )
 }
 
 public delete(productId:number):Observable<any>{

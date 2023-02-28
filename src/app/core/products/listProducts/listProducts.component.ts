@@ -51,6 +51,9 @@ import { Subscription } from 'rxjs';
     public cabecera: string;
     public subscription:Subscription;
     
+    //Modal ViewProduct
+    public hiddeModalViewProduct: boolean;
+
 
     constructor( 
       private productService:ProductService, 
@@ -74,8 +77,8 @@ import { Subscription } from 'rxjs';
     }
 
     ngAfterViewInit() { 
-      //this.listAllProducts(this.filter);
-      this.onChangesFilters();
+      this.listAllProducts(this.filter);
+      //this.onChangesFilters();
     }
     
     public addToCar(p:ProductModelResponse){
@@ -112,12 +115,16 @@ import { Subscription } from 'rxjs';
       }); 
     }
 
-    public onChangesFilters(): void {
-      this.myForm.valueChanges.subscribe((x:Filter) => {  
-        this.listAllProducts(x);
-      });
-    }
+    // public onChangesFilters(): void {
+    //   this.myForm.valueChanges.subscribe((x:Filter) => {  
+    //     this.listAllProducts(x);
+    //   });
+    // }
  
+    public changeFilter(){
+      this.listAllProducts(this.filter);
+    }
+
     public clear(){
       this.filter.Search=null;
     }
@@ -286,6 +293,12 @@ import { Subscription } from 'rxjs';
         }
       );
     }
+
+    public viewProduct(productId:number):void{
+      this.productIdToModel=productId
+      this.hiddeModalViewProduct=  this.hiddeModalViewProduct ? false : true;
+      window.scroll(0,0)
+    } 
 
     ngOnDestroy(): void {
       this.subscription.unsubscribe();

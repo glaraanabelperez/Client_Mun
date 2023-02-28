@@ -1,0 +1,37 @@
+@import '../../../../generalStyles/generalStyles.scss';
+
+.conteiner2{
+    position: absolute;
+    top: 5rem;
+    z-index: 999;
+    width: 90%;
+    .card{
+        width: 50%;
+        height: 80%;
+        padding: 2%;
+        margin: auto;
+    
+            -webkit-box-shadow: 6px 5px 18px 0px rgba(138,138,138,1);
+            -moz-box-shadow: 6px 5px 18px 0px rgba(138,138,138,1);
+            box-shadow: 6px 5px 18px 0px rgba(138,138,138,1);
+        .btn-close{
+            width: 40px;
+            height: 40px;
+            padding: 5px;
+        }
+
+    }
+}
+
+img{
+    height: 250px;
+    float: center;
+}
+.carousel-indicators {
+
+    li {
+     
+      background-color: black;
+     
+    }
+}

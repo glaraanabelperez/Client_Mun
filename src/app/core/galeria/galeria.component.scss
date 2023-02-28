@@ -3,7 +3,7 @@
 .contenedor-galeria{
     #carousel {
         width: 100%;
-        height: auto;
+        height: 320px;
         white-space: nowrap;
         overflow-x: auto;
         margin: auto;
@@ -14,7 +14,6 @@
             .contenedor-card{
                 background-color: white;
                 width: 100%;
-                height: 320px;
                 display: flex;
                 flex-direction: column;
                 border: 1.5px solid rgb(235, 232, 232);
@@ -22,6 +21,7 @@
                 border-radius: 10px;
                 .foto-destacada{
                     margin-bottom: 5%;
+                    margin-bottom: 10%;
                     width: 100% !important;
                     height: 35% !important;
                     background-color: white;
