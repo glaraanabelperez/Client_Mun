@@ -32,7 +32,7 @@
                               <div class="input-group">
                                       <div class="form-check" >
                                               <input class="form-check-input" type="checkbox" name="Discount" 
-                                              id="Discount" [(ngModel)]= "filter.Discount">
+                                              id="Discount" [(ngModel)]= "filter.Discount"  (change)="changeFilter()">
                                               <label  for="Discount">
                                                       Con descuentos!
                                               </label>
@@ -41,7 +41,7 @@
                               <div class="input-group">
                                       <div class="form-check">
                                               <input class="form-check-input" type="checkbox" name="Featured" 
-                                              id="Featured" [(ngModel)]= "filter.Featured" >
+                                              id="Featured" [(ngModel)]= "filter.Featured"  (change)="changeFilter()" >
                                               <label  for="Featured">
                                                       Destacados
                                               </label>
@@ -50,7 +50,7 @@
                               <div class="input-group">
                                       <div class="form-check">
                                               <input class="form-check-input" type="checkbox" name="Stock" 
-                                              id="Stock" [(ngModel)]= "filter.Stock" >
+                                              id="Stock" [(ngModel)]= "filter.Stock"  (change)="changeFilter()" >
                                               <label for="Stock">
                                                       Disponibles
                                               </label>

@@ -31,6 +31,7 @@ import { Subscription } from 'rxjs';
     public marcas:MarcaModel []=[];
 
     //Filtros
+    public nulo=null;
     @ViewChild(NgForm) myForm: NgForm;  
 
     public filter:Filter;
@@ -140,10 +141,10 @@ import { Subscription } from 'rxjs';
               this.recordCount=res['RecordsCount'];
             }else{
               alert("PRODUCTO NO DISPONIBLE, INTENTE CAMBIANDO LOS FILTROS")
-              //Case when list product is null then empty secondary filters.
+              //Case when, with this category the list product is null then empty secondary filters.
               if(this.cabecera=="marca"){
                 this.filter.CategoryId=null;
-              }else{
+              }else if(this.cabecera=="category"){
                 this.filter.MarcaId=null;
               }
             }          
@@ -224,35 +225,31 @@ import { Subscription } from 'rxjs';
     }
 
     public setHeaderMark(){
-      var CategoryId:number=this.filter.CategoryId
-      var MarkId:number=this.filter.MarcaId
-
+      var CategoryId:number=this.filter.CategoryId=="null"?null:this.filter.CategoryId
+      var MarkId:number=this.filter.MarcaId=="null"?null:this.filter.MarcaId
       //Set Header Filter with Mark, only if Catgeory is null
       if( MarkId!=null && CategoryId==null){
         this.cabecera="marca";
-      }
-      
+      }     
       // If change the headerMark change categories.
       if(this.cabecera=="marca" ||  MarkId==null){
+        this.filter.CategoryId=null;
+        this.getCategoryByMarca();
         if( MarkId==null){ //Put Off HeadreFilters
           this.cabecera="";
         }
-        this.filter.CategoryId=null;
-        this.getCategoryByMarca();
       }
       this.listAllProducts(this.filter);
 
     }
 
     public setHeaderCategory(){
-      var CategoryId:number=this.filter.CategoryId
-      var MarkId:number=this.filter.MarcaId
-
+      var CategoryId:number=this.filter.CategoryId=="null"?null:this.filter.CategoryId
+      var MarkId:number=this.filter.MarcaId=="null"?null:this.filter.MarcaId
       //Set headerFilters with Category only if Mark is null
       if(CategoryId!=null && MarkId==null){
         this.cabecera="category";
-      }
-      
+      }    
       // If change the headerCategory change marks.
       if(this.cabecera =="category" || CategoryId==null){
         if(this.filter.CategoryId==null){ //Put off headerFilters

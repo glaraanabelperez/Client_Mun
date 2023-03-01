@@ -1,9 +1,10 @@
 export class Filter{
 
     Stock :boolean=null;
-    CategoryId:number=null;
+    CategoryId:any=null;
     Featured :boolean=null;
-    MarcaId:number=null;
+    MarcaId:any=null;
     Discount:boolean=null;
     Search:string=null;
+
 }
