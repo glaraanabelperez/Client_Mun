@@ -34,7 +34,7 @@
               <div class="form-group col-md-13" *ngIf="discounts.length>0">
                 <label for="categorias">Descuentos</label>
                 <select formControlName="discountId" class="form-control">
-                  <option selected value="null">Sin Descuento</option>
+                  <option selected value=0>Sin Descuento</option>
                   <option *ngFor="let d of discounts" [value]="d.DiscountId">{{d.Amount}} %</option>
                 </select>
               </div> 

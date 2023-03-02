@@ -8,7 +8,7 @@
         <span *ngIf="product.DiscountAmount!=null"  class="block_specification__text" style="color: #f1425d; margin-right:5px;">{{product.DiscountAmount}} % OFF</span>
 
           <div class='container-fluid'>   
-            <div class='col-12 imgSlide' style="padding: 0px;">  
+            <div class='col-12 imgSlide' style="padding: 0px; text-align: center;">  
               <ngb-carousel style="justify-content: center;">
                 <ng-template ngbSlide *ngFor="let im of imageArray">
                   <img  [src]="'assets/' + product.ProductId + '/'+ im "   alt="Random slide">          

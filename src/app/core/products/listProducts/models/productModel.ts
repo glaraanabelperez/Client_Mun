@@ -1,7 +1,7 @@
 export interface ProductModel{
     ProductId:number;
     CategoryId:number;
-    DiscountId:number;
+    DiscountId:any;
     MarcaId:string;
     Name:string;
     Description:string;
