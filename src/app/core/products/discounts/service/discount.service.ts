@@ -28,18 +28,15 @@ public getActiveDiscounts(): Observable<DiscountModel[]> {
 //   return this.http.get<DiscountModel []>(`${this.url}discount/list/`);
 // }
 
-public save(data:DiscountModel): Observable<any> {
-  return this.http.put<any>(`${this.url}discount/`, data);
+public postDiscount(data:DiscountModel): Observable<any> {
+  return this.http.post<any>(`${this.url}discount/`, data);
 }
 
-public update(data:DiscountModel): Observable<any> {
-  return this.http.post<any>(`${this.url}discount/${data.DiscountId}`, data);
+public delete(disId: number): Observable<any> {
+  return this.http.delete(`${this.url}discount/state/${disId}`);
 }
 
-public delete(discountId:number): Observable<any> {
-  return this.http.delete(`${this.url}discount/sate/${discountId}`);
-}
-  
+
 }
 
 

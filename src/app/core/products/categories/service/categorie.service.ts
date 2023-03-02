@@ -16,12 +16,9 @@ url=environment.Url;
 
 // public changeFilters$ = new BehaviorSubject(null)
 
-
 constructor(private http: HttpClient) {
 
 }
-
-
 
 public get(categoryId:number): Observable<CategoryModel[]> {
   return this.http.get<CategoryModel []>(`${this.url}category/${categoryId}`);
@@ -36,14 +33,14 @@ public list(): Observable<CategoryModel[]> {
 }
 
 public delete(categoryId: number): Observable<any> {
-  return this.http.delete<any>(`${this.url}category/state/${categoryId}`);
+  return this.http.delete(`${this.url}category/state/${categoryId}`);
 }
 
-public insert(category:CategoryModel): Observable<any> {
-  return this.http.put<any>(`${this.url}category`, category);
-}
+// public insert(category:CategoryModel): Observable<any> {
+//   return this.http.put<any>(`${this.url}category`, category);
+// }
 
-public upload(category:CategoryModel): Observable<any> {
+public postCategory(category:CategoryModel): Observable<any> {
   return this.http.post<any>(`${this.url}category`, category);
 }
   

@@ -31,13 +31,12 @@ import { DiscountService } from './service/discount.service';
 
   showingModal(item:DiscountModel):void{
     this.discount = item;
-    if(!this.showModal){
-      this.showModal=true;
-      window.scroll(0,0);
-
-    }else{
+    if(this.showModal){
       this.showModal=false;
       this.getDiscounts();
+      window.scroll(0,0);
+    }else{
+      this.showModal=true;
     }
   } 
 
@@ -60,16 +59,17 @@ import { DiscountService } from './service/discount.service';
   public delete(discountId:number){
       this.discountService.delete(discountId).subscribe(
         res=>{
-         console.log(res)
           this.loadingService.setLoading(false);
+          alert('Dato Eliminado');
+          this.getDiscounts();
         },
         error=>{
           this.loadingService.setLoading(false);
           alert('ERROR EN EL SERVIDOR');
         }
       );
-
   }
+  
     
 }
   

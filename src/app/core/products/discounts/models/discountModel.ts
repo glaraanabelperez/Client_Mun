@@ -1,6 +1,7 @@
 export interface DiscountModel{
   DiscountId: number;
-  Name: string;
+  Amount:number;
   State:boolean;
+  CreatedBy: number;
   }
  

@@ -28,15 +28,14 @@ import { CategoryModel } from './models/categoryModel';
 
   showingModal(item:CategoryModel):void{
     this.category = item;
-    if(!this.showModal){
-      this.showModal=true;
-      window.scroll(0,0);
-    }else{
+    if(this.showModal){
       this.showModal=false;
       this.getCategorias();
+      window.scroll(0,0);
+    }else{
+      this.showModal=true;
     }
   } 
-
 
    //lista categorias
    public getCategorias(){
@@ -65,7 +64,6 @@ import { CategoryModel } from './models/categoryModel';
           alert('ERROR EN EL SERVIDOR');
         }
       );
-
   }
     
 }

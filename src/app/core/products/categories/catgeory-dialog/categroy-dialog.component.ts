@@ -27,9 +27,7 @@ import { LoadingService } from 'src/app/services/loading.service';
       public loadingService:LoadingService, 
       private categoireService:CatgeorieService,
       private formBuilder:FormBuilder, @Inject(DOCUMENT) private document: Document
-    ){
-  
-    }
+    ){}
      
   ngOnInit(): void {
     this.uploadForm=this.formBuilder.group({
@@ -59,40 +57,21 @@ import { LoadingService } from 'src/app/services/loading.service';
     if(this.uploadForm.invalid){
       return;
     }else{
-      if(this.editing){
-        this.uploadCatgeory();
-      }
-      if(!this.editing){
-        this.insertCategory();
-      }
+        this.postCategory();
     }
-    this.editing=false;
   }
 
-  uploadCatgeory(){
-    this.categoireService.upload(this.uploadForm.value).subscribe(
+  postCategory(){
+    this.categoireService.postCategory(this.uploadForm.value).subscribe(
       res=>{
         this.loadingService.setLoading(false);
-        alert('DATOS GUARDADOS');
+        alert('ACCION EXITOSA');
         this.onCloseModal();
       },
       error=>{
         this.loadingService.setLoading(false);
         alert('ERROR EN EL SERVIDOR');
-      }
-    );
-  }
-
-  insertCategory(){
-    this.categoireService.insert(this.uploadForm.value).subscribe(
-      res=>{
-        this.loadingService.setLoading(false);
-        alert('DATOS GUARDADOS');
         this.onCloseModal();
-      },
-      error=>{
-        this.loadingService.setLoading(false);
-        alert('EL USUARIO NO SE ENCUENTRA REGISTRADO');
       }
     );
   }

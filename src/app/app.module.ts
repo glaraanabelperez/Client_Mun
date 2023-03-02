@@ -5,11 +5,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { RouterModule, Routes } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { LoadingService } from './services/loading.service';
 
 import { AuthService } from './auth-services/auth.service';
 import { GuardsGuard } from './guards/guards.guard';
 import { OrderService } from './orders/service/order.service';
-import { LoadingService } from './services/loading.service';
 
 
 
@@ -103,10 +103,10 @@ const routes: Routes = [
     ],
     
   providers: [
+    LoadingService,
     AuthService, 
     GuardsGuard, 
     OrderService,
-    LoadingService
   ],
   bootstrap: [
     AppComponent

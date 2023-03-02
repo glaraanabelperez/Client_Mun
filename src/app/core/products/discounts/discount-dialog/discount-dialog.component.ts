@@ -53,7 +53,7 @@ import { DiscountService } from 'src/app/core/products/discounts/service/discoun
   
   editarPubliId(e: DiscountModel){
       this.uploadForm.controls.DiscountId.setValue(e.DiscountId?e.DiscountId : null );
-      this.uploadForm.controls.Name.setValue(e.Name );
+      this.uploadForm.controls.Amount.setValue(e.Amount );
       window.scrollTo(0,0);
   }
 
@@ -63,48 +63,25 @@ import { DiscountService } from 'src/app/core/products/discounts/service/discoun
     if(this.uploadForm.invalid){
       return;
     }else{
-      if(this.editing){
-        this.upload();
-      }
-      if(!this.editing){
-        this.insert();
-      }
+        this.postDiscount();
     }
-    this.editing=false;
   }
 
-  upload(){
-    this.discountService.update(this.uploadForm.value).subscribe(
+  postDiscount(){
+    this.discountService.postDiscount(this.uploadForm.value).subscribe(
       res=>{
         this.loadingService.setLoading(false);
-        alert('DATOS GUARDADOS');
+        alert('ACCION EXITOSA');
         this.onCloseModal();
       },
       error=>{
         this.loadingService.setLoading(false);
-        alert('ERROR EN EL SERVIDOR');
-      }
-    );
-  }
-
-  insert(){
-    // this.uploadForm.controls.CretaedBy.setValue(parseInt(localStorage.getItem('codigo_usar')))
-    this.discountService.save(this.uploadForm.value).subscribe(
-      res=>{
-        this.loadingService.setLoading(false);
-        alert('DATOS GUARDADOS');
+        alert('ERROR EN EL SERVIDOR, PUEDE QUE EL DESCUENTO ESTE DUPLICADO');
         this.onCloseModal();
-      },
-      error=>{
-        this.loadingService.setLoading(false);
-        alert('ERROR EN EL SERVIDOR');
       }
     );
   }
 
-
-
-    
 }
   
   
