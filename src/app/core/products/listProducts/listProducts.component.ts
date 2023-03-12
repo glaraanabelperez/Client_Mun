@@ -217,7 +217,7 @@ import { Subscription } from 'rxjs';
         this.orderAsc=true
         this.orderField = e == "PrecioAsc" ? OrderField.Price : OrderField.ProductName       
       }
-      if(e == "priceDesc" || e == "NameDesc"){
+      if(e == "PrecioDesc" || e == "NameDesc"){
         this.orderAsc= false
         this.orderField= e == "priceDesc" ? OrderField.Price : OrderField.ProductName  
       }

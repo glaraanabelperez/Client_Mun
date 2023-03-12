@@ -16,7 +16,7 @@ import { Order } from 'src/app/orders/models/Order';
 
   @Output() close = new EventEmitter<any>();
   @Input() productIdToModel:number;
-  product: ProductModelResponse;
+  product: ProductModelResponse=null;
   imageArray: string[];
   imageArray2: string;
 
@@ -43,7 +43,7 @@ onCloseModal(): void {
 
 public addToCar(p:ProductModelResponse){
   let pedido:Order={
-    nameImage: this.imageArray[0],
+    nameImage:p.ImageName,
     categoryName: p.CategoryName,
     marcaName: p.MarcaName,
     productId: p.ProductId,
@@ -63,9 +63,11 @@ getProduct(productId :number){
   
   this.productService.ProductToCard(productId).subscribe(
     res=>{
-      this.product=res; 
-      this.imageArray=this.product.ImageName.split("-");
-      this.imageArray.shift()
+      this.product=res as ProductModelResponse; 
+      if(this.product.ImageName!=null){
+        this.imageArray=this.product.ImageName.split("-");
+        this.imageArray.shift()
+      }
       this.loadingService.setLoading(false);
     },
     error=>{

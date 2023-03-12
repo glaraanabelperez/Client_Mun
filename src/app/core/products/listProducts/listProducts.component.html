@@ -94,9 +94,9 @@
                         <img *ngIf="p.ImageName == ''" src="assets/camara.png">
                     </div>                                                             
                     <div class="block_product">
-                        <p class="block_model"><span style="font-size:0.7rem" class="block_model__number">Categoria {{p.CategoryName}}</span></p>
-                        <p class="block_model"><span class="block_model__number">{{p.MarcaName}}</span></p>
-                        <h2 class="block_name block_name__mainName">{{p.Name}}<sup>&reg; </sup></h2>
+                        <p class="block_model"><span style="font-size:0.7rem; color:black" class="block_model__number">Categoria {{p.CategoryName}}</span></p>
+                        <p class="block_model"><span style="font-size:0.9rem;" class="block_model__number">{{p.MarcaName}}</span></p>
+                        <h2 style="margin-top: 5px;" class="block_name block_name__mainName">{{p.Name}}<sup>&reg; </sup></h2>
                          <!-- <h2 class="block_name block_name__addName">{{p.Description}}</h2>       -->
                         <div class="block_price" >
                           <p *ngIf="p.DiscountAmount==null"  class="block_price__currency">$ {{p.Price}}</p>

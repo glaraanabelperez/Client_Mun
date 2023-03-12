@@ -8,10 +8,10 @@
   </div>
   <div class="container text-center" *ngFor="let p of _serviceOrder.order; let i=index">
     <div class="row" style="margin: auto;">
-      <div class="col-md-4">
+      <div class="col-md-2" style="height: 5%;">
         <div class="sliderBlock_items__itemPhoto ">
-          <img *ngIf="p.nameImage != ''"  class="viewImg" [src]="'assets/' + p.productId + '/'+ p.nameImage ">
-          <img *ngIf="p.nameImage == ''" src="assets/camara.png">
+          <img *ngIf="p.ImageName != null"  class="viewImg" [src]="'assets/' + p.productId + '/'+ p.ImageName ">
+          <img *ngIf="p.ImageName == null" src="assets/camara.png">
         </div>  
       </div>
       <div class="col-md-5">
@@ -22,7 +22,7 @@
             <p *ngIf="p.discount==null"  class="block_price__currency">$ {{p.price}} x unid</p>
             <div class="prices" *ngIf="p.discount!=null">
                <p  class="block_price__currency" style="text-decoration:line-through;">$ {{p.price}}</p>
-               <p  class="block_price__currency" style="color:black">$ {{p.priceWithDiscount*p.count}} x {{p.count}}</p>
+               <p  class="block_price__currency" style="color:black">$ {{p.priceWithDiscount*p.count}} , {{p.count}} unid</p>
             </div>
             <br>
           </div>
@@ -42,15 +42,15 @@
     </div>
   </div>
   <div class="footer_car">
-    <div class="col">Cantidad Unidades {{_serviceOrder.total}}</div>
-    <div style="margin:10px" class="col total">Total compra {{_serviceOrder.totalFact}}</div>
+    <div class="col" style="text-align: center;margin: auto;">Cant Unid. {{_serviceOrder.total}}</div>
+    <div style="margin:10px" class="col total">Total compra $ {{_serviceOrder.totalFact}}</div>
   </div>
   <div class="msjCar" *ngIf="_serviceOrder.order.length==0"> Su carrito esta vacio</div>
   <hr>
 
   <div class="card">
     <div class="card-header">
-      <h5 class="card-title"><i class="fa-sharp fa-solid fa-truck"></i> Para el Envio comuniquese con el vendedor</h5>
+      <h5 class="card-title"><i class="fa-sharp fa-solid fa-truck"></i> Para Envios comuniquese al whatsapp</h5>
     </div>
     <div class="card-body">
       <div class="row">    

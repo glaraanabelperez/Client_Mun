@@ -29,6 +29,11 @@
     width: 40%;
     margin: auto;
     margin-bottom: 3px;
+    image{
+        background-size:     cover;                      /* <------ */
+    background-repeat:   no-repeat;
+    background-position: center center;   
+    }
     .btn-images.fa-trash{
         float: right;
     }
@@ -43,3 +48,13 @@
     }
 }
 
+@media  (max-width : 1180px) { 
+    .conteiner2{  
+        width: 100%;
+        .card{
+            width: 85%;
+            height: 65%;      
+        }
+    }
+ 
+}
