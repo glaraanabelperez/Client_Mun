@@ -2,6 +2,7 @@
 
 .container-fluid{
   padding: 0px;
+  height: auto !important;
 }
 .contenedor-galeria{
   // margin: 5%;
@@ -33,10 +34,32 @@
   color: white;
 }
 
+.contenedor_titulo{
+  width: 100% !important;
+  .imagedesk{
+    display: block;
+  }
+  .imagephone{
+    display: none !important;
+    width: 80%;
+  }
+}
+
+.p1{
+  display: block !important;
+}
+.p2{
+  display: none !important;
+}
   @media only screen  
   and (min-width : 265px)  
   and (max-width : 680px) { 
-    
+    .p1{
+      display: none !important;
+    }
+    .p2{
+      display: block !important;
+    }
     .contenedor-galeria{
       margin-top:2rem !important;
       margin-bottom: 4rem !important;
@@ -54,11 +77,33 @@
           overflow-y: auto;
       }
     }
+    .contenedor_titulo{
+      .imagedesk{
+        display: none;
+      }
+      .imagephone{
+        display: block !important;
+      }
+    }
+    .container-fluid{
+      height: 80vh !important;
+    }
   }
+
+ 
 
   @media only screen  
   and (min-width : 680px)  
   and (max-width : 1200px) { 
+    .p1{
+      display: none !important;
+    }
+    .p2{
+      display: block !important;
+    }
+    .container-fluid{
+      height: 80vh !important;
+    }
     .contenedor-galeria{
 
       #carousel {
@@ -67,6 +112,16 @@
           overflow-y: hidden;
       }
     }
+
+    .contenedor_titulo{
+      .imagedesk{
+        display: none !important;
+      }
+      .imagephone{
+        display: block !important;
+      }
+    }
+
   }
   
 

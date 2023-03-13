@@ -4,7 +4,8 @@
     position: fixed;
     z-index: 999;
     background-color: white;
-    width: 100%;
+    width: 91%;
+    border: 15px;
 }
 .redes{
     // color: #dc3545;
@@ -12,7 +13,7 @@
     border-radius: 10px;
     border: 1px solid gainsboro;
     padding: 5px;
-    position: fixed; left: 2%; top: 4%; z-index: 999;
+    position: fixed; left: 2%; bottom: 16%; z-index: 999;
     cursor: pointer;
 }
 .icons{
@@ -114,6 +115,9 @@ z-index: 999;
 //   }
 @media (max-width : 1360px) { 
     .redes{display: none;}
+    .nav-link{
+        margin-left: 10px;
+    }
 }
 /* Smartphones (portrait and landscape) ----------- */  
 @media (max-width : 768px) {  

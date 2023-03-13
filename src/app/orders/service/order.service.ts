@@ -44,6 +44,7 @@ export class OrderService {
       if(this.corroborarProductoEnPedido(p)){
         alert("PARA SUMAR UNIDADES ACCEDA AL CARRITO")
       }else{
+        console.log(this.order)
         this.order.push(p);
         this.showModal=true;
         this.calcularTotal(+1);
