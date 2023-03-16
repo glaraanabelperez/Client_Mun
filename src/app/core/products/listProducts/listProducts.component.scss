@@ -2,6 +2,12 @@
 .Cabra{
   height: 30%; width: 30%; float: center;
 }
+.btn-success{
+  background-color: $verde-claro;
+}
+.btn-danger{
+  background-color: $rojo;
+}
 .btn-admin{
   position: relative;
   right:0px;

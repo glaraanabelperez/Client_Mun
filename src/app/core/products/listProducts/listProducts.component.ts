@@ -237,6 +237,7 @@ import { Subscription } from 'rxjs';
         this.getCategoryByMarca();
         if( MarkId==null){ //Put Off HeadreFilters
           this.cabecera="";
+          this.getMarkByCategory();
         }
       }
       this.listAllProducts(this.filter);
@@ -254,6 +255,7 @@ import { Subscription } from 'rxjs';
       if(this.cabecera =="category" || CategoryId==null){
         if(this.filter.CategoryId==null){ //Put off headerFilters
           this.cabecera="";
+          this.getCategoryByMarca();
         }
         this.filter.MarcaId=null;
         this.getMarkByCategory();

@@ -1,9 +1,6 @@
 @import '../../generalStyles/generalStyles.scss';
 
-.container-fluid{
-  padding: 0px;
-  height: 70vh;
-}
+
 .contenedor-galeria{
   // margin: 5%;
 
@@ -47,6 +44,11 @@
 
 .p1{
   display: block !important;
+    img{
+      background-size:     cover;                      /* <------ */
+      background-repeat:   no-repeat;
+      background-position: center center;   
+    }
 }
 .p2{
   display: none !important;

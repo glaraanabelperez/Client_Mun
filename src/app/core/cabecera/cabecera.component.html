@@ -1,13 +1,10 @@
 
 
-<div class="cabecera_fixed">
+<div class="cabecera_fixed" >
   <div class="contenedor-cabecera">
     <!-- <a routerLink="/login" target="_blank"  class="botonCabecera" >
         <i class="fa fa-user-circle" style="color: gainsboro;" aria-hidden="true"></i>
     </a> -->
-  </div>
-  <div class="logo2">
-    <img  src="assets/imagenes-web/LOGO12.jpg" alt="logo Matizo" style="margin:auto;">
   </div>
 <div class="searchShop">
   <!-- <form class="form-inline my-2 my-lg-0">
@@ -16,8 +13,8 @@
   </form> -->
   <div class="icons_rigth">
     <!-- <a><i class="fa-brands fa-whatsapp"></i></a> -->
-    <div style="cursor: pointer; margin-right: 20%;" (click)="setShowModalOrder()">
-      <i class="fa-solid fa-cart-shopping" style="font-size: 30px;margin-right: 30px; color: black; float: right;" ></i>
+    <div style="cursor: pointer; margin-right: 10%;" (click)="setShowModalOrder()">
+      <i class="fa-solid fa-cart-shopping" style="font-size: 30px;margin-right: 20px; color: black; float: right;" ></i>
       <span class="position-absolute top-0 start-50 translate-middle badge rounded-pill bg-danger"
       style="margin-right: 30px; float: right;">
         {{getTotal()}}
@@ -37,7 +34,7 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent" [style.display]="show ? 'block' : 'none'">
         <ul class="navbar-nav mr-auto" (click)="showNav()">
           <li class="logo">
-              <img  src="assets/logo.jpg" alt="logo Matizo">
+              <img  src="assets/C.jpg" alt="logo Mundo">
           </li>
           <li class="nav-item " >
             <a class="nav-link" [routerLink]="['/home']" >Home <span class="sr-only">(current)</span></a>
@@ -55,9 +52,9 @@
               </div>
             </div>
           </li>
-          <li class="nav-item">
+          <!-- <li class="nav-item">
               <a class="nav-link" href="#">Envios</a>
-          </li>
+          </li> -->
           <li class="nav-item">
               <a class="nav-link" [routerLink]="['/contacto']">Contacto</a>
           </li>
