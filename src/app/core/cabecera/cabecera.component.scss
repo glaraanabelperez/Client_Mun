@@ -4,7 +4,7 @@
     position: fixed;
     z-index: 999;
     background-color: white;
-    width: 91%;
+    width: 99%;
     border: 15px;
 }
 .redes{
@@ -13,7 +13,7 @@
     border-radius: 10px;
     border: 1px solid gainsboro;
     padding: 5px;
-    position: fixed; left: 2%; bottom: 16%; z-index: 999;
+    position: fixed; left: 2%; bottom: 2%; z-index: 999;
     cursor: pointer;
 }
 .icons{
@@ -84,7 +84,7 @@ z-index: 999;
 }
 
 .btn-success{
-    background-color: rgb(5, 221, 41);
+    background-color: $amarillo;
 }
 
 .navbar .nav-item:not(:last-child) {

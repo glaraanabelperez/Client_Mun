@@ -82,7 +82,7 @@
                 </div> 
         </div>
         <!--Card Products-->      
-         <div class="products_rigth"  >                      
+         <div class="products_rigth" *ngIf="products.length!=0;" >                      
                 <div class="productCard_rightSide" *ngFor="let p of products " >
                     <span *ngIf="p.DiscountAmount!=null"  class="block_specification__text" style="color: #f1425d; margin-right:5px;">{{p.DiscountAmount}} % OFF</span>
                     <div *ngIf="p.Featured" class="block_specification__informationShow hide" style="text-align: right; margin-bottom: 3%;">
@@ -129,11 +129,11 @@
                                 </button> 
                         </div>                                       
                     </div>
-                    <p *ngIf="!p.Stock" class="block_model agotado" style="text-align:center;"><span  class="block_model__number">AGOTADO!</span></p>
+                    <p *ngIf="!p.Stock" class="block_model agotado" style="text-align:center; background-color: aliceblue; opacity: 70%;"><span  class="block_model__number">AGOTADO!</span></p>
 
                 </div>
                 <br>
-        </div>    
+        </div>   
 </div>
 
 

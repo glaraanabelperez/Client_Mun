@@ -2,7 +2,7 @@
 
 .container-fluid{
   padding: 0px;
-  height: auto !important;
+  height: 70vh;
 }
 .contenedor-galeria{
   // margin: 5%;
@@ -30,7 +30,7 @@
   margin-right: 5px;
 }
 .btn-light:hover{
-  background-color: $verde;
+  background-color: $amarillo;
   color: white;
 }
 
@@ -86,7 +86,7 @@
       }
     }
     .container-fluid{
-      height: 80vh !important;
+      height: 80% !important;
     }
   }
 
@@ -95,15 +95,7 @@
   @media only screen  
   and (min-width : 680px)  
   and (max-width : 1200px) { 
-    .p1{
-      display: none !important;
-    }
-    .p2{
-      display: block !important;
-    }
-    .container-fluid{
-      height: 80vh !important;
-    }
+
     .contenedor-galeria{
 
       #carousel {

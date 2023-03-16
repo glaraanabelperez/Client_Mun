@@ -43,7 +43,7 @@ onCloseModal(): void {
 
 public addToCar(p:ProductModelResponse){
   let pedido:Order={
-    nameImage:p.ImageName,
+    nameImage:this.imageArray[0],
     categoryName: p.CategoryName,
     marcaName: p.MarcaName,
     productId: p.ProductId,
