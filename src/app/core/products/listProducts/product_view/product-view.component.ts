@@ -17,7 +17,7 @@ import { Order } from 'src/app/orders/models/Order';
   @Output() close = new EventEmitter<any>();
   @Input() productIdToModel:number;
   product: ProductModelResponse=null;
-  imageArray: string[];
+  imageArray: string[]=[];
   imageArray2: string;
 
   constructor(
@@ -43,7 +43,7 @@ onCloseModal(): void {
 
 public addToCar(p:ProductModelResponse){
   let pedido:Order={
-    nameImage:this.imageArray[0],
+    nameImage:null,
     categoryName: p.CategoryName,
     marcaName: p.MarcaName,
     productId: p.ProductId,
@@ -54,6 +54,13 @@ public addToCar(p:ProductModelResponse){
     priceTotal: p.PriceWithDiscount,
     discount: p.DiscountAmount      
   }
+  if(this.imageArray.length>0){
+    pedido.nameImage=this.imageArray[0];
+  }else{
+    pedido.nameImage=null;
+  }
+  
+
   this._serviceOrder.agregarPedido(pedido);
   this.onCloseModal();
 }
