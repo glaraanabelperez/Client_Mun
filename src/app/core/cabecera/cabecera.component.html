@@ -6,22 +6,17 @@
         <i class="fa fa-user-circle" style="color: gainsboro;" aria-hidden="true"></i>
     </a> -->
   </div>
-<div class="searchShop">
-  <!-- <form class="form-inline my-2 my-lg-0">
-    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-  </form> -->
-  <div class="icons_rigth">
+
+  <div class="shop">
     <!-- <a><i class="fa-brands fa-whatsapp"></i></a> -->
-    <div style="cursor: pointer; margin-right: 10%;" (click)="setShowModalOrder()">
-      <i class="fa-solid fa-cart-shopping" style="font-size: 30px;margin-right: 20px; color: black; float: right;" ></i>
-      <span class="position-absolute top-0 start-50 translate-middle badge rounded-pill bg-danger"
-      style="margin-right: 30px; float: right;">
-        {{getTotal()}}
-      </span>
+    <div class="shopCarr" (click)="setShowModalOrder()">
+      <i class="fa-solid fa-cart-shopping" style="font-size: 30px;">
+        <span class="position-absolute  translate-middle badge rounded-pill bg-danger">
+          {{getTotal()}}
+        </span></i>
+      
     </div>
   </div>
-</div>
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <button class="navbar-toggler" type="button" data-toggle="collapse" (click)="showNav()" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -31,13 +26,11 @@
         <a class="list-group-item"><i class="fa-brands fa-instagram"></i></a>
         <a class="list-group-item"><i class="fa-brands fa-whatsapp" ></i></a>
     </div>
+      <img class="logoNav"  src="assets/logo.jpg" alt="logo Mundo">
       <div class="collapse navbar-collapse" id="navbarSupportedContent" [style.display]="show ? 'block' : 'none'">
         <ul class="navbar-nav mr-auto" (click)="showNav()">
-          <li class="logo">
-              <img  src="assets/logo.jpg" alt="logo Mundo">
-          </li>
           <li class="nav-item " >
-            <a class="nav-link" [routerLink]="['/home']" >Home <span class="sr-only">(current)</span></a>
+            <a class="nav-link" [routerLink]="['/colores']" >Home <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
             <a class="nav-link" [routerLink]="['/productos/lista-productos']">Productos</a>

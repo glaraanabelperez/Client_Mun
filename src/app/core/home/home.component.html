@@ -27,17 +27,17 @@
       </ngb-carousel>  
     </div>  
 </div>  
-  <app-galeria></app-galeria><br>
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#F5D224" opacity="1" d="M0,288L120,282.7C240,277,480,267,720,261.3C960,256,1200,256,1320,256L1440,256L1440,0L1320,0C1200,0,960,0,720,0C480,0,240,0,120,0L0,0Z"></path></svg>
+  <app-galeria></app-galeria><br><br>
+  <!-- <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#F5D224" opacity="1" d="M0,288L120,282.7C240,277,480,267,720,261.3C960,256,1200,256,1320,256L1440,256L1440,0L1320,0C1200,0,960,0,720,0C480,0,240,0,120,0L0,0Z"></path></svg> -->
   <div class="contenedor_titulo" style="padding-top: 0px;">
-    <h3>Buscar por CATEGORIAS</h3>
+    <h3 >Buscar por CATEGORIAS</h3>
   </div>
   <div class="contenedor-galeria">
     <div id="carousel">      
           <div class="cont_carrousel" >
             <div *ngFor="let m of categorias">
               <button [routerLink]="['/productos/lista-productos','categoria', m.CategoryId]" 
-              type="button" class="btn btn-light" style="margin-right: 10px;">{{m.Name}}</button>
+              type="button" class="btn btn-light" style="margin-right: 10px;color: white;">{{m.Name}}</button>
             </div>
           </div>
     </div>

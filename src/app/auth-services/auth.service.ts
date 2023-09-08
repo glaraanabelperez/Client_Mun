@@ -15,7 +15,6 @@ export class AuthService {
 
 
   constructor(private http: HttpClient) { 
-    console.log(localStorage.getItem('username')!=null)
   }
 
  

@@ -10,7 +10,6 @@
          <div class="images">
           <div  *ngFor="let im of images; let i=index">
             <div class="itemPhoto">
-              <!-- <img   class="viewImg" [src]="'assets/productIdToModel/' +  im.Name"> -->
               <img   class="viewImg" [src]="'assets/' + productIdToModel + '/'+ im.Name ">
               <div class="btn-images" >
                 <i class="fa-solid fa-trash" (click)="deleteImagesOld(im, i)" ></i>

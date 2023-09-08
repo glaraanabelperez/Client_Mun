@@ -30,7 +30,6 @@ export class OrderService {
   }
 
   setShowingModal():void{
-    console.log(this.showModal)
     if(!this.showModal){
       this._showModal.next(true);
       window.scroll(0,0);
@@ -44,7 +43,6 @@ export class OrderService {
       if(this.corroborarProductoEnPedido(p)){
         alert("PARA SUMAR UNIDADES ACCEDA AL CARRITO")
       }else{
-        console.log(this.order)
         this.order.push(p);
         this.showModal=true;
         this.calcularTotal(+1);
@@ -105,8 +103,16 @@ export class OrderService {
 
     procesTotal(){
       this.totalFact=0;
-      this.order.forEach(element => {
-        this.totalFact+=(element.priceWithDiscount*element.count)
+
+      this.order.forEach(e => {
+        var price=0;
+        if(e.priceWithDiscount!=null){
+          price=e.priceWithDiscount
+        }else{
+          price=e.price
+        }
+        this.totalFact+=(price*e.count)
+        this.totalFact=Math.round(this.totalFact * 100) / 100
       });
       this.totalFact_suscribeOnChange();
     }

@@ -5,7 +5,7 @@
         <button type="button" class="btn-close" aria-label="Close" (click)="onCloseModal()" >X</button>       
       </div>
       <div class="card-body" *ngIf="product!=null" >
-        <p *ngIf="product.DiscountAmount"  class="block_specification__text" style="color: #f1425d; margin-right:5px;">{{product.DiscountAmount}} % OFF</p>
+        <p *ngIf="product.DiscountAmount"  class="block_specification__text" style="color: #f1425d;text-align: center;font-weight: 600px;">{{product.DiscountAmount}} % OFF</p>
 
           <div class='container-fluid'>   
             <div class='col-12 imgSlide' style="padding: 0px; text-align: center;">  
@@ -15,21 +15,27 @@
                 </ng-template>
               </ngb-carousel>
             </div> 
-            <div class='col-12 info' style="padding: 0px;"> 
+            <div class='col-12 info' style="padding: 0px;text-align: left;"> 
+              <p>{{product.MarcaName}}</p>
               <h2 class="block_name block_name__mainName">{{product.Name}}<sup>&reg; </sup></h2>
-              <p style="font-weight: 600;">{{product.MarcaName}}</p>
-              <p style="font-weight: 600;">{{product.Description}}</p>
-
-              <div style="margin-top: 5%; display: flex; flex-direction: row; justify-content: space-arround; width: 70%; margin: auto;">
-                <p *ngIf="product.DiscountAmount==null"  class="block_price__currency">${{product.Price}}</p>
-                <p *ngIf="product.DiscountAmount!=null" class="block_price__currency" style="text-decoration:line-through;"> ${{product.Price}}   </p>
-                <p *ngIf="product.DiscountAmount!=null"  class="block_price__currency" style="color:#2F7BB2;font-weight: 600; font-size: 1.1rem;"> ${{product.PriceWithDiscount}}</p>
-                
+              <p >{{product.Description}}</p>
+              <div style="display: flex;flex-direction: row;">
+                <i class="fa-sharp fa-solid fa-star block_specification__button block_specification__button__jump"
+              aria-hidden="true" style="color: rgb(204, 255, 0); margin-right:5px;"></i>
+              <i class="fa-sharp fa-solid fa-star block_specification__button block_specification__button__jump"
+              aria-hidden="true" style="color: rgb(204, 255, 0); margin-right:5px;"></i>
+              <i class="fa-sharp fa-solid fa-star block_specification__button block_specification__button__jump"
+              aria-hidden="true" style="color: rgb(204, 255, 0); margin-right:5px;"></i>
               </div>
-             <button (click)="addToCar(product)" style="margin-top: 5%;" class="btn btn-outline-success">
-                  <p>Agregar</p>
-              </button>  
+              <div style="margin-top: 5%; display: flex; flex-direction: row;justify-content: center;">
+                <p *ngIf="product.DiscountAmount==null">${{product.Price}}</p>
+                <p *ngIf="product.DiscountAmount!=null"style="text-decoration:line-through;"> ${{product.Price}}   </p>
+                <p *ngIf="product.DiscountAmount!=null" style="color:#2F7BB2;font-weight: 600; font-size: 1.1rem;padding-left: 10px;"> ${{product.PriceWithDiscount}}</p>             
+              </div>
             </div> 
+            <button (click)="addToCar(product)" style="margin-top: 10px;width: 100%;" class="class=col-12 info btn btn-outline-success">
+              <p>Agregar</p>
+          </button>  
           </div>  
        
 

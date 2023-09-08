@@ -1,8 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@800&family=Oswald:wght@500&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500&display=swap');
+// @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@800&family=Oswald:wght@500&display=swap');
+// @import url('https://fonts.googleapis.com/css2?family=DM+Sans&display=swap');
+// @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fredoka&display=swap');
 
-$font:  'Quicksand', sans-serif;
+$titulos:  'Fredoka', sans-serif;
+$font:  'Fredoka';
 $font-tamanio-botones:12px;
 $gris:#fafbf9;
 $blanco:#ffffff;
@@ -60,7 +62,6 @@ h4 {
 
 p{
 	margin: 0% !important;
-  width: 100%;
   overflow-wrap: break-word !important;
 }
 .p-fondo{

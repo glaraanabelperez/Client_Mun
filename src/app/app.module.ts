@@ -33,6 +33,7 @@ import { ImageDialogComponent } from './core/products/listProducts/image-dialog/
 import { ContactComponent } from './core/contact/contact.component';
 import { OrderList } from './orders/order-list/order-list.component';
 import { ProductViewComponent } from './core/products/listProducts/product_view/product-view.component';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 
 
@@ -53,12 +54,11 @@ export const childrenRouteProducts:Routes=[
 ];
 
 const routes: Routes = [
-{path: '', redirectTo: 'home', pathMatch:'full'},
-{path: 'home', component: HomeComponent, children:childrenRoute},
-
+{path: 'colores', component: HomeComponent, children:childrenRoute},
 {path: 'login', component:LogInComponent},
 {path: 'productos',component: ProductsComponent,children:childrenRouteProducts},
 {path: 'contacto',component: ContactComponent},
+{path: '', redirectTo: '/colores', pathMatch:'full'},
 
 ];
 
@@ -107,6 +107,7 @@ const routes: Routes = [
     AuthService, 
     GuardsGuard, 
     OrderService,
+    { provide: LocationStrategy, useClass: HashLocationStrategy }
   ],
   bootstrap: [
     AppComponent

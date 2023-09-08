@@ -1,6 +1,6 @@
 @import './generalStyles/generalStyles.scss';
 .specewhite{
-    height: 140px;
+    height: 120px;
     background-color: inherit;
   }
 .contenedor-app{
@@ -40,7 +40,7 @@
 and (min-width : 262px)  
 and (max-width : 780px) {  
     .specewhite{
-        height: 150px !important;
+        height: 25px !important;
         background-color: inherit;
       }
     .contenedor-app{

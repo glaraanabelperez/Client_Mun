@@ -19,7 +19,7 @@
           <div class="info">
             <p>{{p.marcaName}}</p>
             <h3 style="margin: 0px;">{{p.name}}</h3>
-            <p *ngIf="p.discount==null"  class="block_price__currency">$ {{p.price}} x unid</p>
+            <p *ngIf="p.discount==null"  class="block_price__currency">$ {{p.price*p.count}}, {{p.count}} x unid</p>
             <div class="prices" *ngIf="p.discount!=null">
                <p  class="block_price__currency" style="text-decoration:line-through;">$ {{p.price}}</p>
                <p  class="block_price__currency" style="color:black">$ {{p.priceWithDiscount*p.count}} , {{p.count}} unid</p>
@@ -52,23 +52,12 @@
     <div class="card-header">
       <h5 class="card-title"><i class="fa-sharp fa-solid fa-truck"></i> Para Envios comuniquese al whatsapp</h5>
     </div>
-    <div class="card-body">
-      <div class="row">    
-        <h5 class="col-md-6">Retiro en Local y Envios a CABA</h5>
-        <h5 class="col-md-4">Gratis</h5>
-      </div>
-      <div class="row">    
-        <h5 class="col-md-6">Envios Bs As o Interior</h5>
-        <h5 class="col-md-4">Consultar</h5>
-      </div>
-      <br>
-  </div>
-  <button *ngIf="_serviceOrder.order.length!=0 && !goPayShow" style="display: block;margin: auto;" class="btn btn-warning" (click)="procesPayment()">Procesar</button><br><br>
+  <br><button *ngIf="_serviceOrder.order.length!=0 && !goPayShow" style="display: block;margin: auto;" class="btn btn-warning" (click)="procesPayment()">Confirmar</button><br><br>
   <div *ngIf="goPayShow">
     <div class="alert alert-primary" role="alert">
         Luego de su pago contactese con el vendedor por whatsapp para la entrega del producto
     </div>
-    <a class="btn btnPay btn-success" [href]="goPay" target="_blank">Pagar</a>
+    <a class="btn btnPay btn-success" [href]="goPay" target="_blank" (click)="deleteOrder()">Pagar</a>
     <button class="btn btnPayCancel btn-dark" (click)="cancelPayment()">Cancelar</button>
 
   </div>

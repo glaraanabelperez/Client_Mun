@@ -18,15 +18,16 @@
 
 .site-footer
 {
-  background-color:$vere-oscuro;
+  height: 65vh;
   padding:45px 0 20px;
   font-size:15px;
   line-height:24px;
   color:#737373;
+  justify-content: inherit;
 }
 .site-footer hr
 {
-  border-top-color:#bbb;
+  border-top-color: black;
   opacity:0.5
 }
 .site-footer hr.small
@@ -35,7 +36,6 @@
 }
 .site-footer h6
 {
-  color:#fff;
   font-size:16px;
   margin-top:5px;
   letter-spacing:2px
@@ -60,7 +60,7 @@
 }
 .footer-links a
 {
-  color:gainsboro
+  color: black;
 }
 .footer-links a:active,.footer-links a:focus,.footer-links a:hover
 {
@@ -102,7 +102,7 @@
 }
 li.list-group-item{
   margin-bottom: 15px !important;
-  color: #eceeef;
+  color: black;
 
 }
 li.list-group-item i{
@@ -179,7 +179,7 @@ li.list-group-item i{
   font-size:13px
 }
 .social-icons a{
-  background-color:#eceeef;
+  background-color:black;
   color:#818a91;
   font-size:16px;
   display:inline-block;
@@ -195,7 +195,7 @@ li.list-group-item i{
 }
 .social-icons a:active,.social-icons a:focus,.social-icons a:hover
 {
-  color:#fff;
+  color:black;
   background-color:#29aafe
 }
 .social-icons.size-sm a

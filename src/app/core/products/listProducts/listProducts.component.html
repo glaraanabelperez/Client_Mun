@@ -1,6 +1,6 @@
 <!--Nav Adm Product-->
-<div style="display: flex; flex-direction: row;">
-        <button class="btn-admin btn btn-danger" *ngIf="isLogin()" type="button"  [routerLink]="['/productos/formulario']" >+ Producto</button>
+<div style="display: flex; flex-direction: row;" *ngIf="isLogin()" >
+        <button class="btn-admin btn btn-danger"  type="button"  [routerLink]="['/productos/formulario']" >+ Producto</button>
         <button class="btn-admin btn btn-danger" style ="margin-left: 15px;" type="button"  (click)="show_ChangePrice()">% Precio</button>
         <div *ngIf="showChangePrice" class="bloque1">
                 <input #pricePercent    maxlength="20" class="form-control" placeholder="Monto a aumentar %"
@@ -91,18 +91,20 @@
                     </div>
                     <div class="sliderBlock_items__itemPhoto ">
                         <img *ngIf="p.ImageName != ''"  class="viewImg" [src]="'assets/' + p.ProductId + '/'+ p.ImageName ">
-                        <img *ngIf="p.ImageName == ''" src="assets/camara.png">
+                        <img *ngIf="p.ImageName == ''" [src]="'assets/camara.png'">
                     </div>                                                             
                     <div class="block_product">
-                        <p class="block_model"><span style="font-size:0.7rem; color:black" class="block_model__number">Categoria {{p.CategoryName}}</span></p>
+                        <p class="block_model"><span style="font-size:0.7rem; color:black" class="block_model__number">Categoria {{p.CategoryName}}  </span></p>
                         <p class="block_model"><span style="font-size:0.9rem;" class="block_model__number">{{p.MarcaName}}</span></p>
                         <h2 style="margin-top: 5px;" class="block_name block_name__mainName">{{p.Name}}<sup>&reg; </sup></h2>
+                        <p class="block_model"><span style="font-size:0.9rem;" class="block_model__number">ID: {{p.ProductId}}</span></p>
+
                          <!-- <h2 class="block_name block_name__addName">{{p.Description}}</h2>       -->
                         <div class="block_price" >
                           <p *ngIf="p.DiscountAmount==null"  class="block_price__currency">$ {{p.Price}}</p>
                           <div class="prices" *ngIf="p.DiscountAmount!=null">
-                             <p  class="block_price__currency" style="text-decoration:line-through;">$ {{p.Price}}</p>
-                             <p  class="block_price__currency" style="color:black"> $ {{p.PriceWithDiscount}}</p>
+                             <p  class="block_price__currency" style="text-decoration:line-through;font-size: 18px;">$ {{p.Price}}</p>
+                             <p  class="block_price__currency" style="color:black;font-size: 18px;"> $ {{p.PriceWithDiscount}}</p>
                           </div>
                         </div>
                         <button 
@@ -112,7 +114,7 @@
                         <div *ngIf="!isLogin() && p.Stock">
                                 <button 
                                 style="background-color: #FB9990;color: white;border: none;" 
-                                class="btn btn-info" (click)="addToCar(p)">Agregar
+                                class="btn btn-info" (click)="addToCar(p)">Agregar al carrito
                                 </button> 
                         </div>
 

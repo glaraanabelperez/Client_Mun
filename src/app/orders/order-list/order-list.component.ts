@@ -76,11 +76,17 @@ export class OrderList implements OnInit {
 
     let items: ItemsBuy[]=[];
     this._serviceOrder.order.forEach(e => {
+      var price=0;
+      if(e.priceWithDiscount!=null){
+        price=e.priceWithDiscount
+      }else{
+        price=e.price
+      }
       let i={
         Id:e.productId,
         Title: e.name +" /id: " + e.productId ,
         Quantity: e.count,
-        Price: e.priceWithDiscount
+        Price: price
       }
       items.push(i);
     });
@@ -112,12 +118,18 @@ export class OrderList implements OnInit {
     );
   }
 
+  public deleteOrder(){
+    this.goPayShow=false;
+    this._serviceOrder.order=[];
+    this._serviceOrder.total=0;
+    this._serviceOrder.totalFact=0;
+  }
+
   public getPaymentMethods(){
     this.loadingService.setLoading(true);
         this._serviceOrder.getMethodsPayment().subscribe(
           res=>{
           
-           console.log(res);
           },
           error=>{
             alert('ERROR DE SERVIDOR');

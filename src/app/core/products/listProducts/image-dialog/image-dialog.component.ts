@@ -121,7 +121,7 @@ deleteInserver(){
   this.serviceImage.delete(this.listImagesToDelete)
   .subscribe(
     res=>{
-      alert("Datos borados");
+      alert("Datos borrados");
     }, 
     error =>{
         alert("Error al borrar imagen")
@@ -142,7 +142,7 @@ verifyFileOnServer(files, productIdToModel) {
             im.file =files; 
             this.listImagesToInsert.push(im)
             }
-            // this.saveInserver(files);
+            //this.saveInserver();
       },
       error => {
         this.loadingService.setLoading(false)

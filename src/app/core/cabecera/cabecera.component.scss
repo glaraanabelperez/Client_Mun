@@ -17,6 +17,12 @@
     position: fixed; left: 2%; bottom: 2%; z-index: 999;
     cursor: pointer;
 }
+.nav-link{
+    font-family: $titulos;
+    margin-left: 10px;
+    font-size: 22px !important;
+    font-weight: 600;
+}
 .icons{
 
     i{
@@ -103,24 +109,62 @@ z-index: 999;
     overflow-y: auto;
     scroll-behavior: smooth;
   }
-  .icons_rigth{
+  .shop{
+    position: absolute;
+    z-index: 999;
+    right: 75px;
+    top: 40px;
     display: flex;
     flex-direction: row;
     justify-content: space-arround;
-    i{
-        margin-right: 20px;
-        font-size: 35px;
-        cursor: pointer;
+    .shopCarr{
+        i{
+            font-size: 35px;
+            cursor: pointer;
+        }
     }
   }
+
+.logoNav{
+    position: relative;
+    right: 0px;
+    width: 7%;
+}
+
+
 @media (max-width : 1360px) { 
     .redes{display: none;}
     .nav-link{
+        font-family: $titulos;
         margin-left: 10px;
+        font-size: 20px;
     }
 }
 /* Smartphones (portrait and landscape) ----------- */  
 @media (max-width : 768px) {  
+    .shop{
+        position: absolute;
+        z-index: 999;
+        left: 75px;
+        top: 40px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-arround;
+        .shopCarr{
+            i{
+                font-size: 35px;
+                cursor: pointer;
+            }
+        }
+      }
+    
+    .logoNav{
+        position: relative;
+        left: 0px;
+        width: 15%;
+        margin-right: 3px;
+    }
+    
     .logo{
        padding-top: 20px;
        padding-bottom: 20px;

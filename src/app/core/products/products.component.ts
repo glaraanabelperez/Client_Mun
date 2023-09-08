@@ -21,7 +21,6 @@ export class ProductsComponent implements OnInit {
   constructor(private _location: Location, 
     public loadingService:LoadingService, public auth:AuthService) {
      this.pathname= window.location.pathname;
-console.log(this.pathname)
   }
 
   ngOnInit(): void {

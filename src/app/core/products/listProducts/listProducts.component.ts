@@ -128,6 +128,7 @@ import { Subscription } from 'rxjs';
 
     public clear(){
       this.filter.Search=null;
+      this.changeFilter();
     }
 
     public listAllProducts(x:Filter){     
@@ -190,10 +191,12 @@ import { Subscription } from 'rxjs';
         datos=>{
             alert("ACCION EXITOSA")
             this.loadingService.setLoading(false);
+            this.listAllProducts(this.filter);
         },
         error =>{
-          alert('ERROR DE SERVIDOR');
+          alert('Se borraron los datos pero ocurre un error');
           this.loadingService.setLoading(false);
+          this.listAllProducts(this.filter);
         }
       );   
     }
@@ -201,6 +204,10 @@ import { Subscription } from 'rxjs';
     public procesImages(productId:number):void{
       this.productIdToModel=productId
       this.hiddeModal=  this.hiddeModal ? false : true;
+      if(!this.hiddeModal){
+        //this.listAllProducts(this.filter);
+        window.location.reload()
+      }
       window.scroll(0,0)
     } 
 
