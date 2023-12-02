@@ -4,7 +4,7 @@ main.jumbotron{
     padding-top: 20px !important;
 }
 .jumbotron{
-    padding-top: 0px !important;
+    padding: 0px 10px 32px 10px !important;
 
     background-color: $blanco !important;
 }
@@ -26,7 +26,7 @@ main{
         color: gray;
     }
     .menuAdmin{
-        margin-top: 0%;
+        margin-top: 5%;
         position: relative !important;
         top: 55% !important;
         display: flex;

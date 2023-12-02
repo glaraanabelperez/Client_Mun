@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  Url: "https://localhost:44323/api/",
+  // Url: "https://localhost:44323/api/",
+  Url: 'https://api.panaleracolores.com.ar/api/'
 };
 
 /*
